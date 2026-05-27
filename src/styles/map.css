@@ -1,0 +1,232 @@
+.gis-map-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 64, 45, 0.12), transparent 18%),
+    radial-gradient(circle at 54% 52%, rgba(0, 112, 170, 0.16), transparent 44%),
+    #02050a;
+}
+
+.gis-map {
+  width: 100%;
+  height: 100%;
+}
+
+.gis-map__terrain-glow,
+.gis-map__fog,
+.gis-map__grid,
+.gis-map__scanline,
+.gis-map__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.gis-map__terrain-glow {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 52% 50%, rgba(255, 64, 45, 0.22), transparent 16%),
+    radial-gradient(ellipse at 63% 43%, rgba(36, 126, 190, 0.18), transparent 34%),
+    radial-gradient(ellipse at 36% 58%, rgba(0, 153, 204, 0.11), transparent 30%),
+    linear-gradient(180deg, rgba(2, 13, 22, 0.2), transparent 42%, rgba(0, 0, 0, 0.22));
+  mix-blend-mode: screen;
+  opacity: 0.72;
+}
+
+.gis-map__fog {
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at 44% 36%, rgba(94, 190, 255, 0.13), transparent 34%),
+    radial-gradient(ellipse at 70% 72%, rgba(120, 170, 210, 0.1), transparent 38%),
+    linear-gradient(115deg, transparent, rgba(118, 187, 230, 0.09) 42%, transparent 68%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  opacity: 0.56;
+  transform: scale(1.08);
+  animation: tactical-fog-drift 18s ease-in-out infinite alternate;
+}
+
+.gis-map__grid {
+  z-index: 3;
+  background-image:
+    linear-gradient(rgba(84, 190, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(84, 190, 255, 0.05) 1px, transparent 1px);
+  background-size: 92px 92px;
+  mask-image: radial-gradient(circle at 52% 48%, black 0, black 44%, transparent 82%);
+  mix-blend-mode: screen;
+  opacity: 0.35;
+  animation: tactical-grid-drift 28s linear infinite;
+}
+
+.gis-map__scanline {
+  z-index: 4;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(126, 210, 255, 0.08) 49%, rgba(255, 255, 255, 0.08) 50%, rgba(126, 210, 255, 0.08) 51%, transparent 100%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.018),
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  mix-blend-mode: screen;
+  opacity: 0.34;
+  animation: tactical-scanline 8.5s ease-in-out infinite;
+}
+
+.gis-map__vignette {
+  z-index: 5;
+  background:
+    radial-gradient(circle at 50% 48%, transparent 0%, transparent 48%, rgba(0, 0, 0, 0.28) 72%, rgba(0, 0, 0, 0.76) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.45), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45)),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 20%, transparent 76%, rgba(0, 0, 0, 0.46));
+}
+
+@keyframes tactical-grid-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 92px 92px, 92px 92px;
+  }
+}
+
+@keyframes tactical-fog-drift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1.08);
+    opacity: 0.44;
+  }
+
+  to {
+    transform: translate3d(1.5%, 1%, 0) scale(1.12);
+    opacity: 0.62;
+  }
+}
+
+@keyframes tactical-scanline {
+  0% {
+    background-position: 0 -120vh, 0 0;
+  }
+
+  58% {
+    background-position: 0 120vh, 0 0;
+  }
+
+  100% {
+    background-position: 0 120vh, 0 0;
+  }
+}
+
+.maplibregl-canvas {
+  filter: contrast(1.22) saturate(0.88) brightness(0.66);
+}
+
+.maplibregl-ctrl-top-right {
+  top: 112px;
+  right: 28px;
+}
+
+.maplibregl-ctrl-group {
+  overflow: hidden;
+  border: 1px solid rgba(126, 185, 232, 0.18) !important;
+  border-radius: 8px !important;
+  background: rgba(3, 10, 17, 0.68) !important;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.48) !important;
+  backdrop-filter: blur(20px);
+}
+
+.maplibregl-ctrl-group button {
+  background-color: transparent !important;
+}
+
+.maplibregl-ctrl-icon {
+  filter: invert(1) saturate(0.6);
+}
+
+.maplibregl-ctrl button + button {
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.maplibregl-popup {
+  z-index: 4;
+}
+
+.maplibregl-popup-content {
+  padding: 0 !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 88, 68, 0.34);
+  border-radius: 8px !important;
+  background: rgba(4, 10, 16, 0.92) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.52),
+    0 0 28px rgba(255, 59, 47, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.maplibregl-popup-tip {
+  border-top-color: rgba(4, 9, 16, 0.92) !important;
+  border-bottom-color: rgba(4, 9, 16, 0.92) !important;
+}
+
+.map-popup {
+  width: 280px;
+  padding: 14px;
+}
+
+.map-popup__eyebrow {
+  margin-bottom: 6px;
+  color: #ff7665;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.map-popup h3 {
+  margin: 0 0 8px;
+  font-family: "Barlow Condensed", Barlow, sans-serif;
+  font-size: 1.45rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.map-popup p {
+  margin: 0;
+  color: rgba(224, 235, 255, 0.72);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.map-popup__metric {
+  margin-bottom: 8px !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.maplibregl-ctrl-attrib {
+  border: 1px solid rgba(126, 185, 232, 0.14);
+  border-radius: 6px;
+  background: rgba(4, 9, 16, 0.68) !important;
+  color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.maplibregl-ctrl-scale {
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  background: rgba(4, 9, 16, 0.68) !important;
+}
+
+@media (max-width: 820px) {
+  .maplibregl-ctrl-top-right {
+    top: 12px;
+    right: 12px;
+  }
+
+  .maplibregl-ctrl-bottom-right {
+    display: none;
+  }
+}
