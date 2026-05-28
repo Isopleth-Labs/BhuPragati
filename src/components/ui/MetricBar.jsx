@@ -1,4 +1,6 @@
-export default function MetricBar({ label, value, color }) {
+import { memo } from "react";
+
+function MetricBar({ label, value, color }) {
   return (
     <div className="metric-bar" style={{ "--metric-color": color }}>
       <div className="metric-bar__header">
@@ -11,3 +13,5 @@ export default function MetricBar({ label, value, color }) {
     </div>
   );
 }
+
+export default memo(MetricBar);

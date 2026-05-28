@@ -1,42 +1,27 @@
-import { useMemo, useState } from "react";
-import { infrastructureLayers } from "../data/infrastructureLayers";
-import InfrastructureMap from "./map/InfrastructureMap";
+import { Suspense, lazy } from "react";
+import useActiveLayers from "../hooks/useActiveLayers";
 import CommandPanel from "./panels/CommandPanel";
 import InsightStrip from "./panels/InsightStrip";
-import LayerPanel from "./panels/LayerPanel";
+import LegendPanel from "./panels/LegendPanel";
 import TopBar from "./panels/TopBar";
 
-function createDefaultLayerState() {
-  return Object.fromEntries(infrastructureLayers.map((layer) => [layer.id, true]));
-}
+// Lazy-load the map engine so the initial HUD paints fast and
+// MapLibre + heavy GIS code splits into its own chunk.
+const MapEngine = lazy(() => import("../features/map/MapEngine"));
 
 export default function DashboardShell() {
-  const defaultLayerState = useMemo(() => createDefaultLayerState(), []);
-  const [activeLayers, setActiveLayers] = useState(defaultLayerState);
-
-  const toggleLayer = (layerId) => {
-    setActiveLayers((current) => ({
-      ...current,
-      [layerId]: !current[layerId],
-    }));
-  };
-
-  const resetLayers = () => {
-    setActiveLayers(defaultLayerState);
-  };
+  const { activeLayers, toggleLayer } = useActiveLayers();
 
   return (
     <main className="dashboard">
-      <InfrastructureMap activeLayers={activeLayers} />
+      <Suspense fallback={<div className="gis-map-shell" aria-hidden="true" />}>
+        <MapEngine activeLayers={activeLayers} />
+      </Suspense>
 
       <div className="dashboard__hud">
+        <CommandPanel activeLayers={activeLayers} onToggleLayer={toggleLayer} />
         <TopBar />
-        <CommandPanel />
-        <LayerPanel
-          activeLayers={activeLayers}
-          onToggleLayer={toggleLayer}
-          onResetLayers={resetLayers}
-        />
+        <LegendPanel />
         <InsightStrip />
       </div>
     </main>

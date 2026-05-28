@@ -1,41 +1,42 @@
-import { infrastructureLayers, systemReadouts } from "../../data/infrastructureLayers";
+import { memo } from "react";
+import { infrastructureLayers } from "../../config/layers";
+import LayerToggle from "../ui/LayerToggle";
 import MetricBar from "../ui/MetricBar";
 
-export default function CommandPanel() {
+function CommandPanel({ activeLayers, onToggleLayer }) {
   return (
-    <aside className="command-panel panel-surface" aria-label="Kusheshwar Asthan overview">
-      <div className="command-panel__header">
-        <p className="panel-kicker">Priority Zone</p>
+    <aside className="command-panel panel-surface" aria-label="Kusheshwar Asthan intelligence">
+      <header className="command-panel__header">
         <h2>Kusheshwar Asthan</h2>
         <div className="command-panel__meta">PIN Code: 848213</div>
-        <p>
-          Floodplain infrastructure command surface for roads, health access,
-          agriculture dependency and rural electricity stability.
-        </p>
-      </div>
+      </header>
 
-      <div className="readout-grid">
-        {systemReadouts.map((item) => (
-          <div key={item.label} className="readout-card">
-            <span>{item.label}</span>
-            <strong>
-              {item.value}
-              <small>{item.unit}</small>
-            </strong>
-          </div>
-        ))}
-      </div>
-
-      <div className="command-panel__metrics">
+      <div className="command-panel__layers" role="list">
         {infrastructureLayers.map((layer) => (
-          <MetricBar
+          <LayerToggle
             key={layer.id}
-            label={layer.label}
-            value={layer.score}
-            color={layer.color}
+            layer={layer}
+            isActive={!!activeLayers[layer.id]}
+            onToggle={onToggleLayer}
           />
         ))}
+      </div>
+
+      <div className="command-panel__scores">
+        <p className="panel-kicker">Infrastructure Scores</p>
+        <div className="command-panel__metrics">
+          {infrastructureLayers.map((layer) => (
+            <MetricBar
+              key={layer.id}
+              label={layer.scoreLabel}
+              value={layer.score}
+              color={layer.color}
+            />
+          ))}
+        </div>
       </div>
     </aside>
   );
 }
+
+export default memo(CommandPanel);

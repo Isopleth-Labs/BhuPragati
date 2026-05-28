@@ -1,22 +1,36 @@
-import { infrastructureLayers } from "../../data/infrastructureLayers";
+import { memo } from "react";
+import { infrastructureLayers } from "../../config/layers";
+import LayerIcon from "../ui/LayerIcon";
 
-export default function InsightStrip() {
+function InsightStrip() {
   return (
-    <section className="insight-strip panel-surface" aria-label="Infrastructure status summary">
-      {infrastructureLayers.map((layer) => (
-        <article
-          key={layer.id}
-          className="insight-card"
-          style={{ "--layer-color": layer.color }}
-        >
-          <div className="insight-card__topline">
-            <span>{layer.shortLabel}</span>
-            <strong>{layer.score}</strong>
-          </div>
-          <h3>{layer.status}</h3>
-          <p>{layer.trend}</p>
-        </article>
-      ))}
+    <section className="insight-strip panel-surface" aria-label="Quick overview">
+      <header className="insight-strip__header">
+        <p className="panel-kicker">Kusheshwar Asthan — Quick Overview</p>
+      </header>
+
+      <div className="insight-strip__grid">
+        {infrastructureLayers.map((layer) => (
+          <article
+            key={layer.id}
+            className="insight-card"
+            style={{ "--layer-color": layer.color }}
+          >
+            <span className="insight-card__icon" aria-hidden="true">
+              <LayerIcon iconKey={layer.iconKey} size={26} strokeWidth={1.4} />
+            </span>
+            <div className="insight-card__body">
+              <span className="insight-card__label">{layer.intelligenceLabel}</span>
+              <h3 className="insight-card__verdict">{layer.verdict}</h3>
+              <p className="insight-card__foot">
+                At {layer.score}/100 {layer.unitNote}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   );
 }
+
+export default memo(InsightStrip);

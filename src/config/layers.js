@@ -1,12 +1,25 @@
+// Centralized infrastructure layer registry.
+// Each entry maps a logical infrastructure layer to its MapLibre layer ids
+// (used for visibility toggling and lazy overlay loading).
+
+import { layerColors } from "./theme";
+
 export const infrastructureLayers = [
   {
     id: "flood",
+    iconKey: "flood",
     label: "Flood Risk",
     shortLabel: "Flood",
+    intelligenceLabel: "Flood Intelligence",
+    scoreLabel: "Flood Risk",
+    legendLabel: "Flood Prone Area",
     status: "High",
+    verdict: "High",
+    unitNote: "risk level",
     score: 84,
     trend: "Wetland saturation",
-    color: "#ff4438",
+    color: layerColors.flood,
+    overlay: "flood",
     mapLayerIds: [
       "flood-risk-glow",
       "flood-risk-fill",
@@ -18,48 +31,76 @@ export const infrastructureLayers = [
   },
   {
     id: "roads",
+    iconKey: "roads",
     label: "Roads",
     shortLabel: "Road",
+    intelligenceLabel: "Road Connectivity",
+    scoreLabel: "Road Access",
+    legendLabel: "Weak Road Connectivity",
     status: "Fragile",
+    verdict: "Weak",
+    unitNote: "level",
     score: 46,
     trend: "Last-mile exposure",
-    color: "#ffb020",
+    color: layerColors.roads,
+    overlay: "road",
     mapLayerIds: ["road-corridor-glow", "road-corridors", "road-critical-nodes"],
     summary:
       "Strategic corridors are vulnerable where access crosses waterlogged agricultural pockets.",
   },
   {
     id: "healthcare",
+    iconKey: "healthcare",
     label: "Healthcare",
     shortLabel: "Care",
+    intelligenceLabel: "Healthcare Access",
+    scoreLabel: "Healthcare",
+    legendLabel: "Healthcare Gap",
     status: "Moderate",
+    verdict: "Moderate",
+    unitNote: "level",
     score: 57,
     trend: "Referral distance",
-    color: "#3c8cff",
+    color: layerColors.healthcare,
+    overlay: "healthcare",
     mapLayerIds: ["healthcare-access-halos", "healthcare-access-points"],
     summary:
       "Primary care coverage depends on reliable referral movement toward Biraul and Darbhanga.",
   },
   {
     id: "agriculture",
+    iconKey: "agriculture",
     label: "Agriculture",
     shortLabel: "Agri",
+    intelligenceLabel: "Agriculture Dependency",
+    scoreLabel: "Agriculture",
+    legendLabel: "High Agriculture Dependency",
     status: "Very High",
+    verdict: "Very High",
+    unitNote: "level",
     score: 91,
     trend: "Paddy dependency",
-    color: "#3cff8f",
+    color: layerColors.agriculture,
+    overlay: "agriculture",
     mapLayerIds: ["agriculture-belts-fill", "agriculture-belts-outline"],
     summary:
       "Dense paddy and wetland-edge farming dominate local livelihoods and water sensitivity.",
   },
   {
     id: "electricity",
+    iconKey: "electricity",
     label: "Electricity",
     shortLabel: "Power",
+    intelligenceLabel: "Electricity Stability",
+    scoreLabel: "Electricity",
+    legendLabel: "Electricity Instability",
     status: "Unstable",
+    verdict: "Low",
+    unitNote: "level",
     score: 49,
     trend: "Feeder stress",
-    color: "#bf5cff",
+    color: layerColors.electricity,
+    overlay: "electricity",
     mapLayerIds: [
       "electricity-feeder-glow",
       "electricity-feeders",
@@ -70,11 +111,17 @@ export const infrastructureLayers = [
   },
 ];
 
-export const operationalStats = [
-  { label: "Command Zone", value: "Kusheshwar Asthan" },
-  { label: "District", value: "Darbhanga" },
-  { label: "PIN", value: "848213" },
-  { label: "Mode", value: "Live GIS" },
+export const interactiveLayerIds = [
+  "darbhanga-district-line",
+  "kusheshwar-focus-core",
+  "flood-risk-fill",
+  "flood-wetland-points",
+  "road-corridors",
+  "road-critical-nodes",
+  "healthcare-access-points",
+  "agriculture-belts-fill",
+  "electricity-feeders",
+  "electricity-assets",
 ];
 
 export const systemReadouts = [

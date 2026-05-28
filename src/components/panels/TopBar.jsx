@@ -1,21 +1,28 @@
-import { operationalStats } from "../../data/infrastructureLayers";
+import { memo } from "react";
+import { operationalStats, dashboardMeta } from "../../config/metadata";
 
-export default function TopBar() {
+// Premium top HUD: compact metadata mini-cards + brand card.
+function TopBar() {
   return (
-    <header className="top-bar panel-surface">
-      <div>
-        <p className="panel-kicker">Better Bharat Map</p>
-        <h1>Regional Infrastructure Intelligence</h1>
-      </div>
-
-      <dl className="top-bar__stats" aria-label="Operational context">
-        {operationalStats.slice(1).map((stat) => (
-          <div key={stat.label} className="top-bar__stat">
+    <header className="top-bar" aria-label="Operational context">
+      <dl className="top-bar__meta">
+        {operationalStats.map((stat) => (
+          <div key={stat.label} className="meta-card panel-surface">
             <dt>{stat.label}</dt>
             <dd>{stat.value}</dd>
           </div>
         ))}
       </dl>
+
+      <div className="brand-card panel-surface">
+        <span className="brand-card__pulse" aria-hidden="true" />
+        <div>
+          <p className="brand-card__kicker">{dashboardMeta.kicker}</p>
+          <h1>{dashboardMeta.title}</h1>
+        </div>
+      </div>
     </header>
   );
 }
+
+export default memo(TopBar);

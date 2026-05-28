@@ -14,119 +14,122 @@
   height: 100%;
 }
 
-.gis-map__terrain-glow,
+/* Cinematic atmosphere stack — seven GPU-composited layers.
+   Order (bottom → top): ambient · fog · illumination · texture · grain · focus-glow · vignette */
+.gis-map__ambient,
 .gis-map__fog,
-.gis-map__grid,
-.gis-map__scanline,
+.gis-map__illumination,
+.gis-map__texture,
+.gis-map__grain,
+.gis-map__focus-glow,
 .gis-map__vignette {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 
-.gis-map__terrain-glow {
+.gis-map__ambient {
   z-index: 1;
   background:
-    radial-gradient(circle at 52% 50%, rgba(255, 64, 45, 0.22), transparent 16%),
-    radial-gradient(ellipse at 63% 43%, rgba(36, 126, 190, 0.18), transparent 34%),
-    radial-gradient(ellipse at 36% 58%, rgba(0, 153, 204, 0.11), transparent 30%),
-    linear-gradient(180deg, rgba(2, 13, 22, 0.2), transparent 42%, rgba(0, 0, 0, 0.22));
+    radial-gradient(ellipse at 50% 56%, rgba(28, 110, 180, 0.22), transparent 52%),
+    linear-gradient(180deg, rgba(6, 16, 28, 0.28), transparent 36%, rgba(0, 0, 0, 0.28));
   mix-blend-mode: screen;
-  opacity: 0.72;
+  opacity: 0.92;
 }
 
 .gis-map__fog {
   z-index: 2;
   background:
-    radial-gradient(ellipse at 44% 36%, rgba(94, 190, 255, 0.13), transparent 34%),
-    radial-gradient(ellipse at 70% 72%, rgba(120, 170, 210, 0.1), transparent 38%),
-    linear-gradient(115deg, transparent, rgba(118, 187, 230, 0.09) 42%, transparent 68%);
+    radial-gradient(ellipse at 48% 38%, rgba(80, 170, 230, 0.18), transparent 44%),
+    radial-gradient(ellipse at 62% 66%, rgba(40, 130, 200, 0.14), transparent 50%),
+    linear-gradient(180deg, rgba(6, 14, 24, 0.18), transparent 38%, rgba(2, 6, 12, 0.32));
+  filter: blur(30px);
+  mix-blend-mode: screen;
+  opacity: 0.78;
+  animation: tactical-fog-drift 22s ease-in-out infinite alternate;
+}
+
+/* Soft blue tactical illumination — tighter, centered on Kusheshwar. */
+.gis-map__illumination {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120, 195, 240, 0.22), transparent 18%),
+    radial-gradient(circle at 50% 50%, rgba(70, 145, 215, 0.14), transparent 36%);
   filter: blur(20px);
   mix-blend-mode: screen;
-  opacity: 0.56;
-  transform: scale(1.08);
-  animation: tactical-fog-drift 18s ease-in-out infinite alternate;
+  opacity: 0.95;
+  animation: tactical-illumination-breathe 7.5s ease-in-out infinite alternate;
 }
 
-.gis-map__grid {
-  z-index: 3;
-  background-image:
-    linear-gradient(rgba(84, 190, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(84, 190, 255, 0.05) 1px, transparent 1px);
-  background-size: 92px 92px;
-  mask-image: radial-gradient(circle at 52% 48%, black 0, black 44%, transparent 82%);
-  mix-blend-mode: screen;
-  opacity: 0.35;
-  animation: tactical-grid-drift 28s linear infinite;
+@keyframes tactical-illumination-breathe {
+  from { opacity: 0.78; }
+  to   { opacity: 1; }
 }
 
-.gis-map__scanline {
+.gis-map__texture {
   z-index: 4;
-  background:
-    linear-gradient(180deg, transparent 0%, rgba(126, 210, 255, 0.08) 49%, rgba(255, 255, 255, 0.08) 50%, rgba(126, 210, 255, 0.08) 51%, transparent 100%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.018),
-      rgba(255, 255, 255, 0.018) 1px,
-      transparent 1px,
-      transparent 6px
-    );
+  background-image:
+    linear-gradient(rgba(110, 190, 240, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(110, 190, 240, 0.04) 1px, transparent 1px);
+  background-size: 140px 140px;
+  mask-image: radial-gradient(circle at 50% 50%, black 0, black 36%, transparent 78%);
   mix-blend-mode: screen;
+  opacity: 0.18;
+}
+
+/* Satellite-grain — two layered noise textures:
+   - fine high-freq grain for sensor texture
+   - coarse low-freq organic terrain variation (earth feel) */
+.gis-map__grain {
+  z-index: 5;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.66  0 0 0 0 0.74  0 0 0 0 0.9  0 0 0 0.85 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='620' height='620'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='0.013' numOctaves='3' seed='11'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.52  0 0 0 0 0.7  0 0 0 0.65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23c)'/></svg>");
+  background-size: 260px 260px, 620px 620px;
+  mix-blend-mode: overlay;
   opacity: 0.34;
-  animation: tactical-scanline 8.5s ease-in-out infinite;
+}
+
+.gis-map__focus-glow {
+  z-index: 6;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 70, 50, 0.16), transparent 14%);
+  mix-blend-mode: screen;
+  opacity: 1;
+  filter: blur(16px);
+  animation: tactical-focus-breathe 5.5s ease-in-out infinite alternate;
 }
 
 .gis-map__vignette {
-  z-index: 5;
+  z-index: 7;
   background:
-    radial-gradient(circle at 50% 48%, transparent 0%, transparent 48%, rgba(0, 0, 0, 0.28) 72%, rgba(0, 0, 0, 0.76) 100%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.45), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.45)),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.38), transparent 20%, transparent 76%, rgba(0, 0, 0, 0.46));
+    radial-gradient(circle at 50% 50%, transparent 0%, transparent 32%, rgba(0, 0, 0, 0.55) 72%, rgba(0, 0, 0, 0.94) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.22), transparent 22%, transparent 78%, rgba(0, 0, 0, 0.28));
 }
 
-@keyframes tactical-grid-drift {
-  from {
-    background-position: 0 0, 0 0;
-  }
-
-  to {
-    background-position: 92px 92px, 92px 92px;
-  }
+@keyframes tactical-focus-breathe {
+  from { opacity: 0.78; }
+  to   { opacity: 1; }
 }
 
 @keyframes tactical-fog-drift {
-  from {
-    transform: translate3d(-1.5%, -1%, 0) scale(1.08);
-    opacity: 0.44;
-  }
-
-  to {
-    transform: translate3d(1.5%, 1%, 0) scale(1.12);
-    opacity: 0.62;
-  }
-}
-
-@keyframes tactical-scanline {
-  0% {
-    background-position: 0 -120vh, 0 0;
-  }
-
-  58% {
-    background-position: 0 120vh, 0 0;
-  }
-
-  100% {
-    background-position: 0 120vh, 0 0;
-  }
+  from { transform: translate3d(-1%, -0.6%, 0) scale(1.04); opacity: 0.52; }
+  to   { transform: translate3d(1%, 0.6%, 0) scale(1.06); opacity: 0.74; }
 }
 
 .maplibregl-canvas {
-  filter: contrast(1.22) saturate(0.88) brightness(0.66);
+  /* Terrain gamma boost: more contrast + slightly cooler tone. */
+  filter: contrast(1.2) saturate(1.05) brightness(0.82) hue-rotate(-4deg);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .maplibregl-ctrl-top-right {
-  top: 112px;
-  right: 28px;
+  top: 168px;
+  right: 52px;
+}
+
+.maplibregl-ctrl-top-right .maplibregl-ctrl {
+  margin: 0 0 12px 0;
 }
 
 .maplibregl-ctrl-group {
