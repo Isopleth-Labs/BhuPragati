@@ -1,5 +1,28 @@
 # Better Bharat Map
 
+## BEFORE MAKING CHANGES
+
+1. Check current branch
+2. Respect branch scope
+3. Read MASTER_TRACKER.md
+4. Read active tracker
+5. Read active spec
+6. Create backup commit before major changes
+
+
+## Branches
+
+master
+- Stable branch
+- Tested code only
+- No active development
+
+homepage-ui
+- Homepage development only
+
+gis-platform
+- GIS, Dashboard, OSM, MapLibre
+
 ## PROJECT STATE
 
 Current Phase:
@@ -15,7 +38,7 @@ Current Mode:
 WORKER MODE
 
 Homepage:
-PAUSED
+ACTIVE (homepage-ui)
 
 Simulation:
 NOT STARTED
@@ -114,6 +137,25 @@ Do not modify unrelated systems.
 Do not delete files.
 
 Do not perform large refactors without approval.
+
+## BRANCH SCOPE
+
+homepage-ui:
+- Homepage only
+- Do not modify GIS
+- Do not modify Dashboard
+- Do not modify OSM
+
+gis-platform:
+- GIS
+- Dashboard
+- OSM
+- MapLibre
+- Do not modify Homepage
+
+master:
+- Stable branch
+- No active development
 
 ## TASK COMPLETION RULE
 
