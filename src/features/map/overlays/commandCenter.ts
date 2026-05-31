@@ -1,9 +1,10 @@
+import type { Map } from "maplibre-gl";
 import { commandCenter } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
 // Compact command marker: outer pulse + ring + bright core.
 
-export function addCommandCenterOverlay(map) {
+export function addCommandCenterOverlay(map: Map) {
   addSource(map, "command-center", commandCenter);
 
   // Outer cool tactical halo (blue) — blends with red core for AAA contrast.

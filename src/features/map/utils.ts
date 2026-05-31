@@ -1,20 +1,22 @@
 // Lightweight helpers shared across map overlays.
 
-export function addSource(map, id, data) {
+import type { Map } from "maplibre-gl";
+
+export function addSource(map : Map, id: string, data: any) {
   if (map.getSource(id)) return;
   map.addSource(id, { type: "geojson", data });
 }
 
-export function addLayer(map, layer, beforeId) {
+export function addLayer(map : Map, layer : any , beforeId?: string) {
   if (map.getLayer(layer.id)) return;
   map.addLayer(layer, beforeId);
 }
 
-export function getFirstSymbolLayerId(map) {
+export function getFirstSymbolLayerId(map : Map) {
   return map.getStyle().layers?.find((layer) => layer.type === "symbol")?.id;
 }
 
-export function getFitPadding(container) {
+export function getFitPadding(container: HTMLElement | null) {
   const width = container?.clientWidth ?? 1200;
 
   if (width < 760) {
@@ -26,7 +28,7 @@ export function getFitPadding(container) {
   return { top: 92, right: 420, bottom: 210, left: 420 };
 }
 
-export function getPopupMarkup(properties) {
+export function getPopupMarkup(properties: any) {
   const title = properties.title ?? "Infrastructure Signal";
   const status = properties.status ?? "Observed";
   const metric = properties.metric ?? "GIS intelligence layer";

@@ -1,3 +1,4 @@
+import type { Map } from "maplibre-gl";
 import {
   infrastructureNodes,
   regionalRivers,
@@ -13,7 +14,7 @@ import { addLayer, addSource } from "../utils";
 // All layers use a single FeatureCollection per category so MapLibre
 // can do collision and z-ordering naturally.
 
-export function addRegionalOverlays(map) {
+export function addRegionalOverlays(map : Map) {
   addHydrology(map);
   addInfrastructureNodes(map);
   addSettlements(map);
@@ -21,7 +22,7 @@ export function addRegionalOverlays(map) {
 
 // ----- Hydrology ------------------------------------------------------
 
-function addHydrology(map) {
+function addHydrology(map: Map) {
   addSource(map, "regional-rivers", regionalRivers);
 
   // Reflective glow under the channel.
@@ -69,7 +70,7 @@ function addHydrology(map) {
 
 // ----- Settlements -----------------------------------------------------
 
-function addSettlements(map) {
+function addSettlements(map: Map) {
   addSource(map, "regional-settlements", settlements);
 
   // Marker dots, sized + colored by tier.
@@ -204,7 +205,7 @@ const NODE_DOT_COLORS = [
   "#bccada",
 ];
 
-function addInfrastructureNodes(map) {
+function addInfrastructureNodes(map: Map) {
   addSource(map, "regional-pois", infrastructureNodes);
 
   // Soft tactical glow.

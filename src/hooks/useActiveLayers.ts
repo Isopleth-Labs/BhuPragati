@@ -11,7 +11,7 @@ export default function useActiveLayers() {
   const defaults = useMemo(() => buildDefault(), []);
   const [activeLayers, setActiveLayers] = useState(defaults);
 
-  const toggleLayer = useCallback((layerId) => {
+  const toggleLayer = useCallback((layerId: string) => {
     setActiveLayers((current) => ({ ...current, [layerId]: !current[layerId] }));
   }, []);
 

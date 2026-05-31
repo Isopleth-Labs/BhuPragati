@@ -1,7 +1,8 @@
+import type { Map } from "maplibre-gl";
 import { analysisGrid } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
-export function addAnalysisGridOverlay(map) {
+export function addAnalysisGridOverlay(map : Map) {
   addSource(map, "analysis-grid", analysisGrid);
 
   addLayer(map, {

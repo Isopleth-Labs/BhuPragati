@@ -6,24 +6,26 @@
 // All mutations are no-ops if the layer is missing, so this is safe to
 // call right after lazy overlay load.
 
-const safe = (fn) => {
+import type { Map } from "maplibre-gl";
+
+const safe = (fn : () => void) => {
   try { fn(); } catch { /* missing layer / property */ }
 };
 
 // Generic line-glow softening: wider, blurrier, lower opacity.
-function softenGlow(map, id, width, blur, opacity) {
+function softenGlow(map: Map, id: string, width: number, blur: number, opacity: number) {
   safe(() => map.setPaintProperty(id, "line-width", width));
   safe(() => map.setPaintProperty(id, "line-blur", blur));
   safe(() => map.setPaintProperty(id, "line-opacity", opacity));
 }
 
 // Generic outline softening: kept thin but blurred.
-function softenOutline(map, id, opacity = 0.28) {
+function softenOutline(map: Map, id: string, opacity = 0.28) {
   safe(() => map.setPaintProperty(id, "line-blur", 1.4));
   safe(() => map.setPaintProperty(id, "line-opacity", opacity));
 }
 
-export function softenIntelligenceLayers(map) {
+export function softenIntelligenceLayers(map: Map) {
   // Flood — wetland reconnaissance sectors
   softenGlow(map, "flood-risk-glow", 18, 18, 0.18);
   softenOutline(map, "flood-risk-outline", 0.3);

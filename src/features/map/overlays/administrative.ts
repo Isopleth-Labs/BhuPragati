@@ -1,3 +1,4 @@
+import type { Map } from "maplibre-gl";
 import { administrativeBoundaries } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
@@ -6,7 +7,7 @@ import { addLayer, addSource } from "../utils";
 // - soft red glow around the priority focus zone
 // - sharp red core line for hero emphasis
 
-export function addAdministrativeOverlay(map) {
+export function addAdministrativeOverlay(map:Map) {
   addSource(map, "administrative-boundaries", administrativeBoundaries);
 
   const focusFilter = ["==", ["get", "boundaryType"], "focus"];

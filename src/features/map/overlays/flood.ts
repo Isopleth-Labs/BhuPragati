@@ -1,7 +1,8 @@
+import type { Map } from "maplibre-gl";
 import { floodRiskData } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
-export function addFloodOverlay(map) {
+export function addFloodOverlay(map: Map) {
   addSource(map, "flood-risk", floodRiskData);
 
   const polygonFilter = ["==", ["geometry-type"], "Polygon"];

@@ -1,7 +1,8 @@
+import type { Map } from "maplibre-gl";
 import { agricultureData } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
-export function addAgricultureOverlay(map) {
+export function addAgricultureOverlay(map: Map) {
   addSource(map, "agriculture-belts", agricultureData);
 
   addLayer(map, {

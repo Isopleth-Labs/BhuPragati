@@ -1,7 +1,7 @@
 import { SATELLITE_TILE_URL } from "../../../config/mapConfig";
 import { addLayer, getFirstSymbolLayerId } from "../utils";
 
-export function addBasemapOverlay(map) {
+export function addBasemapOverlay(map : any) {
   if (!map.getSource("satellite-texture")) {
     map.addSource("satellite-texture", {
       type: "raster",

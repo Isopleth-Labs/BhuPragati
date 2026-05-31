@@ -3,6 +3,8 @@
 // initial map bundle stays lightweight, leaving room for
 // future WebGL-heavy layers and AI analytics modules.
 
+import type { Map } from "maplibre-gl";
+
 export const heavyOverlayLoaders = {
   flood: () => import("./flood").then((m) => m.addFloodOverlay),
   road: () => import("./road").then((m) => m.addRoadOverlay),
@@ -11,7 +13,7 @@ export const heavyOverlayLoaders = {
   electricity: () => import("./electricity").then((m) => m.addElectricityOverlay),
 };
 
-export async function loadHeavyOverlays(map) {
+export async function loadHeavyOverlays(map: Map) {
   const entries = Object.entries(heavyOverlayLoaders);
   const adders = await Promise.all(entries.map(([, load]) => load()));
   adders.forEach((add) => add(map));
