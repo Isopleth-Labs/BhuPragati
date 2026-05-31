@@ -22,20 +22,20 @@ function tuneCityLayer(map, id) {
       "interpolate",
       ["linear"],
       ["zoom"],
-      8, 14,
-      11, 22,
-      13, 28,
-      15, 34,
+      8, 16,
+      11, 24,
+      13, 32,
+      15, 40,
     ]),
   );
-  safeSet(() => map.setLayoutProperty(id, "text-letter-spacing", 0.06));
-  safeSet(() => map.setLayoutProperty(id, "text-max-width", 9));
+  safeSet(() => map.setLayoutProperty(id, "text-letter-spacing", 0.05));
+  safeSet(() => map.setLayoutProperty(id, "text-max-width", 11));
   safeSet(() => map.setLayoutProperty(id, "text-padding", 4));
-  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(255, 255, 255, 0.96)"));
+  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(255, 255, 255, 0.97)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-color", HALO_DARK));
-  safeSet(() => map.setPaintProperty(id, "text-halo-width", 2.2));
-  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 2));
-  safeSet(() => map.setPaintProperty(id, "text-opacity", 0.98));
+  safeSet(() => map.setPaintProperty(id, "text-halo-width", 2));
+  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 1.2));
+  safeSet(() => map.setPaintProperty(id, "text-opacity", 0.99));
 }
 
 function tuneTownLayer(map, id) {
@@ -44,16 +44,16 @@ function tuneTownLayer(map, id) {
       "interpolate",
       ["linear"],
       ["zoom"],
-      9, 11,
-      12, 15,
-      14, 18,
+      9, 12,
+      12, 16,
+      14, 22,
     ]),
   );
-  safeSet(() => map.setLayoutProperty(id, "text-letter-spacing", 0.03));
-  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(228, 236, 248, 0.82)"));
+  safeSet(() => map.setLayoutProperty(id, "text-letter-spacing", 0.04));
+  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(230, 238, 250, 0.84)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-color", HALO_DARK));
-  safeSet(() => map.setPaintProperty(id, "text-halo-width", 1.3));
-  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 1));
+  safeSet(() => map.setPaintProperty(id, "text-halo-width", 1.4));
+  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.9));
 }
 
 function tuneVillageLayer(map, id) {
@@ -62,15 +62,15 @@ function tuneVillageLayer(map, id) {
       "interpolate",
       ["linear"],
       ["zoom"],
-      11, 9,
-      13, 11,
-      15, 13,
+      11, 11.5,
+      13, 13,
+      15, 14.5,
     ]),
   );
-  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(195, 208, 225, 0.62)"));
+  safeSet(() => map.setPaintProperty(id, "text-color", "rgba(190, 205, 225, 0.64)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-color", HALO_SOFT));
-  safeSet(() => map.setPaintProperty(id, "text-halo-width", 1));
-  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.8));
+  safeSet(() => map.setPaintProperty(id, "text-halo-width", 0.9));
+  safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.6));
 }
 
 function tuneRoadLayer(map, id) {
