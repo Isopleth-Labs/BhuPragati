@@ -43,12 +43,95 @@ function readCache() {
   }
 }
 
+function addOperationalLabel(map) {
+  const sourceId = "operational-label";
+  if (!map.getSource(sourceId)) {
+    map.addSource(sourceId, {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: { name: "Kusheshwar Asthan" },
+            geometry: { type: "Point", coordinates: [86.285, 25.796] },
+          },
+        ],
+      },
+    });
+  }
+
+  const layerId = "operational-label-layer";
+  if (!map.getLayer(layerId)) {
+    map.addLayer({
+      id: layerId,
+      type: "symbol",
+      source: sourceId,
+      layout: {
+        "minzoom": 6,
+        "text-field": ["get", "name"],
+        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+        "text-size": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          6, 18,
+          10, 26,
+          13, 34,
+          16, 40,
+        ],
+        "text-letter-spacing": 0.05,
+        "text-offset": [0, 1.2],
+        "text-anchor": "top",
+        "text-padding": 3,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true,
+        "symbol-sort-key": -50,
+      },
+      paint: {
+        "text-color": "rgba(255, 255, 255, 0.97)",
+        "text-halo-color": "rgba(4, 10, 18, 0.95)",
+        "text-halo-width": 2,
+        "text-halo-blur": 0.8,
+      },
+    });
+  }
+}
+
 function writeCache(data) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
   } catch {
     /* quota or storage disabled — cache is best-effort */
   }
+}
+
+// Prefer a single feature per settlement name; keep highest-priority candidate.
+function dedupePlaces(features) {
+  const priorityOf = (f) => {
+    const nameLc = f.properties?.name_lc;
+    if (OPERATIONAL_NAMES.includes(nameLc)) return 100;
+    if (REGIONAL_MAJOR_NAMES.includes(nameLc)) return 90;
+    if (OPERATIONAL_RING_NAMES.includes(nameLc)) return 80;
+    const place = f.properties?.place;
+    if (place === "city") return 70;
+    if (place === "town") return 60;
+    if (place === "village") return 50;
+    if (place === "hamlet") return 40;
+    return 10;
+  };
+
+  const best = new Map();
+  for (const f of features) {
+    const nameLc = f.properties?.name_lc;
+    if (!nameLc) continue;
+    const current = best.get(nameLc);
+    const candidateScore = priorityOf(f);
+    if (!current || candidateScore > priorityOf(current)) {
+      best.set(nameLc, f);
+    }
+  }
+  return Array.from(best.values());
 }
 
 // ---- Overpass fetch + GeoJSON shaping --------------------------------
@@ -117,6 +200,7 @@ async function fetchOverpass() {
 
 function addRoadLayers(map) {
   // Soft tactical underglow — only meaningful on major routes.
+  console.log("ADDING LAYER", "osm-road-glow");
   map.addLayer({
     id: "osm-road-glow",
     type: "line",
@@ -160,6 +244,7 @@ function addRoadLayers(map) {
   });
 
   // Crisp light core.
+  console.log("ADDING LAYER", "osm-road-core");
   map.addLayer({
     id: "osm-road-core",
     type: "line",
@@ -200,6 +285,7 @@ function addRoadLayers(map) {
 
 function addPlaceLayers(map) {
   // Marker dots, sized by tier.
+  console.log("ADDING LAYER", "osm-place-dots");
   map.addLayer({
     id: "osm-place-dots",
     type: "circle",
@@ -270,12 +356,14 @@ function addPlaceLayers(map) {
   ];
 
   // Tier A: Operational zone + regional majors (strict collisions)
+  console.log("ADDING LAYER", "osm-place-labels-tier-a");
   map.addLayer({
     id: "osm-place-labels-tier-a",
     type: "symbol",
     source: "osm-places",
     filter: ["any", isOperational, isRegionalMajor],
     layout: {
+      "minzoom": 6,
       "text-field": ["get", "name"],
       "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
       "text-size": [
@@ -311,7 +399,8 @@ function addPlaceLayers(map) {
       "text-offset": [0, 1.2],
       "text-anchor": "top",
       "text-padding": 3,
-      "text-allow-overlap": false,
+      "text-allow-overlap": true,
+      "text-ignore-placement": true,
       "symbol-sort-key": -20,
     },
     paint: {
@@ -323,6 +412,7 @@ function addPlaceLayers(map) {
   });
 
   // Tier B: Priority ring settlements (aggressive visibility, variable anchors)
+  console.log("ADDING LAYER", "osm-place-labels-tier-b");
   map.addLayer({
     id: "osm-place-labels-tier-b",
     type: "symbol",
@@ -358,6 +448,7 @@ function addPlaceLayers(map) {
   });
 
   // Tier C: Remaining towns + villages (moderate collisions)
+  console.log("ADDING LAYER", "osm-place-labels-tier-c");
   map.addLayer({
     id: "osm-place-labels-tier-c",
     type: "symbol",
@@ -398,6 +489,7 @@ function addPlaceLayers(map) {
   });
 
   // Tier D: Hamlets (lowest priority, relaxed)
+  console.log("ADDING LAYER", "osm-place-labels-tier-d");
   map.addLayer({
     id: "osm-place-labels-tier-d",
     type: "symbol",
@@ -452,16 +544,48 @@ export async function addOsmOverlays(map) {
     });
   }
 
+  const dedupedPlaces = data.places?.features ? dedupePlaces(data.places.features) : [];
+
+  // Diagnostic: trace Kusheshwar-related features and intended tier assignment.
+  try {
+    const kushMatches = dedupedPlaces
+      .map((f, idx) => {
+        const name = f.properties?.name || "";
+        const nameLc = f.properties?.name_lc || "";
+        if (!nameLc.includes("kusheshwar")) return null;
+
+        const isOp = OPERATIONAL_NAMES.includes(nameLc);
+        const isMajor = REGIONAL_MAJOR_NAMES.includes(nameLc);
+        const isRingName = OPERATIONAL_RING_NAMES.includes(nameLc);
+        const place = f.properties?.place;
+        const tier = isOp || isMajor ? "A" : isRingName ? "B" : place === "town" || place === "village" ? "C" : place === "hamlet" ? "D" : "C";
+        const coords = f.geometry?.type === "Point" ? f.geometry.coordinates : null;
+        const featureId = f.id ?? `${nameLc || "unknown"}-${idx}`;
+        return { name, name_lc: nameLc, place, tier, layerId: `osm-place-labels-tier-${tier.toLowerCase()}`, featureId, coordinates: coords };
+      })
+      .filter(Boolean);
+
+    console.group("[osm][diagnostic][kusheshwar]");
+    for (const entry of kushMatches) {
+      console.info(entry);
+    }
+    console.groupEnd();
+  } catch (err) {
+    console.warn("[osm][diagnostic][kusheshwar] failed", err);
+  }
+
   if (!map.getSource("osm-roads")) {
+    console.log("ADDING SOURCE", "osm-roads");
     map.addSource("osm-roads", { type: "geojson", data: data.roads });
   }
   if (!map.getSource("osm-places")) {
-    map.addSource("osm-places", { type: "geojson", data: data.places });
+    console.log("ADDING SOURCE", "osm-places");
+    map.addSource("osm-places", { type: "geojson", data: { type: "FeatureCollection", features: dedupedPlaces } });
   }
 
   // ---- Temporary Tier-B audit (minimal) -----------------------------
   try {
-    const features = data.places.features || [];
+    const features = dedupedPlaces;
     const isRing = (f) => OPERATIONAL_RING_NAMES.includes(f.properties?.name_lc);
     const tierBFeatures = features.filter(isRing);
     const tierBNames = tierBFeatures.map((f) => ({ name: f.properties?.name, name_lc: f.properties?.name_lc, place: f.properties?.place }));
@@ -490,4 +614,12 @@ export async function addOsmOverlays(map) {
 
   addRoadLayers(map);
   addPlaceLayers(map);
+  addOperationalLabel(map);
+
+  try {
+    const osmLabelLayers = (map.getStyle()?.layers || []).filter((l) => l.id.includes("osm-place-labels"));
+    console.log("EXISTING osm-place-label layers", osmLabelLayers);
+  } catch (err) {
+    console.warn("[osm] unable to list label layers", err);
+  }
 }

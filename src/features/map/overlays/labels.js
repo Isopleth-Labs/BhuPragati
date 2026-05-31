@@ -127,12 +127,11 @@ export function tuneMapLabels(map) {
         safeSet(() => map.setPaintProperty(id, "text-halo-color", HALO_SOFT));
         safeSet(() => map.setPaintProperty(id, "text-halo-width", 1.1));
         safeSet(() => map.setLayoutProperty(id, "text-letter-spacing", 0.08));
+      } else if (/place_town|place_village|place_hamlet|place_suburb|place_neighbour|place_other/i.test(id)) {
+        // Suppress basemap lower-tier settlements to avoid duplicates with custom OSM tiers.
+        safeSet(() => map.setLayoutProperty(id, "visibility", "none"));
       } else if (/place_city|place_capital/i.test(id)) {
         tuneCityLayer(map, id);
-      } else if (/place_town/i.test(id)) {
-        tuneTownLayer(map, id);
-      } else if (/place_(village|hamlet|suburb|neighbour|other)/i.test(id)) {
-        tuneVillageLayer(map, id);
       } else if (/water|river|ocean|lake|sea/i.test(id)) {
         tuneWaterLabel(map, id);
       } else if (/road|highway|street|transport/i.test(id)) {
