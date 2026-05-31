@@ -1,6 +1,8 @@
 // Subtle command-center pulse. Single rAF loop, gentle amplitude.
 
-export function startFocusPulse(map) {
+import type { Map } from "maplibre-gl";
+
+export function startFocusPulse(map: Map) {
   let frame = 0;
 
   // Layers to gently breathe (intelligence sectors).
@@ -10,7 +12,7 @@ export function startFocusPulse(map) {
     "electricity-feeder-glow",
   ];
 
-  const tick = (time) => {
+  const tick = (time: number) => {
     const fast = (Math.sin(time / 1400) + 1) / 2;
     const slow = (Math.sin(time / 2400) + 1) / 2;
     const cool = (Math.sin(time / 3200) + 1) / 2;

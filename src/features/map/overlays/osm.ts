@@ -4,6 +4,8 @@
 //   - road network (motorway / trunk / primary / secondary / tertiary / residential)
 //   - settlement labels (city / town / village / hamlet)
 
+import type { Map } from "maplibre-gl";
+
 const BBOX = [25.55, 85.85, 26.2, 86.65]; // [S, W, N, E]
 
 const OVERPASS_ENDPOINTS = [
@@ -38,7 +40,7 @@ function readCache() {
   }
 }
 
-function writeCache(data) {
+function writeCache(data: any) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
   } catch {
@@ -48,7 +50,7 @@ function writeCache(data) {
 
 // ---- Overpass fetch + GeoJSON shaping --------------------------------
 
-function osmToGeoJson(osm) {
+function osmToGeoJson(osm: any) {
   const roads = { type: "FeatureCollection", features: [] };
   const places = { type: "FeatureCollection", features: [] };
 
@@ -107,7 +109,7 @@ async function fetchOverpass() {
 
 // ---- Map rendering ---------------------------------------------------
 
-function addRoadLayers(map) {
+function addRoadLayers(map: Map) {
   // Soft tactical underglow — only meaningful on major routes.
   map.addLayer({
     id: "osm-road-glow",
@@ -190,7 +192,7 @@ function addRoadLayers(map) {
   });
 }
 
-function addPlaceLayers(map) {
+function addPlaceLayers(map: Map) {
   // Marker dots, sized by tier.
   map.addLayer({
     id: "osm-place-dots",
@@ -286,7 +288,7 @@ function addPlaceLayers(map) {
 
 // ---- Public entry ----------------------------------------------------
 
-export async function addOsmOverlays(map) {
+export async function addOsmOverlays(map: Map) {
   const data = await fetchOverpass();
   if (!data || (!data.roads.features.length && !data.places.features.length)) {
     console.warn("[osm] no data available — skipping OSM overlay");

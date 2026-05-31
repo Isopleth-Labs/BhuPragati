@@ -1,8 +1,8 @@
-import maplibregl from "maplibre-gl";
+import maplibregl, { Map } from "maplibre-gl";
 import { interactiveLayerIds } from "../../../config/layers";
 import { getPopupMarkup } from "../utils";
 
-export function attachInteractivePopups(map) {
+export function attachInteractivePopups(map: Map) {
   interactiveLayerIds.forEach((layerId) => {
     map.on("mouseenter", layerId, () => {
       map.getCanvas().style.cursor = "pointer";
@@ -10,7 +10,7 @@ export function attachInteractivePopups(map) {
     map.on("mouseleave", layerId, () => {
       map.getCanvas().style.cursor = "";
     });
-    map.on("click", layerId, (event) => {
+    map.on("click", layerId, (event: any) => {
       const feature = event.features?.[0];
       if (!feature) return;
 
