@@ -3,7 +3,12 @@ import { infrastructureLayers } from "../../config/layers";
 import LayerToggle from "../ui/LayerToggle";
 import MetricBar from "../ui/MetricBar";
 
-function CommandPanel({ activeLayers, onToggleLayer }) {
+type CommandPanelProps = {
+  activeLayers: Record<string, boolean>;
+  onToggleLayer: (id: string) => void;
+};
+
+function CommandPanel({ activeLayers, onToggleLayer }: CommandPanelProps) {
   return (
     <aside className="command-panel panel-surface" aria-label="Kusheshwar Asthan intelligence">
       <header className="command-panel__header">

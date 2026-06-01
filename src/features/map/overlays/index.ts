@@ -6,11 +6,11 @@
 import type { Map } from "maplibre-gl";
 
 export const heavyOverlayLoaders = {
-  flood: () => import("./flood").then((m) => m.addFloodOverlay),
-  road: () => import("./road").then((m) => m.addRoadOverlay),
-  healthcare: () => import("./healthcare").then((m) => m.addHealthcareOverlay),
-  agriculture: () => import("./agriculture").then((m) => m.addAgricultureOverlay),
-  electricity: () => import("./electricity").then((m) => m.addElectricityOverlay),
+  flood: () => import("@/modules/flood").then((m) => m.addFloodOverlay),
+  road: () => import("@/modules/roads").then((m) => m.addRoadOverlay),
+  healthcare: () => import("@/modules/healthcare").then((m) => m.addHealthcareOverlay),
+  agriculture: () => import("@/modules/agriculture").then((m) => m.addAgricultureOverlay),
+  electricity: () => import("@/modules/electricity").then((m) => m.addElectricityOverlay),
 };
 
 export async function loadHeavyOverlays(map: Map) {

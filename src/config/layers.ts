@@ -3,8 +3,9 @@
 // (used for visibility toggling and lazy overlay loading).
 
 import { layerColors } from "./theme";
+import type { InfrastructureLayer } from "@/shared/types";
 
-export const infrastructureLayers = [
+export const infrastructureLayers: InfrastructureLayer[] = [
   {
     id: "flood",
     iconKey: "flood",

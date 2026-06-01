@@ -1,8 +1,15 @@
-import { memo } from "react";
+import { memo, type CSSProperties } from "react";
 
-function MetricBar({ label, value, color }) {
+type MetricBarProps = {
+  label?: string;
+  value?: number;
+  color?: string;
+};
+
+function MetricBar({ label = '', value = 0, color }: MetricBarProps) {
+  const style = { ["--metric-color" as any]: color } as CSSProperties;
   return (
-    <div className="metric-bar" style={{ "--metric-color": color }}>
+    <div className="metric-bar" style={style}>
       <div className="metric-bar__header">
         <span>{label}</span>
         <strong>{value}/100</strong>

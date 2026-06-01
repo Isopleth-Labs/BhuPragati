@@ -37,8 +37,10 @@ const ICONS = {
   ),
 };
 
-function LayerIcon({ iconKey, size = 18, strokeWidth = 1.6 }) {
-  const path = ICONS[iconKey];
+type IconKey = keyof typeof ICONS;
+
+function LayerIcon({ iconKey, size = 18, strokeWidth = 1.6 }: { iconKey: IconKey; size?: number; strokeWidth?: number }) {
+  const path = ICONS[iconKey as IconKey];
   if (!path) return null;
   return (
     <svg

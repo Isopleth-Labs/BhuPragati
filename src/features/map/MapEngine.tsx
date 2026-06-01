@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import maplibregl, { Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
@@ -9,19 +9,23 @@ import {
   MAP_STYLE_URL,
   MAP_ZOOM_LIMITS,
 } from "../../config/mapConfig";
+import type { MapEngineHandles } from "@/shared/types";
 import { infrastructureLayers } from "../../config/layers";
 import { addBasemapOverlay } from "./overlays/basemap";
-import { addAdministrativeOverlay } from "./overlays/administrative";
-import { addCommandCenterOverlay } from "./overlays/commandCenter";
+import { addAdministrativeOverlay } from "@/modules/administrative";
+import { addCommandCenterOverlay } from "@/modules/commandCenter";
 import { applyTacticalSky, tuneMapLabels } from "./overlays/labels";
 import { softenIntelligenceLayers } from "./overlays/intelligence";
 import { addOsmOverlays } from "./overlays/osm";
 import { loadHeavyOverlays } from "./overlays";
 import { startFocusPulse } from "./animation/focusPulse";
 import { attachInteractivePopups } from "./interactions/popup";
-import { getFitPadding } from "./utils";
+import { getFitPadding } from "@/shared";
 
-function MapEngine({ activeLayers }: { activeLayers: Record<string, boolean> }) {
+function MapEngine(
+  { activeLayers }: { activeLayers: Record<string, boolean> },
+  ref: React.Ref<MapEngineHandles | null>,
+) {
   const mapNodeRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -128,6 +132,32 @@ function MapEngine({ activeLayers }: { activeLayers: Record<string, boolean> }) 
     });
   }, [activeLayers, mapReady]);
 
+  useImperativeHandle(ref, () => ({
+    addInfraLayer: (layerId: string) => {
+      const map = mapRef.current;
+      if (!map) return;
+      const layer = infrastructureLayers.find((l) => l.id === layerId);
+      if (!layer) return;
+      layer.mapLayerIds.forEach((lid) => {
+        if (map.getLayer(lid)) map.setLayoutProperty(lid, "visibility", "visible");
+      });
+    },
+    removeInfraLayer: (layerId: string) => {
+      const map = mapRef.current;
+      if (!map) return;
+      const layer = infrastructureLayers.find((l) => l.id === layerId);
+      if (!layer) return;
+      layer.mapLayerIds.forEach((lid) => {
+        if (map.getLayer(lid)) map.setLayoutProperty(lid, "visibility", "none");
+      });
+    },
+    flyToRegion: (center: [number, number], zoom?: number) => {
+      const map = mapRef.current;
+      if (!map) return;
+      map.easeTo({ center, zoom: zoom ?? map.getZoom(), duration: 800 });
+    },
+  }));
+
   return (
     <div className="gis-map-shell" aria-label="Interactive GIS map of Kusheshwar Asthan">
       <div ref={mapNodeRef} className="gis-map" />
@@ -142,4 +172,4 @@ function MapEngine({ activeLayers }: { activeLayers: Record<string, boolean> }) 
   );
 }
 
-export default memo(MapEngine);
+export default memo(forwardRef(MapEngine));

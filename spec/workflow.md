@@ -79,6 +79,7 @@ Tasks:
 Target: types and layer registry used by Map engine and UI.
 
 - [ ] Implement `types/region.ts` and `types/layer.ts` per `spec/db/enums.md` and `spec/trackers/specs-tracker.md`
+- [ ] Implement `types/region.d.ts` and `types/layer.d.ts` per `spec/db/enums.md` and `spec/trackers/specs-tracker.md` (type files must use `.d.ts` extension and live under `src/types` or the module `types/` folder)
 - [ ] Add `src/config/layers.js` entries for Phase 1 layers and link to `public/geojson/` files
 - [ ] Write unit tests for type validation and layer registry
 

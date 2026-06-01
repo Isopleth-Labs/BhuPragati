@@ -1,7 +1,7 @@
 import type { GeoJSON } from "geojson";
 import type { Map } from "maplibre-gl";
-import { roadData } from "../../../data/geojson";
-import { addLayer, addSource } from "../utils";
+import { roadData } from "../../data/geojson";
+import { addLayer, addSource } from "@/shared";
 
 export function addRoadOverlay(map: Map) {
   addSource(map, "road-network", roadData as GeoJSON);

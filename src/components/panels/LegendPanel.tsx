@@ -12,7 +12,7 @@ function LegendPanel() {
           <li
             key={layer.id}
             className="legend-panel__item"
-            style={{ "--layer-color": layer.color }}
+            style={{ ["--layer-color" as any]: layer.color } as React.CSSProperties}
           >
             <span className="legend-panel__dot" aria-hidden="true" />
             <span>{layer.legendLabel}</span>

@@ -1,14 +1,11 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection } from "geojson";
-import { commandCenter } from "../../../data/geojson";
-import { addLayer, addSource } from "../utils";
-
-// Compact command marker: outer pulse + ring + bright core.
+import { commandCenter } from "../../data/geojson";
+import { addLayer, addSource } from "@/shared";
 
 export function addCommandCenterOverlay(map: Map) {
   addSource(map, "command-center", commandCenter as FeatureCollection);
 
-  // Outer cool tactical halo (blue) — blends with red core for AAA contrast.
   addLayer(map, {
     id: "command-halo-cool",
     type: "circle",

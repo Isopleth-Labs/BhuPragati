@@ -14,10 +14,10 @@ function InsightStrip() {
           <article
             key={layer.id}
             className="insight-card"
-            style={{ "--layer-color": layer.color }}
+            style={{ ["--layer-color" as any]: layer.color } as React.CSSProperties}
           >
             <span className="insight-card__icon" aria-hidden="true">
-              <LayerIcon iconKey={layer.iconKey} size={26} strokeWidth={1.4} />
+              <LayerIcon iconKey={layer.iconKey as any} size={26} strokeWidth={1.4} />
             </span>
             <div className="insight-card__body">
               <span className="insight-card__label">{layer.intelligenceLabel}</span>

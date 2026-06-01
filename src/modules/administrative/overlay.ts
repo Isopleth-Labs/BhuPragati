@@ -1,12 +1,7 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
-import { administrativeBoundaries } from "../../../data/geojson";
-import { addLayer, addSource } from "../utils";
-
-// Restrained district + focus outline:
-// - faint district line for context
-// - soft red glow around the priority focus zone
-// - sharp red core line for hero emphasis
+import { administrativeBoundaries } from "../../data/geojson";
+import { addLayer, addSource } from "@/shared";
 
 export function addAdministrativeOverlay(map:Map) {
   addSource(
@@ -18,7 +13,6 @@ export function addAdministrativeOverlay(map:Map) {
   const focusFilter = ["==", ["get", "boundaryType"], "focus"];
   const districtFilter = ["==", ["get", "boundaryType"], "district"];
 
-  // District outline (subtle reference frame).
   addLayer(map, {
     id: "darbhanga-district-line",
     type: "line",
@@ -31,7 +25,6 @@ export function addAdministrativeOverlay(map:Map) {
     },
   });
 
-  // Focus zone wide danger aura — soft outermost halo for cinematic depth.
   addLayer(map, {
     id: "kusheshwar-focus-aura",
     type: "line",
@@ -45,7 +38,6 @@ export function addAdministrativeOverlay(map:Map) {
     },
   });
 
-  // Focus zone outer bloom (cinematic halo, animated subtly).
   addLayer(map, {
     id: "kusheshwar-focus-bloom",
     type: "line",
@@ -59,7 +51,6 @@ export function addAdministrativeOverlay(map:Map) {
     },
   });
 
-  // Focus zone mid glow.
   addLayer(map, {
     id: "kusheshwar-focus-glow",
     type: "line",
@@ -73,7 +64,6 @@ export function addAdministrativeOverlay(map:Map) {
     },
   });
 
-  // Focus zone core stroke.
   addLayer(map, {
     id: "kusheshwar-focus-core",
     type: "line",

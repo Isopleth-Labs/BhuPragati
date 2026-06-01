@@ -4,16 +4,8 @@ import {
   infrastructureNodes,
   regionalRivers,
   settlements,
-} from "../../../data/regional";
-import { addLayer, addSource } from "../utils";
-
-// Real geographic intelligence layers for the floodplain region:
-//   - distributary rivers (silver-blue moonlit hydrology)
-//   - settlements (city / town / village hierarchy with labels)
-//   - infrastructure nodes (hospital / police / substation / rail / bridge)
-//
-// All layers use a single FeatureCollection per category so MapLibre
-// can do collision and z-ordering naturally.
+} from "../../data/regional";
+import { addLayer, addSource } from "@/shared";
 
 export function addRegionalOverlays(map : Map) {
   addHydrology(map);
@@ -21,12 +13,9 @@ export function addRegionalOverlays(map : Map) {
   addSettlements(map);
 }
 
-// ----- Hydrology ------------------------------------------------------
-
 function addHydrology(map: Map) {
   addSource(map, "regional-rivers", regionalRivers as FeatureCollection<Geometry, GeoJsonProperties>);
 
-  // Reflective glow under the channel.
   addLayer(map, {
     id: "region-river-glow",
     type: "line",
@@ -47,7 +36,6 @@ function addHydrology(map: Map) {
     layout: { "line-cap": "round", "line-join": "round" },
   });
 
-  // Crisp silver-blue core line.
   addLayer(map, {
     id: "region-river-core",
     type: "line",
@@ -69,12 +57,9 @@ function addHydrology(map: Map) {
   });
 }
 
-// ----- Settlements -----------------------------------------------------
-
 function addSettlements(map: Map) {
   addSource(map, "regional-settlements", settlements as FeatureCollection<Geometry, GeoJsonProperties>);
 
-  // Marker dots, sized + colored by tier.
   addLayer(map, {
     id: "region-settlement-dots",
     type: "circle",
@@ -106,7 +91,6 @@ function addSettlements(map: Map) {
     },
   });
 
-  // Labels — separate symbol layer for collision + halo control.
   addLayer(map, {
     id: "region-settlement-labels",
     type: "symbol",
@@ -182,8 +166,6 @@ function addSettlements(map: Map) {
   });
 }
 
-// ----- Infrastructure nodes -------------------------------------------
-
 const NODE_COLORS = [
   "match",
   ["get", "nodeType"],
@@ -209,7 +191,6 @@ const NODE_DOT_COLORS = [
 function addInfrastructureNodes(map: Map) {
   addSource(map, "regional-pois", infrastructureNodes as FeatureCollection<Geometry, GeoJsonProperties>);
 
-  // Soft tactical glow.
   addLayer(map, {
     id: "region-poi-glow",
     type: "circle",
@@ -222,7 +203,6 @@ function addInfrastructureNodes(map: Map) {
     },
   });
 
-  // Core dot.
   addLayer(map, {
     id: "region-poi-dots",
     type: "circle",
@@ -236,7 +216,6 @@ function addInfrastructureNodes(map: Map) {
     },
   });
 
-  // Tactical letter symbol (H / P / S / R / B).
   addLayer(map, {
     id: "region-poi-symbol",
     type: "symbol",

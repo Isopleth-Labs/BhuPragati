@@ -1,5 +1,5 @@
 import { SATELLITE_TILE_URL } from "../../../config/mapConfig";
-import { addLayer, getFirstSymbolLayerId } from "../utils";
+import { addLayer, getFirstSymbolLayerId } from "@/shared";
 import type { Map } from "maplibre-gl";
 
 type FogOptions = Record<string, string | number>;

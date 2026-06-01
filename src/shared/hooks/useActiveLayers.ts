@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { infrastructureLayers } from "../config/layers";
+import { infrastructureLayers } from "@/config/layers";
 
 // Default: all layers off so the map reads cleanly on first load.
 // Users opt in to overlays from the left command panel.
