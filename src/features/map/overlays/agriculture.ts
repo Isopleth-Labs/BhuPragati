@@ -1,9 +1,10 @@
 import type { Map } from "maplibre-gl";
+import type { FeatureCollection } from "geojson";
 import { agricultureData } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
 export function addAgricultureOverlay(map: Map) {
-  addSource(map, "agriculture-belts", agricultureData);
+  addSource(map, "agriculture-belts", agricultureData as FeatureCollection);
 
   addLayer(map, {
     id: "agriculture-belts-fill",

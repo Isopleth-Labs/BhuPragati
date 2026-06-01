@@ -1,3 +1,4 @@
+import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import type { Map } from "maplibre-gl";
 import {
   infrastructureNodes,
@@ -23,7 +24,7 @@ export function addRegionalOverlays(map : Map) {
 // ----- Hydrology ------------------------------------------------------
 
 function addHydrology(map: Map) {
-  addSource(map, "regional-rivers", regionalRivers);
+  addSource(map, "regional-rivers", regionalRivers as FeatureCollection<Geometry, GeoJsonProperties>);
 
   // Reflective glow under the channel.
   addLayer(map, {
@@ -71,7 +72,7 @@ function addHydrology(map: Map) {
 // ----- Settlements -----------------------------------------------------
 
 function addSettlements(map: Map) {
-  addSource(map, "regional-settlements", settlements);
+  addSource(map, "regional-settlements", settlements as FeatureCollection<Geometry, GeoJsonProperties>);
 
   // Marker dots, sized + colored by tier.
   addLayer(map, {
@@ -206,7 +207,7 @@ const NODE_DOT_COLORS = [
 ];
 
 function addInfrastructureNodes(map: Map) {
-  addSource(map, "regional-pois", infrastructureNodes);
+  addSource(map, "regional-pois", infrastructureNodes as FeatureCollection<Geometry, GeoJsonProperties>);
 
   // Soft tactical glow.
   addLayer(map, {

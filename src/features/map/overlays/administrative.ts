@@ -1,4 +1,5 @@
 import type { Map } from "maplibre-gl";
+import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
 import { administrativeBoundaries } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
@@ -8,7 +9,11 @@ import { addLayer, addSource } from "../utils";
 // - sharp red core line for hero emphasis
 
 export function addAdministrativeOverlay(map:Map) {
-  addSource(map, "administrative-boundaries", administrativeBoundaries);
+  addSource(
+    map,
+    "administrative-boundaries",
+    administrativeBoundaries as FeatureCollection<Geometry, GeoJsonProperties>,
+  );
 
   const focusFilter = ["==", ["get", "boundaryType"], "focus"];
   const districtFilter = ["==", ["get", "boundaryType"], "district"];

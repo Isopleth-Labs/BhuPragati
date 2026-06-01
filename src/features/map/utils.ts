@@ -2,14 +2,15 @@
 
 import type { Map } from "maplibre-gl";
 
-export function addSource(map : Map, id: string, data: any) {
+export function addSource(map: Map, id: string, data: GeoJSON.GeoJSON) {
   if (map.getSource(id)) return;
   map.addSource(id, { type: "geojson", data });
 }
 
-export function addLayer(map : Map, layer : any , beforeId?: string) {
+export function addLayer(map: Map, layer: { id: string; [key: string]: unknown }, beforeId?: string) {
   if (map.getLayer(layer.id)) return;
-  map.addLayer(layer, beforeId);
+  // `map.addLayer` expects the library's layer spec; cast once at the callsite.
+  map.addLayer(layer as unknown as any, beforeId);
 }
 
 export function getFirstSymbolLayerId(map : Map) {
@@ -28,7 +29,7 @@ export function getFitPadding(container: HTMLElement | null) {
   return { top: 92, right: 420, bottom: 210, left: 420 };
 }
 
-export function getPopupMarkup(properties: any) {
+export function getPopupMarkup(properties: Partial<{ title: string; status: string; metric: string; note: string }>) {
   const title = properties.title ?? "Infrastructure Signal";
   const status = properties.status ?? "Observed";
   const metric = properties.metric ?? "GIS intelligence layer";

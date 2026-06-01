@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef, useState } from "react";
-import maplibregl from "maplibre-gl";
+import maplibregl, { Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   FOCUS_EASE,
@@ -21,9 +21,9 @@ import { startFocusPulse } from "./animation/focusPulse";
 import { attachInteractivePopups } from "./interactions/popup";
 import { getFitPadding } from "./utils";
 
-function MapEngine({ activeLayers }) {
-  const mapNodeRef = useRef(null);
-  const mapRef = useRef(null);
+function MapEngine({ activeLayers }: { activeLayers: Record<string, boolean> }) {
+  const mapNodeRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
 
   // Map lifecycle: create once, dispose on unmount.
@@ -34,13 +34,15 @@ function MapEngine({ activeLayers }) {
     let cancelled = false;
 
     const map = new maplibregl.Map({
-      container: mapNodeRef.current,
+      container: mapNodeRef.current as HTMLElement,
       style: MAP_STYLE_URL,
-      ...INITIAL_VIEW_STATE,
-      maxBounds: MAP_MAX_BOUNDS,
+      center: INITIAL_VIEW_STATE.center as [number, number],
+      zoom: INITIAL_VIEW_STATE.zoom,
+      pitch: INITIAL_VIEW_STATE.pitch,
+      bearing: INITIAL_VIEW_STATE.bearing,
+      maxBounds: MAP_MAX_BOUNDS as [ [number, number], [number, number] ],
       minZoom: MAP_ZOOM_LIMITS.min,
       maxZoom: MAP_ZOOM_LIMITS.max,
-      antialias: true,
       attributionControl: false,
     });
 
@@ -82,13 +84,13 @@ function MapEngine({ activeLayers }) {
       // Command center overlay sits on top of infrastructure layers.
       addCommandCenterOverlay(map);
 
-      map.fitBounds(MAP_FIT_BOUNDS, {
+      map.fitBounds(MAP_FIT_BOUNDS as [ [number, number], [number, number] ], {
         padding: getFitPadding(mapNodeRef.current),
         duration: 0,
       });
 
       map.easeTo({
-        center: FOCUS_EASE.center,
+        center: FOCUS_EASE.center as [number, number],
         zoom: FOCUS_EASE.zoom,
         pitch: INITIAL_VIEW_STATE.pitch,
         bearing: INITIAL_VIEW_STATE.bearing,

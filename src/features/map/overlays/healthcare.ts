@@ -1,9 +1,10 @@
 import type { Map } from "maplibre-gl";
+import type { FeatureCollection, Geometry } from "geojson";
 import { healthcareData } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
 
 export function addHealthcareOverlay(map: Map) {
-  addSource(map, "healthcare-access", healthcareData);
+  addSource(map, "healthcare-access", healthcareData as FeatureCollection<Geometry>);
 
   addLayer(map, {
     id: "healthcare-access-halos",

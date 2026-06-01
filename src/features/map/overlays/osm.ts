@@ -6,6 +6,23 @@
 
 import type { Map } from "maplibre-gl";
 
+type OverpassNode = {
+  type: "node";
+  id: number;
+  lat: number;
+  lon: number;
+  tags?: Record<string, string>;
+};
+
+type OverpassWay = {
+  type: "way";
+  id: number;
+  geometry?: Array<{ lat: number; lon: number }>;
+  tags?: Record<string, string>;
+};
+
+type OverpassResponse = { elements?: Array<OverpassNode | OverpassWay> };
+
 const BBOX = [25.55, 85.85, 26.2, 86.65]; // [S, W, N, E]
 
 const OVERPASS_ENDPOINTS = [
@@ -28,11 +45,11 @@ const CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 7;
 
 // ---- Cache helpers ---------------------------------------------------
 
-function readCache() {
+function readCache(): { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } | null {
   try {
     const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return null;
-    const { ts, data } = JSON.parse(raw);
+    const { ts, data } = JSON.parse(raw) as { ts: number; data: { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } };
     if (Date.now() - ts > CACHE_TTL_MS) return null;
     return data;
   } catch {
@@ -40,7 +57,7 @@ function readCache() {
   }
 }
 
-function writeCache(data: any) {
+function writeCache(data: { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection }) {
   try {
     localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
   } catch {
@@ -50,9 +67,9 @@ function writeCache(data: any) {
 
 // ---- Overpass fetch + GeoJSON shaping --------------------------------
 
-function osmToGeoJson(osm: any) {
-  const roads = { type: "FeatureCollection", features: [] };
-  const places = { type: "FeatureCollection", features: [] };
+function osmToGeoJson(osm: OverpassResponse) {
+  const roads: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
+  const places: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
 
   for (const el of osm.elements || []) {
     if (el.type === "way" && el.geometry && el.tags?.highway) {
@@ -67,7 +84,7 @@ function osmToGeoJson(osm: any) {
           type: "LineString",
           coordinates: el.geometry.map((g) => [g.lon, g.lat]),
         },
-      });
+      } as GeoJSON.Feature<GeoJSON.LineString, Record<string, string>>);
     } else if (el.type === "node" && el.tags?.place && el.tags?.name) {
       places.features.push({
         type: "Feature",
@@ -77,13 +94,13 @@ function osmToGeoJson(osm: any) {
           population: el.tags.population ? Number(el.tags.population) : null,
         },
         geometry: { type: "Point", coordinates: [el.lon, el.lat] },
-      });
+      } as GeoJSON.Feature<GeoJSON.Point, Record<string, string | number | null>>);
     }
   }
   return { roads, places };
 }
 
-async function fetchOverpass() {
+async function fetchOverpass(): Promise<{ roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } | null> {
   const cached = readCache();
   if (cached) return cached;
 

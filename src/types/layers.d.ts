@@ -16,6 +16,8 @@ export type InfraCategory =
 
 export type GeometryType = "polygon" | "linestring" | "point";
 export type ScoreType = "risk" | "quality";
+export type Primitive = string | number | boolean;
+export type PaintValue = Primitive | Primitive[] | Record<string, Primitive | Primitive[]>;
 
 export interface LayerConfig {
   id: string;
@@ -27,8 +29,8 @@ export interface LayerConfig {
   geojsonPath: string;
   minZoom: number;
   maxZoom: number;
-  paint: Record<string, unknown>;
-  layout: Record<string, unknown>;
+  paint: Record<string, PaintValue>;
+  layout: Record<string, PaintValue>;
   scoreType: ScoreType;
   defaultVisible: boolean;
   phase: number;

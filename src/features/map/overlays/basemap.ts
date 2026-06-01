@@ -1,7 +1,12 @@
 import { SATELLITE_TILE_URL } from "../../../config/mapConfig";
 import { addLayer, getFirstSymbolLayerId } from "../utils";
+import type { Map } from "maplibre-gl";
 
-export function addBasemapOverlay(map : any) {
+type FogOptions = Record<string, string | number>;
+
+type ExtendedMap = Map & { setFog?: (opts: FogOptions) => void };
+
+export function addBasemapOverlay(map: ExtendedMap) {
   if (!map.getSource("satellite-texture")) {
     map.addSource("satellite-texture", {
       type: "raster",

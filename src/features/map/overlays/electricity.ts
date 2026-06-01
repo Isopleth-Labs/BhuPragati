@@ -1,9 +1,14 @@
 import type { Map } from "maplibre-gl";
 import { electricityData } from "../../../data/geojson";
 import { addLayer, addSource } from "../utils";
+import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 
 export function addElectricityOverlay(map: Map) {
-  addSource(map, "electricity-network", electricityData);
+  addSource(
+    map,
+    "electricity-network",
+    electricityData as FeatureCollection<Geometry, GeoJsonProperties>,
+  );
 
   addLayer(map, {
     id: "electricity-feeder-glow",

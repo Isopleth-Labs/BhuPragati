@@ -10,7 +10,7 @@ export function attachInteractivePopups(map: Map) {
     map.on("mouseleave", layerId, () => {
       map.getCanvas().style.cursor = "";
     });
-    map.on("click", layerId, (event: any) => {
+    map.on("click", layerId, (event: maplibregl.MapLayerMouseEvent) => {
       const feature = event.features?.[0];
       if (!feature) return;
 
