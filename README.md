@@ -432,6 +432,43 @@ Current Focus:
 
 ---
 
+# Data Model (V1)
+
+- Identity: `id` is UUID v4 (permanent). Mirror it to GeoJSON `id` when supported.
+- Government reference: `lgd_code` is stored as a reference only; it is not a primary key.
+- Classification: `entity_category` (administrative | infrastructure | geographic | operational). `entity_type` is separate, using Better Bharat types (state, district, block, panchayat, village, settlement, road_segment, bridge, health_facility, school, police_station, flood_zone).
+- Geography: use admin fields where applicable: `admin_state`, `admin_district`, `admin_block`, `admin_panchayat`.
+- Names: bilingual fields `name_en`, `name_hi` (may be null if Hindi is unavailable).
+- Lifecycle: `status` values (V1): `existing`, `proposed`, `planned`, `under_construction`, `partially_operational`, `closed`, `decommissioned`.
+- Scenario: `scenario` exists; default is `baseline` unless explicitly set.
+- Quality: `data_quality` records provenance/validation stage. V1 meanings: `raw` (unvalidated import), `provisional` (lightly checked or inferred), `verified` (validated against trusted sources).
+- Sources: OSM is supplemental; Carto is for context only. Neither defines keys or authoritative identity.
+
+Canonical GeoJSON (V1):
+
+```
+{
+  "type": "Feature",
+  "id": "<uuid-v4>",
+  "geometry": { "type": "Point", "coordinates": [0, 0] },
+  "properties": {
+    "id": "<uuid-v4>",
+    "entity_category": "geographic",
+    "entity_type": "settlement",
+    "name_en": "<english name>",
+    "name_hi": "<hindi name or null>",
+    "admin_state": "<state>",
+    "admin_district": "<district or null>",
+    "admin_block": "<block or null>",
+    "admin_panchayat": "<panchayat or null>",
+    "lgd_code": "<lgd or null>",
+    "scenario": "baseline",
+    "status": "existing",
+    "data_quality": "verified"
+  }
+}
+```
+
 # Ultimate Vision
 
 Create the world's most comprehensive Earth-to-Village Infrastructure Intelligence Platform.
