@@ -5,31 +5,9 @@
 //   - settlement labels (city / town / village / hamlet)
 
 import type { Map } from "maplibre-gl";
-
-type OverpassNode = {
-  type: "node";
-  id: number;
-  lat: number;
-  lon: number;
-  tags?: Record<string, string>;
-};
-
-type OverpassWay = {
-  type: "way";
-  id: number;
-  geometry?: Array<{ lat: number; lon: number }>;
-  tags?: Record<string, string>;
-};
-
-type OverpassResponse = { elements?: Array<OverpassNode | OverpassWay> };
+import { fetchOverpassGeoJson } from "@/shared/lib/dataAdapters/overpass";
 
 const BBOX = [25.55, 85.85, 26.2, 86.65]; // [S, W, N, E]
-
-const OVERPASS_ENDPOINTS = [
-  "https://overpass-api.de/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
-  "https://overpass.openstreetmap.ru/api/interpreter",
-];
 
 const QUERY = `
 [out:json][timeout:30];
@@ -39,90 +17,6 @@ const QUERY = `
 );
 out tags geom;
 `.trim();
-
-const CACHE_KEY = "kusheshwar.osm.v1";
-const CACHE_TTL_MS = 1000 * 60 * 60 * 24 * 7;
-
-// ---- Cache helpers ---------------------------------------------------
-
-function readCache(): { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } | null {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    const { ts, data } = JSON.parse(raw) as { ts: number; data: { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } };
-    if (Date.now() - ts > CACHE_TTL_MS) return null;
-    return data;
-  } catch {
-    return null;
-  }
-}
-
-function writeCache(data: { roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection }) {
-  try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-  } catch {
-    /* quota or storage disabled — cache is best-effort */
-  }
-}
-
-// ---- Overpass fetch + GeoJSON shaping --------------------------------
-
-function osmToGeoJson(osm: OverpassResponse) {
-  const roads: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
-  const places: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
-
-  for (const el of osm.elements || []) {
-    if (el.type === "way" && el.geometry && el.tags?.highway) {
-      roads.features.push({
-        type: "Feature",
-        properties: {
-          highway: el.tags.highway,
-          name: el.tags.name || "",
-          ref: el.tags.ref || "",
-        },
-        geometry: {
-          type: "LineString",
-          coordinates: el.geometry.map((g) => [g.lon, g.lat]),
-        },
-      } as GeoJSON.Feature<GeoJSON.LineString, Record<string, string>>);
-    } else if (el.type === "node" && el.tags?.place && el.tags?.name) {
-      places.features.push({
-        type: "Feature",
-        properties: {
-          place: el.tags.place,
-          name: el.tags.name,
-          population: el.tags.population ? Number(el.tags.population) : null,
-        },
-        geometry: { type: "Point", coordinates: [el.lon, el.lat] },
-      } as GeoJSON.Feature<GeoJSON.Point, Record<string, string | number | null>>);
-    }
-  }
-  return { roads, places };
-}
-
-async function fetchOverpass(): Promise<{ roads: GeoJSON.FeatureCollection; places: GeoJSON.FeatureCollection } | null> {
-  const cached = readCache();
-  if (cached) return cached;
-
-  for (const endpoint of OVERPASS_ENDPOINTS) {
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        body: "data=" + encodeURIComponent(QUERY),
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      });
-      if (!res.ok) continue;
-      const json = await res.json();
-      const data = osmToGeoJson(json);
-      writeCache(data);
-      return data;
-    } catch (err) {
-      // try next endpoint
-      console.warn("[osm] endpoint failed:", endpoint, err);
-    }
-  }
-  return null;
-}
 
 // ---- Map rendering ---------------------------------------------------
 
@@ -306,7 +200,7 @@ function addPlaceLayers(map: Map) {
 // ---- Public entry ----------------------------------------------------
 
 export async function addOsmOverlays(map: Map) {
-  const data = await fetchOverpass();
+  const data = await fetchOverpassGeoJson(QUERY, { cacheKey: 'kusheshwar.osm.v1' });
   if (!data || (!data.roads.features.length && !data.places.features.length)) {
     console.warn("[osm] no data available — skipping OSM overlay");
     return;
