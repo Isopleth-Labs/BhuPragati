@@ -216,6 +216,7 @@ export default function GlobeViz() {
     })
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.setSize(container.clientWidth, container.clientHeight)
+    renderer.setClearColor(0x000000) // Space color: pure pitch black
     renderer.toneMapping = THREE.ACESFilmicToneMapping
     renderer.toneMappingExposure = 1.55
     renderer.outputColorSpace = THREE.SRGBColorSpace
@@ -223,8 +224,8 @@ export default function GlobeViz() {
 
     // ── SCENE ─────────────────────────────────────────────────
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x01040a)
-    scene.fog = new THREE.FogExp2(0x01040a, 0.012)
+    scene.background = new THREE.Color(0x000000) // Pitch black void
+    scene.fog = new THREE.FogExp2(0x000000, 0.012) // Pitch black fog
 
     // ── CAMERA ────────────────────────────────────────────────
     const camera = new THREE.PerspectiveCamera(
@@ -246,8 +247,25 @@ export default function GlobeViz() {
     controls.rotateSpeed = 0.4
     controls.zoomSpeed = 0.6
 
-    // ── TEXTURES ──────────────────────────────────────────────
-    const loader = new THREE.TextureLoader()
+    // ── TEXTURE & ASSET LOADING MANAGER ──────────────────────
+    let texturesLoaded = false
+    let geoJsonLoaded = false
+    let assetsLoaded = false
+    let fadeFactor = 0.0
+
+    const loadingManager = new THREE.LoadingManager()
+    loadingManager.onLoad = () => {
+      texturesLoaded = true
+      checkAssetsLoaded()
+    }
+
+    function checkAssetsLoaded() {
+      if (texturesLoaded && geoJsonLoaded) {
+        assetsLoaded = true
+      }
+    }
+
+    const loader = new THREE.TextureLoader(loadingManager)
     const maxAniso = renderer.capabilities.getMaxAnisotropy()
 
     function loadTex(path, colorSpace = null) {
@@ -295,16 +313,17 @@ export default function GlobeViz() {
     const bumpTex  = loadTex('/homepage-earth/earth-topology.png')
     const specTex  = loadTex('/homepage-earth/earth-water.png')
     const cloudTex = loadTex('/homepage-earth/earth-clouds.png', THREE.SRGBColorSpace)
+    const milkyWayTex = loadTex('/homepage-earth/8k_stars_milky_way.jpg', THREE.SRGBColorSpace)
 
     // ── LIGHTING ──────────────────────────────────────────────
     const hemiLight = new THREE.HemisphereLight(
-      0x6fa8ff,
-      0x020308,
-      0.22
+      0xbfd1e5, // Desaturated grey-blue sky reflection
+      0x030305, // Dark space ground reflection
+      0.12 // Reduced from 0.20 to make nighttime shadows deeper
     )
     scene.add(hemiLight)
 
-    const sun = new THREE.DirectionalLight(0x4a6fa5, 2.5)
+    const sun = new THREE.DirectionalLight(0xfffbf4, 1.35) // Reduced to 1.35 (1.5 - 10%) for darker day side
     sun.position.set(320, 180, -220)
     scene.add(sun)
 
@@ -312,17 +331,20 @@ export default function GlobeViz() {
     const RADIUS = 1.0
     const globeGeo = new THREE.SphereGeometry(RADIUS, 128, 128)
     const globeMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(0x757575), // Subdues day-side reflectivity to darken land/snow/ice
       map: dayTex,
       bumpMap: bumpTex,
       bumpScale: 0.008,
       roughnessMap: specTex,
-      roughness: 0.82,
+      roughness: 0.90, // Increased to reduce specular glare
       metalness: 0.02,
-      clearcoat: 0.18,
-      clearcoatRoughness: 0.45,
+      clearcoat: 0.0, // Removed clearcoat glossiness to eliminate sun glare
+      clearcoatRoughness: 0.80,
       emissive: new THREE.Color(0xffffff),
       emissiveMap: nightTex,
       emissiveIntensity: 1.0,
+      transparent: true,
+      opacity: 0.0, // Start fully transparent to prevent loading flashes
     })
     const globeMesh = new THREE.Mesh(globeGeo, globeMat)
 
@@ -331,19 +353,19 @@ export default function GlobeViz() {
     const cloudMat = new THREE.MeshPhongMaterial({
       map: cloudTex,
       transparent: true,
-      opacity: 0.36,
+      opacity: 0.0, // Start transparent, fade in dynamically
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     })
     const cloudMesh = new THREE.Mesh(cloudGeo, cloudMat)
 
-    // ── ATMOSPHERE RIM ────────────────────────────────────────
-    // Thin dark-blue rim — matches screenshot (no bright sci-fi glow)
-    const atmGeo = new THREE.SphereGeometry(RADIUS * 1.012, 64, 64)
+    // ── ATMOSPHERE V2 ─────────────────────────────────────────
+    // Desaturated neutral Earth-blue glow, tuned for realism (rim close to limb, lower opacity)
+    const atmGeo = new THREE.SphereGeometry(RADIUS * 1.010, 64, 64)
     const atmMat = new THREE.MeshPhongMaterial({
-      color: 0x0a1a3a,
+      color: 0x1a2636, // Less saturated, darker slate blue-grey
       transparent: true,
-      opacity: 0.18,
+      opacity: 0.0, // Start fully transparent to prevent loading flashes, fades in dynamically
       side: THREE.BackSide,
       depthWrite: false,
     })
@@ -365,28 +387,139 @@ export default function GlobeViz() {
     globeGroup.rotation.y = -2 * lon   // longitude offset to center India (78.9° E)
     globeGroup.rotation.x = lat * 0.55       // tilt slightly for India to appear centered
 
-    // ── STARS ─────────────────────────────────────────────────
-    const STAR_COUNT = 15000
-    const starPositions = new Float32Array(STAR_COUNT * 3)
-    for (let i = 0; i < STAR_COUNT; i++) {
-      const r = 60 + Math.random() * 60
+    // ── BACKGROUND STARFIELD & MILKY WAY GROUP ────────────────
+    const backgroundGroup = new THREE.Group()
+    scene.add(backgroundGroup)
+
+    // ── STARS V5 ──────────────────────────────────────────────
+    // High density realistic starfield: 70% tiny, 20% medium, 8% bright, 2% very bright
+    const starCount = 30000
+    const positions = new Float32Array(starCount * 3)
+    const sizes = new Float32Array(starCount)
+    const opacities = new Float32Array(starCount)
+    const phases = new Float32Array(starCount)
+
+    // Generate regular stars (first 29,985 stars)
+    for (let i = 0; i < starCount - 15; i++) {
+      const r = 120 + Math.random() * 160
       const theta = Math.random() * Math.PI * 2
       const phi = Math.acos(Math.random() * 2 - 1)
-      starPositions[i * 3]     = r * Math.sin(phi) * Math.cos(theta)
-      starPositions[i * 3 + 1] = r * Math.cos(phi)
-      starPositions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta)
+      positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta)
+      positions[i * 3 + 1] = r * Math.cos(phi)
+      positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta)
+
+      const rand = Math.random()
+      let baseSize, baseOpacity
+      if (rand < 0.70) {
+        // 70% tiny dim stars (0.5px to 1.0px equivalent, opacity 0.2 to 0.5)
+        baseSize = 0.5 + Math.random() * 0.5
+        baseOpacity = 0.2 + Math.random() * 0.3
+      } else if (rand < 0.90) {
+        // 20% medium stars (1.0px to 1.8px equivalent, opacity 0.4 to 0.7)
+        baseSize = 1.0 + Math.random() * 0.8
+        baseOpacity = 0.4 + Math.random() * 0.3
+      } else if (rand < 0.98) {
+        // 8% bright stars (1.8px to 2.4px equivalent, opacity 0.6 to 0.9)
+        baseSize = 1.8 + Math.random() * 0.6
+        baseOpacity = 0.6 + Math.random() * 0.3
+      } else {
+        // 2% very bright stars (2.4px to 3.0px equivalent, opacity 0.8 to 1.0)
+        baseSize = 2.4 + Math.random() * 0.6
+        baseOpacity = 0.8 + Math.random() * 0.2
+      }
+
+      sizes[i] = baseSize
+      opacities[i] = baseOpacity
+      phases[i] = Math.random() * Math.PI * 2
     }
+
+    // Add 15 bright anchor stars visible immediately (Requirement 5)
+    for (let i = 0; i < 15; i++) {
+      const idx = starCount - 15 + i
+      const r = 140 + Math.random() * 100
+      const theta = Math.random() * Math.PI * 2
+      const phi = Math.acos(Math.random() * 2 - 1)
+      positions[idx * 3]     = r * Math.sin(phi) * Math.cos(theta)
+      positions[idx * 3 + 1] = r * Math.cos(phi)
+      positions[idx * 3 + 2] = r * Math.sin(phi) * Math.sin(theta)
+
+      sizes[idx] = 3.5 + Math.random() * 1.0 // 3.5px to 4.5px
+      opacities[idx] = 1.0 // Maximum opacity
+      phases[idx] = Math.random() * Math.PI * 2
+    }
+
     const starGeo = new THREE.BufferGeometry()
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3))
-    const starMat = new THREE.PointsMaterial({
-      color: 0xffffff,
-      size: 0.06,
+    starGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+    starGeo.setAttribute('size', new THREE.BufferAttribute(sizes, 1))
+    starGeo.setAttribute('opacity', new THREE.BufferAttribute(opacities, 1))
+    starGeo.setAttribute('phase', new THREE.BufferAttribute(phases, 1))
+
+    const starMat = new THREE.ShaderMaterial({
+      uniforms: {
+        color: { value: new THREE.Color(0xffffff) },
+        fade: { value: 0.0 },
+        time: { value: 0.0 }
+      },
+      vertexShader: `
+        attribute float size;
+        attribute float opacity;
+        attribute float phase;
+        varying float vOpacity;
+        varying float vPhase;
+        void main() {
+          vOpacity = opacity;
+          vPhase = phase;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 color;
+        uniform float fade;
+        uniform float time;
+        varying float vOpacity;
+        varying float vPhase;
+        void main() {
+          // Circular star shape
+          vec2 coord = gl_PointCoord - vec2(0.5);
+          if (length(coord) > 0.5) discard;
+          
+          // Organic, time-based smooth starlight twinkling
+          float twinkle = 1.0;
+          if (vOpacity < 1.0) {
+            twinkle = 0.7 + 0.3 * sin(time * 1.5 + vPhase);
+          } else {
+            twinkle = 0.95 + 0.05 * sin(time * 0.5 + vPhase); // Anchor stars are stable
+          }
+          
+          gl_FragColor = vec4(color, vOpacity * fade * twinkle);
+        }
+      `,
       transparent: true,
-      opacity: 0.85,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
+      fog: false,
     })
-    scene.add(new THREE.Points(starGeo, starMat))
+
+    const starPoints = new THREE.Points(starGeo, starMat)
+    backgroundGroup.add(starPoints)
+
+    // ── MILKY WAY ─────────────────────────────────────────────
+    const mwGeo = new THREE.SphereGeometry(400, 64, 64)
+    const mwMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(0x808080), // Pure neutral grey multiplier (removes any blue tint)
+      map: milkyWayTex,
+      side: THREE.BackSide,
+      transparent: true,
+      opacity: 0.04, // Very faint Milky Way (Requirement 6)
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      fog: false,
+    })
+    const mwMesh = new THREE.Mesh(mwGeo, mwMat)
+    mwMesh.rotation.x = Math.PI / 6
+    backgroundGroup.add(mwMesh)
 
     // ── COUNTRY BORDERS (GeoJSON) ────────────────────────────
     const borderLines = new THREE.Group()
@@ -396,7 +529,7 @@ export default function GlobeViz() {
     const borderMat = new THREE.LineBasicMaterial({
       color: 0x9bb0c8,
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.0, // Start transparent, fade in dynamically
       depthTest: true,
     })
 
@@ -492,8 +625,14 @@ export default function GlobeViz() {
         borderLines.rotation.copy(globeGroup.rotation)
         fillGroup.rotation.copy(globeGroup.rotation)
         console.log(`[GlobeViz] ${countryEntries.length} countries loaded for interaction`)
+        geoJsonLoaded = true
+        checkAssetsLoaded()
       })
-      .catch(err => console.warn('[GlobeViz] GeoJSON load failed', err))
+      .catch(err => {
+        console.warn('[GlobeViz] GeoJSON load failed', err)
+        geoJsonLoaded = true
+        checkAssetsLoaded()
+      })
 
     // ── RESIZE ────────────────────────────────────────────────
     function onResize() {
@@ -690,6 +829,29 @@ export default function GlobeViz() {
         }
       }
 
+      // Smooth fade-in once assets are loaded
+      if (assetsLoaded && fadeFactor < 1.0) {
+        fadeFactor = Math.min(1.0, fadeFactor + 0.04)
+        globeMat.opacity = fadeFactor
+        cloudMat.opacity = fadeFactor * 0.36
+        atmMat.opacity = fadeFactor * 0.054 // Reduced by 25% (0.072 * 0.75) for a very thin subtle rim
+        borderMat.opacity = fadeFactor * 0.35
+        starMat.uniforms.fade.value = fadeFactor
+        
+        // Once fully faded in, make globe opaque so sorting/depth works optimally
+        if (fadeFactor >= 1.0) {
+          globeMat.transparent = false
+          globeMat.needsUpdate = true
+        }
+      }
+
+      // Slowly and smoothly rotate background starfield & Milky Way for subtle realism
+      // Time-based (delta-independent) rotation avoids micro-stutter
+      backgroundGroup.rotation.y = t * 0.0018
+
+      // Update star twinkling shader time
+      starMat.uniforms.time.value = t
+
       // AUTO-ROTATION DISABLED — verifying startup India orientation
       // globeGroup.rotation.y  += 0.00018
       // borderLines.rotation.y += 0.00018
@@ -715,6 +877,8 @@ export default function GlobeViz() {
       globeGeo.dispose()
       cloudGeo.dispose()
       atmGeo.dispose()
+      mwGeo.dispose()
+      mwMat.dispose()
       starGeo.dispose()
       starMat.dispose()
       borderMat.dispose()
