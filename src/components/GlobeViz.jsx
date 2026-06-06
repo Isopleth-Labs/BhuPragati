@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 /**
  * GlobeViz — Cinematic NASA Orbital Earth
@@ -17,6 +18,189 @@ import * as THREE from 'three'
  *   - GeoJSON country borders (white lines)
  *   - India-centered orientation
  */
+
+// ── COUNTRY HIT-TEST UTILITIES (ported from EarthViewer.jsx) ──
+function ringContains(lon, lat, ring) {
+  let inside = false
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i++) {
+    const xi = ring[i][0], yi = ring[i][1]
+    const xj = ring[j][0], yj = ring[j][1]
+    const intersect = (yi > lat) !== (yj > lat) &&
+      lon < ((xj - xi) * (lat - yi)) / (yj - yi) + xi
+    if (intersect) inside = !inside
+  }
+  return inside
+}
+
+function polygonContains(lon, lat, polygon) {
+  const [outer, ...holes] = polygon
+  if (!ringContains(lon, lat, outer)) return false
+  for (const hole of holes) {
+    if (ringContains(lon, lat, hole)) return false
+  }
+  return true
+}
+
+function featureContains(lon, lat, coords, type) {
+  const polygons = type === 'Polygon' ? [coords] : type === 'MultiPolygon' ? coords : []
+  return polygons.some(poly => polygonContains(lon, lat, poly))
+}
+
+// ── EARTHVIEWER GEOMETRY PIPELINE ────────────────────────────
+function unwrapRing(ring) {
+  if (!ring.length) return ring
+  const unwrapped = [[ring[0][0], ring[0][1]]]
+  let lastLon = ring[0][0]
+  for (let i = 1; i < ring.length; i++) {
+    let lon = ring[i][0]
+    const lat = ring[i][1]
+    let diff = lon - lastLon
+    if (diff > 180) lon -= 360
+    else if (diff < -180) lon += 360
+    diff = lon - lastLon
+    if (diff > 180) lon -= 360
+    if (diff < -180) lon += 360
+    unwrapped.push([lon, lat])
+    lastLon = lon
+  }
+  const first = unwrapped[0]
+  const last = unwrapped[unwrapped.length - 1]
+  if (Math.abs(first[0] - last[0]) > 1e-6 || Math.abs(first[1] - last[1]) > 1e-6) {
+    unwrapped.push([...first])
+  }
+  return unwrapped
+}
+
+function buildGreatCirclePoints(a, b, toVec3, radius) {
+  const v1 = toVec3(a[1], a[0], radius)
+  const v2 = toVec3(b[1], b[0], radius)
+  const angle = v1.angleTo(v2)
+  const stepRad = THREE.MathUtils.degToRad(2)
+  const steps = Math.max(1, Math.ceil(angle / stepRad))
+  const points = []
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps
+    const v = new THREE.Vector3().lerpVectors(v1, v2, t).normalize().multiplyScalar(radius)
+    points.push(v)
+  }
+  return points
+}
+
+function ringArea(ring) {
+  let area = 0
+  for (let i = 0; i < ring.length; i++) {
+    const p1 = ring[i]
+    const p2 = ring[(i + 1) % ring.length]
+    area += p1[0] * p2[1] - p2[0] * p1[1]
+  }
+  return Math.abs(area) * 0.5
+}
+
+function computeCentroidVector(polygons, toVec3, radius) {
+  let bestRing = polygons?.[0]?.[0] ?? []
+  let maxArea = -Infinity
+  polygons.forEach(poly => {
+    const outer = poly[0]
+    const area = ringArea(outer)
+    if (area > maxArea) {
+      maxArea = area
+      bestRing = outer
+    }
+  })
+  if (!bestRing.length) return new THREE.Vector3(0, 0, radius)
+  const centroidVec = new THREE.Vector3()
+  bestRing.forEach(p => centroidVec.add(toVec3(p[1], p[0], 1)))
+  if (centroidVec.lengthSq() === 0) return new THREE.Vector3(0, 0, radius)
+  return centroidVec.normalize()
+}
+
+// Build triangulated fill geometry for a country using EarthViewer approach
+function buildCountryFill(coordinates, type, toVec3, radius) {
+  const polygons = type === 'Polygon' ? [coordinates] : type === 'MultiPolygon' ? coordinates : []
+  const geometries = []
+  const up = new THREE.Vector3(0, 1, 0)
+
+  polygons.forEach((poly) => {
+    const outerRing = unwrapRing(poly[0])
+    const holeRings = poly.slice(1).map(r => unwrapRing(r))
+
+    const densifyRing = (ring) => {
+      const pts = []
+      for (let i = 0; i < ring.length - 1; i++) {
+        const a = ring[i]
+        const b = ring[i + 1]
+        const arc = buildGreatCirclePoints(a, b, toVec3, radius)
+        if (i > 0 && arc.length > 0) arc.shift()
+        pts.push(...arc)
+      }
+      return pts
+    }
+
+    const outerPts = densifyRing(outerRing)
+    const holePts = holeRings.map(r => densifyRing(r))
+
+    if (outerPts.length < 3) return
+
+    // Projection basis using largest ring's centroid
+    const basisNormal = computeCentroidVector([poly], toVec3, 1)
+    let tangent = new THREE.Vector3().crossVectors(basisNormal, up)
+    if (tangent.lengthSq() < 1e-6) {
+      tangent = new THREE.Vector3().crossVectors(basisNormal, new THREE.Vector3(1, 0, 0))
+    }
+    tangent.normalize()
+    const bitangent = new THREE.Vector3().crossVectors(basisNormal, tangent).normalize()
+
+    const project2D = (vec3) => new THREE.Vector2(vec3.dot(tangent), vec3.dot(bitangent))
+    const outer2D = outerPts.map(project2D)
+    const holes2D = holePts.map(ring => ring.map(project2D))
+
+    try {
+      const triangles = THREE.ShapeUtils.triangulateShape(outer2D, holes2D)
+      if (!triangles.length) return
+
+      const geom = new THREE.BufferGeometry()
+      const vertices = [...outerPts]
+      holePts.forEach(ring => vertices.push(...ring))
+
+      const flatPositions = new Float32Array(vertices.length * 3)
+      vertices.forEach((v, idx) => {
+        flatPositions[idx * 3] = v.x
+        flatPositions[idx * 3 + 1] = v.y
+        flatPositions[idx * 3 + 2] = v.z
+      })
+
+      const triIndices = []
+      const totalOuter = outerPts.length
+      const holeSizes = holePts.map(r => r.length)
+
+      const resolveIndex = (idx) => {
+        if (idx < totalOuter) return idx
+        let offset = totalOuter
+        for (let h = 0; h < holeSizes.length; h++) {
+          const size = holeSizes[h]
+          if (idx < offset + size) return idx
+          offset += size
+        }
+        return idx
+      }
+
+      triangles.forEach(tri => {
+        const [a, b, c] = tri
+        triIndices.push(resolveIndex(a), resolveIndex(b), resolveIndex(c))
+      })
+
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(flatPositions, 3))
+      geom.setIndex(triIndices)
+      geom.computeVertexNormals()
+      geometries.push(geom)
+    } catch (e) {
+      // skip invalid triangulation
+    }
+  })
+
+  return geometries
+}
+
 export default function GlobeViz() {
   const mountRef = useRef(null)
 
@@ -51,6 +235,16 @@ export default function GlobeViz() {
     )
     camera.position.set(0, 0.08, 4.0)
     camera.lookAt(0, 0, 0)
+
+    // ── CONTROLS ──────────────────────────────────────────────
+    const controls = new OrbitControls(camera, renderer.domElement)
+    controls.enableDamping = true
+    controls.dampingFactor = 0.06
+    controls.enablePan = false
+    controls.minDistance = 2.8
+    controls.maxDistance = 10.0
+    controls.rotateSpeed = 0.4
+    controls.zoomSpeed = 0.6
 
     // ── TEXTURES ──────────────────────────────────────────────
     const loader = new THREE.TextureLoader()
@@ -206,6 +400,33 @@ export default function GlobeViz() {
       depthTest: true,
     })
 
+    const hoverBorderMat = new THREE.LineBasicMaterial({
+      color: 0x7fc8ff,
+      transparent: true,
+      opacity: 1.0,
+      depthTest: true,
+    })
+
+    const selectedBorderMat = new THREE.LineBasicMaterial({
+      color: 0xaee4ff,
+      transparent: true,
+      opacity: 1.0,
+      depthTest: true,
+    })
+
+    // ── COUNTRY FILL (selection highlight) ────────────────────
+    const fillGroup = new THREE.Group()
+    fillGroup.visible = true
+    scene.add(fillGroup)
+
+    const highlightMat = new THREE.MeshBasicMaterial({
+      color: 0x3a8fd6,
+      transparent: true,
+      opacity: 0.0,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    })
+
     function latLonToVec3(lat, lon, r) {
       const phi   = (90 - lat) * (Math.PI / 180)
       const theta = (lon + 180) * (Math.PI / 180)
@@ -216,10 +437,14 @@ export default function GlobeViz() {
       )
     }
 
+    const countryEntries = []
+    let selectedEntry = null
+
     fetch('/homepage-earth/countries-110m.geojson')
       .then(r => r.json())
       .then(data => {
         data.features.forEach(feature => {
+          const name = feature.properties?.name ?? 'Unknown'
           const geom = feature.geometry
           const rings =
             geom.type === 'Polygon'
@@ -228,14 +453,45 @@ export default function GlobeViz() {
               ? geom.coordinates.flat(1)
               : []
 
+          // Build border lines
+          const borderMeshes = []
           rings.forEach(ring => {
             const pts = ring.map(([lon, lat]) => latLonToVec3(lat, lon, RADIUS * 1.002))
             const geo = new THREE.BufferGeometry().setFromPoints(pts)
-            borderLines.add(new THREE.Line(geo, borderMat))
+            const mesh = new THREE.Line(geo, borderMat)
+            borderLines.add(mesh)
+            borderMeshes.push(mesh)
+          })
+
+          // Build fill meshes (hidden by default)
+          const fillGeometries = buildCountryFill(geom.coordinates, geom.type, latLonToVec3, RADIUS * 1.0015)
+          const fillMeshes = fillGeometries.map(geo => {
+            const mesh = new THREE.Mesh(geo, highlightMat.clone())
+            mesh.visible = false
+            fillGroup.add(mesh)
+            return mesh
+          })
+
+          const polys = geom.type === 'Polygon' ? [geom.coordinates] : geom.type === 'MultiPolygon' ? geom.coordinates : []
+          let centroid = new THREE.Vector3(0, 0, RADIUS)
+          if (polys.length) {
+            centroid = computeCentroidVector(polys, latLonToVec3, RADIUS)
+          }
+
+          // Store country entry for click/hover detection
+          countryEntries.push({
+            name,
+            type: geom.type,
+            coordinates: geom.coordinates,
+            fillMeshes,
+            borderMeshes,
+            centroid,
           })
         })
         // Match globe group orientation
         borderLines.rotation.copy(globeGroup.rotation)
+        fillGroup.rotation.copy(globeGroup.rotation)
+        console.log(`[GlobeViz] ${countryEntries.length} countries loaded for interaction`)
       })
       .catch(err => console.warn('[GlobeViz] GeoJSON load failed', err))
 
@@ -249,16 +505,196 @@ export default function GlobeViz() {
     }
     window.addEventListener('resize', onResize)
 
+    // ── TOOLTIP ──────────────────────────────────────────────
+    const tooltip = document.createElement('div')
+    tooltip.style.cssText = `
+      position: fixed;
+      pointer-events: none;
+      background: rgba(0,0,0,0.8);
+      color: #fff;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font: 600 12px "Segoe UI", system-ui, sans-serif;
+      opacity: 0;
+      transition: opacity 100ms ease;
+      z-index: 9999;
+      white-space: nowrap;
+    `
+    document.body.appendChild(tooltip)
+
+
+
+    // ── COUNTRY CLICK & HOVER DETECTION ───────────────────────
+    const raycaster = new THREE.Raycaster()
+    const pointerNdc = new THREE.Vector2()
+    let hoveredCountryName = null
+
+    // Shared: raycast → lat/lon → country lookup
+    function hitTestCountry(event) {
+      if (!countryEntries.length) return null
+      const rect = renderer.domElement.getBoundingClientRect()
+      pointerNdc.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
+      pointerNdc.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
+      raycaster.setFromCamera(pointerNdc, camera)
+
+      const hits = raycaster.intersectObject(globeMesh, false)
+      if (!hits.length) return null
+
+      const localPoint = globeGroup.worldToLocal(hits[0].point.clone())
+      const norm = localPoint.normalize()
+      const hitLat = THREE.MathUtils.radToDeg(Math.asin(norm.y))
+      const hitLon = THREE.MathUtils.radToDeg(Math.atan2(norm.z, -norm.x)) - 180
+      const normLon = ((hitLon + 540) % 360) - 180
+
+      for (const entry of countryEntries) {
+        if (featureContains(normLon, hitLat, entry.coordinates, entry.type)) {
+          return entry.name
+        }
+      }
+      return null
+    }
+
+    // Click handler — select/deselect country
+    let fadeAnim = null
+    let cameraTargetPos = null
+
+    function selectCountryByName(name) {
+      // Deselect previous
+      if (selectedEntry) {
+        selectedEntry.fillMeshes.forEach(m => {
+          m.material.opacity = 0.0
+          m.visible = false
+        })
+        selectedEntry.borderMeshes.forEach(m => { m.material = borderMat })
+        if (fadeAnim) { cancelAnimationFrame(fadeAnim); fadeAnim = null }
+      }
+
+      if (name) {
+        const entry = countryEntries.find(e => e.name === name)
+        if (entry) {
+          selectedEntry = entry
+          
+          // Set border material
+          entry.borderMeshes.forEach(m => { m.material = selectedBorderMat })
+
+          if (entry.fillMeshes.length) {
+            // Fade in
+            entry.fillMeshes.forEach(m => { m.visible = true; m.material.opacity = 0.0 })
+            let progress = 0
+            const fadeIn = () => {
+              progress += 0.06
+              const opacity = Math.min(progress, 0.30)
+              entry.fillMeshes.forEach(m => { m.material.opacity = opacity })
+              if (progress < 0.30) fadeAnim = requestAnimationFrame(fadeIn)
+              else fadeAnim = null
+            }
+            fadeAnim = requestAnimationFrame(fadeIn)
+          }
+          console.log(`Selected: ${name}`)
+          
+          // Set camera target for smooth rotation
+          if (entry.centroid) {
+            const worldCentroid = entry.centroid.clone().applyMatrix4(globeGroup.matrixWorld).normalize()
+            cameraTargetPos = worldCentroid.multiplyScalar(camera.position.length())
+          }
+        }
+      } else {
+        selectedEntry = null
+        cameraTargetPos = null
+        console.log('[GlobeViz] Selection cleared')
+      }
+    }
+
+    function onGlobeClick(event) {
+      const name = hitTestCountry(event)
+      selectCountryByName(name)
+    }
+
+    // Hover handler (throttled via rAF)
+    let hoverRafPending = false
+    let lastMoveEvent = null
+    function onPointerMove(event) {
+      lastMoveEvent = event
+      if (hoverRafPending) return
+      hoverRafPending = true
+      requestAnimationFrame(() => {
+        hoverRafPending = false
+        const evt = lastMoveEvent
+        const name = hitTestCountry(evt)
+        if (name !== hoveredCountryName) {
+          // Deselect old hover
+          if (hoveredCountryName) {
+            const oldEntry = countryEntries.find(e => e.name === hoveredCountryName)
+            if (oldEntry && oldEntry !== selectedEntry) {
+              oldEntry.borderMeshes.forEach(m => { m.material = borderMat })
+            }
+          }
+
+          hoveredCountryName = name
+          
+          if (name) {
+            const newEntry = countryEntries.find(e => e.name === name)
+            if (newEntry && newEntry !== selectedEntry) {
+              newEntry.borderMeshes.forEach(m => { m.material = hoverBorderMat })
+            }
+            tooltip.textContent = name
+            tooltip.style.opacity = '1'
+            container.style.cursor = 'pointer'
+          } else {
+            tooltip.style.opacity = '0'
+            container.style.cursor = 'grab'
+          }
+        }
+        // Always update position when visible
+        if (hoveredCountryName) {
+          tooltip.style.left = `${evt.clientX + 14}px`
+          tooltip.style.top = `${evt.clientY + 14}px`
+        }
+      })
+    }
+
+    // Use pointerup with distance check to avoid firing on drag
+    let pointerDownPos = null
+    function onPointerDown(event) {
+      pointerDownPos = { x: event.clientX, y: event.clientY }
+      cameraTargetPos = null // user interaction cancels auto-rotation
+    }
+    function onPointerUp(event) {
+      if (!pointerDownPos) return
+      const dx = event.clientX - pointerDownPos.x
+      const dy = event.clientY - pointerDownPos.y
+      const dist = Math.sqrt(dx * dx + dy * dy)
+      if (dist < 5) onGlobeClick(event)
+      pointerDownPos = null
+    }
+
+    container.addEventListener('pointerdown', onPointerDown)
+    container.addEventListener('pointerup', onPointerUp)
+    container.addEventListener('pointermove', onPointerMove)
+
     // ── ANIMATION LOOP ────────────────────────────────────────
     let animId
     const clock = new THREE.Clock()
     function animate() {
       animId = requestAnimationFrame(animate)
       const t = clock.getElapsedTime()
+      
+      // pulse selected border
+      selectedBorderMat.opacity = 0.5 + 0.5 * Math.sin(t * 8)
+
+      // smooth camera rotation to country centroid
+      if (cameraTargetPos) {
+        camera.position.lerp(cameraTargetPos, 0.05)
+        if (camera.position.distanceTo(cameraTargetPos) < 0.01) {
+          cameraTargetPos = null
+        }
+      }
+
       // AUTO-ROTATION DISABLED — verifying startup India orientation
       // globeGroup.rotation.y  += 0.00018
       // borderLines.rotation.y += 0.00018
       // cloudMesh.rotation.y   += 0.000025
+      controls.update()
       renderer.render(scene, camera)
     }
     animate()
@@ -266,7 +702,12 @@ export default function GlobeViz() {
     // ── CLEANUP ───────────────────────────────────────────────
     return () => {
       cancelAnimationFrame(animId)
+      controls.dispose()
       window.removeEventListener('resize', onResize)
+      container.removeEventListener('pointerdown', onPointerDown)
+      container.removeEventListener('pointerup', onPointerUp)
+      container.removeEventListener('pointermove', onPointerMove)
+      if (tooltip.parentNode) tooltip.parentNode.removeChild(tooltip)
       renderer.dispose()
       globeMat.dispose()
       cloudMat.dispose()
@@ -277,6 +718,13 @@ export default function GlobeViz() {
       starGeo.dispose()
       starMat.dispose()
       borderMat.dispose()
+      hoverBorderMat.dispose()
+      selectedBorderMat.dispose()
+      highlightMat.dispose()
+      countryEntries.forEach(entry => {
+        entry.fillMeshes.forEach(m => { m.geometry.dispose(); m.material.dispose() })
+        entry.borderMeshes.forEach(m => { m.geometry.dispose() })
+      })
       if (renderer.domElement.parentNode) {
         renderer.domElement.parentNode.removeChild(renderer.domElement)
       }
