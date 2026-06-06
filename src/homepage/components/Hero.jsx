@@ -1,3 +1,6 @@
+import GlobeViz from "../../components/GlobeViz";
+import CapabilityStrip from "./CapabilityStrip";
+
 const HEALTHCARE_METRICS = [
   { label: "Total Facilities", value: "1,48,734", change: "+2.4%", trend: "up" },
   { label: "Population Coverage", value: "92.6%", change: "+1.8%", trend: "up", progress: 82 },
@@ -67,11 +70,9 @@ function Hero() {
       <div className="hero__network hero__network--right" aria-hidden="true" />
 
       <div className="hero__earth">
-        <img
-          src="/earth-hero.png"
-          alt="Earth showing India from space"
-          className="hero__earth-img"
-        />
+        <div className="hero__earth-canvas">
+          <GlobeViz />
+        </div>
       </div>
 
       <StatPanel
@@ -93,10 +94,10 @@ function Hero() {
       />
 
       <div className="hero__content">
-        <p className="hero__welcome">WELCOME TO</p>
+        <p className="hero__welcome">EARTH INTELLIGENCE PLATFORM</p>
         <h1 className="hero__title">Better Bharat Map</h1>
         <p className="hero__subtitle">
-          Visualizing Infrastructure, Budget, and Future Development
+          Visualizing Infrastructure, Development and Public Data
         </p>
         <div className="hero__actions">
           <a href="#enter" className="btn btn-primary" id="hero-cta">
@@ -111,8 +112,11 @@ function Hero() {
       </div>
 
       <div className="hero__scroll" aria-hidden="true">
-        <div className="hero__scroll-circle"></div>
+        <span className="hero__scroll-text">Scroll to explore</span>
+        <div className="hero__scroll-line"></div>
       </div>
+
+      <CapabilityStrip />
     </section>
   );
 }

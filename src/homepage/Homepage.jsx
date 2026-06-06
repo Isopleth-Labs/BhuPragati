@@ -1,11 +1,11 @@
 import "./homepage.css";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import CapabilityStrip from "./components/CapabilityStrip";
 import WhyItMatters from "./components/WhyItMatters";
 import Infrastructure from "./components/Infrastructure";
 import Simulation from "./components/Simulation";
 import Navigation from "./components/Navigation";
+import Contributors from "./components/Contributors";
 import Footer from "./components/Footer";
 
 export default function Homepage() {
@@ -13,18 +13,15 @@ export default function Homepage() {
     <div className="homepage">
       <Navbar />
       <Hero />
-      <CapabilityStrip />
       <WhyItMatters />
+      <div className="homepage__divider" />
       <Infrastructure />
+      <div className="homepage__divider" />
       <Simulation />
+      <div className="homepage__divider" />
       <Navigation />
-      <section className="section section--placeholder">
-        <div className="section__header">
-          <p className="eyebrow">Contributors</p>
-          <h2>Recognizing the people who build the platform</h2>
-          <p className="section__lede">Contributor recognition and roles coming soon.</p>
-        </div>
-      </section>
+      <div className="homepage__divider" />
+      <Contributors />
       <Footer />
     </div>
   );

@@ -1,0 +1,1 @@
+import urllib.request, re; req = urllib.request.Request('https://upload.wikimedia.org/wikipedia/commons/3/3d/India_map_en.svg', headers={'User-Agent': 'Mozilla/5.0'}); resp = urllib.request.urlopen(req).read().decode('utf-8'); paths = re.findall(r'<path[^>]*d=\"([^"]+)\"', resp); print(len(max(paths, key=len)))

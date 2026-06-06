@@ -1,18 +1,55 @@
 import React from 'react';
 
+import { EarthIcon, IndiaIcon, StateIcon, DistrictIcon, BlockIcon, PanchayatIcon, VillageIcon } from './Icons';
+
 const NAV_STEPS = [
-  { label: 'Earth', icon: '🌐', iconClass: 'nav-step__icon--earth' },
-  { label: 'India', icon: '◆', iconClass: 'nav-step__icon--india' },
-  { label: 'State', icon: '▣', iconClass: 'nav-step__icon--state' },
-  { label: 'District', icon: '▢', iconClass: 'nav-step__icon--district' },
-  { label: 'Block', icon: '⊞', iconClass: 'nav-step__icon--block' },
-  { label: 'Panchayat', icon: '⊡', iconClass: 'nav-step__icon--panchayat' },
-  { label: 'Village', icon: '⌂', iconClass: 'nav-step__icon--village' },
+  { 
+    label: 'Earth', 
+    icon: <EarthIcon />, 
+    iconClass: 'nav-step__icon--earth',
+    size: 44
+  },
+  { 
+    label: 'India', 
+    icon: <IndiaIcon />, 
+    iconClass: 'nav-step__icon--india',
+    size: 44
+  },
+  { 
+    label: 'State', 
+    icon: <StateIcon />, 
+    iconClass: 'nav-step__icon--state',
+    size: 42
+  },
+  { 
+    label: 'District', 
+    icon: <DistrictIcon />, 
+    iconClass: 'nav-step__icon--district',
+    size: 40
+  },
+  { 
+    label: 'Block', 
+    icon: <BlockIcon />, 
+    iconClass: 'nav-step__icon--block',
+    size: 42
+  },
+  { 
+    label: 'Panchayat', 
+    icon: <PanchayatIcon />, 
+    iconClass: 'nav-step__icon--panchayat',
+    size: 44
+  },
+  { 
+    label: 'Village', 
+    icon: <VillageIcon />, 
+    iconClass: 'nav-step__icon--village',
+    size: 44
+  },
 ];
 
 function Navigation() {
   return (
-    <section className="navigation-section" id="earth-to-village">
+    <section className="section-row navigation-section" id="earth-to-village">
       <div className="navigation-section__left">
         <p className="eyebrow">EARTH TO VILLAGE NAVIGATION</p>
         <h2 className="section-heading">
@@ -32,7 +69,7 @@ function Navigation() {
                   className={`nav-step__icon ${step.iconClass}`}
                   aria-hidden="true"
                 >
-                  {step.icon}
+                  {React.cloneElement(step.icon, { width: step.size, height: step.size })}
                 </div>
                 <span className="nav-step__label">{step.label}</span>
               </div>

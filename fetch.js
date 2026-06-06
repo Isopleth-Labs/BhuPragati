@@ -1,0 +1,1 @@
+const https = require('https'); https.get('https://raw.githubusercontent.com/deldersveld/topojson/master/countries/india/india-states.json', res => { let data = ''; res.on('data', c => data += c); res.on('end', () => console.log(data.substring(0, 100))); });

@@ -1,0 +1,1 @@
+const https = require('https'); https.get('https://unpkg.com/@react-map/india@1.0.0/dist/index.js', { headers: { 'User-Agent': 'Mozilla/5.0' } }, res => { let data = ''; res.on('data', c => data += c); res.on('end', () => console.log(data.length > 500 ? data.substring(0, 1000) : data)); }).on('error', console.error);
