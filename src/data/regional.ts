@@ -5,13 +5,15 @@
 // OpenStreetMap references, sufficient for tactical visualization at
 // the dashboard's working zoom range (8.8 – 15.5).
 
-const f = (lng, lat, properties) => ({
+import type { Feature, FeatureCollection, GeoJsonProperties, LineString, Point, Position } from "geojson";
+
+const f = (lng: number, lat: number, properties: GeoJsonProperties): Feature<Point, GeoJsonProperties> => ({
   type: "Feature",
   properties,
   geometry: { type: "Point", coordinates: [lng, lat] },
 });
 
-const line = (coords, properties) => ({
+const line = (coords: Position[], properties: GeoJsonProperties): Feature<LineString, GeoJsonProperties> => ({
   type: "Feature",
   properties,
   geometry: { type: "LineString", coordinates: coords },
@@ -20,7 +22,7 @@ const line = (coords, properties) => ({
 // --- SETTLEMENTS -------------------------------------------------------
 // tier: "city" (district HQ) | "town" (block HQ) | "village" (notable settlement)
 
-export const settlements = {
+export const settlements: FeatureCollection<Point, GeoJsonProperties> = {
   type: "FeatureCollection",
   features: [
     // District headquarters (cities)
@@ -52,7 +54,7 @@ export const settlements = {
 // Major distributaries and rivers of the north Bihar floodplain.
 // Polylines approximate the channel centerlines at low/medium zoom.
 
-export const regionalRivers = {
+export const regionalRivers: FeatureCollection<LineString, GeoJsonProperties> = {
   type: "FeatureCollection",
   features: [
     line(
@@ -103,7 +105,7 @@ export const regionalRivers = {
 // --- INFRASTRUCTURE NODES ---------------------------------------------
 // nodeType controls icon color + letter symbol on the map.
 
-export const infrastructureNodes = {
+export const infrastructureNodes: FeatureCollection<Point, GeoJsonProperties> = {
   type: "FeatureCollection",
   features: [
     f(85.91, 26.155, {

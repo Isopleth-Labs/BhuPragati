@@ -1,12 +1,17 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { infrastructureLayers } from "../../config/layers";
+import { useRegionStore } from "@/shared/store/region";
+import { getRegion } from "@/data/regions";
 import LayerIcon from "../ui/LayerIcon";
 
 function InsightStrip() {
+  const activeRegionId = useRegionStore((state) => state.activeRegionId);
+  const regionName = useMemo(() => getRegion(activeRegionId ?? "")?.name.en ?? "Select a region", [activeRegionId]);
+
   return (
     <section className="insight-strip panel-surface" aria-label="Quick overview">
       <header className="insight-strip__header">
-        <p className="panel-kicker">Kusheshwar Asthan — Quick Overview</p>
+        <p className="panel-kicker">{regionName} — Quick Overview</p>
       </header>
 
       <div className="insight-strip__grid">

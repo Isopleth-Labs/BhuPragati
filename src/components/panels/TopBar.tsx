@@ -1,12 +1,40 @@
-import { memo } from "react";
-import { operationalStats, dashboardMeta } from "../../config/metadata";
+import { memo, useMemo } from "react";
+import { dashboardMeta } from "../../config/metadata";
+import { getAncestorChain, getRegion } from "@/data/regions";
+import { useRegionStore } from "@/shared/store/region";
 
 // Premium top HUD: compact metadata mini-cards + brand card.
 function TopBar() {
+  const activeRegionId = useRegionStore((state) => state.activeRegionId);
+
+  const { commandZone, districtName, pinValue } = useMemo(() => {
+    const region = activeRegionId ? getRegion(activeRegionId) : undefined;
+    const ancestors = activeRegionId ? getAncestorChain(activeRegionId) : [];
+    const district = ancestors.find((r) => r.level === "district");
+
+    return {
+      commandZone: region?.name.en ?? "Select a region",
+      districtName: district?.name.en ?? "—",
+      pinValue: region?.pinCodes[0] ?? "—",
+    };
+  }, [activeRegionId]);
+
+  if (!activeRegionId) return null;
+
+  const stats = useMemo(
+    () => [
+      { label: "Command Zone", value: commandZone },
+      { label: "District", value: districtName },
+      { label: "PIN", value: pinValue },
+      { label: "Mode", value: "Live GIS" },
+    ],
+    [commandZone, districtName, pinValue],
+  );
+
   return (
     <header className="top-bar" aria-label="Operational context">
       <dl className="top-bar__meta">
-        {operationalStats.map((stat) => (
+        {stats.map((stat) => (
           <div key={stat.label} className="meta-card panel-surface">
             <dt>{stat.label}</dt>
             <dd>{stat.value}</dd>

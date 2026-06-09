@@ -8,28 +8,7 @@
     radial-gradient(circle at 50% 42%, rgba(255, 53, 40, 0.14), transparent 20%),
     radial-gradient(circle at 75% 20%, rgba(0, 126, 190, 0.13), transparent 28%),
     #02050a;
-}
-
-/* Reference-matching grid:
-   col 1: command panel (full height left of map)
-   col 2: map (transparent through to MapLibre)
-   col 3: top metadata + brand, legend stack on the right
-   row 3: bottom Quick Overview strip across all columns
-*/
-.dashboard__hud {
-  position: absolute;
-  inset: 22px 28px;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(290px, 320px) minmax(0, 1fr) minmax(280px, 320px);
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  column-gap: 28px;
-  row-gap: 22px;
-  pointer-events: none;
-}
-
-.dashboard__hud > * {
-  pointer-events: auto;
+  overflow-y: auto;
 }
 
 .command-panel {
