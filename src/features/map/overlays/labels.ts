@@ -75,8 +75,12 @@ export function tuneMapLabels(map: Map) {
       }
     } else if (type === "fill" && /water|river|lake|ocean/i.test(id)) {
       tuneWaterFill(map, id);
-    } else if (type === "line" && /water|river|stream|waterway|canal/i.test(id)) {
-      tuneWaterLine(map, id);
+    } else if (type === "line") {
+      if (/water|river|stream|waterway|canal/i.test(id)) {
+        tuneWaterLine(map, id);
+      } else if (/boundary|admin/i.test(id)) {
+        safeSet(() => map.setLayoutProperty(id, "visibility", "none"));
+      }
     }
   }
 }

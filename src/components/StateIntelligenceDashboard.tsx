@@ -1,21 +1,13 @@
-import React, { Suspense, lazy, useMemo, useEffect } from "react";
+import React, { Suspense, lazy, useMemo, useEffect, useState } from "react";
 import { useRegionStore } from "@/shared/store/region";
 import { useThemeStore } from "@/shared/store/theme";
+import { STATE_INDICATORS_DATA } from "../data/stateIndicators";
 
 const MapEngine = lazy(() => import("../modules/map"));
 
 type InfoIcon = "landmark" | "house" | "database" | "cpu" | "shield";
 
-const STATIC_RANKING = [
-  { id: "kerala", name: "Kerala", score: 78.6 },
-  { id: "tamil-nadu", name: "Tamil Nadu", score: 74.1 },
-  { id: "maharashtra", name: "Maharashtra", score: 72.8 },
-  { id: "gujarat", name: "Gujarat", score: 68.7 },
-  { id: "karnataka", name: "Karnataka", score: 67.1 },
-  { id: "andhra-pradesh", name: "Andhra Pradesh", score: 64.3 },
-  { id: "telangana", name: "Telangana", score: 63.8 },
-  { id: "himachal-pradesh", name: "Himachal Pradesh", score: 62.9 },
-];
+
 
 const INFO_STRIP_ITEMS: { icon: InfoIcon; color: string; title: string; subtitle: string; variant: string }[] = [
   { icon: "landmark", color: "#8bd5ff", title: "100% District Coverage", subtitle: "All 767 Districts", variant: "coverage" },
@@ -34,32 +26,39 @@ const getProgressTier = (score: number) => {
   return "tier-purple";
 };
 
-const OVERVIEW_CARDS = [
-  { key: "road", label: "Road Network (2024)", value: "6.31M km", color: "#f59e0b" },
-  { key: "rail", label: "Rail Network (2024)", value: "67,956 km", color: "#3b82f6" },
-  { key: "airports", label: "Airports (Operational)", value: "153", color: "#8b5cf6" },
-  { key: "health", label: "Health Index (Out of 100)", value: "62.4", color: "#ef4444" },
-  { key: "education", label: "Education Index (Out of 100)", value: "68.7", color: "#8b5cf6" },
-  { key: "power", label: "Power Coverage (Households)", value: "99.1%", color: "#f59e0b" },
-  { key: "internet", label: "Internet Coverage (Households)", value: "74.3%", color: "#3b82f6" },
-  { key: "urban", label: "Urban Population (2024)", value: "37.7%", color: "#06b6d4" },
-  { key: "forest", label: "Forest Cover (2023)", value: "21.7%", color: "#10b981" },
+const NATIONAL_OVERVIEW_CARDS = [
+  { key: "road", label: "Road Network", value: "6.31M km", color: "#f59e0b" },
+  { key: "rail", label: "Rail Network", value: "67,956 km", color: "#3b82f6" },
+  { key: "airports", label: "Airports", value: "153", color: "#8b5cf6" },
+  { key: "urban", label: "Urban Population", value: "37.7%", color: "#06b6d4" },
+  { key: "forest", label: "Forest Cover", value: "21.7%", color: "#10b981" },
+  { key: "languages", label: "Languages", value: "35", color: "#10b981" },
+];
+
+const DEMOGRAPHIC_CARDS = [
+  { key: "literacy", label: "Literacy Rate", value: "77.7%", color: "#3b82f6" },
+  { key: "hospitals", label: "Hospitals", value: "1.5L+", color: "#ef4444" },
+  { key: "schools", label: "Schools", value: "14.9L+", color: "#8b5cf6" },
+  { key: "gdpPerCapita", label: "GDP Per Capita", value: "\u20B92.0L", color: "#f59e0b" },
+  { key: "districts", label: "Districts", value: "767", color: "#f59e0b" },
+  { key: "coastline", label: "Coastline", value: "7,516 km", color: "#06b6d4" },
 ];
 
 const STATS_CARDS = [
   { key: "states", label: "States & UTs", value: "28 + 8", color: "#3b82f6" },
   { key: "population", label: "Total Population", value: "1.42B+", color: "#3b82f6" },
   { key: "area", label: "Total Area", value: "3.28M km\u00B2", color: "#10b981" },
-  { key: "gdp", label: "GDP (Nominal) (2024-25)", value: "\u20B9273.4L Cr", color: "#f59e0b" },
+  { key: "gdp", label: "GDP (Nominal)", value: "\u20B9273.4L Cr", color: "#f59e0b" },
 ];
 
 const INTEL_CARDS = [
-  { key: "population", label: "Population Index", value: 72.4, grade: "B+", delta: 1.36, icon: "\uD83D\uDC65", color: "#3b82f6" },
-  { key: "infrastructure", label: "Infrastructure Index", value: 64.8, grade: "B", delta: 2.18, icon: "\uD83C\uDFD7\uFE0F", color: "#f59e0b" },
-  { key: "health", label: "Health Index", value: 62.4, grade: "B-", delta: 1.45, icon: "\u2764\uFE0F", color: "#ef4444" },
-  { key: "education", label: "Education Index", value: 68.7, grade: "B", delta: 2.18, icon: "\uD83C\uDF93", color: "#8b5cf6" },
-  { key: "agriculture", label: "Agriculture Index", value: 60.1, grade: "B-", delta: 1.95, icon: "\uD83C\uDF3E", color: "#22c55e" },
-  { key: "connectivity", label: "Connectivity Index", value: 72.8, grade: "B+", delta: 2.72, icon: "\uD83D\uDCF6", color: "#0ea5e9" },
+  { key: "population", label: "Population Index", value: 72.4, grade: "B+", delta: 1.36, icon: "population", color: "#3b82f6" },
+  { key: "infrastructure", label: "Infrastructure Index", value: 64.8, grade: "B", delta: 2.18, icon: "infrastructure", color: "#f59e0b" },
+  { key: "health", label: "Health Index", value: 62.4, grade: "B-", delta: 1.45, icon: "health", color: "#ef4444" },
+  { key: "education", label: "Education Index", value: 68.7, grade: "B", delta: 2.18, icon: "education", color: "#8b5cf6" },
+  { key: "agriculture", label: "Agriculture Index", value: 60.1, grade: "B-", delta: 1.95, icon: "agriculture", color: "#22c55e" },
+  { key: "connectivity", label: "Connectivity Index", value: 72.8, grade: "B+", delta: 2.72, icon: "connectivity", color: "#0ea5e9" },
+  { key: "power", label: "Power Coverage", value: 99.1, grade: "A-", delta: 1.15, icon: "power", color: "#eab308" },
 ];
 
 /* Simple SVG sparkline — generates a small upward-trending line */
@@ -180,6 +179,68 @@ function renderOverviewIcon(key: string) {
           <path d="M17.6 15A6 6 0 0 0 12 6a6 6 0 0 0-5.6 9 4 4 0 0 0 1.6 7.6h8a4 4 0 0 0 1.6-7.6Z" fill="currentColor" fillOpacity="0.15" />
         </svg>
       );
+    case "languages":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M5 8l6 6" />
+          <path d="M4 14l6-6 2-3" />
+          <path d="M2 5h12" />
+          <path d="M7 2h1" />
+          <path d="M22 22l-5-10-5 10" fill="currentColor" fillOpacity="0.15" />
+          <path d="M14 18h6" />
+        </svg>
+      );
+    case "literacy":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M4 4h16v13H6.5A2.5 2.5 0 0 0 4 19.5V4z" fill="currentColor" fillOpacity="0.15" />
+          <path d="M8 8h8" />
+          <path d="M8 12h5" />
+        </svg>
+      );
+    case "hospitals":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" fillOpacity="0.15" />
+          <path d="M12 8v8" />
+          <path d="M8 12h8" />
+        </svg>
+      );
+    case "schools":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M22 10L12 5L2 10l10 5 10-5z" fill="currentColor" fillOpacity="0.15" />
+          <path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5" />
+          <path d="M22 10v6" />
+        </svg>
+      );
+    case "gdpPerCapita":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <circle cx="12" cy="8" r="4" fill="currentColor" fillOpacity="0.15" />
+          <path d="M5 20v-1a7 7 0 0 1 14 0v1" />
+          <path d="M12 14v3" />
+          <path d="M10 16h4" />
+        </svg>
+      );
+    case "districts":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <rect x="3" y="3" width="7" height="7" rx="1" fill="currentColor" fillOpacity="0.15" />
+          <rect x="14" y="3" width="7" height="7" rx="1" fill="currentColor" fillOpacity="0.15" />
+          <rect x="3" y="14" width="7" height="7" rx="1" fill="currentColor" fillOpacity="0.15" />
+          <rect x="14" y="14" width="7" height="7" rx="1" fill="currentColor" fillOpacity="0.15" />
+        </svg>
+      );
+    case "coastline":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M2 12c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
+          <path d="M2 17c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
+          <path d="M2 7c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -224,6 +285,75 @@ function renderStatsIcon(key: string) {
           <path d="M8 11h8" />
           <path d="M12 11c2.5 0 3.5-3 0-3" />
           <path d="M11 11l-3 6" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+function renderIntelIcon(key: string) {
+  const commonProps: React.SVGProps<SVGSVGElement> = {
+    width: "18",
+    height: "18",
+    stroke: "currentColor",
+    fill: "none",
+    strokeWidth: 2,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+  switch (key) {
+    case "population":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case "infrastructure":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <rect x="2" y="10" width="7" height="11" rx="1" fill="currentColor" fillOpacity="0.15" />
+          <rect x="9" y="3" width="7" height="18" rx="1" fill="currentColor" fillOpacity="0.15" />
+          <rect x="16" y="8" width="6" height="13" rx="1" fill="currentColor" fillOpacity="0.15" />
+        </svg>
+      );
+    case "health":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+        </svg>
+      );
+    case "education":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M22 10L12 5L2 10l10 5 10-5z" fill="currentColor" fillOpacity="0.15" />
+          <path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5" />
+        </svg>
+      );
+    case "agriculture":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2Z" fill="currentColor" fillOpacity="0.15" />
+          <path d="M9 22v-4" />
+        </svg>
+      );
+    case "connectivity":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <circle cx="18" cy="5" r="3" fill="currentColor" fillOpacity="0.15" />
+          <circle cx="6" cy="12" r="3" fill="currentColor" fillOpacity="0.15" />
+          <circle cx="18" cy="19" r="3" fill="currentColor" fillOpacity="0.15" />
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+          <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+        </svg>
+      );
+    case "power":
+      return (
+        <svg viewBox="0 0 24 24" {...commonProps}>
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="currentColor" fillOpacity="0.15" />
         </svg>
       );
     default:
@@ -324,6 +454,36 @@ export default function StateIntelligenceDashboard() {
   const activeRegionId = useRegionStore((s) => s.activeRegionId);
   const selectRegion = useRegionStore((s) => s.selectRegion);
   const { resolvedMode, setMode } = useThemeStore();
+  const [activeIndicator, setActiveIndicator] = useState<string>("overall");
+
+  const getIndicatorLabel = (key: string) => {
+    switch (key) {
+      case "overall": return "Overall Index";
+      case "population": return "Population Index";
+      case "infrastructure": return "Infrastructure Index";
+      case "health": return "Health Index";
+      case "education": return "Education Index";
+      case "agriculture": return "Agriculture Index";
+      case "connectivity": return "Connectivity Index";
+      case "power": return "Power Coverage";
+      default: return "Index";
+    }
+  };
+
+  const dynamicRanking = useMemo(() => {
+    return Object.values(STATE_INDICATORS_DATA)
+      .map((state) => ({
+        id: state.id,
+        name: state.name,
+        score: state.metrics[activeIndicator as keyof typeof state.metrics] ?? 0,
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8);
+  }, [activeIndicator]);
+
+  const handleCardClick = (cardKey: string) => {
+    setActiveIndicator((prev) => (prev === cardKey ? "overall" : cardKey));
+  };
 
   const toggleTheme = () => {
     setMode(resolvedMode === "night" ? "day" : "night");
@@ -499,20 +659,18 @@ export default function StateIntelligenceDashboard() {
           <div className="state-panel__ranking">
             <div className="state-panel__table-head state-panel__table-head--slim state-panel__table-head--title">
               <span className="state-panel__section-title state-panel__section-title--inline">
-                STATES RANKING BY OVERALL INDEX
+                STATES RANKING BY {getIndicatorLabel(activeIndicator).toUpperCase()}
               </span>
             </div>
             <div className="state-panel__table-head state-panel__table-head--slim">
               <span>#</span>
               <span>State</span>
               <span aria-hidden />
-              <span className="state-panel__score">Overall Index</span>
+              <span className="state-panel__score">{getIndicatorLabel(activeIndicator)}</span>
             </div>
             <div className="state-panel__table-body state-panel__table-body--slim">
-              {/** fixed widths per reference order */}
-              {STATIC_RANKING.map((row, idx) => {
-                const widthMap = [72, 64, 60, 54, 46, 42, 40, 36];
-                const fillWidth = Math.min(80, widthMap[idx] ?? 60);
+              {dynamicRanking.map((row, idx) => {
+                const fillWidth = (row.score / 100) * 80;
                 return (
                   <button
                     key={row.id}
@@ -542,23 +700,19 @@ export default function StateIntelligenceDashboard() {
         <section className="panel-surface state-main__map" aria-label="India State Map">
           <div className="state-map__card">
             <header className="state-map__header">
-              <div>
-                <p className="panel-kicker">INDIA – STATE MAP</p>
-                <h2 className="state-map__title">All 28 States &amp; 8 UTs</h2>
-                <p className="state-map__subtitle">Development &amp; Infrastructure Overview</p>
-              </div>
-              <div className="state-map__controls">
-                <button type="button" className="state-btn" aria-label="Zoom in">+</button>
-                <button type="button" className="state-btn" aria-label="Zoom out">−</button>
+              <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <h2 className="state-map__title" style={{ margin: 0 }}>INDIA INTELLIGENCE MAP</h2>
+                  <span className="state-indicator-badge">
+                    Active Indicator: {getIndicatorLabel(activeIndicator).toUpperCase()}
+                  </span>
+                </div>
+                <p className="state-map__subtitle" style={{ margin: 0 }}>
+                  {getIndicatorLabel(activeIndicator)} View
+                </p>
               </div>
             </header>
             <div className="state-map__body">
-              <div className="state-map__compass" aria-hidden>N</div>
-              <div className="state-map__legend">
-                <span>High</span>
-                <div className="state-map__legend-bar" />
-                <span>Low</span>
-              </div>
               <div className="state-map__scale" aria-hidden>
                 <span>0</span>
                 <div className="state-map__scale-bar" />
@@ -566,7 +720,7 @@ export default function StateIntelligenceDashboard() {
               </div>
               <div className="state-map__canvas">
                 <Suspense fallback={<div className="state-map__fallback" />}> 
-                  <MapEngine activeLayers={{}} embedded />
+                  <MapEngine activeLayers={{}} embedded activeIndicator={activeIndicator} />
                 </Suspense>
               </div>
             </div>
@@ -592,22 +746,7 @@ export default function StateIntelligenceDashboard() {
                 <div className="state-overview__stats-info">
                   <span className="state-overview__stats-value">{card.value}</span>
                   <span className="state-overview__stats-label">
-                    {(() => {
-                      const lastParenIndex = card.label.lastIndexOf(" (");
-                      if (lastParenIndex !== -1) {
-                        return (
-                          <>
-                            <span className="state-overview__stats-label-main">
-                              {card.label.substring(0, lastParenIndex)}
-                            </span>
-                            <span className="state-overview__stats-label-sub">
-                              {card.label.substring(lastParenIndex + 1)}
-                            </span>
-                          </>
-                        );
-                      }
-                      return <span className="state-overview__stats-label-main">{card.label}</span>;
-                    })()}
+                    <span className="state-overview__stats-label-main">{card.label}</span>
                   </span>
                 </div>
               </div>
@@ -621,7 +760,48 @@ export default function StateIntelligenceDashboard() {
             <p className="state-overview__sub">Key indicators of India's progress</p>
           </div>
           <div className="state-overview__grid">
-            {OVERVIEW_CARDS.map((card) => (
+            {NATIONAL_OVERVIEW_CARDS.map((card) => (
+              <div key={card.key} className="state-overview__card">
+                <span 
+                  className="state-overview__icon" 
+                  style={getIconStyles(card.color)} 
+                  aria-hidden
+                >
+                  {renderOverviewIcon(card.key)}
+                </span>
+                <div className="state-overview__info">
+                  <span className="state-overview__value">{card.value}</span>
+                  <span className="state-overview__label">
+                    {(() => {
+                      const lastParenIndex = card.label.lastIndexOf(" (");
+                      if (lastParenIndex !== -1) {
+                        return (
+                          <>
+                            <span className="state-overview__label-main">
+                              {card.label.substring(0, lastParenIndex)}
+                            </span>
+                            <span className="state-overview__label-sub">
+                              {card.label.substring(lastParenIndex + 1)}
+                            </span>
+                          </>
+                        );
+                      }
+                      return <span className="state-overview__label-main">{card.label}</span>;
+                    })()}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="state-panel__section-separator" aria-hidden />
+
+          <div className="state-overview__header state-overview__header--indicators">
+            <h2 className="state-overview__title">DEMOGRAPHICS &amp; SERVICES</h2>
+            <p className="state-overview__sub">Population and public services</p>
+          </div>
+          <div className="state-overview__grid">
+            {DEMOGRAPHIC_CARDS.map((card) => (
               <div key={card.key} className="state-overview__card">
                 <span 
                   className="state-overview__icon" 
@@ -671,11 +851,7 @@ export default function StateIntelligenceDashboard() {
                       <path d="M12 20a6 6 0 0 1-6-6M12 20a6 6 0 0 0 6-6" />
                     </svg>
                   </span>
-                  <span className="state-infra-summary__label">
-                    Ports
-                    <br />
-                    (Major)
-                  </span>
+                  <span className="state-infra-summary__label">Ports</span>
                 </div>
                 <span className="state-infra-summary__value">13</span>
               </div>
@@ -691,11 +867,7 @@ export default function StateIntelligenceDashboard() {
                       <path d="M7 18h1" />
                     </svg>
                   </span>
-                  <span className="state-infra-summary__label">
-                    Industrial
-                    <br />
-                    Corridors
-                  </span>
+                  <span className="state-infra-summary__label">Corridors</span>
                 </div>
                 <span className="state-infra-summary__value">11</span>
               </div>
@@ -710,11 +882,7 @@ export default function StateIntelligenceDashboard() {
                       <rect x="8" y="12" width="6" height="8" rx="1" fill="currentColor" fillOpacity="0.15" />
                     </svg>
                   </span>
-                  <span className="state-infra-summary__label">
-                    Smart
-                    <br />
-                    Cities
-                  </span>
+                  <span className="state-infra-summary__label">Smart Cities</span>
                 </div>
                 <span className="state-infra-summary__value">100</span>
               </div>
@@ -727,11 +895,7 @@ export default function StateIntelligenceDashboard() {
                       <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z" fill="currentColor" fillOpacity="0.18" />
                     </svg>
                   </span>
-                  <span className="state-infra-summary__label">
-                    Water Supply
-                    <br />
-                    Coverage
-                  </span>
+                  <span className="state-infra-summary__label">Water Supply</span>
                 </div>
                 <span className="state-infra-summary__value">91.6%</span>
               </div>
@@ -754,30 +918,48 @@ export default function StateIntelligenceDashboard() {
         </section>
       </div>
 
-      <section className="panel-surface state-bottom" aria-label="Key Development Indices">
-        <p className="panel-kicker">Key Development Indices</p>
+      <section className="panel-surface state-bottom" aria-label="Key Development Indicators">
+        <p className="panel-kicker">Key Development Indicators</p>
         <div className="state-bottom__grid">
-          {INTEL_CARDS.map((card) => (
-            <div key={card.key} className="state-bottom__card" style={{ '--card-color': card.color } as React.CSSProperties}>
-              <div className="state-bottom__top">
-                <div className="state-bottom__top-left">
-                  <span className="state-bottom__icon" aria-hidden>{card.icon}</span>
-                  <span className="state-bottom__label">{card.label}</span>
+          {INTEL_CARDS.map((card) => {
+            const isActive = activeIndicator === card.key;
+            return (
+              <div
+                key={card.key}
+                className={`state-bottom__card${isActive ? " is-active" : ""}`}
+                onClick={() => handleCardClick(card.key)}
+                style={{ '--card-color': card.color, cursor: "pointer" } as React.CSSProperties}
+              >
+                <div className="state-bottom__top">
+                  <div className="state-bottom__top-left">
+                    <span 
+                      className="state-bottom__icon" 
+                      style={getIconStyles(card.color)}
+                      aria-hidden
+                    >
+                      {renderIntelIcon(card.key)}
+                    </span>
+                    <span className="state-bottom__label">{card.label}</span>
+                  </div>
+                  <span className="state-bottom__badge">{card.grade}</span>
                 </div>
-                <span className="state-bottom__badge">{card.grade}</span>
-              </div>
-              <div className="state-bottom__value-row">
-                <div className="state-bottom__score-block">
-                  <span className="state-bottom__value">{card.value}</span>
-                  <span className="state-bottom__unit">(Out of 100)</span>
+                <div className="state-bottom__content">
+                  <div className="state-bottom__score-block">
+                    <span className="state-bottom__value">{card.value}</span>
+                    <span className="state-bottom__unit">(Out of 100)</span>
+                  </div>
+                  <div className="state-bottom__chart-block">
+                    <div className="state-bottom__spark-row">
+                      <Sparkline color={card.color} seed={card.value} />
+                    </div>
+                    <span className="state-bottom__delta">
+                      ▲ {card.delta}% <span className="state-bottom__vs">vs 2023</span>
+                    </span>
+                  </div>
                 </div>
-                <span className="state-bottom__delta">▲ {card.delta}% <span className="state-bottom__vs">vs 2023</span></span>
               </div>
-              <div className="state-bottom__spark-row">
-                <Sparkline color={card.color} seed={card.value} />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="state-bottom__features">
           <div className="feature-strip-grid">
