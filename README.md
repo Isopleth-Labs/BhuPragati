@@ -1,469 +1,213 @@
-# Better Bharat Map
+Welcome to your new TanStack Start app! 
 
-## India's Infrastructure Intelligence & Development Simulation Platform
+# Getting Started
 
-Better Bharat Map is an infrastructure intelligence platform designed to help visualize, analyze, and simulate development across India.
-
-The platform aims to transform geographic, infrastructure, environmental, and development data into an interactive intelligence system that helps users better understand infrastructure challenges, opportunities, and future possibilities.
-
----
-
-# Vision
-
-India is one of the world's largest and most complex infrastructure ecosystems.
-
-Every year, significant investments are made in:
-
-* Roads
-* Healthcare
-* Agriculture
-* Electricity
-* Water Resources
-* Transport
-* Education
-* Public Safety
-* Disaster Management
-
-Yet understanding how these systems interact and how investments influence outcomes remains difficult.
-
-Better Bharat Map aims to bridge this gap by creating an Earth-to-Village infrastructure intelligence platform capable of visualizing:
-
-* Current conditions
-* Infrastructure gaps
-* Risk exposure
-* Ongoing improvements
-* Development opportunities
-* Future scenarios
-
----
-
-# Long-Term Goal
-
-Create a national-scale platform where users can navigate:
-
-```text
-Earth
-→ India
-→ State
-→ District
-→ Block
-→ Panchayat
-→ Village
-```
-
-and explore:
-
-* Infrastructure
-* Connectivity
-* Flood Risks
-* Healthcare Access
-* Agriculture Systems
-* Electricity Networks
-* Public Services
-* Development Progress
-* Future Simulations
-
----
-
-# Why Better Bharat Map Exists
-
-Infrastructure affects every aspect of daily life.
-
-Questions such as:
-
-* Which villages become isolated during floods?
-* Which regions have weak healthcare access?
-* Which roads are most critical for connectivity?
-* Which areas require development prioritization?
-* How can infrastructure investments improve outcomes?
-
-often require information from multiple disconnected sources.
-
-Better Bharat Map seeks to bring these answers together into a single visual intelligence platform.
-
----
-
-# Core Mission
-
-Transform infrastructure data into actionable intelligence.
-
-The platform is designed to help:
-
-* Citizens
-* Researchers
-* NGOs
-* Infrastructure planners
-* Development institutions
-* Urban and rural planning teams
-* Government stakeholders
-
-better understand infrastructure realities and development opportunities.
-
----
-
-# Infrastructure Intelligence Categories
-
-## Flood Intelligence
-
-Analyze:
-
-* Flood Risk
-* Waterlogging
-* River Overflow
-* Embankment Conditions
-* Seasonal Isolation
-* Evacuation Accessibility
-
----
-
-## Road & Connectivity Intelligence
-
-Analyze:
-
-* Road Quality
-* Bridge Availability
-* PMGSY Connectivity
-* Village Accessibility
-* Transport Reach
-* Seasonal Connectivity
-
----
-
-## Healthcare Intelligence
-
-Analyze:
-
-* Hospital Coverage
-* PHC Accessibility
-* Emergency Reach
-* Ambulance Accessibility
-* Maternal Healthcare Access
-
----
-
-## Agriculture Intelligence
-
-Analyze:
-
-* Irrigation Access
-* Crop Diversity
-* Flood Crop Risk
-* Fishery Regions
-* Makhana Regions
-* Storage Infrastructure
-
----
-
-## Railway & Transport Intelligence
-
-Analyze:
-
-* Railway Reach
-* Station Accessibility
-* Public Transport Coverage
-* Airport Reach
-* Transport Resilience
-
----
-
-## Electricity Intelligence
-
-Analyze:
-
-* Grid Coverage
-* Power Stability
-* Transformer Risk
-* Electrification Status
-* Infrastructure Resilience
-
----
-
-## Education Intelligence
-
-Analyze:
-
-* School Access
-* College Reach
-* Internet Connectivity
-* Skill Development Access
-
----
-
-## Public Safety Intelligence
-
-Analyze:
-
-* Emergency Coverage
-* Police Accessibility
-* Disaster Response Capability
-* Safety Infrastructure Coverage
-
----
-
-# Infrastructure Investment Intelligence
-
-One of the long-term goals of Better Bharat Map is to help visualize the relationship between infrastructure investments and real-world outcomes.
-
-The platform aims to create a transparent environment where users can explore:
-
-* Existing infrastructure conditions
-* Development gaps
-* Ongoing projects
-* Infrastructure outcomes
-* Alternative investment scenarios
-* Future planning opportunities
-
----
-
-# Development Simulation Engine
-
-Future versions of Better Bharat Map will support scenario-based development simulations.
-
-Users will be able to compare:
-
-## Current Situation
-
-Current infrastructure conditions.
-
-Example:
-
-* Flood Risk: High
-* Road Connectivity: Weak
-* Healthcare Access: Moderate
-
----
-
-## Existing Development Plan
-
-Visualization of current or planned improvements.
-
-Example:
-
-* Road Upgrades
-* Healthcare Expansion
-* Drainage Projects
-* Connectivity Improvements
-
----
-
-## Alternative Development Scenarios
-
-Explore how different infrastructure priorities may influence outcomes.
-
-Examples:
-
-* Additional flood resilience investment
-* Improved healthcare accessibility
-* Better rural connectivity
-* Enhanced electricity infrastructure
-
----
-
-## Future Outcome Simulation
-
-Visualize potential outcomes such as:
-
-* Reduced flood vulnerability
-* Better healthcare access
-* Improved transport connectivity
-* Faster emergency response
-* Stronger infrastructure resilience
-
----
-
-# Pilot Region
-
-Current development efforts focus on:
-
-## Darbhanga District, Bihar
-
-Priority study regions:
-
-* Kusheshwar Asthan
-* Biraul
-* Ghanshyampur
-* Kiratpur
-* Benipur
-* Hayaghat
-* Jale
-
-These regions serve as the initial foundation for developing and validating the platform's intelligence framework.
-
----
-
-# Technology Stack
-
-## Current
-
-Frontend:
-
-* React
-* Vite
-
-Mapping:
-
-* MapLibre GL JS
-* OpenStreetMap
-* GeoJSON
-
----
-
-## Future
-
-Frontend:
-
-* React
-* MapLibre
-* Deck.GL
-
-Backend:
-
-* Node.js / FastAPI
-
-Database:
-
-* PostgreSQL
-* PostGIS
-
-Visualization:
-
-* 3D Terrain Systems
-* Infrastructure Digital Twin
-
-Analytics:
-
-* Infrastructure Intelligence Engine
-* Development Simulation Engine
-* AI-Assisted Planning Systems
-
----
-
-# Roadmap
-
-## Phase 1
-
-GIS Foundation & Intelligence Dashboard
-
-## Phase 2
-
-Real Geographic Intelligence
-
-## Phase 3
-
-Infrastructure Intelligence Engine
-
-## Phase 4
-
-Darbhanga Digital Twin
-
-## Phase 5
-
-Development Simulation Engine
-
-## Phase 6
-
-3D Infrastructure Visualization
-
-## Phase 7
-
-State-Level Expansion
-
-## Phase 8
-
-India Infrastructure Network
-
-## Phase 9
-
-AI-Assisted Planning Platform
-
-## Phase 10
-
-Better Bharat Earth
-
----
-
-# Open Collaboration
-
-Future versions of Better Bharat Map will support community contributions.
-
-Potential contributor categories:
-
-* GIS Specialists
-* Frontend Developers
-* Data Engineers
-* Researchers
-* Infrastructure Analysts
-* UI/UX Designers
-* Open Data Contributors
-
-A dedicated contributor recognition system is planned.
-
----
-
-# Development Philosophy
-
-Better Bharat Map should:
-
-* Be evidence-oriented
-* Use transparent sources
-* Avoid exaggeration
-* Highlight both challenges and improvements
-* Support constructive infrastructure thinking
-* Encourage informed discussions
-
-The objective is not merely to identify problems, but to better understand them, track progress, and explore realistic paths toward improvement.
-
----
-
-# Current Status
-
-### Active Phase
-
-Phase 1 → Phase 2 Transition
-
-Current Focus:
-
-* Homepage Experience
-* Real Geographic Intelligence
-* OSM Integration
-* Infrastructure Layer System
-* Settlement Hierarchy
-* Earth-to-India Navigation Experience
-
----
-
-# Ultimate Vision
-
-Create the world's most comprehensive Earth-to-Village Infrastructure Intelligence Platform.
-
-From Earth-scale visualization to village-level planning.
-
-From static maps to living infrastructure intelligence.
-
-From data to understanding.
-
-From understanding to better development outcomes.
-
----
-
-**Better Bharat Map**
-
-*Infrastructure Intelligence for a Better Bharat.*
-
-
-## Architecture
-
-- `src/components/map` contains the interactive MapLibre implementation.
-- `src/components/panels` contains reusable dashboard HUD panels.
-- `src/components/ui` contains small reusable interface primitives.
-- `src/data` contains local map configuration, infrastructure layer metadata and
-  GeoJSON feature collections.
-- `src/styles` contains split CSS for base, layout, panels and map overrides.
-
-## Commands
+To run this application:
 
 ```bash
-npm run dev
-npm run build
-npm run lint
+bun install
+bun --bun run dev
 ```
+
+# Building For Production
+
+To build this application for production:
+
+```bash
+bun --bun run build
+```
+
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
+
+```bash
+bun --bun run test
+```
+
+## Styling
+
+This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
+
+### Removing Tailwind CSS
+
+If you prefer not to use Tailwind CSS:
+
+1. Remove the demo pages in `src/routes/demo/`
+2. Replace the Tailwind import in `src/styles.css` with your own styles
+3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
+4. Uninstall the packages: `bun install @tailwindcss/vite tailwindcss -D`
+
+## Linting & Formatting
+
+This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
+
+
+```bash
+bun --bun run lint
+bun --bun run format
+bun --bun run check
+```
+
+
+## Shadcn
+
+Add components using the latest version of [Shadcn](https://ui.shadcn.com/).
+
+```bash
+pnpm dlx shadcn@latest add button
+```
+
+
+
+## Routing
+
+This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
+
+### Adding A Route
+
+To add a new route to your application just add a new file in the `./src/routes` directory.
+
+TanStack will automatically generate the content of the route file for you.
+
+Now that you have two routes you can use a `Link` component to navigate between them.
+
+### Adding Links
+
+To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
+
+```tsx
+import { Link } from "@tanstack/react-router";
+```
+
+Then anywhere in your JSX you can use it like so:
+
+```tsx
+<Link to="/about">About</Link>
+```
+
+This will create a link that will navigate to the `/about` route.
+
+More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
+
+### Using A Layout
+
+In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
+
+Here is an example layout that includes a header:
+
+```tsx
+import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { title: 'My App' },
+    ],
+  }),
+  shellComponent: ({ children }) => (
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body>
+        <header>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+          </nav>
+        </header>
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  ),
+})
+```
+
+More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
+
+## Server Functions
+
+TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
+
+```tsx
+import { createServerFn } from '@tanstack/react-start'
+
+const getServerTime = createServerFn({
+  method: 'GET',
+}).handler(async () => {
+  return new Date().toISOString()
+})
+
+// Use in a component
+function MyComponent() {
+  const [time, setTime] = useState('')
+  
+  useEffect(() => {
+    getServerTime().then(setTime)
+  }, [])
+  
+  return <div>Server time: {time}</div>
+}
+```
+
+## API Routes
+
+You can create API routes by using the `server` property in your route definitions:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+import { json } from '@tanstack/react-start'
+
+export const Route = createFileRoute('/api/hello')({
+  server: {
+    handlers: {
+      GET: () => json({ message: 'Hello, World!' }),
+    },
+  },
+})
+```
+
+## Data Fetching
+
+There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
+
+For example:
+
+```tsx
+import { createFileRoute } from '@tanstack/react-router'
+
+export const Route = createFileRoute('/people')({
+  loader: async () => {
+    const response = await fetch('https://swapi.dev/api/people')
+    return response.json()
+  },
+  component: PeopleComponent,
+})
+
+function PeopleComponent() {
+  const data = Route.useLoaderData()
+  return (
+    <ul>
+      {data.results.map((person) => (
+        <li key={person.name}>{person.name}</li>
+      ))}
+    </ul>
+  )
+}
+```
+
+Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
+
+# Demo files
+
+Files prefixed with `demo` can be safely deleted. They are there to provide a starting point for you to play around with the features you've installed.
+
+# Learn More
+
+You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
+
+For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).

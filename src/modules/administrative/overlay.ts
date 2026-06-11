@@ -1,7 +1,7 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
-import { administrativeBoundaries } from "../../data/geojson";
-import { addLayer, addSource } from "@/shared";
+import { administrativeBoundaries } from "@/data/geojson";
+import { addLayer, addSource } from "@/shared/lib/utils/utils";
 
 export function addAdministrativeOverlay(map:Map) {
   addSource(

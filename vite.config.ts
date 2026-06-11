@@ -1,20 +1,21 @@
 import { defineConfig } from 'vite'
-import react, { reactCompilerPreset } from '@vitejs/plugin-react'
-import babel from '@rolldown/plugin-babel'
-import * as path from 'path'
+import { devtools } from '@tanstack/devtools-vite'
 
-// https://vite.dev/config/
-export default defineConfig({
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+
+import viteReact, { reactCompilerPreset } from '@vitejs/plugin-react'
+import babel from '@rolldown/plugin-babel'
+import tailwindcss from '@tailwindcss/vite'
+
+const config = defineConfig({
+  resolve: { tsconfigPaths: true },
   plugins: [
-    react(),
-    babel({ presets: [reactCompilerPreset()] })
+    devtools(),
+    tailwindcss(),
+    tanstackStart(),
+    viteReact(),
+    babel({ presets: [reactCompilerPreset()] }),
   ],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"),
-      "@/modules": path.resolve(__dirname, "src/modules"),
-      "@/types": path.resolve(__dirname, "src/types"),
-      "@/shared": path.resolve(__dirname, "src/shared"),
-    },
-  },
 })
+
+export default config
