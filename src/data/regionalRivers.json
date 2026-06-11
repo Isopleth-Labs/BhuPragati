@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kosi (distributary)",
+        "classification": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.85,
+            26.05
+          ],
+          [
+            85.98,
+            25.96
+          ],
+          [
+            86.12,
+            25.88
+          ],
+          [
+            86.24,
+            25.82
+          ],
+          [
+            86.34,
+            25.78
+          ],
+          [
+            86.46,
+            25.71
+          ],
+          [
+            86.58,
+            25.6
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kamla Balan",
+        "classification": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.92,
+            26.4
+          ],
+          [
+            86,
+            26.22
+          ],
+          [
+            86.08,
+            26.05
+          ],
+          [
+            86.18,
+            25.88
+          ],
+          [
+            86.26,
+            25.72
+          ],
+          [
+            86.34,
+            25.56
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bagmati",
+        "classification": "river"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.6,
+            26.45
+          ],
+          [
+            85.75,
+            26.2
+          ],
+          [
+            85.82,
+            26
+          ],
+          [
+            85.86,
+            25.8
+          ],
+          [
+            85.92,
+            25.6
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kareh",
+        "classification": "distributary"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.05,
+            25.88
+          ],
+          [
+            86.18,
+            25.84
+          ],
+          [
+            86.3,
+            25.82
+          ],
+          [
+            86.42,
+            25.78
+          ]
+        ]
+      }
+    }
+  ]
+}

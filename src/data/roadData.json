@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "roads",
+        "title": "Darbhanga-Biraul-Kusheshwar Corridor",
+        "status": "Primary access spine",
+        "metric": "62 km district linkage",
+        "note": "Main movement path for referral, supplies and administration.",
+        "criticality": 72
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.9,
+            26.16
+          ],
+          [
+            86,
+            26.08
+          ],
+          [
+            86.08,
+            25.96
+          ],
+          [
+            86.18,
+            25.86
+          ],
+          [
+            86.285,
+            25.796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "roads",
+        "title": "Eastern Rural Access Loop",
+        "status": "Flood-season constraint",
+        "metric": "Last-mile vulnerability",
+        "note": "Local route pressure rises during monsoon waterlogging.",
+        "criticality": 81
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.285,
+            25.796
+          ],
+          [
+            86.36,
+            25.82
+          ],
+          [
+            86.42,
+            25.88
+          ],
+          [
+            86.39,
+            25.94
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "roads",
+        "title": "Biraul Junction",
+        "status": "Referral route hinge",
+        "metric": "Traffic dependency point",
+        "note": "Failure or flooding here affects care and supply chains.",
+        "criticality": 78
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.08,
+          25.96
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "roads",
+        "title": "Kusheshwar Last-mile Node",
+        "status": "Critical local access",
+        "metric": "High monsoon sensitivity",
+        "note": "Priority node for all-weather strengthening.",
+        "criticality": 86
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.285,
+          25.796
+        ]
+      }
+    }
+  ]
+}

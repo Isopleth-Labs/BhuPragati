@@ -125,10 +125,6 @@ export const interactiveLayerIds = [
   "electricity-assets",
 ];
 
-export const systemReadouts = [
-  { label: "Flood Exposure", value: "84", unit: "/100" },
-  { label: "Road Continuity", value: "46", unit: "/100" },
-  { label: "Care Reach", value: "57", unit: "/100" },
-  { label: "Agri Load", value: "91", unit: "/100" },
-  { label: "Power Stability", value: "49", unit: "/100" },
-];
+import systemReadoutsJson from "../../../data/systemReadouts.json";
+
+export const systemReadouts = systemReadoutsJson;

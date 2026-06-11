@@ -1,0 +1,243 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Darbhanga",
+        "tier": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.897,
+          26.152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Madhubani",
+        "tier": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.073,
+          26.349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Samastipur",
+        "tier": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.781,
+          25.864
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Supaul",
+        "tier": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.609,
+          26.124
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Khagaria",
+        "tier": "city"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.483,
+          25.502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Biraul",
+        "tier": "town"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.378,
+          26.052
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Rosera",
+        "tier": "town"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.03,
+          25.745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Hasanpur",
+        "tier": "town"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.18,
+          25.745
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kusheshwar Asthan",
+        "tier": "town"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.285,
+          25.796
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Bahadurpur",
+        "tier": "town"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.953,
+          26.078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kusheshwar Asthan Purbi",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.355,
+          25.835
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Ghanshyampur",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.302,
+          25.913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Singhia",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.05,
+          25.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Baheri",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.058,
+          25.93
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alauli",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.328,
+          25.555
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Tilkeswar",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.25,
+          25.86
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Manigachhi",
+        "tier": "village"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.23,
+          25.74
+        ]
+      }
+    }
+  ]
+}

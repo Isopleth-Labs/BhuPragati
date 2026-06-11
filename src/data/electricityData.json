@@ -1,0 +1,101 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "electricity",
+        "title": "Biraul-Kusheshwar Feeder",
+        "status": "Stability watch",
+        "metric": "Feeder stress 68",
+        "note": "Rural load centers require hardened feeder continuity.",
+        "stress": 68
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.04,
+            25.99
+          ],
+          [
+            86.12,
+            25.92
+          ],
+          [
+            86.2,
+            25.86
+          ],
+          [
+            86.285,
+            25.796
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "electricity",
+        "title": "Eastern Service Spur",
+        "status": "Outage sensitivity",
+        "metric": "Feeder stress 74",
+        "note": "Distributed settlements increase restoration complexity.",
+        "stress": 74
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            86.285,
+            25.796
+          ],
+          [
+            86.34,
+            25.84
+          ],
+          [
+            86.4,
+            25.88
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "electricity",
+        "title": "Biraul Substation Interface",
+        "status": "Supply anchor",
+        "metric": "Regional distribution node",
+        "note": "Key upstream node for the focus-zone feeder.",
+        "stress": 61
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.07,
+          25.965
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "electricity",
+        "title": "Kusheshwar Rural Load Center",
+        "status": "Priority hardening",
+        "metric": "Load sensitivity 77",
+        "note": "Local resilience improves continuity for healthcare and irrigation.",
+        "stress": 77
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          86.285,
+          25.796
+        ]
+      }
+    }
+  ]
+}
