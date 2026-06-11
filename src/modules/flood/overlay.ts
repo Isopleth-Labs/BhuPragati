@@ -1,13 +1,13 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
-import { floodRiskData } from "../../data/geojson";
+import { FloodService } from "./flood.service";
 import { addLayer, addSource } from "@/shared";
 
 export function addFloodOverlay(map: Map) {
   addSource(
     map,
     "flood-risk",
-    floodRiskData as FeatureCollection<Geometry, GeoJsonProperties>,
+    FloodService.getRiskData(),
   );
 
   const polygonFilter = ["==", ["geometry-type"], "Polygon"];

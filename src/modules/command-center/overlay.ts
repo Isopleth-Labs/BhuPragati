@@ -1,10 +1,10 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection } from "geojson";
-import { commandCenter } from "../../data/geojson";
+import { CommandCenterService } from "./command-center.service";
 import { addLayer, addSource } from "@/shared";
 
 export function addCommandCenterOverlay(map: Map) {
-  addSource(map, "command-center", commandCenter as FeatureCollection);
+  addSource(map, "command-center", CommandCenterService.getCenter() as FeatureCollection);
 
   addLayer(map, {
     id: "command-halo-cool",

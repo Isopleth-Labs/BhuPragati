@@ -1,10 +1,6 @@
 import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import type { Map } from "maplibre-gl";
-import {
-  infrastructureNodes,
-  regionalRivers,
-  settlements,
-} from "../../data/regional";
+import { SettlementsService } from "./SettlementsService.getSettlements().service";
 import { addLayer, addSource } from "@/shared";
 
 export function addRegionalOverlays(map : Map) {
@@ -14,7 +10,7 @@ export function addRegionalOverlays(map : Map) {
 }
 
 function addHydrology(map: Map) {
-  addSource(map, "regional-rivers", regionalRivers as FeatureCollection<Geometry, GeoJsonProperties>);
+  addSource(map, "regional-rivers", SettlementsService.getRegionalRivers());
 
   addLayer(map, {
     id: "region-river-glow",
@@ -58,12 +54,12 @@ function addHydrology(map: Map) {
 }
 
 function addSettlements(map: Map) {
-  addSource(map, "regional-settlements", settlements as FeatureCollection<Geometry, GeoJsonProperties>);
+  addSource(map, "regional-SettlementsService.getSettlements()", SettlementsService.getSettlements());
 
   addLayer(map, {
     id: "region-settlement-dots",
     type: "circle",
-    source: "regional-settlements",
+    source: "regional-SettlementsService.getSettlements()",
     paint: {
       "circle-radius": [
         "match",
@@ -94,7 +90,7 @@ function addSettlements(map: Map) {
   addLayer(map, {
     id: "region-settlement-labels",
     type: "symbol",
-    source: "regional-settlements",
+    source: "regional-SettlementsService.getSettlements()",
     layout: {
       "text-field": ["get", "name"],
       "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -189,7 +185,7 @@ const NODE_DOT_COLORS = [
 ];
 
 function addInfrastructureNodes(map: Map) {
-  addSource(map, "regional-pois", infrastructureNodes as FeatureCollection<Geometry, GeoJsonProperties>);
+  addSource(map, "regional-pois", SettlementsService.getInfrastructureNodes());
 
   addLayer(map, {
     id: "region-poi-glow",

@@ -1,13 +1,13 @@
 import type { Map } from "maplibre-gl";
 import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
-import { administrativeBoundaries } from "@/data/geojson";
+import { AdministrativeService } from "./administrative.service";
 import { addLayer, addSource } from "@/shared/lib/utils/utils";
 
 export function addAdministrativeOverlay(map:Map) {
   addSource(
     map,
     "administrative-boundaries",
-    administrativeBoundaries as FeatureCollection<Geometry, GeoJsonProperties>,
+    AdministrativeService.getBoundaries(),
   );
 
   const focusFilter = ["==", ["get", "boundaryType"], "focus"];

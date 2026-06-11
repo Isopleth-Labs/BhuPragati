@@ -1,5 +1,5 @@
 import type { Map } from "maplibre-gl";
-import { electricityData } from "../../data/geojson";
+import { ElectricityService } from "./electricity.service";
 import { addLayer, addSource } from "@/shared";
 import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 
@@ -7,7 +7,7 @@ export function addElectricityOverlay(map: Map) {
   addSource(
     map,
     "electricity-network",
-    electricityData as FeatureCollection<Geometry, GeoJsonProperties>,
+    ElectricityService.getData(),
   );
 
   addLayer(map, {

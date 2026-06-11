@@ -1,10 +1,10 @@
 import type { GeoJSON } from "geojson";
 import type { Map } from "maplibre-gl";
-import { roadData } from "../../data/geojson";
+import { RoadsService } from "./roads.service";
 import { addLayer, addSource } from "@/shared";
 
 export function addRoadOverlay(map: Map) {
-  addSource(map, "road-network", roadData as GeoJSON);
+  addSource(map, "road-network", RoadsService.getData() as GeoJSON);
 
   addLayer(map, {
     id: "road-corridor-glow",

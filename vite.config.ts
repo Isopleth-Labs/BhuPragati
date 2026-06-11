@@ -8,6 +8,7 @@ import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
+  base: "/better-bharat-map/",
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),
