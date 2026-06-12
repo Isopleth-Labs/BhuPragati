@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+bun.lockb
+
+# Build outputs
+dist
+build
+out
+coverage
+
+# Vite cache
+.vite
+
+# General caches
+.cache
+
+# Logs
+*.log
+npm-debug.log*
+bun-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode
+.idea
+
+# Git + dev tools
+.git
+.devcontainer
+
+# Env files
+.env
+.env.*

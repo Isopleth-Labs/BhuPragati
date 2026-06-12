@@ -1,0 +1,12 @@
+FROM oven/bun:1.2
+
+WORKDIR /workspace
+
+RUN apt-get update && apt-get install -y \
+    git \
+    tree \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN adduser --disabled-password --gecos "" devuser
+USER devuser
+

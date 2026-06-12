@@ -1,0 +1,32 @@
+{
+  "name": "Better Bhaarat Maps",
+
+  "dockerComposeFile": "compose.yaml",
+
+  "service": "app",
+
+  "workspaceFolder": "/workspace",
+
+  "shutdownAction": "stopCompose",
+
+  "postCreateCommand": "bun install",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mightbesimon.emoji-icons",
+        "pkief.material-icon-theme",
+        "esbenp.prettier-vscode",
+        "redhat.fabric8-analytics",
+        "eamodio.gitlens",
+        "GitHub.copilot-chat",
+        "github.vscode-pull-request-github"
+      ],
+      "settings": {
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  "forwardPorts": [3000]
+}

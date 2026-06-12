@@ -1,0 +1,17 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/DOCKERFILE
+
+    working_dir: /workspace
+
+    volumes:
+      - ..:/workspace
+
+    command: sleep infinity
+
+    ports:
+      - "3000:3000"
+
+    tty: true
