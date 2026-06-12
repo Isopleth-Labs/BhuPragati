@@ -8,7 +8,9 @@ import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 
 const config = defineConfig({
-  base: "/better-bharat-map/",
+  base: process.env.NODE_ENV === "production"
+  ? "/better-bharat-map/"
+  : "/",
   resolve: { tsconfigPaths: true },
   plugins: [
     devtools(),

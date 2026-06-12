@@ -1,13 +1,39 @@
+# Dependencies
 node_modules
-.DS_Store
+bun.lockb
+
+# Builds
 dist
 dist-ssr
-*.local
-.env
+output
+.output
+
+# Framework caches
+.vite
 .nitro
 .tanstack
 .wrangler
-.output
 .vinxi
+
+# Env files
+.env*
+
+# Logs
+*.log
+npm-debug.log*
+bun-debug.log*
+
+# OS
+.DS_Store
+
+# Editor
+.vscode
+.idea
+
+# Cache
+.cache
+
+# Misc
+*.local
 __unconfig*
 todos.json
