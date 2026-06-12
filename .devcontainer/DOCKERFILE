@@ -9,6 +9,11 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
-RUN adduser --disabled-password --gecos "" devuser
-USER devuser
+RUN adduser --disabled-password --gecos "" devuser \
+ && mkdir -p /home/devuser \
+ && chown -R devuser:devuser /home/devuser
 
+ENV HOME=/home/devuser
+ENV BUN_INSTALL_CACHE_DIR=/home/devuser/.bun
+
+USER devuser

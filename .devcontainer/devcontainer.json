@@ -11,7 +11,7 @@
 
   "shutdownAction": "stopCompose",
 
-  "postCreateCommand": "bun install",
+  "postCreateCommand": "bun install --frozen-lockfile",
 
   "customizations": {
     "vscode": {
@@ -26,7 +26,8 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "git.autofetch": true
+        "git.autofetch": true,
+        "vite.server.watch.usePolling": false
       }
     }
   },
