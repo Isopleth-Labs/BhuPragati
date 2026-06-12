@@ -5,6 +5,8 @@ WORKDIR /workspace
 RUN apt-get update && apt-get install -y \
     git \
     tree \
+    curl \
+    ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --disabled-password --gecos "" devuser

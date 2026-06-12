@@ -6,8 +6,11 @@ services:
 
     working_dir: /workspace
 
+    user: "1000:1000"
+
     volumes:
       - ..:/workspace
+      - bun-cache:/home/devuser/.bun
 
     command: sleep infinity
 
@@ -15,3 +18,6 @@ services:
       - "3000:3000"
 
     tty: true
+
+volumes:
+  bun-cache:
