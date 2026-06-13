@@ -1,5 +1,4 @@
 import type { Map } from "maplibre-gl";
-import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
 import { FloodService } from "./flood.service";
 import { addLayer, addSource } from "@/shared";
 
