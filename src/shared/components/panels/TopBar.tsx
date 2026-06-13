@@ -4,7 +4,7 @@ import { operationalStats, dashboardMeta } from "@/shared/lib/metadata/metadata"
 // Premium top HUD: compact metadata mini-cards + brand card.
 function TopBar() {
   return (
-    <header className="top-bar" aria-label="Operational context">
+    <header className="top-bar">
       <dl className="top-bar__meta">
         {operationalStats.map((stat) => (
           <div key={stat.label} className="meta-card panel-surface">

@@ -10,13 +10,16 @@ type CommandPanelProps = {
 
 function CommandPanel({ activeLayers, onToggleLayer }: CommandPanelProps) {
   return (
-    <aside className="command-panel panel-surface" aria-label="Kusheshwar Asthan intelligence">
+    <aside
+      className="command-panel panel-surface"
+      aria-label="Kusheshwar Asthan intelligence"
+    >
       <header className="command-panel__header">
         <h2>Kusheshwar Asthan</h2>
         <div className="command-panel__meta">PIN Code: 848213</div>
       </header>
 
-      <div className="command-panel__layers" role="list">
+      <ul className="command-panel__layers">
         {infrastructureLayers.map((layer) => (
           <LayerToggle
             key={layer.id}
@@ -25,7 +28,7 @@ function CommandPanel({ activeLayers, onToggleLayer }: CommandPanelProps) {
             onToggle={onToggleLayer}
           />
         ))}
-      </div>
+      </ul>
 
       <div className="command-panel__scores">
         <p className="panel-kicker">Infrastructure Scores</p>

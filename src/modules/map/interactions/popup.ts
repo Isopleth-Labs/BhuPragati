@@ -1,8 +1,8 @@
-import maplibregl, { Map } from "maplibre-gl";
+import maplibregl, { type Map as MaplibreMap } from "maplibre-gl";
 import { interactiveLayerIds } from "@/shared/lib/config/layers";
-import { getPopupMarkup } from "@/shared/lib/utils";
+import { getPopupMarkup } from "#/shared/lib/utils/utils";
 
-export function attachInteractivePopups(map: Map) {
+export function attachInteractivePopups(map: MaplibreMap) {
   interactiveLayerIds.forEach((layerId) => {
     map.on("mouseenter", layerId, () => {
       map.getCanvas().style.cursor = "pointer";

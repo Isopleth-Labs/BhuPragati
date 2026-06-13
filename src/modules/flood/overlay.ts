@@ -1,8 +1,8 @@
-import type { Map } from "maplibre-gl";
+import type { Map as MaplibreMap } from "maplibre-gl";
 import { FloodService } from "./flood.service";
 import { addLayer, addSource } from "@/shared";
 
-export function addFloodOverlay(map: Map) {
+export function addFloodOverlay(map: MaplibreMap) {
   addSource(
     map,
     "flood-risk",

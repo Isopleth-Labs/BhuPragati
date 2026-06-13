@@ -97,7 +97,7 @@ export async function fetchOverpassGeoJson(
         const id = setTimeout(() => controller.abort(), timeoutMs);
         const res = await fetch(endpoint, {
           method: 'POST',
-          body: 'data=' + encodeURIComponent(query),
+          body: `data=${encodeURIComponent(query)}`,
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           signal: controller.signal,
         });
@@ -107,9 +107,9 @@ export async function fetchOverpassGeoJson(
         const shaped = osmToGeoJson(json);
         try { localStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), data: shaped })); } catch {}
         return shaped;
-      } catch (err) {
+      } catch (_err) {
         // exponential backoff between attempts
-        const backoff = 500 * Math.pow(2, attempt - 1);
+        const backoff = 500 * 2 ** (attempt - 1);
         await sleep(backoff);
       }
     }

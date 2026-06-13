@@ -18,7 +18,7 @@ export interface RegionIndicators {
     connectivity: number;
     power: number;
   };
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export const STATE_INDICATORS_DATA: RegionIndicators[] = stateJson as RegionIndicators[];

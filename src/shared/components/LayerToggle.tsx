@@ -1,4 +1,5 @@
-import { memo, useCallback, type CSSProperties } from "react";
+import type { CSSVars} from "@/shared/styles/types";
+import { memo, useCallback } from "react";
 import LayerIcon from "./LayerIcon";
 import type { InfrastructureLayer } from "@/shared/types";
 
@@ -14,7 +15,7 @@ type LayerToggleProps = {
 function LayerToggle({ layer, isActive, onToggle }: LayerToggleProps) {
   const handleClick = useCallback(() => onToggle(layer.id), [layer.id, onToggle]);
 
-  const style = { ["--layer-color" as any]: layer.color } as CSSProperties;
+  const style: CSSVars = { "--layer-color": layer.color  ?? "transparent"};
 
   return (
     <button
@@ -26,7 +27,7 @@ function LayerToggle({ layer, isActive, onToggle }: LayerToggleProps) {
       title={layer.summary}
     >
       <span className="layer-toggle__icon" aria-hidden="true">
-        <LayerIcon iconKey={layer.iconKey as any} size={18} />
+        <LayerIcon iconKey={layer.iconKey} size={18} />
       </span>
       <span className="layer-toggle__label">{layer.intelligenceLabel}</span>
       <span className="layer-toggle__dot" aria-hidden="true" />

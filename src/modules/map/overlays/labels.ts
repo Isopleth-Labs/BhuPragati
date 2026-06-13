@@ -4,8 +4,7 @@
 //  - crisp dark halos for legibility on dark terrain
 //  - dimmed road / water labels so cities dominate
 // Stealth aesthetic preserved: soft whites, no over-brightening.
-
-import type { Map } from "maplibre-gl";
+import type { Map as MaplibreMap } from "maplibre-gl";
 
 const HALO_DARK = "rgba(4, 10, 18, 0.92)";
 const HALO_SOFT = "rgba(4, 10, 18, 0.78)";
@@ -18,7 +17,7 @@ const safeSet = (fn: () => void) => {
   }
 };
 
-function tuneCityLayer(map: Map, id: string) {
+function tuneCityLayer(map: MaplibreMap, id: string) {
   safeSet(() =>
     map.setLayoutProperty(id, "text-size", [
       "interpolate",
@@ -40,7 +39,7 @@ function tuneCityLayer(map: Map, id: string) {
   safeSet(() => map.setPaintProperty(id, "text-opacity", 0.99));
 }
 
-function tuneTownLayer(map: Map, id: string) {
+function _tuneTownLayer(map: MaplibreMap, id: string) {
   safeSet(() =>
     map.setLayoutProperty(id, "text-size", [
       "interpolate",
@@ -58,7 +57,7 @@ function tuneTownLayer(map: Map, id: string) {
   safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.9));
 }
 
-function tuneVillageLayer(map: Map, id: string) {
+function _tuneVillageLayer(map: MaplibreMap, id: string) {
   safeSet(() =>
     map.setLayoutProperty(id, "text-size", [
       "interpolate",
@@ -75,14 +74,14 @@ function tuneVillageLayer(map: Map, id: string) {
   safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.6));
 }
 
-function tuneRoadLayer(map: Map, id: string) {
+function tuneRoadLayer(map: MaplibreMap, id: string) {
   safeSet(() => map.setPaintProperty(id, "text-color", "rgba(170, 188, 210, 0.5)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-color", HALO_SOFT));
   safeSet(() => map.setPaintProperty(id, "text-halo-width", 1));
   safeSet(() => map.setPaintProperty(id, "text-halo-blur", 0.8));
 }
 
-function tuneWaterLabel(map: Map, id: string) {
+function tuneWaterLabel(map: MaplibreMap, id: string) {
   safeSet(() => map.setPaintProperty(id, "text-color", "rgba(150, 205, 240, 0.78)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-color", "rgba(2, 8, 16, 0.88)"));
   safeSet(() => map.setPaintProperty(id, "text-halo-width", 1));
@@ -90,7 +89,7 @@ function tuneWaterLabel(map: Map, id: string) {
 }
 
 // Brighten water fills / river lines so they read like reflective silver-blue.
-function tuneWaterFill(map: Map, id: string) {
+function tuneWaterFill(map: MaplibreMap, id: string) {
   safeSet(() => map.setPaintProperty(id, "fill-color", "#0d2840"));
   safeSet(() => map.setPaintProperty(id, "fill-opacity", 0.95));
   safeSet(() =>
@@ -98,7 +97,7 @@ function tuneWaterFill(map: Map, id: string) {
   );
 }
 
-function tuneWaterLine(map: Map, id: string) {
+function tuneWaterLine(map: MaplibreMap, id: string) {
   safeSet(() => map.setPaintProperty(id, "line-color", "rgba(180, 220, 244, 0.92)"));
   safeSet(() =>
     map.setPaintProperty(id, "line-width", [
@@ -114,7 +113,7 @@ function tuneWaterLine(map: Map, id: string) {
   safeSet(() => map.setPaintProperty(id, "line-opacity", 1));
 }
 
-export function tuneMapLabels(map: Map) {
+export function tuneMapLabels(map: MaplibreMap) {
   const style = map.getStyle();
   if (!style?.layers) return;
 
@@ -149,7 +148,7 @@ export function tuneMapLabels(map: Map) {
 
 // Cinematic sky / atmosphere — MapLibre 3+ setSky.
 // Wrapped in try/catch for older versions / unsupported renderers.
-export function applyTacticalSky(map: Map) {
+export function applyTacticalSky(map: MaplibreMap) {
   try {
     map.setSky?.({
       "sky-color": "#06121f",

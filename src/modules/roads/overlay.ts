@@ -1,5 +1,4 @@
 import type { GeoJSON } from "geojson";
-import type { Map } from "maplibre-gl";
 import { RoadsService } from "./roads.service";
 import { addLayer, addSource } from "@/shared";
 

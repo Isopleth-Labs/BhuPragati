@@ -1,8 +1,8 @@
-import type { Map } from "maplibre-gl";
+import type { Map as MaplibreMap  } from "maplibre-gl";
 import { ElectricityService } from "./electricity.service";
 import { addLayer, addSource } from "@/shared";
 
-export function addElectricityOverlay(map: Map) {
+export function addElectricityOverlay(map: MaplibreMap) {
   addSource(
     map,
     "electricity-network",
