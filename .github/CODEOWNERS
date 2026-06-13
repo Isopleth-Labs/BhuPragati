@@ -1,0 +1,11 @@
+# Default owners for everything
+* @amitkumar-bit @SamsterZero
+
+# GitHub config (CI, workflows, templates)
+.github/ @SamsterZero
+
+# Documentation
+*.md @amitkumar-bit @SamsterZero
+
+# Source code
+src/ @amitkumar-bit @SamsterZero
