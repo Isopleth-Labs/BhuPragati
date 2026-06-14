@@ -48,7 +48,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 			{
 				property: "og:image",
-				content: `${SITE_URL}/og-image.png`,
+				content: `${SITE_URL}/og-image.svg`,
 			},
 			{
 				property: "og:url",
@@ -74,7 +74,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			},
 			{
 				name: "twitter:image",
-				content: `${SITE_URL}/og-image.png`,
+				content: `${SITE_URL}/og-image.svg`,
 			},
 			{
 				name: "twitter:url",
@@ -86,6 +86,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				rel: "stylesheet",
 				href: appCss,
 			},
+			{ rel: 'icon', type: 'image/svg+xml', href: '/icon-192.svg' },
 		],
 	}),
 	shellComponent: RootDocument,
