@@ -1,151 +1,100 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "flood",
-        "title": "Kusheshwar Wetland Basin",
-        "status": "High flood retention",
-        "metric": "Risk index 88",
-        "note": "Waterlogged agricultural and wetland terrain requires seasonal access planning.",
-        "intensity": 88
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              86.16,
-              25.76
-            ],
-            [
-              86.32,
-              25.75
-            ],
-            [
-              86.39,
-              25.82
-            ],
-            [
-              86.35,
-              25.91
-            ],
-            [
-              86.2,
-              25.92
-            ],
-            [
-              86.09,
-              25.84
-            ],
-            [
-              86.16,
-              25.76
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "flood",
-        "title": "Bhadahar-Hirni Water Cluster",
-        "status": "Very high exposure",
-        "metric": "Risk index 92",
-        "note": "Cluster aligns with large recorded wetland patches in the block.",
-        "intensity": 92
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              86.22,
-              25.82
-            ],
-            [
-              86.32,
-              25.81
-            ],
-            [
-              86.36,
-              25.88
-            ],
-            [
-              86.29,
-              25.94
-            ],
-            [
-              86.2,
-              25.91
-            ],
-            [
-              86.18,
-              25.86
-            ],
-            [
-              86.22,
-              25.82
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "flood",
-        "title": "Hirni Wetland Signal",
-        "status": "Major wetland",
-        "metric": "237.86 ha",
-        "note": "Ground-truthed wetland point used as flood-intelligence signal.",
-        "areaHa": 237.86
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.30168,
-          25.83103
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "flood",
-        "title": "Bhadahar Wetland Signal",
-        "status": "Major wetland",
-        "metric": "409.64 ha",
-        "note": "Ground-truthed wetland point used as flood-intelligence signal.",
-        "areaHa": 409.64
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.29812,
-          25.87684
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "flood",
-        "title": "Beri Wetland Signal",
-        "status": "Local retention",
-        "metric": "69.74 ha",
-        "note": "Wetland-edge settlement signal in the Kusheshwar Asthan block.",
-        "areaHa": 69.74
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.27441,
-          25.85084
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "flood",
+				"title": "Kusheshwar Wetland Basin",
+				"status": "High flood retention",
+				"metric": "Risk index 88",
+				"note": "Waterlogged agricultural and wetland terrain requires seasonal access planning.",
+				"intensity": 88
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[86.16, 25.76],
+						[86.32, 25.75],
+						[86.39, 25.82],
+						[86.35, 25.91],
+						[86.2, 25.92],
+						[86.09, 25.84],
+						[86.16, 25.76]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "flood",
+				"title": "Bhadahar-Hirni Water Cluster",
+				"status": "Very high exposure",
+				"metric": "Risk index 92",
+				"note": "Cluster aligns with large recorded wetland patches in the block.",
+				"intensity": 92
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[86.22, 25.82],
+						[86.32, 25.81],
+						[86.36, 25.88],
+						[86.29, 25.94],
+						[86.2, 25.91],
+						[86.18, 25.86],
+						[86.22, 25.82]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "flood",
+				"title": "Hirni Wetland Signal",
+				"status": "Major wetland",
+				"metric": "237.86 ha",
+				"note": "Ground-truthed wetland point used as flood-intelligence signal.",
+				"areaHa": 237.86
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.30168, 25.83103]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "flood",
+				"title": "Bhadahar Wetland Signal",
+				"status": "Major wetland",
+				"metric": "409.64 ha",
+				"note": "Ground-truthed wetland point used as flood-intelligence signal.",
+				"areaHa": 409.64
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.29812, 25.87684]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "flood",
+				"title": "Beri Wetland Signal",
+				"status": "Local retention",
+				"metric": "69.74 ha",
+				"note": "Wetland-edge settlement signal in the Kusheshwar Asthan block.",
+				"areaHa": 69.74
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.27441, 25.85084]
+			}
+		}
+	]
 }

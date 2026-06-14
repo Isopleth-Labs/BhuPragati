@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { lazy, Suspense } from "react";
 import useActiveLayers from "@/shared/hooks/useActiveLayers";
 import CommandPanel from "./panels/CommandPanel";
 import InsightStrip from "./panels/InsightStrip";
@@ -10,20 +10,20 @@ import TopBar from "./panels/TopBar";
 const MapEngine = lazy(() => import("@/modules/map"));
 
 export default function DashboardShell() {
-  const { activeLayers, toggleLayer } = useActiveLayers();
+	const { activeLayers, toggleLayer } = useActiveLayers();
 
-  return (
-    <main className="dashboard">
-      <Suspense fallback={<div className="gis-map-shell" aria-hidden="true" />}>
-        <MapEngine activeLayers={activeLayers} />
-      </Suspense>
+	return (
+		<main className="dashboard">
+			<Suspense fallback={<div className="gis-map-shell" aria-hidden="true" />}>
+				<MapEngine activeLayers={activeLayers} />
+			</Suspense>
 
-      <div className="dashboard__hud">
-        <CommandPanel activeLayers={activeLayers} onToggleLayer={toggleLayer} />
-        <TopBar />
-        <LegendPanel />
-        <InsightStrip />
-      </div>
-    </main>
-  );
+			<div className="dashboard__hud">
+				<CommandPanel activeLayers={activeLayers} onToggleLayer={toggleLayer} />
+				<TopBar />
+				<LegendPanel />
+				<InsightStrip />
+			</div>
+		</main>
+	);
 }
