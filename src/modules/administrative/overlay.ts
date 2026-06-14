@@ -1,6 +1,6 @@
 import type { Map as MaplibreMap } from "maplibre-gl";
-import { AdministrativeService } from "./administrative.service";
 import { addLayer, addSource } from "#/shared/lib/utils/utils";
+import { AdministrativeService } from "./administrative.service";
 
 export function addAdministrativeOverlay(map: MaplibreMap) {
 	addSource(

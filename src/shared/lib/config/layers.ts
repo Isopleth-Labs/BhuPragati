@@ -2,8 +2,8 @@
 // Each entry maps a logical infrastructure layer to its MapLibre layer ids
 // (used for visibility toggling and lazy overlay loading).
 
-import { layerColors } from "../../styles/theme";
 import type { InfrastructureLayer } from "@/shared/types";
+import { layerColors } from "../../styles/theme";
 
 export const infrastructureLayers: InfrastructureLayer[] = [
 	{

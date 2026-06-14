@@ -1,6 +1,6 @@
 import type { Map as MaplibreMap } from "maplibre-gl";
-import { AnalysisGridService } from "./analysis-grid.service";
 import { addLayer, addSource } from "@/shared";
+import { AnalysisGridService } from "./analysis-grid.service";
 
 export function addAnalysisGridOverlay(map: MaplibreMap) {
 	addSource(map, "analysis-grid", AnalysisGridService.getGrid());

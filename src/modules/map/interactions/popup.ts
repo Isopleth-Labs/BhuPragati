@@ -1,6 +1,6 @@
 import maplibregl, { type Map as MaplibreMap } from "maplibre-gl";
-import { interactiveLayerIds } from "@/shared/lib/config/layers";
 import { getPopupMarkup } from "#/shared/lib/utils/utils";
+import { interactiveLayerIds } from "@/shared/lib/config/layers";
 
 export function attachInteractivePopups(map: MaplibreMap) {
 	interactiveLayerIds.forEach((layerId) => {

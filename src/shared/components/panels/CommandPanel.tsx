@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { infrastructureLayers } from "@/shared/lib/config/layers";
 import LayerToggle from "@/shared/components/LayerToggle";
 import MetricBar from "@/shared/components/MetricBar";
+import { infrastructureLayers } from "@/shared/lib/config/layers";
 
 type CommandPanelProps = {
 	activeLayers: Record<string, boolean>;

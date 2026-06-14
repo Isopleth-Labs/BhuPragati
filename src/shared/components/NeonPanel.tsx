@@ -1,8 +1,8 @@
 import {
+	type ComponentPropsWithoutRef,
+	type ElementType,
 	memo,
 	type ReactNode,
-	type ElementType,
-	type ComponentPropsWithoutRef,
 } from "react";
 
 type NeonPanelProps<T extends ElementType = "section"> = {

@@ -1,5 +1,5 @@
+import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
 import data from "./data/electricityData.json";
-import type { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
 
 export const ElectricityService = {
 	getData(): FeatureCollection<Geometry, GeoJsonProperties> {

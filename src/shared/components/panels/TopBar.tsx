@@ -1,7 +1,7 @@
 import { memo } from "react";
 import {
-	operationalStats,
 	dashboardMeta,
+	operationalStats,
 } from "@/shared/lib/metadata/metadata";
 
 // Premium top HUD: compact metadata mini-cards + brand card.

@@ -1,13 +1,17 @@
+import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import {
+	forwardRef,
 	memo,
 	useEffect,
+	useImperativeHandle,
 	useRef,
 	useState,
-	forwardRef,
-	useImperativeHandle,
 } from "react";
-import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { addCommandCenterOverlay } from "#/modules/command-center";
+import { getFitPadding } from "#/shared/lib/utils/utils";
+import { addAdministrativeOverlay } from "@/modules/administrative";
+import { infrastructureLayers } from "@/shared/lib/config/layers";
 import {
 	FOCUS_EASE,
 	INITIAL_VIEW_STATE,
@@ -17,17 +21,13 @@ import {
 	MAP_ZOOM_LIMITS,
 } from "@/shared/lib/config/mapConfig";
 import type { MapEngineHandles } from "@/shared/types";
-import { infrastructureLayers } from "@/shared/lib/config/layers";
-import { addBasemapOverlay } from "./overlays/basemap";
-import { addAdministrativeOverlay } from "@/modules/administrative";
-import { addCommandCenterOverlay } from "#/modules/command-center";
-import { applyTacticalSky, tuneMapLabels } from "./overlays/labels";
-import { softenIntelligenceLayers } from "./overlays/intelligence";
-import { addOsmOverlays } from "./overlays/osm";
-import { loadHeavyOverlays } from "./overlays";
 import { startFocusPulse } from "./animation/focusPulse";
 import { attachInteractivePopups } from "./interactions/popup";
-import { getFitPadding } from "#/shared/lib/utils/utils";
+import { loadHeavyOverlays } from "./overlays";
+import { addBasemapOverlay } from "./overlays/basemap";
+import { softenIntelligenceLayers } from "./overlays/intelligence";
+import { applyTacticalSky, tuneMapLabels } from "./overlays/labels";
+import { addOsmOverlays } from "./overlays/osm";
 
 const MapEngine = forwardRef<
 	MapEngineHandles | null,

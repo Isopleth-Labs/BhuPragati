@@ -1,5 +1,5 @@
-import { SettlementsService } from "./SettlementsService.getSettlements().service";
 import { addLayer, addSource } from "@/shared";
+import { SettlementsService } from "./SettlementsService.getSettlements().service";
 
 export function addRegionalOverlays(map: Map) {
 	addHydrology(map);

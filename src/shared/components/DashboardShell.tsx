@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { lazy, Suspense } from "react";
 import useActiveLayers from "@/shared/hooks/useActiveLayers";
 import CommandPanel from "./panels/CommandPanel";
 import InsightStrip from "./panels/InsightStrip";

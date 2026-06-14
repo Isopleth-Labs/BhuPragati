@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { infrastructureLayers } from "@/shared/lib/config/layers";
 import LayerIcon from "@/shared/components/LayerIcon";
+import { infrastructureLayers } from "@/shared/lib/config/layers";
 
 function InsightStrip() {
 	return (

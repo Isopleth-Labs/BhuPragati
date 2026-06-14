@@ -1,6 +1,6 @@
 import type { GeoJSON } from "geojson";
-import { RoadsService } from "./roads.service";
 import { addLayer, addSource } from "@/shared";
+import { RoadsService } from "./roads.service";
 
 export function addRoadOverlay(map: Map) {
 	addSource(map, "road-network", RoadsService.getData() as GeoJSON);

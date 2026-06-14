@@ -1,7 +1,7 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
 import type { FeatureCollection } from "geojson";
-import { CommandCenterService } from "./command-center.service";
+import type { Map as MaplibreMap } from "maplibre-gl";
 import { addLayer, addSource } from "@/shared";
+import { CommandCenterService } from "./command-center.service";
 
 export function addCommandCenterOverlay(map: MaplibreMap) {
 	addSource(

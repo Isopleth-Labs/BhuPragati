@@ -1,7 +1,7 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
 import type { FeatureCollection } from "geojson";
-import { AgricultureService } from "./agriculture.service";
+import type { Map as MaplibreMap } from "maplibre-gl";
 import { addLayer, addSource } from "@/shared";
+import { AgricultureService } from "./agriculture.service";
 
 export function addAgricultureOverlay(map: MaplibreMap) {
 	addSource(

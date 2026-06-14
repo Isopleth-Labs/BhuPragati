@@ -1,7 +1,7 @@
-import type { CSSVars } from "@/shared/styles/types";
 import { memo, useCallback } from "react";
-import LayerIcon from "./LayerIcon";
+import type { CSSVars } from "@/shared/styles/types";
 import type { InfrastructureLayer } from "@/shared/types";
+import LayerIcon from "./LayerIcon";
 
 // Tactical layer-toggle row. Compact, icon-led, used in the
 // command panel layer list.
