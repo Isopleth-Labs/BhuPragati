@@ -1,6 +1,5 @@
 // Subtle command-center pulse. Single rAF loop, gentle amplitude.
 
-import type { Map } from "maplibre-gl";
 
 export function startFocusPulse(map: Map) {
   let frame = 0;

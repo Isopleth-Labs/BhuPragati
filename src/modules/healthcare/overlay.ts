@@ -1,9 +1,9 @@
-import type { Map } from "maplibre-gl";
+import type { Map as MaplibreMap } from "maplibre-gl";
 import type { FeatureCollection, Geometry } from "geojson";
 import { HealthcareService } from "./healthcare.service";
 import { addLayer, addSource } from "@/shared";
 
-export function addHealthcareOverlay(map: Map) {
+export function addHealthcareOverlay(map: MaplibreMap) {
   addSource(map, "healthcare-access", HealthcareService.getData() as FeatureCollection<Geometry>);
 
   addLayer(map, {

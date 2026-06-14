@@ -1,5 +1,12 @@
-import { memo, useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
-import maplibregl, { Map as MapLibreMap } from "maplibre-gl";
+import {
+  memo,
+  useEffect,
+  useRef,
+  useState,
+  forwardRef,
+  useImperativeHandle,
+} from "react";
+import maplibregl, { type Map as MapLibreMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
   FOCUS_EASE,
@@ -20,12 +27,12 @@ import { addOsmOverlays } from "./overlays/osm";
 import { loadHeavyOverlays } from "./overlays";
 import { startFocusPulse } from "./animation/focusPulse";
 import { attachInteractivePopups } from "./interactions/popup";
-import { getFitPadding } from "@/shared/lib/utils/utils";
+import { getFitPadding } from "#/shared/lib/utils/utils";
 
-function MapEngine(
-  { activeLayers }: { activeLayers: Record<string, boolean> },
-  ref: React.Ref<MapEngineHandles | null>,
-) {
+const MapEngine = forwardRef<
+  MapEngineHandles | null,
+  { activeLayers: Record<string, boolean> }
+>(({ activeLayers }, ref) => {
   const mapNodeRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -44,16 +51,25 @@ function MapEngine(
       zoom: INITIAL_VIEW_STATE.zoom,
       pitch: INITIAL_VIEW_STATE.pitch,
       bearing: INITIAL_VIEW_STATE.bearing,
-      maxBounds: MAP_MAX_BOUNDS as [ [number, number], [number, number] ],
+      maxBounds: MAP_MAX_BOUNDS as [[number, number], [number, number]],
       minZoom: MAP_ZOOM_LIMITS.min,
       maxZoom: MAP_ZOOM_LIMITS.max,
       attributionControl: false,
     });
 
     mapRef.current = map;
-    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), "top-right");
-    map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-right");
-    map.addControl(new maplibregl.AttributionControl({ compact: true }), "bottom-right");
+    map.addControl(
+      new maplibregl.NavigationControl({ visualizePitch: true }),
+      "top-right",
+    );
+    map.addControl(
+      new maplibregl.ScaleControl({ unit: "metric" }),
+      "bottom-right",
+    );
+    map.addControl(
+      new maplibregl.AttributionControl({ compact: true }),
+      "bottom-right",
+    );
 
     const resizeObserver = new ResizeObserver(() => map.resize());
     resizeObserver.observe(mapNodeRef.current);
@@ -63,19 +79,14 @@ function MapEngine(
       addBasemapOverlay(map);
       tuneMapLabels(map);
 
-      // Live OSM intelligence (roads + settlements) — async, non-blocking.
       addOsmOverlays(map).catch((err) => console.warn("[osm] failed:", err));
-
       addAdministrativeOverlay(map);
 
-      // Lazy-load heavy GIS infrastructure overlays in parallel.
       await loadHeavyOverlays(map);
       if (cancelled) return;
 
-      // Soften them into intelligence "sectors" (gradients, blur, glow).
       softenIntelligenceLayers(map);
 
-      // Apply initial visibility immediately so overlays never flash on load.
       infrastructureLayers.forEach((layer) => {
         const visibility = activeLayers[layer.id] ? "visible" : "none";
         layer.mapLayerIds.forEach((layerId) => {
@@ -85,10 +96,9 @@ function MapEngine(
         });
       });
 
-      // Command center overlay sits on top of infrastructure layers.
       addCommandCenterOverlay(map);
 
-      map.fitBounds(MAP_FIT_BOUNDS as [ [number, number], [number, number] ], {
+      map.fitBounds(MAP_FIT_BOUNDS as [[number, number], [number, number]], {
         padding: getFitPadding(mapNodeRef.current),
         duration: 0,
       });
@@ -103,7 +113,6 @@ function MapEngine(
 
       stopAnimation = startFocusPulse(map);
       attachInteractivePopups(map);
-
       setMapReady(true);
     });
 
@@ -115,7 +124,7 @@ function MapEngine(
       map.remove();
       mapRef.current = null;
     };
-  }, []);
+  }, [activeLayers]);
 
   // Layer visibility sync — only repaints when activeLayers changes.
   useEffect(() => {
@@ -139,7 +148,8 @@ function MapEngine(
       const layer = infrastructureLayers.find((l) => l.id === layerId);
       if (!layer) return;
       layer.mapLayerIds.forEach((lid) => {
-        if (map.getLayer(lid)) map.setLayoutProperty(lid, "visibility", "visible");
+        if (map.getLayer(lid))
+          map.setLayoutProperty(lid, "visibility", "visible");
       });
     },
     removeInfraLayer: (layerId: string) => {
@@ -159,7 +169,7 @@ function MapEngine(
   }));
 
   return (
-    <div className="gis-map-shell" aria-label="Interactive GIS map of Kusheshwar Asthan">
+    <div className="gis-map-shell">
       <div ref={mapNodeRef} className="gis-map" />
       <div className="gis-map__ambient" aria-hidden="true" />
       <div className="gis-map__fog" aria-hidden="true" />
@@ -170,6 +180,6 @@ function MapEngine(
       <div className="gis-map__vignette" aria-hidden="true" />
     </div>
   );
-}
+});
 
-export default memo(forwardRef(MapEngine));
+export default memo(MapEngine);

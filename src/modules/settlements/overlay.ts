@@ -1,5 +1,4 @@
-import type { FeatureCollection, GeoJsonProperties, Geometry } from "geojson";
-import type { Map } from "maplibre-gl";
+
 import { SettlementsService } from "./SettlementsService.getSettlements().service";
 import { addLayer, addSource } from "@/shared";
 

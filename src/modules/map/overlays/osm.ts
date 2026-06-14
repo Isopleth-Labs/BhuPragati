@@ -3,8 +3,7 @@
 // Renders:
 //   - road network (motorway / trunk / primary / secondary / tertiary / residential)
 //   - settlement labels (city / town / village / hamlet)
-
-import type { Map } from "maplibre-gl";
+import type { Map as MaplibreMap } from "maplibre-gl";
 import { fetchOverpassGeoJson } from "@/shared/lib/dataAdapters/overpass";
 
 const BBOX = [25.55, 85.85, 26.2, 86.65]; // [S, W, N, E]
@@ -20,7 +19,7 @@ out tags geom;
 
 // ---- Map rendering ---------------------------------------------------
 
-function addRoadLayers(map: Map) {
+function addRoadLayers(map: MaplibreMap) {
   // Soft tactical underglow — only meaningful on major routes.
   map.addLayer({
     id: "osm-road-glow",
@@ -103,7 +102,7 @@ function addRoadLayers(map: Map) {
   });
 }
 
-function addPlaceLayers(map: Map) {
+function addPlaceLayers(map: MaplibreMap) {
   // Marker dots, sized by tier.
   map.addLayer({
     id: "osm-place-dots",
@@ -199,7 +198,7 @@ function addPlaceLayers(map: Map) {
 
 // ---- Public entry ----------------------------------------------------
 
-export async function addOsmOverlays(map: Map) {
+export async function addOsmOverlays(map: MaplibreMap) {
   const data = await fetchOverpassGeoJson(QUERY, { cacheKey: 'kusheshwar.osm.v1' });
   if (!data || (!data.roads.features.length && !data.places.features.length)) {
     console.warn("[osm] no data available — skipping OSM overlay");
