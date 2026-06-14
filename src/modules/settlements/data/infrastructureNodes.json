@@ -1,155 +1,125 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Darbhanga Medical College Hospital",
-        "nodeType": "hospital",
-        "symbol": "H"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          85.91,
-          26.155
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Sadar Hospital Samastipur",
-        "nodeType": "hospital",
-        "symbol": "H"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          85.783,
-          25.865
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Madhubani Sadar Hospital",
-        "nodeType": "hospital",
-        "symbol": "H"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.075,
-          26.345
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Kusheshwar Asthan Police Station",
-        "nodeType": "police",
-        "symbol": "P"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.29,
-          25.795
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Biraul Police Station",
-        "nodeType": "police",
-        "symbol": "P"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.38,
-          26.05
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Biraul 33 kV Substation",
-        "nodeType": "electrical",
-        "symbol": "S"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.38,
-          26.058
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Darbhanga Junction",
-        "nodeType": "rail",
-        "symbol": "R"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          85.895,
-          26.148
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Samastipur Junction",
-        "nodeType": "rail",
-        "symbol": "R"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          85.78,
-          25.86
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Kosi Embankment Bridge",
-        "nodeType": "bridge",
-        "symbol": "B"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.305,
-          25.81
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Kamla Bridge (NH-527E)",
-        "nodeType": "bridge",
-        "symbol": "B"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          86.18,
-          25.86
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Darbhanga Medical College Hospital",
+				"nodeType": "hospital",
+				"symbol": "H"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [85.91, 26.155]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Sadar Hospital Samastipur",
+				"nodeType": "hospital",
+				"symbol": "H"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [85.783, 25.865]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Madhubani Sadar Hospital",
+				"nodeType": "hospital",
+				"symbol": "H"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.075, 26.345]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Kusheshwar Asthan Police Station",
+				"nodeType": "police",
+				"symbol": "P"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.29, 25.795]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Biraul Police Station",
+				"nodeType": "police",
+				"symbol": "P"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.38, 26.05]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Biraul 33 kV Substation",
+				"nodeType": "electrical",
+				"symbol": "S"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.38, 26.058]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Darbhanga Junction",
+				"nodeType": "rail",
+				"symbol": "R"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [85.895, 26.148]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Samastipur Junction",
+				"nodeType": "rail",
+				"symbol": "R"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [85.78, 25.86]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Kosi Embankment Bridge",
+				"nodeType": "bridge",
+				"symbol": "B"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.305, 25.81]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "Kamla Bridge (NH-527E)",
+				"nodeType": "bridge",
+				"symbol": "B"
+			},
+			"geometry": {
+				"type": "Point",
+				"coordinates": [86.18, 25.86]
+			}
+		}
+	]
 }

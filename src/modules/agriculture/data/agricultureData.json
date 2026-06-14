@@ -1,89 +1,53 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "agriculture",
-        "title": "Wetland-Edge Paddy Belt",
-        "status": "Very high dependency",
-        "metric": "Agri load 94",
-        "note": "Seasonal cropping decisions are tightly coupled to flood storage.",
-        "intensity": 94
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              86.1,
-              25.83
-            ],
-            [
-              86.22,
-              25.8
-            ],
-            [
-              86.27,
-              25.88
-            ],
-            [
-              86.2,
-              25.97
-            ],
-            [
-              86.08,
-              25.92
-            ],
-            [
-              86.1,
-              25.83
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "layer": "agriculture",
-        "title": "Eastern Cropping Pocket",
-        "status": "High input sensitivity",
-        "metric": "Agri load 87",
-        "note": "Rural energy and road reliability influence crop movement.",
-        "intensity": 87
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              86.28,
-              25.75
-            ],
-            [
-              86.43,
-              25.8
-            ],
-            [
-              86.43,
-              25.9
-            ],
-            [
-              86.34,
-              25.94
-            ],
-            [
-              86.26,
-              25.86
-            ],
-            [
-              86.28,
-              25.75
-            ]
-          ]
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "agriculture",
+				"title": "Wetland-Edge Paddy Belt",
+				"status": "Very high dependency",
+				"metric": "Agri load 94",
+				"note": "Seasonal cropping decisions are tightly coupled to flood storage.",
+				"intensity": 94
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[86.1, 25.83],
+						[86.22, 25.8],
+						[86.27, 25.88],
+						[86.2, 25.97],
+						[86.08, 25.92],
+						[86.1, 25.83]
+					]
+				]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"layer": "agriculture",
+				"title": "Eastern Cropping Pocket",
+				"status": "High input sensitivity",
+				"metric": "Agri load 87",
+				"note": "Rural energy and road reliability influence crop movement.",
+				"intensity": 87
+			},
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [
+					[
+						[86.28, 25.75],
+						[86.43, 25.8],
+						[86.43, 25.9],
+						[86.34, 25.94],
+						[86.26, 25.86],
+						[86.28, 25.75]
+					]
+				]
+			}
+		}
+	]
 }

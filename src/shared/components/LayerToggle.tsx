@@ -1,4 +1,4 @@
-import type { CSSVars} from "@/shared/styles/types";
+import type { CSSVars } from "@/shared/styles/types";
 import { memo, useCallback } from "react";
 import LayerIcon from "./LayerIcon";
 import type { InfrastructureLayer } from "@/shared/types";
@@ -7,32 +7,35 @@ import type { InfrastructureLayer } from "@/shared/types";
 // command panel layer list.
 
 type LayerToggleProps = {
-  layer: InfrastructureLayer;
-  isActive: boolean;
-  onToggle: (id: string) => void;
+	layer: InfrastructureLayer;
+	isActive: boolean;
+	onToggle: (id: string) => void;
 };
 
 function LayerToggle({ layer, isActive, onToggle }: LayerToggleProps) {
-  const handleClick = useCallback(() => onToggle(layer.id), [layer.id, onToggle]);
+	const handleClick = useCallback(
+		() => onToggle(layer.id),
+		[layer.id, onToggle],
+	);
 
-  const style: CSSVars = { "--layer-color": layer.color  ?? "transparent"};
+	const style: CSSVars = { "--layer-color": layer.color ?? "transparent" };
 
-  return (
-    <button
-      type="button"
-      className="layer-toggle"
-      style={style}
-      aria-pressed={isActive}
-      onClick={handleClick}
-      title={layer.summary}
-    >
-      <span className="layer-toggle__icon" aria-hidden="true">
-        <LayerIcon iconKey={layer.iconKey} size={18} />
-      </span>
-      <span className="layer-toggle__label">{layer.intelligenceLabel}</span>
-      <span className="layer-toggle__dot" aria-hidden="true" />
-    </button>
-  );
+	return (
+		<button
+			type="button"
+			className="layer-toggle"
+			style={style}
+			aria-pressed={isActive}
+			onClick={handleClick}
+			title={layer.summary}
+		>
+			<span className="layer-toggle__icon" aria-hidden="true">
+				<LayerIcon iconKey={layer.iconKey} size={18} />
+			</span>
+			<span className="layer-toggle__label">{layer.intelligenceLabel}</span>
+			<span className="layer-toggle__dot" aria-hidden="true" />
+		</button>
+	);
 }
 
 export default memo(LayerToggle);

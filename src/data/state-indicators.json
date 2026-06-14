@@ -1,722 +1,758 @@
 [
-  {
-    "id": "kerala",
-    "name": "Kerala",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.5 Cr",
-    "gdpText": "\u20b99.8 L Cr",
-    "metrics": {
-      "overall": 78.8,
-      "population": 77.4,
-      "infrastructure": 69.0,
-      "health": 92.8,
-      "education": 90.6,
-      "agriculture": 60.0,
-      "connectivity": 71.0,
-      "power": 99.6
-  },"metadata": {
-      "isoCode": "IN-KL"
-    }
-  },
-  {
-  "id": "goa",
-    "name": "Goa",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.16 Cr",
-    "gdpText": "\u20b90.92 L Cr",
-    "metrics": {
-      "overall": 78.9,
-      "population": 78.1,
-      "infrastructure": 69.0,
-      "health": 92.9,
-      "education": 75.5,
-      "agriculture": 60.8,
-      "connectivity": 87.3,
-      "power": 99.8
-  },"metadata": {
-      "isoCode": "IN-GA"
-    }
-  },
-  {
-    "id": "tamil-nadu",
-    "name": "Tamil Nadu",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "7.6 Cr",
-    "gdpText": "\u20b924.8 L Cr",
-    "metrics": {
-      "overall": 71.2,
-      "population": 67.4,
-      "infrastructure": 76.8,
-      "health": 76.5,
-      "education": 68.4,
-      "agriculture": 51.1,
-      "connectivity": 63.1,
-      "power": 98.2
-  },"metadata": {
-      "isoCode": "IN-TN"
-    }
-  },
-  {
-    "id": "delhi",
-    "name": "Delhi",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "1.9 Cr",
-    "gdpText": "\u20b910.4 L Cr",
-    "metrics": {
-      "overall": 68.3,
-      "population": 63.5,
-      "infrastructure": 74.2,
-      "health": 78.4,
-      "education": 80.2,
-      "agriculture": 35.0,
-      "connectivity": 75.6,
-      "power": 98.0
-  },"metadata": {
-      "isoCode": "IN-DL"
-    }
-  },
-  {
-"id": "punjab",
-    "name": "Punjab",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.0 Cr",
-    "gdpText": "\u20b96.8 L Cr",
-    "metrics": {
-      "overall": 72.6,
-      "population": 71.5,
-      "infrastructure": 63.6,
-      "health": 77.2,
-      "education": 69.5,
-      "agriculture": 86.7,
-      "connectivity": 80.4,
-      "power": 99.0
-  },"metadata": {
-      "isoCode": "IN-PB"
-    }
-  },
-  {
-"id": "maharashtra",
-    "name": "Maharashtra",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "12.6 Cr",
-    "gdpText": "\u20b938.8 L Cr",
-    "metrics": {
-      "overall": 62.8,
-      "population": 57.2,
-      "infrastructure": 68.8,
-      "health": 71.8,
-      "education": 60.6,
-      "agriculture": 42.3,
-      "connectivity": 69.5,
-      "power": 96.8
-  },"metadata": {
-      "isoCode": "IN-MH"
-    }
-  },
-  {
-"id": "karnataka",
-    "name": "Karnataka",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "6.7 Cr",
-    "gdpText": "\u20b922.4 L Cr",
-    "metrics": {
-      "overall": 69.9,
-      "population": 68.3,
-      "infrastructure": 74.3,
-      "health": 74.2,
-      "education": 67.0,
-      "agriculture": 52.8,
-      "connectivity": 77.4,
-      "power": 97.6
-  },"metadata": {
-      "isoCode": "IN-KA"
-    }
-  },
-  {
-"id": "gujarat",
-    "name": "Gujarat",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "6.8 Cr",
-    "gdpText": "\u20b922.1 L Cr",
-    "metrics": {
-      "overall": 66.0,
-      "population": 63.0,
-      "infrastructure": 71.0,
-      "health": 73.5,
-      "education": 63.4,
-      "agriculture": 48.0,
-      "connectivity": 58.7,
-      "power": 98.4
-  },"metadata": {
-      "isoCode": "IN-GJ"
-    }
-  },
-  {
-"id": "himachal-pradesh",
-    "name": "Himachal Pradesh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.75 Cr",
-    "gdpText": "\u20b91.9 L Cr",
-    "metrics": {
-      "overall": 62.1,
-      "population": 57.7,
-      "infrastructure": 54.9,
-      "health": 72.0,
-      "education": 59.9,
-      "agriculture": 43.2,
-      "connectivity": 54.6,
-      "power": 95.6
-  },"metadata": {
-      "isoCode": "IN-HP"
-    }
-  },
-  {
-"id": "telangana",
-    "name": "Telangana",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.8 Cr",
-    "gdpText": "\u20b913.1 L Cr",
-    "metrics": {
-      "overall": 67.2,
-      "population": 65.8,
-      "infrastructure": 58.9,
-      "health": 72.5,
-      "education": 64.4,
-      "agriculture": 50.9,
-      "connectivity": 60.5,
-      "power": 97.4
-  },"metadata": {
-      "isoCode": "IN-TG"
-    }
-  },
-  {
-"id": "sikkim",
-    "name": "Sikkim",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.07 Cr",
-    "gdpText": "\u20b90.42 L Cr",
-    "metrics": {
-      "overall": 67.4,
-      "population": 66.5,
-      "infrastructure": 58.9,
-      "health": 71.2,
-      "education": 64.5,
-      "agriculture": 51.7,
-      "connectivity": 60.8,
-      "power": 94.8
-  },"metadata": {
-      "isoCode": "IN-SK"
-    }
-  },
-  {
-"id": "andhra-pradesh",
-    "name": "Andhra Pradesh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "5.3 Cr",
-    "gdpText": "\u20b913.5 L Cr",
-    "metrics": {
-      "overall": 66.6,
-      "population": 66.3,
-      "infrastructure": 58.2,
-      "health": 70.8,
-      "education": 63.7,
-      "agriculture": 51.8,
-      "connectivity": 60.3,
-      "power": 97.2
-  },"metadata": {
-      "isoCode": "IN-AP"
-    }
-  },
-  {
-"id": "haryana",
-    "name": "Haryana",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "2.8 Cr",
-    "gdpText": "\u20b99.5 L Cr",
-    "metrics": {
-      "overall": 59.8,
-      "population": 57.1,
-      "infrastructure": 52.6,
-      "health": 65.4,
-      "education": 57.5,
-      "agriculture": 70.7,
-      "connectivity": 53.2,
-      "power": 95.8
-  },"metadata": {
-      "isoCode": "IN-HR"
-    }
-  },
-  {
-"id": "west-bengal",
-    "name": "West Bengal",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "10.1 Cr",
-    "gdpText": "\u20b917.8 L Cr",
-    "metrics": {
-      "overall": 53.1,
-      "population": 47.9,
-      "infrastructure": 47.1,
-      "health": 56.2,
-      "education": 51.3,
-      "agriculture": 35.2,
-      "connectivity": 46.2,
-      "power": 86.4
-  },"metadata": {
-      "isoCode": "IN-WB"
-    }
-  },
-  {
-"id": "uttarakhand",
-    "name": "Uttarakhand",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "1.1 Cr",
-    "gdpText": "\u20b93.0 L Cr",
-    "metrics": {
-      "overall": 52.2,
-      "population": 47.1,
-      "infrastructure": 46.3,
-      "health": 58.5,
-      "education": 50.5,
-      "agriculture": 35.0,
-      "connectivity": 45.4,
-      "power": 93.4
-  },"metadata": {
-      "isoCode": "IN-UT"
-    }
-  },
-  {
-"id": "mizoram",
-    "name": "Mizoram",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.12 Cr",
-    "gdpText": "\u20b90.32 L Cr",
-    "metrics": {
-      "overall": 56.3,
-      "population": 53.8,
-      "infrastructure": 49.5,
-      "health": 62.4,
-      "education": 65.5,
-      "agriculture": 41.0,
-      "connectivity": 50.1,
-      "power": 79.8
-  },"metadata": {
-      "isoCode": "IN-MZ"
-    }
-  },
-  {
-"id": "jammu-and-kashmir",
-    "name": "Jammu and Kashmir",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "1.3 Cr",
-    "gdpText": "\u20b92.2 L Cr",
-    "metrics": {
-      "overall": 58.6,
-      "population": 58.1,
-      "infrastructure": 51.2,
-      "health": 63.8,
-      "education": 56.0,
-      "agriculture": 45.3,
-      "connectivity": 52.9,
-      "power": 91.2
-  },"metadata": {
-      "isoCode": "IN-JK"
-    }
-  },
-  {
-"id": "tripura",
-    "name": "Tripura",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.41 Cr",
-    "gdpText": "\u20b90.72 L Cr",
-    "metrics": {
-      "overall": 53.7,
-      "population": 51.2,
-      "infrastructure": 47.2,
-      "health": 58.4,
-      "education": 51.6,
-      "agriculture": 39.0,
-      "connectivity": 47.8,
-      "power": 82.4
-  },"metadata": {
-      "isoCode": "IN-TR"
-    }
-  },
-  {
-"id": "rajasthan",
-    "name": "Rajasthan",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "8.1 Cr",
-    "gdpText": "\u20b914.1 L Cr",
-    "metrics": {
-      "overall": 55.8,
-      "population": 54.9,
-      "infrastructure": 48.8,
-      "health": 60.5,
-      "education": 53.4,
-      "agriculture": 42.6,
-      "connectivity": 50.3,
-      "power": 89.5
-  },"metadata": {
-      "isoCode": "IN-RJ"
-    }
-  },
-  {
-"id": "meghalaya",
-    "name": "Meghalaya",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.33 Cr",
-    "gdpText": "\u20b90.46 L Cr",
-    "metrics": {
-      "overall": 54.0,
-      "population": 53.2,
-      "infrastructure": 47.3,
-      "health": 57.8,
-      "education": 51.7,
-      "agriculture": 41.3,
-      "connectivity": 48.7,
-      "power": 80.6
-  },"metadata": {
-      "isoCode": "IN-ML"
-    }
-  },
-  {
-"id": "manipur",
-    "name": "Manipur",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.31 Cr",
-    "gdpText": "\u20b90.42 L Cr",
-    "metrics": {
-      "overall": 50.2,
-      "population": 47.9,
-      "infrastructure": 44.1,
-      "health": 54.2,
-      "education": 48.2,
-      "agriculture": 36.5,
-      "connectivity": 44.6,
-      "power": 81.2
-  },"metadata": {
-      "isoCode": "IN-MN"
-    }
-  },
-  {
-"id": "assam",
-    "name": "Assam",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.5 Cr",
-    "gdpText": "\u20b94.6 L Cr",
-    "metrics": {
-      "overall": 46.3,
-      "population": 42.5,
-      "infrastructure": 40.9,
-      "health": 49.8,
-      "education": 44.6,
-      "agriculture": 35.0,
-      "connectivity": 40.5,
-      "power": 78.6
-  },"metadata": {
-      "isoCode": "IN-AS"
-    }
-  },
-  {
-"id": "madhya-pradesh",
-    "name": "Madhya Pradesh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "8.5 Cr",
-    "gdpText": "\u20b912.2 L Cr",
-    "metrics": {
-      "overall": 53.4,
-      "population": 53.7,
-      "infrastructure": 46.6,
-      "health": 59.2,
-      "education": 51.0,
-      "agriculture": 64.2,
-      "connectivity": 48.6,
-      "power": 88.2
-  },"metadata": {
-      "isoCode": "IN-MP"
-    }
-  },
-  {
-"id": "chhattisgarh",
-    "name": "Chhattisgarh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.0 Cr",
-    "gdpText": "\u20b94.5 L Cr",
-    "metrics": {
-      "overall": 49.5,
-      "population": 48.4,
-      "infrastructure": 43.4,
-      "health": 53.6,
-      "education": 47.5,
-      "agriculture": 37.4,
-      "connectivity": 44.5,
-      "power": 87.6
-  },"metadata": {
-      "isoCode": "IN-CG"
-    }
-  },
-  {
-"id": "odisha",
-    "name": "Odisha",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "4.6 Cr",
-    "gdpText": "\u20b97.9 L Cr",
-    "metrics": {
-      "overall": 50.6,
-      "population": 50.5,
-      "infrastructure": 44.2,
-      "health": 56.4,
-      "education": 48.4,
-      "agriculture": 39.5,
-      "connectivity": 45.9,
-      "power": 85.8
-  },"metadata": {
-      "isoCode": "IN-OR"
-    }
-  },
-  {
-"id": "nagaland",
-    "name": "Nagaland",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.22 Cr",
-    "gdpText": "\u20b90.37 L Cr",
-    "metrics": {
-      "overall": 41.8,
-      "population": 40.0,
-      "infrastructure": 40.0,
-      "health": 44.2,
-      "education": 40.4,
-      "agriculture": 35.0,
-      "connectivity": 40.0,
-      "power": 74.6
-  },"metadata": {
-      "isoCode": "IN-NL"
-    }
-  },
-  {
-"id": "arunachal-pradesh",
-    "name": "Arunachal Pradesh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.16 Cr",
-    "gdpText": "\u20b90.35 L Cr",
-    "metrics": {
-      "overall": 48.9,
-      "population": 48.8,
-      "infrastructure": 42.7,
-      "health": 52.8,
-      "education": 46.7,
-      "agriculture": 38.2,
-      "connectivity": 44.3,
-      "power": 75.8
-  },"metadata": {
-      "isoCode": "IN-AR"
-    }
-  },
-  {
-"id": "uttar-pradesh",
-    "name": "Uttar Pradesh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "23.5 Cr",
-    "gdpText": "\u20b922.5 L Cr",
-    "metrics": {
-      "overall": 42.0,
-      "population": 40.0,
-      "infrastructure": 40.0,
-      "health": 45.2,
-      "education": 40.5,
-      "agriculture": 49.2,
-      "connectivity": 40.0,
-      "power": 76.2
-  },"metadata": {
-      "isoCode": "IN-UP"
-    }
-  },
-  {
-"id": "bihar",
-    "name": "Bihar",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "12.7 Cr",
-    "gdpText": "\u20b97.5 L Cr",
-    "metrics": {
-      "overall": 40.0,
-      "population": 40.0,
-      "infrastructure": 40.0,
-      "health": 40.0,
-      "education": 40.0,
-      "agriculture": 45.7,
-      "connectivity": 40.0,
-      "power": 72.4
-  },"metadata": {
-      "isoCode": "IN-BR"
-    }
-  },
-  {
-"id": "jharkhand",
-    "name": "Jharkhand",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "3.9 Cr",
-    "gdpText": "\u20b94.2 L Cr",
-    "metrics": {
-      "overall": 43.5,
-      "population": 43.1,
-      "infrastructure": 40.0,
-      "health": 46.8,
-      "education": 41.6,
-      "agriculture": 35.0,
-      "connectivity": 40.0,
-      "power": 77.4
-  },"metadata": {
-      "isoCode": "IN-JH"
-    }
-  },
-  {
-"id": "chandigarh",
-    "name": "Chandigarh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.12 Cr",
-    "gdpText": "\u20b90.48 L Cr",
-    "metrics": {
-      "overall": 72.0,
-      "population": 68.2,
-      "infrastructure": 63.4,
-      "health": 79.2,
-      "education": 84.1,
-      "agriculture": 51.7,
-      "connectivity": 63.9,
-      "power": 98.9
-  },"metadata": {
-      "isoCode": "IN-CH"
-    }
-  },
-  {
-"id": "puducherry",
-    "name": "Puducherry",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.15 Cr",
-    "gdpText": "\u20b90.28 L Cr",
-    "metrics": {
-      "overall": 68.5,
-      "population": 64.9,
-      "infrastructure": 60.3,
-      "health": 82.4,
-      "education": 65.9,
-      "agriculture": 49.2,
-      "connectivity": 60.8,
-      "power": 98.6
-  },"metadata": {
-      "isoCode": "IN-PY"
-    }
-  },
-  {
-"id": "lakshadweep",
-    "name": "Lakshadweep",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.007 Cr",
-    "gdpText": "\u20b90.02 L Cr",
-    "metrics": {
-      "overall": 57.5,
-      "population": 52.1,
-      "infrastructure": 51.0,
-      "health": 59.8,
-      "education": 55.5,
-      "agriculture": 38.4,
-      "connectivity": 50.1,
-      "power": 83.6
-  },"metadata": {
-      "isoCode": "IN-LD"
-    }
-  },
-  {
-"id": "dadra-and-nagar-haveli-and-daman-and-diu",
-    "name": "Dadra & Nagar Haveli & Daman & Diu",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.06 Cr",
-    "gdpText": "\u20b90.24 L Cr",
-    "metrics": {
-      "overall": 60.7,
-      "population": 58.0,
-      "infrastructure": 53.4,
-      "health": 64.2,
-      "education": 58.3,
-      "agriculture": 44.2,
-      "connectivity": 54.0,
-      "power": 94.6
-  },"metadata": {
-      "isoCode": "IN-DH"
-    }
-  },
-  {
-"id": "andaman-and-nicobar-islands",
-    "name": "Andaman & Nicobar Islands",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.04 Cr",
-    "gdpText": "\u20b90.12 L Cr",
-    "metrics": {
-      "overall": 56.0,
-      "population": 51.8,
-      "infrastructure": 49.5,
-      "health": 58.2,
-      "education": 53.9,
-      "agriculture": 38.7,
-      "connectivity": 49.2,
-      "power": 84.2
-  },"metadata": {
-      "isoCode": "IN-AN"
-    }
-  },
-  {
-"id": "ladakh",
-    "name": "Ladakh",
-    "level": "state",
-    "parentId": "india",
-    "populationText": "0.03 Cr",
-    "gdpText": "\u20b90.18 L Cr",
-    "metrics": {
-      "overall": 59.4,
-      "population": 58.9,
-      "infrastructure": 52.0,
-      "health": 62.6,
-      "education": 56.9,
-      "agriculture": 45.9,
-      "connectivity": 53.7,
-      "power": 90.8
-  },"metadata": {
-      "isoCode": "IN-LA"
-    }
-  }
+	{
+		"id": "kerala",
+		"name": "Kerala",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.5 Cr",
+		"gdpText": "\u20b99.8 L Cr",
+		"metrics": {
+			"overall": 78.8,
+			"population": 77.4,
+			"infrastructure": 69.0,
+			"health": 92.8,
+			"education": 90.6,
+			"agriculture": 60.0,
+			"connectivity": 71.0,
+			"power": 99.6
+		},
+		"metadata": {
+			"isoCode": "IN-KL"
+		}
+	},
+	{
+		"id": "goa",
+		"name": "Goa",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.16 Cr",
+		"gdpText": "\u20b90.92 L Cr",
+		"metrics": {
+			"overall": 78.9,
+			"population": 78.1,
+			"infrastructure": 69.0,
+			"health": 92.9,
+			"education": 75.5,
+			"agriculture": 60.8,
+			"connectivity": 87.3,
+			"power": 99.8
+		},
+		"metadata": {
+			"isoCode": "IN-GA"
+		}
+	},
+	{
+		"id": "tamil-nadu",
+		"name": "Tamil Nadu",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "7.6 Cr",
+		"gdpText": "\u20b924.8 L Cr",
+		"metrics": {
+			"overall": 71.2,
+			"population": 67.4,
+			"infrastructure": 76.8,
+			"health": 76.5,
+			"education": 68.4,
+			"agriculture": 51.1,
+			"connectivity": 63.1,
+			"power": 98.2
+		},
+		"metadata": {
+			"isoCode": "IN-TN"
+		}
+	},
+	{
+		"id": "delhi",
+		"name": "Delhi",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "1.9 Cr",
+		"gdpText": "\u20b910.4 L Cr",
+		"metrics": {
+			"overall": 68.3,
+			"population": 63.5,
+			"infrastructure": 74.2,
+			"health": 78.4,
+			"education": 80.2,
+			"agriculture": 35.0,
+			"connectivity": 75.6,
+			"power": 98.0
+		},
+		"metadata": {
+			"isoCode": "IN-DL"
+		}
+	},
+	{
+		"id": "punjab",
+		"name": "Punjab",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.0 Cr",
+		"gdpText": "\u20b96.8 L Cr",
+		"metrics": {
+			"overall": 72.6,
+			"population": 71.5,
+			"infrastructure": 63.6,
+			"health": 77.2,
+			"education": 69.5,
+			"agriculture": 86.7,
+			"connectivity": 80.4,
+			"power": 99.0
+		},
+		"metadata": {
+			"isoCode": "IN-PB"
+		}
+	},
+	{
+		"id": "maharashtra",
+		"name": "Maharashtra",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "12.6 Cr",
+		"gdpText": "\u20b938.8 L Cr",
+		"metrics": {
+			"overall": 62.8,
+			"population": 57.2,
+			"infrastructure": 68.8,
+			"health": 71.8,
+			"education": 60.6,
+			"agriculture": 42.3,
+			"connectivity": 69.5,
+			"power": 96.8
+		},
+		"metadata": {
+			"isoCode": "IN-MH"
+		}
+	},
+	{
+		"id": "karnataka",
+		"name": "Karnataka",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "6.7 Cr",
+		"gdpText": "\u20b922.4 L Cr",
+		"metrics": {
+			"overall": 69.9,
+			"population": 68.3,
+			"infrastructure": 74.3,
+			"health": 74.2,
+			"education": 67.0,
+			"agriculture": 52.8,
+			"connectivity": 77.4,
+			"power": 97.6
+		},
+		"metadata": {
+			"isoCode": "IN-KA"
+		}
+	},
+	{
+		"id": "gujarat",
+		"name": "Gujarat",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "6.8 Cr",
+		"gdpText": "\u20b922.1 L Cr",
+		"metrics": {
+			"overall": 66.0,
+			"population": 63.0,
+			"infrastructure": 71.0,
+			"health": 73.5,
+			"education": 63.4,
+			"agriculture": 48.0,
+			"connectivity": 58.7,
+			"power": 98.4
+		},
+		"metadata": {
+			"isoCode": "IN-GJ"
+		}
+	},
+	{
+		"id": "himachal-pradesh",
+		"name": "Himachal Pradesh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.75 Cr",
+		"gdpText": "\u20b91.9 L Cr",
+		"metrics": {
+			"overall": 62.1,
+			"population": 57.7,
+			"infrastructure": 54.9,
+			"health": 72.0,
+			"education": 59.9,
+			"agriculture": 43.2,
+			"connectivity": 54.6,
+			"power": 95.6
+		},
+		"metadata": {
+			"isoCode": "IN-HP"
+		}
+	},
+	{
+		"id": "telangana",
+		"name": "Telangana",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.8 Cr",
+		"gdpText": "\u20b913.1 L Cr",
+		"metrics": {
+			"overall": 67.2,
+			"population": 65.8,
+			"infrastructure": 58.9,
+			"health": 72.5,
+			"education": 64.4,
+			"agriculture": 50.9,
+			"connectivity": 60.5,
+			"power": 97.4
+		},
+		"metadata": {
+			"isoCode": "IN-TG"
+		}
+	},
+	{
+		"id": "sikkim",
+		"name": "Sikkim",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.07 Cr",
+		"gdpText": "\u20b90.42 L Cr",
+		"metrics": {
+			"overall": 67.4,
+			"population": 66.5,
+			"infrastructure": 58.9,
+			"health": 71.2,
+			"education": 64.5,
+			"agriculture": 51.7,
+			"connectivity": 60.8,
+			"power": 94.8
+		},
+		"metadata": {
+			"isoCode": "IN-SK"
+		}
+	},
+	{
+		"id": "andhra-pradesh",
+		"name": "Andhra Pradesh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "5.3 Cr",
+		"gdpText": "\u20b913.5 L Cr",
+		"metrics": {
+			"overall": 66.6,
+			"population": 66.3,
+			"infrastructure": 58.2,
+			"health": 70.8,
+			"education": 63.7,
+			"agriculture": 51.8,
+			"connectivity": 60.3,
+			"power": 97.2
+		},
+		"metadata": {
+			"isoCode": "IN-AP"
+		}
+	},
+	{
+		"id": "haryana",
+		"name": "Haryana",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "2.8 Cr",
+		"gdpText": "\u20b99.5 L Cr",
+		"metrics": {
+			"overall": 59.8,
+			"population": 57.1,
+			"infrastructure": 52.6,
+			"health": 65.4,
+			"education": 57.5,
+			"agriculture": 70.7,
+			"connectivity": 53.2,
+			"power": 95.8
+		},
+		"metadata": {
+			"isoCode": "IN-HR"
+		}
+	},
+	{
+		"id": "west-bengal",
+		"name": "West Bengal",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "10.1 Cr",
+		"gdpText": "\u20b917.8 L Cr",
+		"metrics": {
+			"overall": 53.1,
+			"population": 47.9,
+			"infrastructure": 47.1,
+			"health": 56.2,
+			"education": 51.3,
+			"agriculture": 35.2,
+			"connectivity": 46.2,
+			"power": 86.4
+		},
+		"metadata": {
+			"isoCode": "IN-WB"
+		}
+	},
+	{
+		"id": "uttarakhand",
+		"name": "Uttarakhand",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "1.1 Cr",
+		"gdpText": "\u20b93.0 L Cr",
+		"metrics": {
+			"overall": 52.2,
+			"population": 47.1,
+			"infrastructure": 46.3,
+			"health": 58.5,
+			"education": 50.5,
+			"agriculture": 35.0,
+			"connectivity": 45.4,
+			"power": 93.4
+		},
+		"metadata": {
+			"isoCode": "IN-UT"
+		}
+	},
+	{
+		"id": "mizoram",
+		"name": "Mizoram",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.12 Cr",
+		"gdpText": "\u20b90.32 L Cr",
+		"metrics": {
+			"overall": 56.3,
+			"population": 53.8,
+			"infrastructure": 49.5,
+			"health": 62.4,
+			"education": 65.5,
+			"agriculture": 41.0,
+			"connectivity": 50.1,
+			"power": 79.8
+		},
+		"metadata": {
+			"isoCode": "IN-MZ"
+		}
+	},
+	{
+		"id": "jammu-and-kashmir",
+		"name": "Jammu and Kashmir",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "1.3 Cr",
+		"gdpText": "\u20b92.2 L Cr",
+		"metrics": {
+			"overall": 58.6,
+			"population": 58.1,
+			"infrastructure": 51.2,
+			"health": 63.8,
+			"education": 56.0,
+			"agriculture": 45.3,
+			"connectivity": 52.9,
+			"power": 91.2
+		},
+		"metadata": {
+			"isoCode": "IN-JK"
+		}
+	},
+	{
+		"id": "tripura",
+		"name": "Tripura",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.41 Cr",
+		"gdpText": "\u20b90.72 L Cr",
+		"metrics": {
+			"overall": 53.7,
+			"population": 51.2,
+			"infrastructure": 47.2,
+			"health": 58.4,
+			"education": 51.6,
+			"agriculture": 39.0,
+			"connectivity": 47.8,
+			"power": 82.4
+		},
+		"metadata": {
+			"isoCode": "IN-TR"
+		}
+	},
+	{
+		"id": "rajasthan",
+		"name": "Rajasthan",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "8.1 Cr",
+		"gdpText": "\u20b914.1 L Cr",
+		"metrics": {
+			"overall": 55.8,
+			"population": 54.9,
+			"infrastructure": 48.8,
+			"health": 60.5,
+			"education": 53.4,
+			"agriculture": 42.6,
+			"connectivity": 50.3,
+			"power": 89.5
+		},
+		"metadata": {
+			"isoCode": "IN-RJ"
+		}
+	},
+	{
+		"id": "meghalaya",
+		"name": "Meghalaya",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.33 Cr",
+		"gdpText": "\u20b90.46 L Cr",
+		"metrics": {
+			"overall": 54.0,
+			"population": 53.2,
+			"infrastructure": 47.3,
+			"health": 57.8,
+			"education": 51.7,
+			"agriculture": 41.3,
+			"connectivity": 48.7,
+			"power": 80.6
+		},
+		"metadata": {
+			"isoCode": "IN-ML"
+		}
+	},
+	{
+		"id": "manipur",
+		"name": "Manipur",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.31 Cr",
+		"gdpText": "\u20b90.42 L Cr",
+		"metrics": {
+			"overall": 50.2,
+			"population": 47.9,
+			"infrastructure": 44.1,
+			"health": 54.2,
+			"education": 48.2,
+			"agriculture": 36.5,
+			"connectivity": 44.6,
+			"power": 81.2
+		},
+		"metadata": {
+			"isoCode": "IN-MN"
+		}
+	},
+	{
+		"id": "assam",
+		"name": "Assam",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.5 Cr",
+		"gdpText": "\u20b94.6 L Cr",
+		"metrics": {
+			"overall": 46.3,
+			"population": 42.5,
+			"infrastructure": 40.9,
+			"health": 49.8,
+			"education": 44.6,
+			"agriculture": 35.0,
+			"connectivity": 40.5,
+			"power": 78.6
+		},
+		"metadata": {
+			"isoCode": "IN-AS"
+		}
+	},
+	{
+		"id": "madhya-pradesh",
+		"name": "Madhya Pradesh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "8.5 Cr",
+		"gdpText": "\u20b912.2 L Cr",
+		"metrics": {
+			"overall": 53.4,
+			"population": 53.7,
+			"infrastructure": 46.6,
+			"health": 59.2,
+			"education": 51.0,
+			"agriculture": 64.2,
+			"connectivity": 48.6,
+			"power": 88.2
+		},
+		"metadata": {
+			"isoCode": "IN-MP"
+		}
+	},
+	{
+		"id": "chhattisgarh",
+		"name": "Chhattisgarh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.0 Cr",
+		"gdpText": "\u20b94.5 L Cr",
+		"metrics": {
+			"overall": 49.5,
+			"population": 48.4,
+			"infrastructure": 43.4,
+			"health": 53.6,
+			"education": 47.5,
+			"agriculture": 37.4,
+			"connectivity": 44.5,
+			"power": 87.6
+		},
+		"metadata": {
+			"isoCode": "IN-CG"
+		}
+	},
+	{
+		"id": "odisha",
+		"name": "Odisha",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "4.6 Cr",
+		"gdpText": "\u20b97.9 L Cr",
+		"metrics": {
+			"overall": 50.6,
+			"population": 50.5,
+			"infrastructure": 44.2,
+			"health": 56.4,
+			"education": 48.4,
+			"agriculture": 39.5,
+			"connectivity": 45.9,
+			"power": 85.8
+		},
+		"metadata": {
+			"isoCode": "IN-OR"
+		}
+	},
+	{
+		"id": "nagaland",
+		"name": "Nagaland",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.22 Cr",
+		"gdpText": "\u20b90.37 L Cr",
+		"metrics": {
+			"overall": 41.8,
+			"population": 40.0,
+			"infrastructure": 40.0,
+			"health": 44.2,
+			"education": 40.4,
+			"agriculture": 35.0,
+			"connectivity": 40.0,
+			"power": 74.6
+		},
+		"metadata": {
+			"isoCode": "IN-NL"
+		}
+	},
+	{
+		"id": "arunachal-pradesh",
+		"name": "Arunachal Pradesh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.16 Cr",
+		"gdpText": "\u20b90.35 L Cr",
+		"metrics": {
+			"overall": 48.9,
+			"population": 48.8,
+			"infrastructure": 42.7,
+			"health": 52.8,
+			"education": 46.7,
+			"agriculture": 38.2,
+			"connectivity": 44.3,
+			"power": 75.8
+		},
+		"metadata": {
+			"isoCode": "IN-AR"
+		}
+	},
+	{
+		"id": "uttar-pradesh",
+		"name": "Uttar Pradesh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "23.5 Cr",
+		"gdpText": "\u20b922.5 L Cr",
+		"metrics": {
+			"overall": 42.0,
+			"population": 40.0,
+			"infrastructure": 40.0,
+			"health": 45.2,
+			"education": 40.5,
+			"agriculture": 49.2,
+			"connectivity": 40.0,
+			"power": 76.2
+		},
+		"metadata": {
+			"isoCode": "IN-UP"
+		}
+	},
+	{
+		"id": "bihar",
+		"name": "Bihar",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "12.7 Cr",
+		"gdpText": "\u20b97.5 L Cr",
+		"metrics": {
+			"overall": 40.0,
+			"population": 40.0,
+			"infrastructure": 40.0,
+			"health": 40.0,
+			"education": 40.0,
+			"agriculture": 45.7,
+			"connectivity": 40.0,
+			"power": 72.4
+		},
+		"metadata": {
+			"isoCode": "IN-BR"
+		}
+	},
+	{
+		"id": "jharkhand",
+		"name": "Jharkhand",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "3.9 Cr",
+		"gdpText": "\u20b94.2 L Cr",
+		"metrics": {
+			"overall": 43.5,
+			"population": 43.1,
+			"infrastructure": 40.0,
+			"health": 46.8,
+			"education": 41.6,
+			"agriculture": 35.0,
+			"connectivity": 40.0,
+			"power": 77.4
+		},
+		"metadata": {
+			"isoCode": "IN-JH"
+		}
+	},
+	{
+		"id": "chandigarh",
+		"name": "Chandigarh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.12 Cr",
+		"gdpText": "\u20b90.48 L Cr",
+		"metrics": {
+			"overall": 72.0,
+			"population": 68.2,
+			"infrastructure": 63.4,
+			"health": 79.2,
+			"education": 84.1,
+			"agriculture": 51.7,
+			"connectivity": 63.9,
+			"power": 98.9
+		},
+		"metadata": {
+			"isoCode": "IN-CH"
+		}
+	},
+	{
+		"id": "puducherry",
+		"name": "Puducherry",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.15 Cr",
+		"gdpText": "\u20b90.28 L Cr",
+		"metrics": {
+			"overall": 68.5,
+			"population": 64.9,
+			"infrastructure": 60.3,
+			"health": 82.4,
+			"education": 65.9,
+			"agriculture": 49.2,
+			"connectivity": 60.8,
+			"power": 98.6
+		},
+		"metadata": {
+			"isoCode": "IN-PY"
+		}
+	},
+	{
+		"id": "lakshadweep",
+		"name": "Lakshadweep",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.007 Cr",
+		"gdpText": "\u20b90.02 L Cr",
+		"metrics": {
+			"overall": 57.5,
+			"population": 52.1,
+			"infrastructure": 51.0,
+			"health": 59.8,
+			"education": 55.5,
+			"agriculture": 38.4,
+			"connectivity": 50.1,
+			"power": 83.6
+		},
+		"metadata": {
+			"isoCode": "IN-LD"
+		}
+	},
+	{
+		"id": "dadra-and-nagar-haveli-and-daman-and-diu",
+		"name": "Dadra & Nagar Haveli & Daman & Diu",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.06 Cr",
+		"gdpText": "\u20b90.24 L Cr",
+		"metrics": {
+			"overall": 60.7,
+			"population": 58.0,
+			"infrastructure": 53.4,
+			"health": 64.2,
+			"education": 58.3,
+			"agriculture": 44.2,
+			"connectivity": 54.0,
+			"power": 94.6
+		},
+		"metadata": {
+			"isoCode": "IN-DH"
+		}
+	},
+	{
+		"id": "andaman-and-nicobar-islands",
+		"name": "Andaman & Nicobar Islands",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.04 Cr",
+		"gdpText": "\u20b90.12 L Cr",
+		"metrics": {
+			"overall": 56.0,
+			"population": 51.8,
+			"infrastructure": 49.5,
+			"health": 58.2,
+			"education": 53.9,
+			"agriculture": 38.7,
+			"connectivity": 49.2,
+			"power": 84.2
+		},
+		"metadata": {
+			"isoCode": "IN-AN"
+		}
+	},
+	{
+		"id": "ladakh",
+		"name": "Ladakh",
+		"level": "state",
+		"parentId": "india",
+		"populationText": "0.03 Cr",
+		"gdpText": "\u20b90.18 L Cr",
+		"metrics": {
+			"overall": 59.4,
+			"population": 58.9,
+			"infrastructure": 52.0,
+			"health": 62.6,
+			"education": 56.9,
+			"agriculture": 45.9,
+			"connectivity": 53.7,
+			"power": 90.8
+		},
+		"metadata": {
+			"isoCode": "IN-LA"
+		}
+	}
 ]
