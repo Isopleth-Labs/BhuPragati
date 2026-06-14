@@ -6,7 +6,7 @@ import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 const config = defineConfig({
-	base: process.env.NODE_ENV === "production" ? "/better-bharat-map/" : "/",
+	base: process.env.NODE_ENV === "production" ? "/bhupragati/" : "/",
 	resolve: { tsconfigPaths: true },
 	plugins: [
 		devtools(),

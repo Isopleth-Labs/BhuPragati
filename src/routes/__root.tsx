@@ -13,6 +13,14 @@ interface MyRouterContext {
 	queryClient: QueryClient;
 }
 
+const SITE_URL =
+  import.meta.env.PROD
+    ? "https://<org>.github.io/bhupragati"
+    : "http://localhost:3000";
+
+SITE_URL;
+
+
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	head: () => ({
 		meta: [
@@ -24,7 +32,55 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "BhuPragati",
+			},
+			{
+				name: "description",
+				content: "Infrastructure intelligence platform for a better Bharat",
+			},
+
+			// Open Graph (Facebook / LinkedIn / Discord)
+			{
+				property: "og:title",
+				content: "BhuPragati",
+			},
+			{
+				property: "og:description",
+				content: "Explore infrastructure and development data across India",
+			},
+			{
+				property: "og:image",
+				content: `${SITE_URL}/og-image.png`,
+			},
+			{
+				property: "og:url",
+				content: `${SITE_URL}`,
+			},
+			{
+				property: "og:type",
+				content: "website",
+			},
+
+			// Twitter / X cards
+			{
+				name: "twitter:card",
+				content: "summary_large_image",
+			},
+			{
+				name: "twitter:title",
+				content: "BhuPragati",
+			},
+			{
+				name: "twitter:description",
+				content: "Explore infrastructure and development data across India",
+			},
+			{
+				name: "twitter:image",
+				content: `${SITE_URL}/og-image.png`,
+			},
+			{
+				name: "twitter:url",
+				content: `${SITE_URL}`,
 			},
 		],
 		links: [
