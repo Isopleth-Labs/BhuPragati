@@ -13,13 +13,11 @@ interface MyRouterContext {
 	queryClient: QueryClient;
 }
 
-const SITE_URL =
-  import.meta.env.PROD
-    ? "https://<org>.github.io/bhupragati"
-    : "http://localhost:3000";
+const SITE_URL = import.meta.env.PROD
+	? "https://<org>.github.io/bhupragati"
+	: "http://localhost:3000";
 
 SITE_URL;
-
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
 	head: () => ({
