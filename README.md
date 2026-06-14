@@ -1,4 +1,4 @@
-# Better Bharat Map
+# BhuPragati
 
 ## Infrastructure Intelligence for a Better Bharat
 
