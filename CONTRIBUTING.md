@@ -1,4 +1,4 @@
-# Contributing to Better Bharat Map
+# Contributing to BhuPragati
 
 Thank you for your interest in contributing to Better Bharat Map! We welcome bug reports, feature requests, documentation improvements, and code contributions.
 
