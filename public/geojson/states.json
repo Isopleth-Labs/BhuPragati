@@ -1,5 +1,5 @@
 {
-  "UttarPradesh": [
+  "Uttar Pradesh": [
     "Agra",
     "Aligarh",
     "Prayagraj",
@@ -76,7 +76,7 @@
     "Unnao",
     "Varanasi"
   ],
-  "MadhyaPradesh": [
+  "Madhya Pradesh": [
     "Agar",
     "Alirajpur",
     "Anuppur",
@@ -166,7 +166,7 @@
     "Tonk",
     "Udaipur"
   ],
-  "TamilNadu": [
+  "Tamil Nadu": [
     "Ariyalur",
     "Chengalpattu",
     "Chennai",
@@ -206,7 +206,7 @@
     "Viluppuram",
     "Virudhunagar"
   ],
-  "Bhar": [
+  "Bihar": [
     "Araria",
     "Arwal",
     "Aurangabad",
@@ -480,7 +480,7 @@
     "Subarnapur",
     "Sundargarh"
   ],
-  "AndhraPradesh": [
+  "Andhra Pradesh": [
     "Anantapur",
     "Chittoor",
     "East Godavari",
@@ -495,7 +495,7 @@
     "West Godavari",
     "Y.S.R. Kadapa"
   ],
-  "ArunachalPradesh": [
+  "Arunachal Pradesh": [
     "Anjaw",
     "Changlang",
     "Dibang Valley",
@@ -548,7 +548,7 @@
     "Simdega",
     "West Singhbhum"
   ],
-  "WestBengal": [
+  "West Bengal": [
     "Alipurduar",
     "Bankura",
     "Birbhum",
@@ -620,7 +620,7 @@
     "Sonipat",
     "Yamunanagar"
   ],
-  "JammuAndKashmir": [
+  "Jammu And Kashmir": [
     "Anantnag",
     "Bandipore",
     "Baramula",
@@ -673,7 +673,7 @@
     "Udham Singh Nagar",
     "Uttarkashi"
   ],
-  "HimachalPradesh": [
+  "Himachal Pradesh": [
     "Bilaspur",
     "Chamba",
     "Hamirpur",
@@ -770,12 +770,12 @@
 
   "Lakshadweep": ["Lakshadweep"],
 
-  "AndamanAndNicobarIslands": [
+  "Andaman And Nicobar Islands": [
     "Nicobars",
     "North & Middle Andaman",
     "South Andaman"
   ],
-  "DadraAndNagarHaveliAndDamanAndDiu": ["Dadra & Nagar Haveli", "Daman", "Diu"],
+  "Dadra And Nagar Haveli And Daman And Diu": ["Dadra & Nagar Haveli", "Daman", "Diu"],
   "Mizoram": [
     "Aizawl",
     "Champhai",
