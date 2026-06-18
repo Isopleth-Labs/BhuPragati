@@ -1,5 +1,3 @@
-import React from "react";
-
 const CONTRIBUTORS = [
 	{
 		colorClass: "contributor-card__icon--green",
@@ -91,7 +89,7 @@ const CONTRIBUTORS = [
 			</svg>
 		),
 	},
-];
+]
 
 function Contributors() {
 	return (
@@ -129,7 +127,7 @@ function Contributors() {
 				))}
 			</div>
 		</section>
-	);
+	)
 }
 
-export default Contributors;
+export default Contributors

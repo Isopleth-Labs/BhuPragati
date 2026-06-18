@@ -1,5 +1,3 @@
-import React from "react";
-
 const CAPABILITIES = [
 	{
 		icon: (
@@ -109,7 +107,7 @@ const CAPABILITIES = [
 		desc: "Education, employment & more",
 		color: "#ff6b57",
 	},
-];
+]
 
 function CapabilityStrip() {
 	return (
@@ -131,7 +129,7 @@ function CapabilityStrip() {
 				))}
 			</div>
 		</section>
-	);
+	)
 }
 
-export default CapabilityStrip;
+export default CapabilityStrip

@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import { resolveBoundaryProvider } from "@/shared/boundary/registry";
-import { useMapReady } from "../hooks/useMapReady";
+import { useEffect } from "react"
+import { resolveBoundaryProvider } from "@/shared/boundary/registry"
 import {
-	DISTRICT_SOURCE,
 	DISTRICT_FILL_LAYER,
-	DISTRICT_LINE_LAYER,
 	DISTRICT_LABEL_LAYER,
-} from "@/shared/selectors";
+	DISTRICT_LINE_LAYER,
+	DISTRICT_SOURCE,
+} from "@/shared/selectors"
+import { useMapReady } from "../hooks/useMapReady"
 
 interface DistrictBoundaryLayerProps {
-	stateId?: string;
-	onReady?: () => void;
+	stateId?: string
+	onReady?: () => void
 }
 
 // Renders district boundaries for a single state via BoundaryProvider.
@@ -30,17 +30,17 @@ export function DistrictBoundaryLayer({
 	stateId = "bihar",
 	onReady,
 }: DistrictBoundaryLayerProps) {
-	const map = useMapReady();
+	const map = useMapReady()
 
 	useEffect(() => {
-		if (!map) return;
-		let cancelled = false;
+		if (!map) return
+		let cancelled = false
 
-		(async () => {
-			const provider = resolveBoundaryProvider("district");
-			const source = await provider.getSourceDescriptor("district", stateId);
+		;(async () => {
+			const provider = resolveBoundaryProvider("district")
+			const source = await provider.getSourceDescriptor("district", stateId)
 			if (cancelled || !source || source.type !== "geojson" || !source.data) {
-				return;
+				return
 			}
 
 			if (!map.getSource(DISTRICT_SOURCE)) {
@@ -48,7 +48,7 @@ export function DistrictBoundaryLayer({
 					type: "geojson",
 					data: source.data,
 					promoteId: "id",
-				});
+				})
 			}
 
 			if (!map.getLayer(DISTRICT_FILL_LAYER)) {
@@ -67,7 +67,7 @@ export function DistrictBoundaryLayer({
 							0.06,
 						],
 					},
-				});
+				})
 			}
 
 			if (!map.getLayer(DISTRICT_LINE_LAYER)) {
@@ -88,13 +88,13 @@ export function DistrictBoundaryLayer({
 						"line-opacity": [
 							"case",
 							["boolean", ["feature-state", "selected"], false],
-							0.90,
+							0.9,
 							["boolean", ["feature-state", "hover"], false],
 							0.72,
 							0.52,
 						],
 					},
-				});
+				})
 			}
 
 			if (!map.getLayer(DISTRICT_LABEL_LAYER)) {
@@ -112,27 +112,30 @@ export function DistrictBoundaryLayer({
 						"text-halo-color": "#04111c",
 						"text-halo-width": 1,
 					},
-				});
+				})
 			}
 
-			onReady?.();
-		})();
+			onReady?.()
+		})()
 
 		return () => {
-			cancelled = true;
+			cancelled = true
 			// react-map-gl destroys the map via useLayoutEffect, which fires before
 			// useEffect cleanups. Guard with try/catch so switching states (which
 			// triggers this cleanup) is safe, while unmount-during-navigation is too.
 			try {
-				if (map.getLayer(DISTRICT_LABEL_LAYER)) map.removeLayer(DISTRICT_LABEL_LAYER);
-				if (map.getLayer(DISTRICT_LINE_LAYER)) map.removeLayer(DISTRICT_LINE_LAYER);
-				if (map.getLayer(DISTRICT_FILL_LAYER)) map.removeLayer(DISTRICT_FILL_LAYER);
-				if (map.getSource(DISTRICT_SOURCE)) map.removeSource(DISTRICT_SOURCE);
+				if (map.getLayer(DISTRICT_LABEL_LAYER))
+					map.removeLayer(DISTRICT_LABEL_LAYER)
+				if (map.getLayer(DISTRICT_LINE_LAYER))
+					map.removeLayer(DISTRICT_LINE_LAYER)
+				if (map.getLayer(DISTRICT_FILL_LAYER))
+					map.removeLayer(DISTRICT_FILL_LAYER)
+				if (map.getSource(DISTRICT_SOURCE)) map.removeSource(DISTRICT_SOURCE)
 			} catch {
 				// map.style may be undefined if map was already destroyed
 			}
-		};
-	}, [map, stateId, onReady]);
+		}
+	}, [map, stateId, onReady])
 
-	return null;
+	return null
 }

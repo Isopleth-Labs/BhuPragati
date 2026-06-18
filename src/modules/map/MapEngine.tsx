@@ -1,50 +1,58 @@
-import maplibregl, { type LngLatBoundsLike } from "maplibre-gl";
+import maplibregl, { type LngLatBoundsLike } from "maplibre-gl"
 import {
 	forwardRef,
 	memo,
 	type PropsWithChildren,
 	useCallback,
 	useRef,
-} from "react";
+} from "react"
 import MapGL, {
 	AttributionControl,
 	type MapRef,
 	NavigationControl,
 	ScaleControl,
-} from "react-map-gl/maplibre";
-import "maplibre-gl/dist/maplibre-gl.css";
-import { useFitView } from "@/shared/hooks/useFitView";
+} from "react-map-gl/maplibre"
+import "maplibre-gl/dist/maplibre-gl.css"
+import { useFitView } from "@/shared/hooks/useFitView"
 import {
 	INITIAL_VIEW_STATE,
 	MAP_MAX_BOUNDS,
 	MAP_STYLE_URL,
 	MAP_ZOOM_LIMITS,
-} from "@/shared/lib/config/mapConfig";
+} from "@/shared/lib/config/mapConfig"
 
 interface MapEngineProps extends PropsWithChildren {
-	regionId: string;
-	onMapReady?: () => void;
-	maxBounds?: LngLatBoundsLike;
-	zoomLimits?: { min: number; max: number };
-	initialViewState?: { center: [number, number]; zoom: number; pitch?: number; bearing?: number };
+	regionId: string
+	onMapReady?: () => void
+	maxBounds?: LngLatBoundsLike
+	zoomLimits?: { min: number; max: number }
+	initialViewState?: {
+		center: [number, number]
+		zoom: number
+		pitch?: number
+		bearing?: number
+	}
 }
 
 const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
-	({ regionId, onMapReady, maxBounds, zoomLimits, initialViewState, children }, ref) => {
-		const mapRef = useRef<MapRef | null>(null);
+	(
+		{ regionId, onMapReady, maxBounds, zoomLimits, initialViewState, children },
+		ref,
+	) => {
+		const mapRef = useRef<MapRef | null>(null)
 
 		const setMapRef = useCallback(
 			(instance: MapRef | null) => {
-				mapRef.current = instance;
-				if (typeof ref === "function") ref(instance);
-				else if (ref) ref.current = instance;
+				mapRef.current = instance
+				if (typeof ref === "function") ref(instance)
+				else if (ref) ref.current = instance
 			},
 			[ref],
-		);
+		)
 
-		const view = initialViewState ?? INITIAL_VIEW_STATE;
+		const view = initialViewState ?? INITIAL_VIEW_STATE
 
-		useFitView(mapRef, regionId, onMapReady);
+		useFitView(mapRef, regionId, onMapReady)
 
 		return (
 			<div className="gis-map-shell">
@@ -77,10 +85,10 @@ const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
 				<div className="gis-map__focus-glow" aria-hidden="true" />
 				<div className="gis-map__vignette" aria-hidden="true" />
 			</div>
-		);
+		)
 	},
-);
+)
 
-MapEngine.displayName = "MapEngine";
+MapEngine.displayName = "MapEngine"
 
-export default memo(MapEngine);
+export default memo(MapEngine)

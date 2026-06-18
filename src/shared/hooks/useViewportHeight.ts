@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 export function useViewportHeight() {
-	const [height, setHeight] = useState<number | string>("100vh");
+	const [height, setHeight] = useState<number | string>("100vh")
 
 	useEffect(() => {
-		const update = () => setHeight(window.innerHeight);
+		const update = () => setHeight(window.innerHeight)
 
-		update();
+		update()
 
-		window.addEventListener("resize", update);
-		window.addEventListener("orientationchange", update);
+		window.addEventListener("resize", update)
+		window.addEventListener("orientationchange", update)
 
 		return () => {
-			window.removeEventListener("resize", update);
-			window.removeEventListener("orientationchange", update);
-		};
-	}, []);
+			window.removeEventListener("resize", update)
+			window.removeEventListener("orientationchange", update)
+		}
+	}, [])
 
-	return height;
+	return height
 }

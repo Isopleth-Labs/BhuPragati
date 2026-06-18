@@ -5,11 +5,11 @@ const NAV_LINKS = [
 	{ label: "Data Insights", href: "#data-insights" },
 	{ label: "Resources", href: "#resources" },
 	{ label: "Contact", href: "#contact" },
-];
+]
 
 function Navbar() {
 	return (
-		<nav className="navbar" role="navigation" aria-label="Main navigation">
+		<nav className="navbar" aria-label="Main navigation">
 			<a
 				href="#top"
 				className="navbar__brand"
@@ -92,7 +92,7 @@ function Navbar() {
 				))}
 			</ul>
 		</nav>
-	);
+	)
 }
 
-export default Navbar;
+export default Navbar

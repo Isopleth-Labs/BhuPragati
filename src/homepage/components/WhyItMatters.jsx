@@ -1,5 +1,3 @@
-import React from "react";
-
 const INSIGHT_CARDS = [
 	{
 		icon: (
@@ -104,7 +102,7 @@ const INSIGHT_CARDS = [
 		description:
 			"Target resources where they are needed most for equitable development.",
 	},
-];
+]
 
 function WhyItMatters() {
 	return (
@@ -134,7 +132,7 @@ function WhyItMatters() {
 				))}
 			</div>
 		</section>
-	);
+	)
 }
 
-export default WhyItMatters;
+export default WhyItMatters

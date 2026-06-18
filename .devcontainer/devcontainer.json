@@ -1,36 +1,36 @@
 {
-  "name": "Better Bhaarat Maps",
+	"name": "Better Bhaarat Maps",
 
-  "dockerComposeFile": "compose.yaml",
+	"dockerComposeFile": "compose.yaml",
 
-  "service": "app",
+	"service": "app",
 
-  "workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspace",
 
-  "remoteUser": "devuser",
+	"remoteUser": "devuser",
 
-  "shutdownAction": "stopCompose",
+	"shutdownAction": "stopCompose",
 
-  "postCreateCommand": "bun install --frozen-lockfile",
+	"postCreateCommand": "bun install --frozen-lockfile",
 
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "mightbesimon.emoji-icons",
-        "pkief.material-icon-theme",
-        "esbenp.prettier-vscode",
-        "redhat.fabric8-analytics",
-        "eamodio.gitlens",
-        "GitHub.copilot-chat",
-        "github.vscode-pull-request-github"
-      ],
-      "settings": {
-        "editor.formatOnSave": true,
-        "git.autofetch": true,
-        "vite.server.watch.usePolling": false
-      }
-    }
-  },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mightbesimon.emoji-icons",
+				"pkief.material-icon-theme",
+				"esbenp.prettier-vscode",
+				"redhat.fabric8-analytics",
+				"eamodio.gitlens",
+				"GitHub.copilot-chat",
+				"github.vscode-pull-request-github"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"git.autofetch": true,
+				"vite.server.watch.usePolling": false
+			}
+		}
+	},
 
-  "forwardPorts": [3000]
+	"forwardPorts": [3000]
 }

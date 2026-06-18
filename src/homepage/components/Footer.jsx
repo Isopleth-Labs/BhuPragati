@@ -1,5 +1,3 @@
-import React from "react";
-
 const COLUMNS = [
 	{
 		heading: "PLATFORM",
@@ -28,7 +26,7 @@ const COLUMNS = [
 			{ label: "Privacy Policy", href: "#privacy" },
 		],
 	},
-];
+]
 
 const SOCIAL_LINKS = [
 	{
@@ -73,7 +71,7 @@ const SOCIAL_LINKS = [
 			</svg>
 		),
 	},
-];
+]
 
 function Footer() {
 	return (
@@ -206,7 +204,7 @@ function Footer() {
 				</div>
 			</div>
 		</footer>
-	);
+	)
 }
 
-export default Footer;
+export default Footer

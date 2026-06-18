@@ -1,7 +1,7 @@
-import EarthViewer from "./EarthViewer";
+import EarthViewer from "./EarthViewer"
 
 function EarthScene({ className }) {
-	return <EarthViewer className={className} />;
+	return <EarthViewer className={className} />
 }
 
-export default EarthScene;
+export default EarthScene

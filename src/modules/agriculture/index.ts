@@ -1,2 +1,2 @@
-export { addAgricultureOverlay } from "./overlay";
-export { agricultureData } from "../../data/geojson";
+export { agricultureData } from "../../data/geojson"
+export { addAgricultureOverlay } from "./overlay"

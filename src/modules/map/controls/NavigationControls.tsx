@@ -1,18 +1,18 @@
-import { Compass, Minus, Plus } from "lucide-react";
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { type RefObject, useEffect, useState } from "react";
-import type { MapRef } from "react-map-gl/maplibre";
-import { Button } from "@/shared/components/ui/button";
-import { cn } from "@/shared/lib/utils";
+import { Compass, Minus, Plus } from "lucide-react"
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { type RefObject, useEffect, useState } from "react"
+import type { MapRef } from "react-map-gl/maplibre"
+import { Button } from "@/shared/components/ui/button"
+import { cn } from "@/shared/lib/utils"
 
 interface NavigationControlsProps {
-	isMapReady: boolean;
-	mapRef: RefObject<MapRef | null>;
-	className?: string;
+	isMapReady: boolean
+	mapRef: RefObject<MapRef | null>
+	className?: string
 }
 
 function getMapInstance(mapRef: RefObject<MapRef | null>): MaplibreMap | null {
-	return mapRef.current?.getMap() ?? null;
+	return mapRef.current?.getMap() ?? null
 }
 
 export function NavigationControls({
@@ -20,21 +20,21 @@ export function NavigationControls({
 	mapRef,
 	className,
 }: NavigationControlsProps) {
-	const [bearing, setBearing] = useState(0);
+	const [bearing, setBearing] = useState(0)
 
 	useEffect(() => {
-		if (!isMapReady) return;
-		const map = getMapInstance(mapRef);
-		if (!map) return;
+		if (!isMapReady) return
+		const map = getMapInstance(mapRef)
+		if (!map) return
 
-		const onRotate = () => setBearing(map.getBearing());
-		setBearing(map.getBearing());
-		map.on("rotate", onRotate);
+		const onRotate = () => setBearing(map.getBearing())
+		setBearing(map.getBearing())
+		map.on("rotate", onRotate)
 
 		return () => {
-			map.off("rotate", onRotate);
-		};
-	}, [isMapReady, mapRef]);
+			map.off("rotate", onRotate)
+		}
+	}, [isMapReady, mapRef])
 
 	return (
 		<div
@@ -91,5 +91,5 @@ export function NavigationControls({
 				</Button>
 			</fieldset>
 		</div>
-	);
+	)
 }

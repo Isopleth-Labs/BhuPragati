@@ -1,5 +1,3 @@
-import React from "react";
-
 export const EarthIcon = () => (
 	<svg
 		viewBox="0 0 24 24"
@@ -15,7 +13,7 @@ export const EarthIcon = () => (
 		<line x1="4.93" y1="6" x2="19.07" y2="6" />
 		<line x1="4.93" y1="18" x2="19.07" y2="18" />
 	</svg>
-);
+)
 
 export const IndiaIcon = () => (
 	<svg
@@ -68,7 +66,7 @@ export const IndiaIcon = () => (
 		<circle cx="450" cy="350" r="12" fill="currentColor" stroke="none" />
 		<circle cx="150" cy="200" r="12" fill="currentColor" stroke="none" />
 	</svg>
-);
+)
 
 export const StateIcon = () => (
 	<svg
@@ -85,7 +83,7 @@ export const StateIcon = () => (
 		<circle cx="180" cy="390" r="4" fill="currentColor" stroke="none" />
 		<circle cx="130" cy="460" r="4" fill="currentColor" stroke="none" />
 	</svg>
-);
+)
 
 export const DistrictIcon = () => (
 	<svg
@@ -101,7 +99,7 @@ export const DistrictIcon = () => (
 		<circle cx="125" cy="515" r="0.6" fill="currentColor" stroke="none" />
 		<circle cx="118" cy="518" r="0.6" fill="currentColor" stroke="none" />
 	</svg>
-);
+)
 
 export const BlockIcon = () => (
 	<svg
@@ -122,7 +120,7 @@ export const BlockIcon = () => (
 		<circle cx="16" cy="16" r="0.8" fill="currentColor" stroke="none" />
 		<circle cx="8" cy="15" r="0.8" fill="currentColor" stroke="none" />
 	</svg>
-);
+)
 
 export const PanchayatIcon = () => (
 	<svg
@@ -140,7 +138,7 @@ export const PanchayatIcon = () => (
 		<line x1="6.5" y1="14" x2="8.5" y2="14" />
 		<line x1="15.5" y1="14" x2="17.5" y2="14" />
 	</svg>
-);
+)
 
 export const VillageIcon = () => (
 	<svg
@@ -157,4 +155,4 @@ export const VillageIcon = () => (
 		<path d="M 4.5 20 V 16 H 8.5 V 20" />
 		<path d="M 15.5 20 V 17 H 18.5 V 20" />
 	</svg>
-);
+)

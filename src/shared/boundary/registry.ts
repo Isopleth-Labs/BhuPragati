@@ -1,26 +1,26 @@
-import levelProviders from "./config/levelProviders.json";
-import { ApiBoundaryProvider } from "./providers/ApiBoundaryProvider";
-import { GeoboundaryProvider } from "./providers/GeoboundaryProvider";
-import { GeoJsonBoundaryProvider } from "./providers/GeoJsonBoundaryProvider";
-import { PmtilesBoundaryProvider } from "./providers/PmtilesBoundaryProvider";
-import type { BoundaryProvider, RegionLevel, RegionMeta } from "./types";
+import levelProviders from "./config/levelProviders.json"
+import { ApiBoundaryProvider } from "./providers/ApiBoundaryProvider"
+import { GeoboundaryProvider } from "./providers/GeoboundaryProvider"
+import { GeoJsonBoundaryProvider } from "./providers/GeoJsonBoundaryProvider"
+import { PmtilesBoundaryProvider } from "./providers/PmtilesBoundaryProvider"
+import type { BoundaryProvider, RegionLevel, RegionMeta } from "./types"
 
 const providers: Record<string, BoundaryProvider> = {
 	geojson: GeoJsonBoundaryProvider,
 	pmtiles: PmtilesBoundaryProvider,
 	geoboundary: GeoboundaryProvider,
 	api: ApiBoundaryProvider,
-};
+}
 
 // Single entry point — feature code must call this instead of importing
 // a concrete provider or fetching boundary files directly.
 export function resolveBoundaryProvider(level: RegionLevel): BoundaryProvider {
-	const providerId = (levelProviders as Record<string, string>)[level];
-	const provider = providers[providerId];
+	const providerId = (levelProviders as Record<string, string>)[level]
+	const provider = providers[providerId]
 	if (!provider) {
-		throw new Error(`No BoundaryProvider configured for level "${level}".`);
+		throw new Error(`No BoundaryProvider configured for level "${level}".`)
 	}
-	return provider;
+	return provider
 }
 
 // getRegionMeta() takes no level — callers who only have a regionId (e.g.
@@ -30,16 +30,16 @@ export function resolveBoundaryProvider(level: RegionLevel): BoundaryProvider {
 export async function getRegionMetaAnyProvider(
 	regionId: string,
 ): Promise<RegionMeta | null> {
-	const seen = new Set<BoundaryProvider>();
+	const seen = new Set<BoundaryProvider>()
 	for (const providerId of Object.values(
 		levelProviders as Record<string, string>,
 	)) {
-		const provider = providers[providerId];
-		if (!provider || seen.has(provider)) continue;
-		seen.add(provider);
+		const provider = providers[providerId]
+		if (!provider || seen.has(provider)) continue
+		seen.add(provider)
 
-		const meta = await provider.getRegionMeta(regionId);
-		if (meta) return meta;
+		const meta = await provider.getRegionMeta(regionId)
+		if (meta) return meta
 	}
-	return null;
+	return null
 }

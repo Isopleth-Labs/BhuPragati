@@ -1,12 +1,12 @@
-import "./homepage.css";
-import Contributors from "./components/Contributors";
-import Footer from "./components/Footer";
-import Hero from "./components/Hero";
-import Infrastructure from "./components/Infrastructure";
-import Navbar from "./components/Navbar";
-import Navigation from "./components/Navigation";
-import Simulation from "./components/Simulation";
-import WhyItMatters from "./components/WhyItMatters";
+import "./homepage.css"
+import Contributors from "./components/Contributors"
+import Footer from "./components/Footer"
+import Hero from "./components/Hero"
+import Infrastructure from "./components/Infrastructure"
+import Navbar from "./components/Navbar"
+import Navigation from "./components/Navigation"
+import Simulation from "./components/Simulation"
+import WhyItMatters from "./components/WhyItMatters"
 
 export default function Homepage() {
 	return (
@@ -24,5 +24,5 @@ export default function Homepage() {
 			<Contributors />
 			<Footer />
 		</div>
-	);
+	)
 }

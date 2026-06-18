@@ -1,29 +1,28 @@
-import { Suspense, useState } from "react";
-import useActiveLayers from "@/shared/hooks/useActiveLayers";
-import { AdministrativeBoundaryLayer } from "@/modules/map/layers/AdministrativeBoundaryLayer";
-import { BasemapLayer } from "@/modules/map/layers/BasemapLayer";
-import { CommandCenterLayer } from "@/modules/map/layers/CommandCenterLayer";
-import { DistrictBoundaryLayer } from "@/modules/map/layers/DistrictBoundaryLayer";
-import { DistrictSelectionController } from "@/modules/map/controllers/DistrictSelectionController";
-import { InfrastructureLayer } from "@/modules/map/layers/InfrastructureLayer";
-import { OsmOverlayLayer } from "@/modules/map/layers/OsmOverlayLayer";
-import { FeaturePopupController } from "@/modules/map/controllers/FeaturePopupController";
-import { FocusPulseController } from "@/modules/map/controllers/FocusPulseController";
-import { IntelligenceSoftenController } from "@/modules/map/controllers/IntelligenceSoftenController";
-import { LabelTuningController } from "@/modules/map/controllers/LabelTuningController";
-import TopBar from "./panels/TopBar";
-
-import { LazyMapEngine as MapEngine } from "@/modules/map/LazyMapEngine";
+import { Suspense, useState } from "react"
+import { DistrictSelectionController } from "@/modules/map/controllers/DistrictSelectionController"
+import { FeaturePopupController } from "@/modules/map/controllers/FeaturePopupController"
+import { FocusPulseController } from "@/modules/map/controllers/FocusPulseController"
+import { IntelligenceSoftenController } from "@/modules/map/controllers/IntelligenceSoftenController"
+import { LabelTuningController } from "@/modules/map/controllers/LabelTuningController"
+import { LazyMapEngine as MapEngine } from "@/modules/map/LazyMapEngine"
+import { AdministrativeBoundaryLayer } from "@/modules/map/layers/AdministrativeBoundaryLayer"
+import { BasemapLayer } from "@/modules/map/layers/BasemapLayer"
+import { CommandCenterLayer } from "@/modules/map/layers/CommandCenterLayer"
+import { DistrictBoundaryLayer } from "@/modules/map/layers/DistrictBoundaryLayer"
+import { InfrastructureLayer } from "@/modules/map/layers/InfrastructureLayer"
+import { OsmOverlayLayer } from "@/modules/map/layers/OsmOverlayLayer"
+import useActiveLayers from "@/shared/hooks/useActiveLayers"
 import {
 	BIHAR_INITIAL_VIEW_STATE,
 	BIHAR_MAX_BOUNDS,
 	BIHAR_ZOOM_LIMITS,
-} from "@/shared/lib/config/mapConfig";
+} from "@/shared/lib/config/mapConfig"
+import TopBar from "./panels/TopBar"
 
 export default function DashboardShell() {
-	const { activeLayers } = useActiveLayers();
-	const [infraReady, setInfraReady] = useState(false);
-	const [districtReady, setDistrictReady] = useState(false);
+	const { activeLayers } = useActiveLayers()
+	const [infraReady, setInfraReady] = useState(false)
+	const [districtReady, setDistrictReady] = useState(false)
 
 	return (
 		<main className="dashboard">
@@ -50,7 +49,7 @@ export default function DashboardShell() {
 					<DistrictSelectionController
 						ready={districtReady}
 						onDistrictClick={(districtId) => {
-							console.log("[district-selected]", districtId);
+							console.log("[district-selected]", districtId)
 						}}
 					/>
 				</MapEngine>
@@ -60,5 +59,5 @@ export default function DashboardShell() {
 				<TopBar />
 			</div>
 		</main>
-	);
+	)
 }

@@ -1,5 +1,5 @@
-import GlobeViz from "../../components/GlobeViz";
-import CapabilityStrip from "./CapabilityStrip";
+import GlobeViz from "../../components/GlobeViz"
+import CapabilityStrip from "./CapabilityStrip"
 
 const HEALTHCARE_METRICS = [
 	{
@@ -16,7 +16,7 @@ const HEALTHCARE_METRICS = [
 		progress: 82,
 	},
 	{ label: "Critical Districts", value: "284", change: "-3.2%", trend: "down" },
-];
+]
 
 const FLOOD_METRICS = [
 	{ label: "At Risk Districts", value: "312", change: "+5.6%", trend: "alert" },
@@ -33,7 +33,7 @@ const FLOOD_METRICS = [
 		change: "+12.4%",
 		trend: "alert",
 	},
-];
+]
 
 function Sparkline({ tone }) {
 	return (
@@ -44,7 +44,7 @@ function Sparkline({ tone }) {
 		>
 			<path d="M2 21 C18 22 24 17 38 19 S60 25 74 18 96 20 108 10 128 8 148 13" />
 		</svg>
-	);
+	)
 }
 
 function StatPanel({ side, title, type, metrics, linkLabel, href }) {
@@ -86,7 +86,7 @@ function StatPanel({ side, title, type, metrics, linkLabel, href }) {
 				</a>
 			</div>
 		</aside>
-	);
+	)
 }
 
 function Hero() {
@@ -145,7 +145,7 @@ function Hero() {
 
 			<CapabilityStrip />
 		</section>
-	);
+	)
 }
 
-export default Hero;
+export default Hero

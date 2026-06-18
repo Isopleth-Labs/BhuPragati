@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import { addAdministrativeOverlay } from "@/modules/administrative";
-import { useMapReady } from "../hooks/useMapReady";
+import { useEffect } from "react"
+import { addAdministrativeOverlay } from "@/modules/administrative"
+import { useMapReady } from "../hooks/useMapReady"
 
 interface AdministrativeBoundaryLayerProps {
-	onReady?: () => void;
+	onReady?: () => void
 }
 
 export function AdministrativeBoundaryLayer({
 	onReady,
 }: AdministrativeBoundaryLayerProps) {
-	const map = useMapReady();
+	const map = useMapReady()
 
 	useEffect(() => {
-		if (!map) return;
-		addAdministrativeOverlay(map);
-		onReady?.();
-	}, [map, onReady]);
+		if (!map) return
+		addAdministrativeOverlay(map)
+		onReady?.()
+	}, [map, onReady])
 
-	return null;
+	return null
 }

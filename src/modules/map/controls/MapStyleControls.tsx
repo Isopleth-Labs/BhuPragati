@@ -1,14 +1,14 @@
-import { Layers, MapIcon, Moon, Satellite, Sun } from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/shared/components/ui/button";
-import { cn } from "@/shared/lib/utils";
-import type { MapStyleType } from "../MapConstraints";
+import { Layers, MapIcon, Moon, Satellite, Sun } from "lucide-react"
+import { useState } from "react"
+import { Button } from "@/shared/components/ui/button"
+import { cn } from "@/shared/lib/utils"
+import type { MapStyleType } from "../MapConstraints"
 
 interface MapStyleOption {
-	id: MapStyleType;
-	label: string;
-	icon: typeof Moon;
-	swatchClassName: string;
+	id: MapStyleType
+	label: string
+	icon: typeof Moon
+	swatchClassName: string
 }
 
 const MAP_STYLE_OPTIONS: MapStyleOption[] = [
@@ -42,12 +42,12 @@ const MAP_STYLE_OPTIONS: MapStyleOption[] = [
 		icon: Satellite,
 		swatchClassName: "bg-emerald-700",
 	},
-];
+]
 
 interface MapStyleControlsProps {
-	value: MapStyleType;
-	onChange: (style: MapStyleType) => void;
-	className?: string;
+	value: MapStyleType
+	onChange: (style: MapStyleType) => void
+	className?: string
 }
 
 export function MapStyleControls({
@@ -55,21 +55,21 @@ export function MapStyleControls({
 	onChange,
 	className,
 }: MapStyleControlsProps) {
-	const [isMobilePickerOpen, setIsMobilePickerOpen] = useState(false);
+	const [isMobilePickerOpen, setIsMobilePickerOpen] = useState(false)
 
 	const activeOption =
 		MAP_STYLE_OPTIONS.find((option) => option.id === value) ??
-		MAP_STYLE_OPTIONS[0];
-	const ActiveIcon = activeOption.icon;
+		MAP_STYLE_OPTIONS[0]
+	const ActiveIcon = activeOption.icon
 
 	const selectStyle = (style: MapStyleType) => {
-		onChange(style);
-		setIsMobilePickerOpen(false);
-	};
+		onChange(style)
+		setIsMobilePickerOpen(false)
+	}
 
 	const renderStyleButton = (option: MapStyleOption) => {
-		const Icon = option.icon;
-		const isActive = value === option.id;
+		const Icon = option.icon
+		const isActive = value === option.id
 
 		return (
 			<Button
@@ -95,8 +95,8 @@ export function MapStyleControls({
 				</span>
 				<span>{option.label}</span>
 			</Button>
-		);
-	};
+		)
+	}
 
 	return (
 		<div className={cn("absolute bottom-4 left-4 z-50", className)}>
@@ -136,5 +136,5 @@ export function MapStyleControls({
 				</Button>
 			</div>
 		</div>
-	);
+	)
 }

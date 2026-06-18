@@ -1,125 +1,71 @@
 {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Northing Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            85.72,
-            25.78
-          ],
-          [
-            86.48,
-            25.78
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Northing Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            85.72,
-            25.88
-          ],
-          [
-            86.48,
-            25.88
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Northing Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            85.72,
-            25.98
-          ],
-          [
-            86.48,
-            25.98
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Easting Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            86,
-            25.72
-          ],
-          [
-            86,
-            26.08
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Easting Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            86.16,
-            25.72
-          ],
-          [
-            86.16,
-            26.08
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "title": "Easting Scanline",
-        "status": "GIS reference grid"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [
-            86.32,
-            25.72
-          ],
-          [
-            86.32,
-            26.08
-          ]
-        ]
-      }
-    }
-  ]
+	"type": "FeatureCollection",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Northing Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[85.72, 25.78], [86.48, 25.78]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Northing Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[85.72, 25.88], [86.48, 25.88]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Northing Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[85.72, 25.98], [86.48, 25.98]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Easting Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[86, 25.72], [86, 26.08]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Easting Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[86.16, 25.72], [86.16, 26.08]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": {
+				"title": "Easting Scanline",
+				"status": "GIS reference grid"
+			},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [[86.32, 25.72], [86.32, 26.08]]
+			}
+		}
+	]
 }

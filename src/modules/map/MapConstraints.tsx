@@ -1,18 +1,18 @@
-import type maplibregl from "maplibre-gl";
+import type maplibregl from "maplibre-gl"
 
-export const INDIA_CENTER: [number, number] = [78.9629, 22.5937];
+export const INDIA_CENTER: [number, number] = [78.9629, 22.5937]
 
 export const INDIA_BOUNDS: [number, number, number, number] = [
 	68.1, 6.5, 97.4, 37.1,
-];
+]
 
 export const INDIA_MAX_BOUNDS: maplibregl.LngLatBoundsLike = [
 	[55.0, -2.0],
 	[110.0, 45.0],
-];
+]
 
-export const MAP_MIN_ZOOM = 3.0;
-export const MAP_MAX_ZOOM = 18;
+export const MAP_MIN_ZOOM = 3.0
+export const MAP_MAX_ZOOM = 18
 
 export type MapStyleType =
 	| "dark"
@@ -23,7 +23,7 @@ export type MapStyleType =
 	| "fiord"
 	| "stadia_dark"
 	| "stadia_light"
-	| "stadia_satellite";
+	| "stadia_satellite"
 // Map style JSON sheets from CartoDB
 export const MAP_STYLE_URLS: Record<MapStyleType, string> = {
 	dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
@@ -36,6 +36,6 @@ export const MAP_STYLE_URLS: Record<MapStyleType, string> = {
 	stadia_light: "https://tiles.stadiamaps.com/styles/alidade_smooth.json",
 	stadia_satellite:
 		"https://tiles.stadiamaps.com/styles/alidade_satellite.json",
-};
+}
 
-export const MAP_DEFAULT_STYLE: MapStyleType = "dark";
+export const MAP_DEFAULT_STYLE: MapStyleType = "dark"

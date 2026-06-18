@@ -1,5 +1,3 @@
-import React from "react";
-
 const LAYERS = [
 	{
 		icon: (
@@ -127,7 +125,7 @@ const LAYERS = [
 		title: "Electricity",
 		description: "Power access, grid infrastructure and reliability.",
 	},
-];
+]
 
 function Infrastructure() {
 	return (
@@ -153,7 +151,7 @@ function Infrastructure() {
 				))}
 			</div>
 		</section>
-	);
+	)
 }
 
-export default Infrastructure;
+export default Infrastructure

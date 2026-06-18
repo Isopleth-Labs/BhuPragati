@@ -1,2 +1,6 @@
-export { settlements, regionalRivers, infrastructureNodes } from "../../data/regional";
-export { addRegionalOverlays } from "./overlay";
+export {
+	infrastructureNodes,
+	regionalRivers,
+	settlements,
+} from "../../data/regional"
+export { addRegionalOverlays } from "./overlay"

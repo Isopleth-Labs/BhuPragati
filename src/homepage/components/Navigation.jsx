@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 import {
 	BlockIcon,
@@ -8,7 +8,7 @@ import {
 	PanchayatIcon,
 	StateIcon,
 	VillageIcon,
-} from "./Icons";
+} from "./Icons"
 
 const NAV_STEPS = [
 	{
@@ -53,7 +53,7 @@ const NAV_STEPS = [
 		iconClass: "nav-step__icon--village",
 		size: 44,
 	},
-];
+]
 
 function Navigation() {
 	return (
@@ -94,7 +94,7 @@ function Navigation() {
 				</div>
 			</div>
 		</section>
-	);
+	)
 }
 
-export default Navigation;
+export default Navigation

@@ -1,4 +1,4 @@
-import type { BoundaryProvider } from "../types";
+import type { BoundaryProvider } from "../types"
 
 // Interface stub. PMTiles support is Phase 3+ per map_engine.md's library
 // table — not implemented yet. Exists so resolveBoundaryProvider() can be
@@ -8,18 +8,18 @@ export const PmtilesBoundaryProvider: BoundaryProvider = {
 	id: "pmtiles",
 
 	supportsLevel() {
-		return false;
+		return false
 	},
 
 	async getSourceDescriptor() {
-		throw new Error("PmtilesBoundaryProvider is not implemented yet.");
+		throw new Error("PmtilesBoundaryProvider is not implemented yet.")
 	},
 
 	async getRegionMeta() {
-		throw new Error("PmtilesBoundaryProvider is not implemented yet.");
+		throw new Error("PmtilesBoundaryProvider is not implemented yet.")
 	},
 
 	async getChildren() {
-		throw new Error("PmtilesBoundaryProvider is not implemented yet.");
+		throw new Error("PmtilesBoundaryProvider is not implemented yet.")
 	},
-};
+}
