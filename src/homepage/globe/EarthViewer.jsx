@@ -217,10 +217,18 @@ function buildFillGeometry(polygons, radius) {
 		const geom = new THREE.BufferGeometry()
 		const positions = []
 		const _pushRing = (ring) =>
-			ring.forEach((v) => positions.push(v.x, v.y, v.z))
+			ring.forEach((v) => {
+				positions.push(v.x, v.y, v.z)
+			})
 		const remap = []
-		outerPts.forEach((p) => remap.push(p))
-		holePts.forEach((ring) => ring.forEach((p) => remap.push(p)))
+		outerPts.forEach((p) => {
+			remap.push(p)
+		})
+		holePts.forEach((ring) => {
+			ring.forEach((p) => {
+				remap.push(p)
+			})
+		})
 		const vertices = remap
 		const flatPositions = new Float32Array(vertices.length * 3)
 		vertices.forEach((v, idx) => {
@@ -583,16 +591,16 @@ function EarthViewer({ className, onReady }) {
 					let maxLon = -Infinity
 					let minLat = Infinity
 					let maxLat = -Infinity
-					polygons.forEach((poly) =>
-						poly.forEach((ring) =>
+					polygons.forEach((poly) => {
+						poly.forEach((ring) => {
 							ring.forEach(({ lon, lat }) => {
 								minLon = Math.min(minLon, lon)
 								maxLon = Math.max(maxLon, lon)
 								minLat = Math.min(minLat, lat)
 								maxLat = Math.max(maxLat, lat)
-							}),
-						),
-					)
+							})
+						})
+					})
 					const bbox = { minLon, maxLon, minLat, maxLat }
 					const borderGeometry = buildBorderGeometry(
 						polygons,
@@ -927,7 +935,9 @@ function EarthViewer({ className, onReady }) {
 					applyCameraPosition()
 				}
 			}
-			renderCallbacks.forEach((cb) => cb())
+			renderCallbacks.forEach((cb) => {
+				cb()
+			})
 			renderer.render(scene, camera)
 		}
 		renderLoop()

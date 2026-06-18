@@ -194,6 +194,7 @@ function Footer() {
 									<span className="footer__social-icon" aria-hidden="true">
 										{social.icon}
 									</span>
+									<span className="sr-only">{social.label}</span>
 								</a>
 							))}
 						</div>

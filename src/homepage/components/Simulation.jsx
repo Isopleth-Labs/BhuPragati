@@ -464,14 +464,13 @@ function NetworkCanvas({ stepIndex, isHovered, onHoverStart, onHoverEnd }) {
 	}, [stepIndex, theme, isHovered])
 
 	return (
-		<div
-			type="button"
-			className="sim-card__visual"
-			ref={containerRef}
-			onMouseEnter={onHoverStart}
-			onMouseLeave={onHoverEnd}
-		>
-			<canvas ref={canvasRef} className="sim-card__canvas" />
+		<div className="sim-card__visual" ref={containerRef}>
+			<canvas
+				ref={canvasRef}
+				className="sim-card__canvas"
+				onMouseEnter={onHoverStart}
+				onMouseLeave={onHoverEnd}
+			/>
 		</div>
 	)
 }
@@ -558,6 +557,7 @@ function Simulation() {
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										>
+											<title>Arrow Right</title>
 											<line x1="5" y1="12" x2="19" y2="12" />
 											<polyline points="12 5 19 12 12 19" />
 										</svg>

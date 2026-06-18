@@ -830,6 +830,7 @@ export default function StateIntelligenceDashboard({
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
 						>
+							<title id="Better Bharat Map">Statedb</title>
 							<defs>
 								<linearGradient
 									id="brand-logo-grad"
@@ -891,6 +892,7 @@ export default function StateIntelligenceDashboard({
 							strokeLinecap="round"
 							strokeLinejoin="round"
 						>
+							<title>Search</title>
 							<circle cx="11" cy="11" r="8" />
 							<line x1="21" y1="21" x2="16.65" y2="16.65" />
 						</svg>
@@ -910,6 +912,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Calendar</title>
 								<rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
 								<line x1="16" y1="2" x2="16" y2="6" />
 								<line x1="8" y1="2" x2="8" y2="6" />
@@ -938,6 +941,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Fit to India</title>
 								<path d="M3 7V5a2 2 0 0 1 2-2h2" />
 								<path d="M17 3h2a2 2 0 0 1 2 2v2" />
 								<path d="M21 17v2a2 2 0 0 1-2 2h-2" />
@@ -960,6 +964,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Export</title>
 								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
 								<polyline points="7 10 12 15 17 10" />
 								<line x1="12" y1="15" x2="12" y2="3" />
@@ -977,6 +982,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Chevron Down</title>
 								<polyline points="6 9 12 15 18 9" />
 							</svg>
 						</span>
@@ -999,6 +1005,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Moon</title>
 								<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
 							</svg>
 						) : (
@@ -1012,6 +1019,7 @@ export default function StateIntelligenceDashboard({
 								strokeLinecap="round"
 								strokeLinejoin="round"
 							>
+								<title>Sun</title>
 								<circle cx="12" cy="12" r="5" />
 								<line x1="12" y1="1" x2="12" y2="3" />
 								<line x1="12" y1="21" x2="12" y2="23" />
@@ -1057,6 +1065,7 @@ export default function StateIntelligenceDashboard({
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
 								>
+									<title>Search</title>
 									<circle
 										cx="11"
 										cy="11"
@@ -1340,6 +1349,7 @@ export default function StateIntelligenceDashboard({
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										>
+											<title>Ports</title>
 											<circle
 												cx="12"
 												cy="5"
@@ -1369,6 +1379,7 @@ export default function StateIntelligenceDashboard({
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										>
+											<title>Corridors</title>
 											<path
 												d="M2 20V10l5 3V10l5 3V10l10 4v6z"
 												fill="currentColor"
@@ -1396,6 +1407,7 @@ export default function StateIntelligenceDashboard({
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										>
+											<title>Smart Cities</title>
 											<rect
 												x="2"
 												y="10"
@@ -1444,6 +1456,7 @@ export default function StateIntelligenceDashboard({
 											strokeLinecap="round"
 											strokeLinejoin="round"
 										>
+											<title>Water Supply</title>
 											<path
 												d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"
 												fill="currentColor"
@@ -1488,8 +1501,9 @@ export default function StateIntelligenceDashboard({
 					{INTEL_CARDS.map((card) => {
 						const isActive = activeIndicator === card.key
 						return (
-							<div
+							<button
 								key={card.key}
+								type="button"
 								className={`state-bottom__card${isActive ? " is-active" : ""}`}
 								onClick={() => handleCardClick(card.key)}
 								style={
@@ -1527,7 +1541,7 @@ export default function StateIntelligenceDashboard({
 										</span>
 									</div>
 								</div>
-							</div>
+							</button>
 						)
 					})}
 				</div>
