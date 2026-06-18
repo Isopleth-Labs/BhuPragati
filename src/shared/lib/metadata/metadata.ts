@@ -1,9 +1,7 @@
 // Top-level operational metadata shown in the HUD header.
 
 export const operationalStats = [
-  { label: "Command Zone", value: "Kusheshwar Asthan" },
-  { label: "District", value: "Darbhanga" },
-  { label: "PIN", value: "848213" },
+  { label: "State", value: "Bihar" },
   { label: "Mode", value: "Live GIS" },
 ];
 

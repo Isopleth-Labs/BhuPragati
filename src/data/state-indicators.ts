@@ -21,5 +21,7 @@ export interface RegionIndicators {
   metadata?: Record<string, unknown>;
 }
 
-export const STATE_INDICATORS_DATA: RegionIndicators[] = stateJson as RegionIndicators[];
+export const STATE_INDICATORS_DATA: Record<string, RegionIndicators> = Object.fromEntries(
+  (stateJson as RegionIndicators[]).map((s) => [s.id, s]),
+);
 

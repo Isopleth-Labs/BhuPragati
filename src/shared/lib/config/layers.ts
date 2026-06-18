@@ -113,7 +113,6 @@ export const infrastructureLayers: InfrastructureLayer[] = [
 ];
 
 export const interactiveLayerIds = [
-  "darbhanga-district-line",
   "kusheshwar-focus-core",
   "flood-risk-fill",
   "flood-wetland-points",

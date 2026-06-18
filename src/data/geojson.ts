@@ -81,22 +81,6 @@ export const administrativeBoundaries = collection([
   },
 ]);
 
-export const commandCenter = collection([
-  {
-    type: "Feature",
-    properties: {
-      title: "Kusheshwar Asthan Node",
-      status: "Regional command center",
-      metric: "25.796 N, 86.285 E",
-      note: "Primary reference point for the dashboard viewport.",
-    },
-    geometry: {
-      type: "Point",
-      coordinates: [86.285, 25.796],
-    },
-  },
-]);
-
 export const analysisGrid = collection([
   {
     type: "Feature",

@@ -124,6 +124,9 @@ body {
 	display: flex;
 	flex-direction: column;
 	line-height: 1.05;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .navbar__brand-name {
@@ -1239,6 +1242,7 @@ body {
 	grid-template-columns: 360px minmax(0, 1fr);
 	column-gap: 48px;
 	align-items: center;
+	scroll-margin-top: 80px;
 }
 
 .section-row > * {
@@ -2053,10 +2057,25 @@ body {
 	.capability-strip__inner {
 		display: flex;
 		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0,
+			#000 24px,
+			#000 calc(100% - 24px),
+			transparent 100%
+		);
+	}
+
+	.capability-strip__inner::-webkit-scrollbar {
+		display: none;
 	}
 
 	.capability-strip__item {
 		min-width: 220px;
+		flex-shrink: 0;
+		scroll-snap-align: start;
 	}
 }
 
@@ -2073,10 +2092,35 @@ body {
 		max-width: 100%;
 	}
 
-	.insight-cards {
+	.section-row {
+		grid-template-columns: 1fr;
+		row-gap: 28px;
+		padding: 36px 24px;
+	}
+
+	.why-it-matters {
+		padding-top: 48px;
+	}
+	.navigation-section {
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.contributors-section {
+		padding-top: 28px;
+		padding-bottom: 28px;
+	}
+
+	.why-it-matters__left .section-body,
+	.simulation__left .section-body,
+	.navigation-section__left .section-body,
+	.contributors__left .section-body {
+		max-width: 100%;
+	}
+
+	.why-it-matters__right {
 		grid-template-columns: 1fr 1fr;
 	}
-	.layer-cards {
+	.infrastructure__right {
 		grid-template-columns: repeat(3, 1fr);
 	}
 	.contributors__right {
@@ -2098,13 +2142,22 @@ body {
 		padding: 0 18px;
 	}
 
+	.section-row {
+		scroll-margin-top: 68px;
+		padding: 28px 18px;
+	}
+
 	.navbar__brand {
 		gap: 10px;
 	}
 
-	.navbar__globe {
+	.navbar__brand-icon {
 		width: 30px;
 		height: 30px;
+	}
+
+	.infrastructure__right {
+		grid-template-columns: repeat(2, 1fr);
 	}
 
 	.navbar__brand-name {
@@ -2189,40 +2242,83 @@ body {
 		font-size: 9px;
 	}
 
-	.insight-cards {
-		grid-template-columns: 1fr;
-	}
-	.layer-cards {
-		grid-template-columns: repeat(2, 1fr);
-	}
 	.contributors__right {
 		grid-template-columns: 1fr;
 	}
 
-	.sim-flow {
-		flex-direction: column;
-		gap: 12px;
+	.simulation__right .sim-flow {
+		grid-template-columns: 1fr;
+		row-gap: 14px;
 	}
 
-	.sim-arrow {
-		justify-content: center;
+	.sim-card {
+		min-height: auto;
+		padding: 14px 14px 16px;
+	}
+
+	.sim-card__visual {
+		height: 120px;
+		margin-bottom: 12px;
+	}
+
+	.sim-flow__arrow {
+		justify-self: center;
 		transform: rotate(90deg);
-		padding: 4px 0;
 	}
 
-	.nav-chain {
-		gap: 4px;
-		justify-content: center;
+	.navigation-section__right .nav-chain {
+		position: relative;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		gap: 22px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+		padding: 4px 8px 10px;
+		mask-image: linear-gradient(
+			90deg,
+			transparent 0,
+			#000 24px,
+			#000 calc(100% - 24px),
+			transparent 100%
+		);
 	}
 
-	.nav-step__icon {
+	.navigation-section__right .nav-chain::-webkit-scrollbar {
+		display: none;
+	}
+
+	.navigation-section__right .nav-chain::before {
+		content: "";
+		position: absolute;
+		left: 8px;
+		right: 8px;
+		top: 26px;
+		height: 1px;
+		background: rgba(255, 255, 255, 0.16);
+		z-index: 0;
+	}
+
+	.navigation-section__right .nav-step {
+		position: relative;
+		z-index: 1;
+		flex-shrink: 0;
+		scroll-snap-align: start;
+		min-width: 76px;
+	}
+
+	.navigation-section__right .nav-step__icon {
 		width: 40px;
 		height: 40px;
 		font-size: 16px;
 	}
 
-	.nav-step__label {
-		font-size: 9px;
+	.navigation-section__right .nav-step__label {
+		font-size: 10px;
+	}
+
+	.navigation-section__right .nav-step__arrow {
+		display: none;
 	}
 
 	.footer__columns {
@@ -2230,9 +2326,32 @@ body {
 	}
 }
 
+@media (max-width: 600px) {
+	.why-it-matters__right {
+		grid-template-columns: 1fr;
+	}
+}
+
 @media (max-width: 480px) {
-	.layer-cards {
-		grid-template-columns: 1fr 1fr;
+	.section-row {
+		padding: 22px 16px;
+		row-gap: 20px;
+	}
+
+	.why-it-matters {
+		padding-top: 32px;
+	}
+	.navigation-section {
+		padding-top: 28px;
+		padding-bottom: 28px;
+	}
+	.contributors-section {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.infrastructure__right {
+		grid-template-columns: 1fr;
 	}
 
 	.navbar__brand-sub {

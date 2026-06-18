@@ -35,6 +35,18 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+        rel: 'preload',
+        href: '/geojson/india/india.geojson',
+        as: 'fetch',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'preload',
+        href: 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json',
+        as: 'fetch',
+        crossOrigin: 'anonymous',
+      },
     ],
   }),
   shellComponent: RootDocument,

@@ -73,7 +73,6 @@
 }
 
 @media (max-width: 820px) {
-  body,
   .dashboard {
     overflow: hidden;
   }
