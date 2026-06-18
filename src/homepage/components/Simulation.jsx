@@ -465,6 +465,7 @@ function NetworkCanvas({ stepIndex, isHovered, onHoverStart, onHoverEnd }) {
 
 	return (
 		<div
+			type="button"
 			className="sim-card__visual"
 			ref={containerRef}
 			onMouseEnter={onHoverStart}

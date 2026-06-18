@@ -13,7 +13,8 @@ const CONTRIBUTORS = [
 				strokeWidth="1.75"
 				strokeLinecap="round"
 				strokeLinejoin="round"
-			>
+			>	
+				<title id="Open Source">Open Source</title>
 				<rect x="16" y="16" width="6" height="6" rx="1.5" />
 				<rect x="2" y="16" width="6" height="6" rx="1.5" />
 				<rect x="9" y="2" width="6" height="6" rx="1.5" />
@@ -37,6 +38,7 @@ const CONTRIBUTORS = [
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>
+				<title id="Researchers">Researchers</title>
 				<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
 				<circle cx="9" cy="7" r="4" />
 				<circle cx="18" cy="11" r="3" />
@@ -59,6 +61,7 @@ const CONTRIBUTORS = [
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>
+				<title id="Government">Government</title>
 				<line x1="3" x2="21" y1="22" y2="22" />
 				<line x1="6" x2="6" y1="18" y2="11" />
 				<line x1="10" x2="10" y1="18" y2="11" />
@@ -83,6 +86,7 @@ const CONTRIBUTORS = [
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			>
+				<title id="Developers">Developers</title>
 				<rect x="2" y="4" width="20" height="16" rx="3" />
 				<path d="M9 10l-2 2 2 2" />
 				<path d="M15 10l2 2-2 2" />
