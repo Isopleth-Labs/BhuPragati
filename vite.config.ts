@@ -12,7 +12,7 @@ const threeExamples = path.resolve(__dirname, "node_modules/three/examples/jsm")
 const shimDir = path.resolve(__dirname, "src/shims")
 
 const config = defineConfig({
-	base: process.env.NODE_ENV === "production" ? "/better-bharat-map/" : "/",
+	base: process.env.NODE_ENV === "production" ? "/BhuPragati/" : "/",
 	resolve: {
 		tsconfigPaths: true,
 		alias: {
