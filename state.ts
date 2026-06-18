@@ -6,8 +6,8 @@ const geojson = JSON.parse(
 	fs.readFileSync("./public/geojson/india/allStates.json", "utf-8"),
 )
 const stateDistrictMap: Record<string, string[]> = JSON.parse(
-	fs.readFileSync("./public/geojson/states.json", "utf-8")
-) as Record<string,string[]>
+	fs.readFileSync("./public/geojson/states.json", "utf-8"),
+) as Record<string, string[]>
 // Uttar Pradesh — 75
 // Madhya Pradesh — 55
 // Rajasthan — 41
@@ -47,7 +47,6 @@ const stateDistrictMap: Record<string, string[]> = JSON.parse(
 // ============================
 // STATE MAP
 // ============================
-
 
 // ============================
 // HELPERS
