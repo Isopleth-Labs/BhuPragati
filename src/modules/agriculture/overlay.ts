@@ -1,14 +1,14 @@
-import type { FeatureCollection } from "geojson";
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "@/shared";
-import { AgricultureService } from "./agriculture.service";
+import type { FeatureCollection } from "geojson"
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "@/shared"
+import { AgricultureService } from "./agriculture.service"
 
 export function addAgricultureOverlay(map: MaplibreMap) {
 	addSource(
 		map,
 		"agriculture-belts",
 		AgricultureService.getData() as FeatureCollection,
-	);
+	)
 
 	addLayer(map, {
 		id: "agriculture-belts-fill",
@@ -26,7 +26,7 @@ export function addAgricultureOverlay(map: MaplibreMap) {
 				0.14,
 			],
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "agriculture-belts-outline",
@@ -38,5 +38,5 @@ export function addAgricultureOverlay(map: MaplibreMap) {
 			"line-opacity": 0.38,
 			"line-dasharray": [2.4, 1.2],
 		},
-	});
+	})
 }

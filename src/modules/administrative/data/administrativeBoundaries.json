@@ -4,36 +4,6 @@
 		{
 			"type": "Feature",
 			"properties": {
-				"id": "darbhanga-district",
-				"boundaryType": "district",
-				"title": "Darbhanga District Boundary",
-				"label": "Darbhanga",
-				"status": "Administrative perimeter",
-				"metric": "North Bihar intelligence frame",
-				"note": "District-scale context boundary for infrastructure analysis."
-			},
-			"geometry": {
-				"type": "Polygon",
-				"coordinates": [
-					[
-						[85.66, 26.42],
-						[85.9, 26.53],
-						[86.22, 26.49],
-						[86.48, 26.35],
-						[86.61, 26.1],
-						[86.54, 25.9],
-						[86.31, 25.73],
-						[85.98, 25.77],
-						[85.71, 25.93],
-						[85.58, 26.18],
-						[85.66, 26.42]
-					]
-				]
-			}
-		},
-		{
-			"type": "Feature",
-			"properties": {
 				"id": "kusheshwar-focus",
 				"boundaryType": "focus",
 				"title": "Kusheshwar Asthan Focus Zone",

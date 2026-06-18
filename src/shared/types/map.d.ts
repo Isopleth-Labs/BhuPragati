@@ -4,28 +4,28 @@
  */
 
 export interface Viewport {
-	center: [number, number]; // [lon, lat]
-	zoom: number;
-	bearing: number;
-	pitch: number;
+	center: [number, number] // [lon, lat]
+	zoom: number
+	bearing: number
+	pitch: number
 }
 
 export interface CameraTransition {
-	duration: number; // ms
-	easing: "ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear";
+	duration: number // ms
+	easing: "ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear"
 }
 
 export interface MapStyle {
-	id: string;
-	url: string;
+	id: string
+	url: string
 }
 
-export type CanvasMode = "landing" | "dashboard";
+export type CanvasMode = "landing" | "dashboard"
 
 export interface MapState {
-	viewport: Viewport;
-	style: "light" | "dark";
-	canvasMode: CanvasMode;
-	isLoading: boolean;
-	error?: string;
+	viewport: Viewport
+	style: "light" | "dark"
+	canvasMode: CanvasMode
+	isLoading: boolean
+	error?: string
 }

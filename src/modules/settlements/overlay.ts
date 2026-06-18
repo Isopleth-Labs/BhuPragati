@@ -1,14 +1,14 @@
-import { addLayer, addSource } from "@/shared";
-import { SettlementsService } from "./SettlementsService.getSettlements().service";
+import { addLayer, addSource } from "@/shared"
+import { SettlementsService } from "./SettlementsService.getSettlements().service"
 
 export function addRegionalOverlays(map: Map) {
-	addHydrology(map);
-	addInfrastructureNodes(map);
-	addSettlements(map);
+	addHydrology(map)
+	addInfrastructureNodes(map)
+	addSettlements(map)
 }
 
 function addHydrology(map: Map) {
-	addSource(map, "regional-rivers", SettlementsService.getRegionalRivers());
+	addSource(map, "regional-rivers", SettlementsService.getRegionalRivers())
 
 	addLayer(map, {
 		id: "region-river-glow",
@@ -21,7 +21,7 @@ function addHydrology(map: Map) {
 			"line-opacity": 0.3,
 		},
 		layout: { "line-cap": "round", "line-join": "round" },
-	});
+	})
 
 	addLayer(map, {
 		id: "region-river-core",
@@ -44,7 +44,7 @@ function addHydrology(map: Map) {
 			"line-opacity": 0.92,
 		},
 		layout: { "line-cap": "round", "line-join": "round" },
-	});
+	})
 }
 
 function addSettlements(map: Map) {
@@ -52,7 +52,7 @@ function addSettlements(map: Map) {
 		map,
 		"regional-SettlementsService.getSettlements()",
 		SettlementsService.getSettlements(),
-	);
+	)
 
 	addLayer(map, {
 		id: "region-settlement-dots",
@@ -89,7 +89,7 @@ function addSettlements(map: Map) {
 			"circle-stroke-color": "rgba(120, 180, 220, 0.55)",
 			"circle-stroke-width": 1,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "region-settlement-labels",
@@ -144,7 +144,7 @@ function addSettlements(map: Map) {
 			],
 			"text-halo-blur": 1.4,
 		},
-	});
+	})
 }
 
 const NODE_COLORS = [
@@ -161,7 +161,7 @@ const NODE_COLORS = [
 	"bridge",
 	"#9ad8c4",
 	"#aabacc",
-];
+]
 
 const NODE_DOT_COLORS = [
 	"match",
@@ -177,10 +177,10 @@ const NODE_DOT_COLORS = [
 	"bridge",
 	"#a8e0cc",
 	"#bccada",
-];
+]
 
 function addInfrastructureNodes(map: Map) {
-	addSource(map, "regional-pois", SettlementsService.getInfrastructureNodes());
+	addSource(map, "regional-pois", SettlementsService.getInfrastructureNodes())
 
 	addLayer(map, {
 		id: "region-poi-glow",
@@ -192,7 +192,7 @@ function addInfrastructureNodes(map: Map) {
 			"circle-opacity": 0.18,
 			"circle-blur": 0.9,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "region-poi-dots",
@@ -205,7 +205,7 @@ function addInfrastructureNodes(map: Map) {
 			"circle-stroke-width": 1,
 			"circle-stroke-opacity": 0.7,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "region-poi-symbol",
@@ -226,5 +226,5 @@ function addInfrastructureNodes(map: Map) {
 			"text-halo-width": 1.3,
 			"text-halo-blur": 1,
 		},
-	});
+	})
 }

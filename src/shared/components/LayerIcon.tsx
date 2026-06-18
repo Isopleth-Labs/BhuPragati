@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo } from "react"
 
 // Compact inline SVG icons for the tactical layer set.
 // Strokes use currentColor so they inherit the layer accent.
@@ -35,21 +35,21 @@ const ICONS = {
 			<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" />
 		</>
 	),
-};
+}
 
-type IconKey = keyof typeof ICONS;
+type IconKey = keyof typeof ICONS
 
 function LayerIcon({
 	iconKey,
 	size = 18,
 	strokeWidth = 1.6,
 }: {
-	iconKey: IconKey;
-	size?: number;
-	strokeWidth?: number;
+	iconKey: IconKey
+	size?: number
+	strokeWidth?: number
 }) {
-	const path = ICONS[iconKey as IconKey];
-	if (!path) return null;
+	const path = ICONS[iconKey as IconKey]
+	if (!path) return null
 	return (
 		<svg
 			width={size}
@@ -64,7 +64,7 @@ function LayerIcon({
 		>
 			{path}
 		</svg>
-	);
+	)
 }
 
-export default memo(LayerIcon);
+export default memo(LayerIcon)

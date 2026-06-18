@@ -1,9 +1,9 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "@/shared";
-import { AnalysisGridService } from "./analysis-grid.service";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "@/shared"
+import { AnalysisGridService } from "./analysis-grid.service"
 
 export function addAnalysisGridOverlay(map: MaplibreMap) {
-	addSource(map, "analysis-grid", AnalysisGridService.getGrid());
+	addSource(map, "analysis-grid", AnalysisGridService.getGrid())
 
 	addLayer(map, {
 		id: "analysis-grid-glow",
@@ -15,7 +15,7 @@ export function addAnalysisGridOverlay(map: MaplibreMap) {
 			"line-opacity": 0.075,
 			"line-blur": 7,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "analysis-grid-line",
@@ -27,5 +27,5 @@ export function addAnalysisGridOverlay(map: MaplibreMap) {
 			"line-opacity": 0.14,
 			"line-dasharray": [1.5, 2.4],
 		},
-	});
+	})
 }

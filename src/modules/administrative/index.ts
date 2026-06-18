@@ -1,2 +1,2 @@
-export { administrativeBoundaries } from "../../data/geojson";
-export { addAdministrativeOverlay } from "./overlay";
+export { administrativeBoundaries } from "../../data/geojson"
+export { addAdministrativeOverlay } from "./overlay"

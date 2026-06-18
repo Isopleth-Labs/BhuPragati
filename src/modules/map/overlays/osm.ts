@@ -3,10 +3,10 @@
 // Renders:
 //   - road network (motorway / trunk / primary / secondary / tertiary / residential)
 //   - settlement labels (city / town / village / hamlet)
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { fetchOverpassGeoJson } from "@/shared/lib/dataAdapters/overpass";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { fetchOverpassGeoJson } from "@/shared/lib/dataAdapters/overpass"
 
-const BBOX = [25.55, 85.85, 26.2, 86.65]; // [S, W, N, E]
+const BBOX = [25.55, 85.85, 26.2, 86.65] // [S, W, N, E]
 
 const QUERY = `
 [out:json][timeout:30];
@@ -15,7 +15,7 @@ const QUERY = `
   node["place"~"^(city|town|village|hamlet|suburb)$"](${BBOX.join(",")});
 );
 out tags geom;
-`.trim();
+`.trim()
 
 // ---- Map rendering ---------------------------------------------------
 
@@ -101,7 +101,7 @@ function addRoadLayers(map: MaplibreMap) {
 				],
 			],
 		},
-	});
+	})
 
 	// Crisp light core.
 	map.addLayer({
@@ -181,7 +181,7 @@ function addRoadLayers(map: MaplibreMap) {
 				],
 			],
 		},
-	});
+	})
 }
 
 function addPlaceLayers(map: MaplibreMap) {
@@ -227,7 +227,7 @@ function addPlaceLayers(map: MaplibreMap) {
 			"circle-stroke-color": "rgba(120, 180, 220, 0.55)",
 			"circle-stroke-width": 1,
 		},
-	});
+	})
 
 	// Labels (collision-aware).
 	map.addLayer({
@@ -289,7 +289,7 @@ function addPlaceLayers(map: MaplibreMap) {
 			"text-halo-width": ["match", ["get", "place"], "city", 2, "town", 1.4, 1],
 			"text-halo-blur": 0.6,
 		},
-	});
+	})
 }
 
 // ---- Public entry ----------------------------------------------------
@@ -297,19 +297,19 @@ function addPlaceLayers(map: MaplibreMap) {
 export async function addOsmOverlays(map: MaplibreMap) {
 	const data = await fetchOverpassGeoJson(QUERY, {
 		cacheKey: "kusheshwar.osm.v1",
-	});
+	})
 	if (!data || (!data.roads.features.length && !data.places.features.length)) {
-		console.warn("[osm] no data available — skipping OSM overlay");
-		return;
+		console.warn("[osm] no data available — skipping OSM overlay")
+		return
 	}
 
 	if (!map.getSource("osm-roads")) {
-		map.addSource("osm-roads", { type: "geojson", data: data.roads });
+		map.addSource("osm-roads", { type: "geojson", data: data.roads })
 	}
 	if (!map.getSource("osm-places")) {
-		map.addSource("osm-places", { type: "geojson", data: data.places });
+		map.addSource("osm-places", { type: "geojson", data: data.places })
 	}
 
-	addRoadLayers(map);
-	addPlaceLayers(map);
+	addRoadLayers(map)
+	addPlaceLayers(map)
 }

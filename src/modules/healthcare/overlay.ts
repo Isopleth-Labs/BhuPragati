@@ -1,14 +1,14 @@
-import type { FeatureCollection, Geometry } from "geojson";
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "@/shared";
-import { HealthcareService } from "./healthcare.service";
+import type { FeatureCollection, Geometry } from "geojson"
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "@/shared"
+import { HealthcareService } from "./healthcare.service"
 
 export function addHealthcareOverlay(map: MaplibreMap) {
 	addSource(
 		map,
 		"healthcare-access",
 		HealthcareService.getData() as FeatureCollection<Geometry>,
-	);
+	)
 
 	addLayer(map, {
 		id: "healthcare-access-halos",
@@ -28,7 +28,7 @@ export function addHealthcareOverlay(map: MaplibreMap) {
 			"circle-opacity": 0.095,
 			"circle-blur": 0.48,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "healthcare-access-points",
@@ -41,5 +41,5 @@ export function addHealthcareOverlay(map: MaplibreMap) {
 			"circle-stroke-color": "#d9e8ff",
 			"circle-stroke-width": 1.7,
 		},
-	});
+	})
 }

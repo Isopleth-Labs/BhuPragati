@@ -1,24 +1,24 @@
-import { memo, useCallback } from "react";
-import type { CSSVars } from "@/shared/styles/types";
-import type { InfrastructureLayer } from "@/shared/types";
-import LayerIcon from "./LayerIcon";
+import { memo, useCallback } from "react"
+import type { CSSVars } from "@/shared/styles/types"
+import type { InfrastructureLayer } from "@/shared/types"
+import LayerIcon from "./LayerIcon"
 
 // Tactical layer-toggle row. Compact, icon-led, used in the
 // command panel layer list.
 
 type LayerToggleProps = {
-	layer: InfrastructureLayer;
-	isActive: boolean;
-	onToggle: (id: string) => void;
-};
+	layer: InfrastructureLayer
+	isActive: boolean
+	onToggle: (id: string) => void
+}
 
 function LayerToggle({ layer, isActive, onToggle }: LayerToggleProps) {
 	const handleClick = useCallback(
 		() => onToggle(layer.id),
 		[layer.id, onToggle],
-	);
+	)
 
-	const style: CSSVars = { "--layer-color": layer.color ?? "transparent" };
+	const style: CSSVars = { "--layer-color": layer.color ?? "transparent" }
 
 	return (
 		<button
@@ -35,7 +35,7 @@ function LayerToggle({ layer, isActive, onToggle }: LayerToggleProps) {
 			<span className="layer-toggle__label">{layer.intelligenceLabel}</span>
 			<span className="layer-toggle__dot" aria-hidden="true" />
 		</button>
-	);
+	)
 }
 
-export default memo(LayerToggle);
+export default memo(LayerToggle)

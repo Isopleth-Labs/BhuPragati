@@ -1,12 +1,12 @@
-import { memo } from "react";
+import { memo } from "react"
 
 // Reusable metric card. Shares visuals with `.readout-card`.
 
 type MetricCardProps = {
-	label: string;
-	value: number | string;
-	unit?: string;
-};
+	label: string
+	value: number | string
+	unit?: string
+}
 
 function MetricCard({ label, value, unit }: MetricCardProps) {
 	return (
@@ -17,7 +17,7 @@ function MetricCard({ label, value, unit }: MetricCardProps) {
 				{unit ? <small>{unit}</small> : null}
 			</strong>
 		</div>
-	);
+	)
 }
 
-export default memo(MetricCard);
+export default memo(MetricCard)

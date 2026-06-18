@@ -1,12 +1,12 @@
-import { memo } from "react";
-import LayerToggle from "@/shared/components/LayerToggle";
-import MetricBar from "@/shared/components/MetricBar";
-import { infrastructureLayers } from "@/shared/lib/config/layers";
+import { memo } from "react"
+import LayerToggle from "@/shared/components/LayerToggle"
+import MetricBar from "@/shared/components/MetricBar"
+import { infrastructureLayers } from "@/shared/lib/config/layers"
 
 type CommandPanelProps = {
-	activeLayers: Record<string, boolean>;
-	onToggleLayer: (id: string) => void;
-};
+	activeLayers: Record<string, boolean>
+	onToggleLayer: (id: string) => void
+}
 
 function CommandPanel({ activeLayers, onToggleLayer }: CommandPanelProps) {
 	return (
@@ -44,7 +44,7 @@ function CommandPanel({ activeLayers, onToggleLayer }: CommandPanelProps) {
 				</div>
 			</div>
 		</aside>
-	);
+	)
 }
 
-export default memo(CommandPanel);
+export default memo(CommandPanel)

@@ -1,29 +1,63 @@
-import { lazy, Suspense } from "react";
-import useActiveLayers from "@/shared/hooks/useActiveLayers";
-import CommandPanel from "./panels/CommandPanel";
-import InsightStrip from "./panels/InsightStrip";
-import LegendPanel from "./panels/LegendPanel";
-import TopBar from "./panels/TopBar";
-
-// Lazy-load the map engine so the initial HUD paints fast and
-// MapLibre + heavy GIS code splits into its own chunk.
-const MapEngine = lazy(() => import("@/modules/map"));
+import { Suspense, useState } from "react"
+import { DistrictSelectionController } from "@/modules/map/controllers/DistrictSelectionController"
+import { FeaturePopupController } from "@/modules/map/controllers/FeaturePopupController"
+import { FocusPulseController } from "@/modules/map/controllers/FocusPulseController"
+import { IntelligenceSoftenController } from "@/modules/map/controllers/IntelligenceSoftenController"
+import { LabelTuningController } from "@/modules/map/controllers/LabelTuningController"
+import { LazyMapEngine as MapEngine } from "@/modules/map/LazyMapEngine"
+import { AdministrativeBoundaryLayer } from "@/modules/map/layers/AdministrativeBoundaryLayer"
+import { BasemapLayer } from "@/modules/map/layers/BasemapLayer"
+import { CommandCenterLayer } from "@/modules/map/layers/CommandCenterLayer"
+import { DistrictBoundaryLayer } from "@/modules/map/layers/DistrictBoundaryLayer"
+import { InfrastructureLayer } from "@/modules/map/layers/InfrastructureLayer"
+import { OsmOverlayLayer } from "@/modules/map/layers/OsmOverlayLayer"
+import useActiveLayers from "@/shared/hooks/useActiveLayers"
+import {
+	BIHAR_INITIAL_VIEW_STATE,
+	BIHAR_MAX_BOUNDS,
+	BIHAR_ZOOM_LIMITS,
+} from "@/shared/lib/config/mapConfig"
+import TopBar from "./panels/TopBar"
 
 export default function DashboardShell() {
-	const { activeLayers, toggleLayer } = useActiveLayers();
+	const { activeLayers } = useActiveLayers()
+	const [infraReady, setInfraReady] = useState(false)
+	const [districtReady, setDistrictReady] = useState(false)
 
 	return (
 		<main className="dashboard">
 			<Suspense fallback={<div className="gis-map-shell" aria-hidden="true" />}>
-				<MapEngine activeLayers={activeLayers} />
+				<MapEngine
+					regionId="bihar"
+					initialViewState={BIHAR_INITIAL_VIEW_STATE}
+					maxBounds={BIHAR_MAX_BOUNDS}
+					zoomLimits={BIHAR_ZOOM_LIMITS}
+				>
+					<BasemapLayer />
+					<LabelTuningController />
+					<AdministrativeBoundaryLayer />
+					<OsmOverlayLayer />
+					<InfrastructureLayer
+						activeLayers={activeLayers}
+						onReady={() => setInfraReady(true)}
+					/>
+					<IntelligenceSoftenController ready={infraReady} />
+					<FocusPulseController ready={infraReady} />
+					<FeaturePopupController ready={infraReady} />
+					<CommandCenterLayer />
+					<DistrictBoundaryLayer onReady={() => setDistrictReady(true)} />
+					<DistrictSelectionController
+						ready={districtReady}
+						onDistrictClick={(districtId) => {
+							console.log("[district-selected]", districtId)
+						}}
+					/>
+				</MapEngine>
 			</Suspense>
 
 			<div className="dashboard__hud">
-				<CommandPanel activeLayers={activeLayers} onToggleLayer={toggleLayer} />
 				<TopBar />
-				<LegendPanel />
-				<InsightStrip />
 			</div>
 		</main>
-	);
+	)
 }

@@ -1,8 +1,5 @@
-import { memo } from "react";
-import {
-	dashboardMeta,
-	operationalStats,
-} from "@/shared/lib/metadata/metadata";
+import { memo } from "react"
+import { dashboardMeta, operationalStats } from "@/shared/lib/metadata/metadata"
 
 // Premium top HUD: compact metadata mini-cards + brand card.
 function TopBar() {
@@ -25,7 +22,7 @@ function TopBar() {
 				</div>
 			</div>
 		</header>
-	);
+	)
 }
 
-export default memo(TopBar);
+export default memo(TopBar)

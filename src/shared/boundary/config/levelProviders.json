@@ -1,0 +1,8 @@
+{
+	"country": "geojson",
+	"state": "geojson",
+	"district": "geojson",
+	"block": "geojson",
+	"panchayat": "geojson",
+	"village": "geojson"
+}

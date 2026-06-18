@@ -2,8 +2,8 @@
 // Each entry maps a logical infrastructure layer to its MapLibre layer ids
 // (used for visibility toggling and lazy overlay loading).
 
-import type { InfrastructureLayer } from "@/shared/types";
-import { layerColors } from "../../styles/theme";
+import type { InfrastructureLayer } from "@/shared/types"
+import { layerColors } from "../../styles/theme"
 
 export const infrastructureLayers: InfrastructureLayer[] = [
 	{
@@ -114,10 +114,9 @@ export const infrastructureLayers: InfrastructureLayer[] = [
 		summary:
 			"Feeder resilience is constrained by flood-prone access and dispersed rural load centers.",
 	},
-];
+]
 
 export const interactiveLayerIds = [
-	"darbhanga-district-line",
 	"kusheshwar-focus-core",
 	"flood-risk-fill",
 	"flood-wetland-points",
@@ -127,8 +126,8 @@ export const interactiveLayerIds = [
 	"agriculture-belts-fill",
 	"electricity-feeders",
 	"electricity-assets",
-];
+]
 
-import systemReadoutsJson from "../../../data/systemReadouts.json";
+import systemReadoutsJson from "../../../data/systemReadouts.json"
 
-export const systemReadouts = systemReadoutsJson;
+export const systemReadouts = systemReadoutsJson

@@ -1,9 +1,9 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "@/shared";
-import { ElectricityService } from "./electricity.service";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "@/shared"
+import { ElectricityService } from "./electricity.service"
 
 export function addElectricityOverlay(map: MaplibreMap) {
-	addSource(map, "electricity-network", ElectricityService.getData());
+	addSource(map, "electricity-network", ElectricityService.getData())
 
 	addLayer(map, {
 		id: "electricity-feeder-glow",
@@ -16,7 +16,7 @@ export function addElectricityOverlay(map: MaplibreMap) {
 			"line-opacity": 0.16,
 			"line-blur": 9,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "electricity-feeders",
@@ -36,7 +36,7 @@ export function addElectricityOverlay(map: MaplibreMap) {
 			],
 			"line-opacity": 0.72,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "electricity-assets",
@@ -50,5 +50,5 @@ export function addElectricityOverlay(map: MaplibreMap) {
 			"circle-stroke-color": "#f2ddff",
 			"circle-stroke-width": 1.7,
 		},
-	});
+	})
 }

@@ -1,12 +1,12 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "@/shared";
-import { FloodService } from "./flood.service";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "@/shared"
+import { FloodService } from "./flood.service"
 
 export function addFloodOverlay(map: MaplibreMap) {
-	addSource(map, "flood-risk", FloodService.getRiskData());
+	addSource(map, "flood-risk", FloodService.getRiskData())
 
-	const polygonFilter = ["==", ["geometry-type"], "Polygon"];
-	const pointFilter = ["==", ["geometry-type"], "Point"];
+	const polygonFilter = ["==", ["geometry-type"], "Polygon"]
+	const pointFilter = ["==", ["geometry-type"], "Point"]
 
 	addLayer(map, {
 		id: "flood-risk-glow",
@@ -19,7 +19,7 @@ export function addFloodOverlay(map: MaplibreMap) {
 			"line-blur": 11,
 			"line-opacity": 0.15,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "flood-risk-fill",
@@ -38,7 +38,7 @@ export function addFloodOverlay(map: MaplibreMap) {
 				0.14,
 			],
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "flood-risk-outline",
@@ -50,7 +50,7 @@ export function addFloodOverlay(map: MaplibreMap) {
 			"line-width": 1.2,
 			"line-opacity": 0.42,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "flood-wetland-points",
@@ -73,5 +73,5 @@ export function addFloodOverlay(map: MaplibreMap) {
 			"circle-stroke-width": 1.6,
 			"circle-stroke-opacity": 0.9,
 		},
-	});
+	})
 }

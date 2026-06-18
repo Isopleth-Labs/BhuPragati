@@ -2,7 +2,7 @@
 // Each entry is loaded on demand via dynamic import so the
 // initial map bundle stays lightweight, leaving room for
 // future WebGL-heavy layers and AI analytics modules.
-import type { Map as MaplibreMap } from "maplibre-gl";
+import type { Map as MaplibreMap } from "maplibre-gl"
 
 export const heavyOverlayLoaders = {
 	flood: () => import("@/modules/flood").then((m) => m.addFloodOverlay),
@@ -13,12 +13,12 @@ export const heavyOverlayLoaders = {
 		import("@/modules/agriculture").then((m) => m.addAgricultureOverlay),
 	electricity: () =>
 		import("@/modules/electricity").then((m) => m.addElectricityOverlay),
-};
+}
 
 export async function loadHeavyOverlays(map: MaplibreMap) {
-	const entries = Object.entries(heavyOverlayLoaders);
-	const adders = await Promise.all(entries.map(([, load]) => load()));
+	const entries = Object.entries(heavyOverlayLoaders)
+	const adders = await Promise.all(entries.map(([, load]) => load()))
 	adders.forEach((add) => {
-		add(map);
-	});
+		add(map)
+	})
 }

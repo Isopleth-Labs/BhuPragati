@@ -1,28 +1,16 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, addSource } from "#/shared/lib/utils/utils";
-import { AdministrativeService } from "./administrative.service";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, addSource } from "#/shared/lib/utils/utils"
+import { AdministrativeService } from "./administrative.service"
 
 export function addAdministrativeOverlay(map: MaplibreMap) {
 	addSource(
 		map,
 		"administrative-boundaries",
 		AdministrativeService.getBoundaries(),
-	);
+	)
 
-	const focusFilter = ["==", ["get", "boundaryType"], "focus"];
-	const districtFilter = ["==", ["get", "boundaryType"], "district"];
-
-	addLayer(map, {
-		id: "darbhanga-district-line",
-		type: "line",
-		source: "administrative-boundaries",
-		filter: districtFilter,
-		paint: {
-			"line-color": "#5fa8d8",
-			"line-width": 1,
-			"line-opacity": 0.22,
-		},
-	});
+	// District line moved to DistrictBoundaryLayer (BoundaryProvider-backed).
+	const focusFilter = ["==", ["get", "boundaryType"], "focus"]
 
 	addLayer(map, {
 		id: "kusheshwar-focus-aura",
@@ -35,7 +23,7 @@ export function addAdministrativeOverlay(map: MaplibreMap) {
 			"line-opacity": 0.08,
 			"line-blur": 38,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "kusheshwar-focus-bloom",
@@ -48,7 +36,7 @@ export function addAdministrativeOverlay(map: MaplibreMap) {
 			"line-opacity": 0.18,
 			"line-blur": 22,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "kusheshwar-focus-glow",
@@ -61,7 +49,7 @@ export function addAdministrativeOverlay(map: MaplibreMap) {
 			"line-opacity": 0.4,
 			"line-blur": 9,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "kusheshwar-focus-core",
@@ -73,5 +61,5 @@ export function addAdministrativeOverlay(map: MaplibreMap) {
 			"line-width": 2.6,
 			"line-opacity": 0.98,
 		},
-	});
+	})
 }

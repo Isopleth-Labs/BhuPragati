@@ -1,10 +1,10 @@
-import type { Map as MaplibreMap } from "maplibre-gl";
-import { addLayer, getFirstSymbolLayerId } from "@/shared";
-import { SATELLITE_TILE_URL } from "@/shared/lib/config/mapConfig";
+import type { Map as MaplibreMap } from "maplibre-gl"
+import { addLayer, getFirstSymbolLayerId } from "@/shared"
+import { SATELLITE_TILE_URL } from "@/shared/lib/config/mapConfig"
 
-type FogOptions = Record<string, string | number>;
+type FogOptions = Record<string, string | number>
 
-type ExtendedMap = MaplibreMap & { setFog?: (opts: FogOptions) => void };
+type ExtendedMap = MaplibreMap & { setFog?: (opts: FogOptions) => void }
 
 export function addBasemapOverlay(map: ExtendedMap) {
 	if (!map.getSource("satellite-texture")) {
@@ -13,7 +13,7 @@ export function addBasemapOverlay(map: ExtendedMap) {
 			tiles: [SATELLITE_TILE_URL],
 			tileSize: 256,
 			attribution: "Tiles (c) Esri",
-		});
+		})
 	}
 
 	addLayer(
@@ -32,7 +32,7 @@ export function addBasemapOverlay(map: ExtendedMap) {
 			},
 		},
 		getFirstSymbolLayerId(map),
-	);
+	)
 
 	if (typeof map.setFog === "function") {
 		map.setFog({
@@ -41,6 +41,6 @@ export function addBasemapOverlay(map: ExtendedMap) {
 			"horizon-blend": 0.18,
 			"space-color": "#02050a",
 			"star-intensity": 0,
-		});
+		})
 	}
 }

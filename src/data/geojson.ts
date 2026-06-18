@@ -1,36 +1,36 @@
 const collection = (features) => ({
 	type: "FeatureCollection",
 	features,
-});
+})
 
 const createOrganicBoundary = () => {
-	const center = [86.27, 25.835];
-	const coordinates = [];
-	const samples = 96;
+	const center = [86.27, 25.835]
+	const coordinates = []
+	const samples = 96
 
 	for (let index = 0; index < samples; index += 1) {
-		const angle = (Math.PI * 2 * index) / samples;
+		const angle = (Math.PI * 2 * index) / samples
 		const harmonic =
 			1 +
 			Math.sin(angle * 3.1 + 0.4) * 0.075 +
 			Math.cos(angle * 5.2 - 0.8) * 0.055 +
 			Math.sin(angle * 9.4 + 1.8) * 0.032 +
-			Math.cos(angle * 17.6) * 0.018;
+			Math.cos(angle * 17.6) * 0.018
 
-		const eastWestBias = 1 + Math.cos(angle - 0.18) * 0.08;
-		const northSouthBias = 1 + Math.sin(angle + 0.55) * 0.06;
-		const lonRadius = 0.195 * harmonic * eastWestBias;
-		const latRadius = 0.13 * harmonic * northSouthBias;
+		const eastWestBias = 1 + Math.cos(angle - 0.18) * 0.08
+		const northSouthBias = 1 + Math.sin(angle + 0.55) * 0.06
+		const lonRadius = 0.195 * harmonic * eastWestBias
+		const latRadius = 0.13 * harmonic * northSouthBias
 
 		coordinates.push([
 			Number((center[0] + Math.cos(angle) * lonRadius).toFixed(6)),
 			Number((center[1] + Math.sin(angle) * latRadius).toFixed(6)),
-		]);
+		])
 	}
 
-	coordinates.push(coordinates[0]);
-	return coordinates;
-};
+	coordinates.push(coordinates[0])
+	return coordinates
+}
 
 export const administrativeBoundaries = collection([
 	{
@@ -79,23 +79,7 @@ export const administrativeBoundaries = collection([
 			coordinates: [createOrganicBoundary()],
 		},
 	},
-]);
-
-export const commandCenter = collection([
-	{
-		type: "Feature",
-		properties: {
-			title: "Kusheshwar Asthan Node",
-			status: "Regional command center",
-			metric: "25.796 N, 86.285 E",
-			note: "Primary reference point for the dashboard viewport.",
-		},
-		geometry: {
-			type: "Point",
-			coordinates: [86.285, 25.796],
-		},
-	},
-]);
+])
 
 export const analysisGrid = collection([
 	{
@@ -164,7 +148,7 @@ export const analysisGrid = collection([
 			],
 		},
 	},
-]);
+])
 
 export const floodRiskData = collection([
 	{
@@ -253,7 +237,7 @@ export const floodRiskData = collection([
 		},
 		geometry: { type: "Point", coordinates: [86.27441, 25.85084] },
 	},
-]);
+])
 
 export const roadData = collection([
 	{
@@ -321,7 +305,7 @@ export const roadData = collection([
 		},
 		geometry: { type: "Point", coordinates: [86.285, 25.796] },
 	},
-]);
+])
 
 export const healthcareData = collection([
 	{
@@ -360,7 +344,7 @@ export const healthcareData = collection([
 		},
 		geometry: { type: "Point", coordinates: [86.08, 25.96] },
 	},
-]);
+])
 
 export const agricultureData = collection([
 	{
@@ -411,7 +395,7 @@ export const agricultureData = collection([
 			],
 		},
 	},
-]);
+])
 
 export const electricityData = collection([
 	{
@@ -477,4 +461,4 @@ export const electricityData = collection([
 		},
 		geometry: { type: "Point", coordinates: [86.285, 25.796] },
 	},
-]);
+])

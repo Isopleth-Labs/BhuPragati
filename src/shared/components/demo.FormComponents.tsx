@@ -1,18 +1,18 @@
-import { useStore } from "@tanstack/react-form";
-import { Button } from "#/shared/components/ui/button";
-import { Input } from "#/shared/components/ui/input";
-import { Label } from "#/shared/components/ui/label";
-import * as ShadcnSelect from "#/shared/components/ui/select";
-import { Slider as ShadcnSlider } from "#/shared/components/ui/slider";
-import { Switch as ShadcnSwitch } from "#/shared/components/ui/switch";
-import { Textarea as ShadcnTextarea } from "#/shared/components/ui/textarea";
+import { useStore } from "@tanstack/react-form"
+import { Button } from "#/shared/components/ui/button"
+import { Input } from "#/shared/components/ui/input"
+import { Label } from "#/shared/components/ui/label"
+import * as ShadcnSelect from "#/shared/components/ui/select"
+import { Slider as ShadcnSlider } from "#/shared/components/ui/slider"
+import { Switch as ShadcnSwitch } from "#/shared/components/ui/switch"
+import { Textarea as ShadcnTextarea } from "#/shared/components/ui/textarea"
 import {
 	useFieldContext,
 	useFormContext,
-} from "#/shared/hooks/demo.form-context";
+} from "#/shared/hooks/demo.form-context"
 
 export function SubscribeButton({ label }: { label: string }) {
-	const form = useFormContext();
+	const form = useFormContext()
 	return (
 		<form.Subscribe selector={(state) => state.isSubmitting}>
 			{(isSubmitting) => (
@@ -21,13 +21,13 @@ export function SubscribeButton({ label }: { label: string }) {
 				</Button>
 			)}
 		</form.Subscribe>
-	);
+	)
 }
 
 function ErrorMessages({
 	errors,
 }: {
-	errors: Array<string | { message: string }>;
+	errors: Array<string | { message: string }>
 }) {
 	return (
 		<>
@@ -40,18 +40,18 @@ function ErrorMessages({
 				</div>
 			))}
 		</>
-	);
+	)
 }
 
 export function TextField({
 	label,
 	placeholder,
 }: {
-	label: string;
-	placeholder?: string;
+	label: string
+	placeholder?: string
 }) {
-	const field = useFieldContext<string>();
-	const errors = useStore(field.store, (state) => state.meta.errors);
+	const field = useFieldContext<string>()
+	const errors = useStore(field.store, (state) => state.meta.errors)
 
 	return (
 		<div>
@@ -69,18 +69,18 @@ export function TextField({
 			/>
 			{field.state.meta.isTouched && <ErrorMessages errors={errors} />}
 		</div>
-	);
+	)
 }
 
 export function TextArea({
 	label,
 	rows = 3,
 }: {
-	label: string;
-	rows?: number;
+	label: string
+	rows?: number
 }) {
-	const field = useFieldContext<string>();
-	const errors = useStore(field.store, (state) => state.meta.errors);
+	const field = useFieldContext<string>()
+	const errors = useStore(field.store, (state) => state.meta.errors)
 
 	return (
 		<div>
@@ -99,7 +99,7 @@ export function TextArea({
 			/>
 			{field.state.meta.isTouched && <ErrorMessages errors={errors} />}
 		</div>
-	);
+	)
 }
 
 export function Select({
@@ -107,12 +107,12 @@ export function Select({
 	values,
 	placeholder,
 }: {
-	label: string;
-	values: Array<{ label: string; value: string }>;
-	placeholder?: string;
+	label: string
+	values: Array<{ label: string; value: string }>
+	placeholder?: string
 }) {
-	const field = useFieldContext<string>();
-	const errors = useStore(field.store, (state) => state.meta.errors);
+	const field = useFieldContext<string>()
+	const errors = useStore(field.store, (state) => state.meta.errors)
 
 	return (
 		<div>
@@ -141,12 +141,12 @@ export function Select({
 			</ShadcnSelect.Select>
 			{field.state.meta.isTouched && <ErrorMessages errors={errors} />}
 		</div>
-	);
+	)
 }
 
 export function Slider({ label }: { label: string }) {
-	const field = useFieldContext<number>();
-	const errors = useStore(field.store, (state) => state.meta.errors);
+	const field = useFieldContext<number>()
+	const errors = useStore(field.store, (state) => state.meta.errors)
 
 	return (
 		<div>
@@ -164,12 +164,12 @@ export function Slider({ label }: { label: string }) {
 			/>
 			{field.state.meta.isTouched && <ErrorMessages errors={errors} />}
 		</div>
-	);
+	)
 }
 
 export function Switch({ label }: { label: string }) {
-	const field = useFieldContext<boolean>();
-	const errors = useStore(field.store, (state) => state.meta.errors);
+	const field = useFieldContext<boolean>()
+	const errors = useStore(field.store, (state) => state.meta.errors)
 
 	return (
 		<div>
@@ -184,5 +184,5 @@ export function Switch({ label }: { label: string }) {
 			</div>
 			{field.state.meta.isTouched && <ErrorMessages errors={errors} />}
 		</div>
-	);
+	)
 }

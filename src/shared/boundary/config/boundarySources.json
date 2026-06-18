@@ -1,0 +1,10 @@
+{
+	"country": null,
+	"state": "/geojson/india/india.geojson",
+	"district": {
+		"bihar": "/geojson/india/bihar.json"
+	},
+	"block": null,
+	"panchayat": null,
+	"village": null
+}

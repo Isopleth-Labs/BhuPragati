@@ -1,9 +1,9 @@
-import type { GeoJSON } from "geojson";
-import { addLayer, addSource } from "@/shared";
-import { RoadsService } from "./roads.service";
+import type { GeoJSON } from "geojson"
+import { addLayer, addSource } from "@/shared"
+import { RoadsService } from "./roads.service"
 
 export function addRoadOverlay(map: Map) {
-	addSource(map, "road-network", RoadsService.getData() as GeoJSON);
+	addSource(map, "road-network", RoadsService.getData() as GeoJSON)
 
 	addLayer(map, {
 		id: "road-corridor-glow",
@@ -16,7 +16,7 @@ export function addRoadOverlay(map: Map) {
 			"line-opacity": 0.12,
 			"line-blur": 8,
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "road-corridors",
@@ -37,7 +37,7 @@ export function addRoadOverlay(map: Map) {
 			"line-opacity": 0.76,
 			"line-dasharray": [1.5, 0.8],
 		},
-	});
+	})
 
 	addLayer(map, {
 		id: "road-critical-nodes",
@@ -51,5 +51,5 @@ export function addRoadOverlay(map: Map) {
 			"circle-stroke-color": "#fff3d1",
 			"circle-stroke-width": 1.6,
 		},
-	});
+	})
 }

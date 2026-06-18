@@ -11,7 +11,7 @@ export const palette = {
 	accentRedSoft: "#ff684d",
 	accentBlue: "#1d8cff",
 	accentCyan: "#65d2ff",
-};
+}
 
 export const layerColors = {
 	flood: "#ff4438",
@@ -19,13 +19,13 @@ export const layerColors = {
 	healthcare: "#3c8cff",
 	agriculture: "#3cff8f",
 	electricity: "#bf5cff",
-};
+}
 
 export const glow = {
 	panelShadow: "0 24px 80px rgba(0, 0, 0, 0.42)",
-};
+}
 
 export const motion = {
 	pulseShort: 920,
 	pulseLong: 1800,
-};
+}
