@@ -13,7 +13,7 @@ const CONTRIBUTORS = [
 				strokeWidth="1.75"
 				strokeLinecap="round"
 				strokeLinejoin="round"
-			>	
+			>
 				<title id="Open Source">Open Source</title>
 				<rect x="16" y="16" width="6" height="6" rx="1.5" />
 				<rect x="2" y="16" width="6" height="6" rx="1.5" />

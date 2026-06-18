@@ -1570,9 +1570,6 @@ body {
 	opacity: 0.92;
 }
 
-.simulation {
-}
-
 .simulation__right .sim-flow {
 	display: grid;
 	grid-template-columns: 340px auto 340px auto 340px;

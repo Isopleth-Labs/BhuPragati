@@ -263,7 +263,7 @@ function buildFillGeometry(polygons, radius) {
 	return BufferGeometryUtils.mergeGeometries(geometries, false)
 }
 
-function EarthViewer({ className, onReady, onIndiaSelected }) {
+function EarthViewer({ className, onReady }) {
 	const containerRef = useRef(null)
 
 	useEffect(() => {

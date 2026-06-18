@@ -118,7 +118,9 @@ function computeCentroidVector(polygons, toVec3, radius) {
 	})
 	if (!bestRing.length) return new THREE.Vector3(0, 0, radius)
 	const centroidVec = new THREE.Vector3()
-	bestRing.forEach((p) => centroidVec.add(toVec3(p[1], p[0], 1)))
+	bestRing.forEach((p) => {
+		centroidVec.add(toVec3(p[1], p[0], 1))
+	})
 	if (centroidVec.lengthSq() === 0) return new THREE.Vector3(0, 0, radius)
 	return centroidVec.normalize()
 }
@@ -180,7 +182,9 @@ function buildCountryFill(coordinates, type, toVec3, radius) {
 
 			const geom = new THREE.BufferGeometry()
 			const vertices = [...outerPts]
-			holePts.forEach((ring) => vertices.push(...ring))
+			holePts.forEach((ring) => {
+				vertices.push(...ring)
+			})
 
 			const flatPositions = new Float32Array(vertices.length * 3)
 			vertices.forEach((v, idx) => {

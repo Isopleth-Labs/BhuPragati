@@ -176,6 +176,7 @@ function Sparkline({ color, seed }: { color: string; seed: number }) {
 			className="sparkline-svg"
 			preserveAspectRatio="none"
 		>
+			<title id={`sparkline-${seed}`}>Sparkline</title>
 			<defs>
 				<linearGradient
 					id={`sg-${color.replace("#", "")}`}
@@ -218,6 +219,7 @@ function renderOverviewIcon(key: string) {
 		case "road":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Roads">Roads</title>
 					<path d="M6 2L3 22h18L18 2z" fill="currentColor" fillOpacity="0.15" />
 					<line x1="12" y1="5" x2="12" y2="7" />
 					<line x1="12" y1="11" x2="12" y2="13" />
@@ -227,6 +229,7 @@ function renderOverviewIcon(key: string) {
 		case "rail":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Railways">Railways</title>
 					<rect
 						x="4"
 						y="3"
@@ -246,6 +249,7 @@ function renderOverviewIcon(key: string) {
 		case "airports":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Airports">Airports</title>
 					<path
 						d="M21 16V14L13 9V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9L2 14V16L10 13.5V19L8 20.5V22L11.5 21L15 22V20.5L13 19V13.5L21 16Z"
 						fill="currentColor"
@@ -256,6 +260,7 @@ function renderOverviewIcon(key: string) {
 		case "health":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Health">Health</title>
 					<path
 						d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
 						strokeOpacity="0.4"
@@ -268,6 +273,7 @@ function renderOverviewIcon(key: string) {
 		case "education":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Education">Education</title>
 					<path
 						d="M22 10L12 5L2 10l10 5 10-5z"
 						fill="currentColor"
@@ -279,12 +285,14 @@ function renderOverviewIcon(key: string) {
 		case "power":
 			return (
 				<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+					<title id="Power">Power</title>
 					<path d="M13 2L3 14h9v8l10-12h-9z" />
 				</svg>
 			)
 		case "internet":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Internet">Internet</title>
 					<path d="M5 12.7a10 10 0 0 1 14 0" />
 					<path d="M8.5 15.5a5 5 0 0 1 7 0" />
 					<circle cx="12" cy="19" r="1" fill="currentColor" />
@@ -294,6 +302,7 @@ function renderOverviewIcon(key: string) {
 		case "urban":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Urban">Urban</title>
 					<rect
 						x="2"
 						y="10"
@@ -326,6 +335,7 @@ function renderOverviewIcon(key: string) {
 		case "forest":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Forest">Forest</title>
 					<path d="M12 20v-4" />
 					<path
 						d="M17.6 15A6 6 0 0 0 12 6a6 6 0 0 0-5.6 9 4 4 0 0 0 1.6 7.6h8a4 4 0 0 0 1.6-7.6Z"
@@ -337,6 +347,7 @@ function renderOverviewIcon(key: string) {
 		case "languages":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Languages">Languages</title>
 					<path d="M5 8l6 6" />
 					<path d="M4 14l6-6 2-3" />
 					<path d="M2 5h12" />
@@ -348,6 +359,7 @@ function renderOverviewIcon(key: string) {
 		case "literacy":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Literacy">Literacy</title>
 					<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
 					<path
 						d="M4 4h16v13H6.5A2.5 2.5 0 0 0 4 19.5V4z"
@@ -361,6 +373,7 @@ function renderOverviewIcon(key: string) {
 		case "hospitals":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Hospitals">Hospitals</title>
 					<rect
 						x="3"
 						y="3"
@@ -377,6 +390,7 @@ function renderOverviewIcon(key: string) {
 		case "schools":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Schools">Schools</title>
 					<path
 						d="M22 10L12 5L2 10l10 5 10-5z"
 						fill="currentColor"
@@ -389,6 +403,7 @@ function renderOverviewIcon(key: string) {
 		case "gdpPerCapita":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="GDP per Capita">GDP per Capita</title>
 					<circle cx="12" cy="8" r="4" fill="currentColor" fillOpacity="0.15" />
 					<path d="M5 20v-1a7 7 0 0 1 14 0v1" />
 					<path d="M12 14v3" />
@@ -398,6 +413,7 @@ function renderOverviewIcon(key: string) {
 		case "districts":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Districts">Districts</title>
 					<rect
 						x="3"
 						y="3"
@@ -439,6 +455,7 @@ function renderOverviewIcon(key: string) {
 		case "coastline":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Coastline">Coastline</title>
 					<path d="M2 12c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
 					<path d="M2 17c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
 					<path d="M2 7c2-2.5 4-2.5 6 0s4 2.5 6 0 4-2.5 6 0" />
@@ -468,18 +485,21 @@ function renderStatsIcon(key: string) {
 					width="32"
 					height="32"
 				>
+					<title id="States & UTs">States & UTs</title>
 					<path d="M12.5 3c-.5 0-.9.3-1.2.7l-.4.8c-.2.4-.6.6-1 .6H9c-.4 0-.8.2-1 .5L7.2 7c-.2.3-.2.7 0 1l.5.8c.2.3.3.6.2.9l-.2.8c0 .2 0 .4.1.5l.8.8c.2.2.3.5.3.8v1.2c0 .4.2.7.5.9l1.8.8c.3.1.5.4.5.7l.1 1.2c0 .4.3.7.7.8l2 .3c.4 0 .8-.2.9-.6l.3-1c.1-.3.3-.5.6-.6h1.2c.4 0 .7-.3.8-.7l.1-.8c0-.3-.1-.6-.3-.8l-.8-.8c-.2-.2-.3-.5-.3-.8v-1c0-.4.2-.7.5-.9l1-.8c.3-.2.4-.6.4-1V7.5c0-.4-.2-.8-.5-1l-1-.7c-.3-.2-.7-.2-1 0l-.8.5c-.3.2-.7.2-1 0l-.8-.8c-.2-.2-.5-.3-.8-.3z" />
 				</svg>
 			)
 		case "population":
 			return (
 				<svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+					<title id="Population">Population</title>
 					<path d="M9 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm8.5-2c1.66 0 3-1.34 3-3s-1.34-3-3-3c-.43 0-.84.09-1.2.26 1.09 1.41 1.09 3.07 0 4.48.36.17.77.26 1.2.26zm0 2c1.33 0 4 .67 4 2v2h-5.5v-2c0-1.04-.46-1.95-1.19-2.58.9-.27 1.83-.42 2.69-.42z" />
 				</svg>
 			)
 		case "area":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Area">Area</title>
 					<polygon
 						points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"
 						fill="currentColor"
@@ -492,6 +512,7 @@ function renderStatsIcon(key: string) {
 		case "gdp":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="GDP">GDP</title>
 					<circle
 						cx="12"
 						cy="12"
@@ -524,6 +545,7 @@ function renderIntelIcon(key: string) {
 		case "population":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Population">Population</title>
 					<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
 					<circle cx="9" cy="7" r="4" />
 					<path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -533,6 +555,7 @@ function renderIntelIcon(key: string) {
 		case "infrastructure":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Infrastructure">Infrastructure</title>
 					<rect
 						x="2"
 						y="10"
@@ -565,12 +588,14 @@ function renderIntelIcon(key: string) {
 		case "health":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Health">Health</title>
 					<path d="M22 12h-4l-3 9L9 3l-3 9H2" />
 				</svg>
 			)
 		case "education":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Education">Education</title>
 					<path
 						d="M22 10L12 5L2 10l10 5 10-5z"
 						fill="currentColor"
@@ -582,6 +607,7 @@ function renderIntelIcon(key: string) {
 		case "agriculture":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Agriculture">Agriculture</title>
 					<path
 						d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-9 8.2Z"
 						fill="currentColor"
@@ -593,6 +619,7 @@ function renderIntelIcon(key: string) {
 		case "connectivity":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Connectivity">Connectivity</title>
 					<circle cx="18" cy="5" r="3" fill="currentColor" fillOpacity="0.15" />
 					<circle cx="6" cy="12" r="3" fill="currentColor" fillOpacity="0.15" />
 					<circle
@@ -609,6 +636,7 @@ function renderIntelIcon(key: string) {
 		case "power":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Power">Power</title>
 					<polygon
 						points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
 						fill="currentColor"
@@ -634,6 +662,7 @@ function renderFeatureIcon(icon: InfoIcon) {
 		case "landmark":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Landmark">Landmark</title>
 					<path d="M4 10h16" />
 					<path d="M6 10v6" />
 					<path d="M10 10v6" />
@@ -646,6 +675,7 @@ function renderFeatureIcon(icon: InfoIcon) {
 		case "house":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="House">House</title>
 					<path d="m3 11 9-7 9 7" />
 					<path d="M5 10v9h14v-9" />
 					<path d="M10 19v-5h4v5" />
@@ -654,6 +684,7 @@ function renderFeatureIcon(icon: InfoIcon) {
 		case "database":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Database">Database</title>
 					<ellipse cx="12" cy="5" rx="7" ry="3" />
 					<path d="M5 5v14c0 1.7 3.1 3 7 3s7-1.3 7-3V5" />
 					<path d="M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3" />
@@ -662,6 +693,7 @@ function renderFeatureIcon(icon: InfoIcon) {
 		case "cpu":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="CPU">CPU</title>
 					<rect x="7" y="7" width="10" height="10" rx="2" />
 					<path d="M10 2v3" />
 					<path d="M14 2v3" />
@@ -676,6 +708,7 @@ function renderFeatureIcon(icon: InfoIcon) {
 		case "shield":
 			return (
 				<svg viewBox="0 0 24 24" {...commonProps}>
+					<title id="Shield">Shield</title>
 					<path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6z" />
 					<path d="m9.5 12.5 2 2 3-3" />
 				</svg>
