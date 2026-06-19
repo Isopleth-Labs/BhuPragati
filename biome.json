@@ -9,6 +9,8 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
+			"!public",
+			"!**/public",
 			"!**/src/routeTree.gen.ts",
 			"!**/src/shared/components/ui"
 		]
