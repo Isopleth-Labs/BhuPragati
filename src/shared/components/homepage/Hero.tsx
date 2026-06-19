@@ -130,7 +130,7 @@ function Hero() {
 					Visualizing Infrastructure, Development and Public Data
 				</p>
 				<div className="hero__actions">
-					<Link to="/map" className="btn btn-primary" id="hero-cta">
+					<Link to="/state-map" className="btn btn-primary" id="hero-cta">
 						<span>ENTER EARTH NETWORK</span>
 						<span className="btn__arrow" aria-hidden="true" />
 					</Link>
