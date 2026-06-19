@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/suspicious/noExplicitAny: <explanation> */
 import fs from "node:fs"
 import path from "node:path"
 
@@ -53,7 +52,6 @@ const stateDistrictMap: Record<string, string[]> = JSON.parse(
 // ============================
 const normalize = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ")
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const featureMap = new Map<string, any>()
 
 for (const f of geojson.features) {
