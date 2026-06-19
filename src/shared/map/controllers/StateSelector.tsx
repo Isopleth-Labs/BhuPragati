@@ -19,10 +19,7 @@ interface StateSelectorProps {
 //
 // Pattern reused by future DistrictSelectionController (on district-lines)
 // and BlockSelectionController — each controller owns one level, emits one ID.
-export function StateSelector({
-	ready,
-	onStateClick,
-}: StateSelectorProps) {
+export function StateSelector({ ready, onStateClick }: StateSelectorProps) {
 	const map = useMapReady()
 	const lastHoveredRef = useRef<number | null>(null)
 

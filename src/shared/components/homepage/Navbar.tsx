@@ -11,7 +11,6 @@ const NAV_LINKS = [
 
 function Navbar() {
 	return (
-
 		<nav
 			className="fixed inset-x-0 top-0 z-[100] flex h-[80px] items-center justify-between bg-gradient-to-b from-[rgba(2,5,10,0.58)] via-[rgba(2,5,10,0.1)] to-transparent px-[clamp(24px,4vw,64px)] pt-2"
 			aria-label="Main navigation"
