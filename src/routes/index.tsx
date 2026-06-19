@@ -11,19 +11,23 @@ import WhyItMatters from "@/shared/components/homepage/WhyItMatters"
 
 export const Route = createFileRoute("/")({ component: Homepage })
 
+const Divider = () => (
+	<div className="mx-auto h-px w-full max-w-[min(1800px,92vw)] bg-white/[0.08] opacity-80" />
+)
+
 export default function Homepage() {
 	return (
-		<div className="homepage">
+		<div className="min-h-screen overflow-x-hidden text-base leading-relaxed antialiased font-[Inter,_Segoe_UI,_system-ui,_-apple-system,_sans-serif] text-[#e8eef8] bg-[#04070f]">
 			<Navbar />
 			<Hero />
 			<WhyItMatters />
-			<div className="homepage__divider" />
+			<Divider />
 			<Infrastructure />
-			<div className="homepage__divider" />
+			<Divider />
 			<Simulation />
-			<div className="homepage__divider" />
+			<Divider />
 			<Navigation />
-			<div className="homepage__divider" />
+			<Divider />
 			<Contributors />
 			<Footer />
 		</div>

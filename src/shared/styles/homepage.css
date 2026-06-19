@@ -48,19 +48,6 @@ body {
 	background: var(--bg);
 }
 
-/* ─── Homepage root ─── */
-.homepage {
-	min-height: 100vh;
-	overflow-x: hidden;
-	font-family: var(--font);
-	font-size: 15px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	line-height: 1.6;
-	color: var(--text);
-	background: var(--bg);
-}
-
 /* ─── Shared ─── */
 .eyebrow {
 	margin-bottom: 10px;
@@ -1251,15 +1238,6 @@ body {
 
 .why-it-matters {
 	padding-top: 80px;
-}
-
-.homepage__divider {
-	width: 100%;
-	max-width: min(1800px, 92vw);
-	height: 1px;
-	margin: 0 auto;
-	background: var(--border);
-	opacity: 0.8;
 }
 
 .why-it-matters__left,
