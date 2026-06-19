@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router"
-import "@/shared/styles/homepage.css"
+// import "@/shared/styles/homepage.css"
 import Contributors from "@/shared/components/homepage/Contributors"
 import Footer from "@/shared/components/homepage/Footer"
 import Hero from "@/shared/components/homepage/Hero"
@@ -20,7 +20,7 @@ export default function Homepage() {
 		<div className="min-h-screen overflow-x-hidden text-base leading-relaxed antialiased font-[Inter,_Segoe_UI,_system-ui,_-apple-system,_sans-serif] text-[#e8eef8] bg-[#04070f]">
 			<Navbar />
 			<Hero />
-			<WhyItMatters />
+			{/* <WhyItMatters />
 			<Divider />
 			<Infrastructure />
 			<Divider />
@@ -29,7 +29,7 @@ export default function Homepage() {
 			<Navigation />
 			<Divider />
 			<Contributors />
-			<Footer />
+			<Footer /> */}
 		</div>
 	)
 }
