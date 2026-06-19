@@ -1,9 +1,9 @@
 import { Suspense, useState } from "react"
-import { ChoroplethUpdateController } from "@/modules/map/controllers/ChoroplethUpdateController"
-import { LabelTuningController } from "@/modules/map/controllers/LabelTuningController"
-import { StateSelectionController } from "@/modules/map/controllers/StateSelectionController"
-import { LazyMapEngine as MapEngine } from "@/modules/map/LazyMapEngine"
-import { StateBoundaryLayer } from "@/modules/map/layers/StateBoundaryLayer"
+import { ChoroplethUpdateController } from "#/shared/map/controllers/ChoroplethUpdateController"
+import { LabelTuningController } from "#/shared/map/controllers/LabelTuningController"
+import { StateSelectionController } from "#/shared/map/controllers/StateSelectionController"
+import { LazyMapEngine as MapEngine } from "#/shared/map/LazyMapEngine"
+import { StateBoundaryLayer } from "#/shared/map/layers/StateBoundaryLayer"
 import {
 	INDIA_INITIAL_VIEW_STATE,
 	INDIA_MAX_BOUNDS,

@@ -1,5 +1,5 @@
-import GlobeViz from "../../components/GlobeViz"
-import CapabilityStrip from "./CapabilityStrip"
+import GlobeViz from "@/shared/components/globe/GlobeViz"
+import CapabilityStrip from "@/shared/components/homepage/CapabilityStrip"
 
 const HEALTHCARE_METRICS = [
 	{

@@ -1,5 +1,5 @@
-import EarthScene from "./EarthScene"
-import "./standalone-earth.css"
+import EarthScene from "@/shared/components/globe/EarthScene"
+import "@/shared/styles/standalone-earth.css"
 
 function StandaloneEarth() {
 	return (

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import type { MapRef } from "react-map-gl/maplibre"
-import { INDIA_BOUNDS, INDIA_CENTER } from "@/modules/map/MapConstraints"
+import { INDIA_BOUNDS, INDIA_CENTER } from "#/shared/map/MapConstraints"
 
 export function useIndiaFitView(mapRef: React.RefObject<MapRef | null>) {
 	useEffect(() => {

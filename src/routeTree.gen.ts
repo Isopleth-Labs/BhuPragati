@@ -9,12 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TestRouteImport } from './routes/test'
 import { Route as StateMapRouteImport } from './routes/state-map'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GisRouteImport } from './routes/gis'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StateIndexRouteImport } from './routes/$state/index'
+import { Route as StateDistrictIndexRouteImport } from './routes/$state/$district/index'
 
+const TestRoute = TestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StateMapRoute = StateMapRouteImport.update({
   id: '/state-map',
   path: '/state-map',
@@ -40,6 +48,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StateIndexRoute = StateIndexRouteImport.update({
+  id: '/$state/',
+  path: '/$state/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StateDistrictIndexRoute = StateDistrictIndexRouteImport.update({
+  id: '/$state/$district/',
+  path: '/$state/$district/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
+  '/$state/': typeof StateIndexRoute
+  '/$state/$district/': typeof StateDistrictIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
+  '/$state': typeof StateIndexRoute
+  '/$state/$district': typeof StateDistrictIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +86,41 @@ export interface FileRoutesById {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
+  '/$state/': typeof StateIndexRoute
+  '/$state/$district/': typeof StateDistrictIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/gis' | '/map' | '/state-map'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/gis'
+    | '/map'
+    | '/state-map'
+    | '/test'
+    | '/$state/'
+    | '/$state/$district/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/gis' | '/map' | '/state-map'
-  id: '__root__' | '/' | '/about' | '/gis' | '/map' | '/state-map'
+  to:
+    | '/'
+    | '/about'
+    | '/gis'
+    | '/map'
+    | '/state-map'
+    | '/test'
+    | '/$state'
+    | '/$state/$district'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/gis'
+    | '/map'
+    | '/state-map'
+    | '/test'
+    | '/$state/'
+    | '/$state/$district/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +129,20 @@ export interface RootRouteChildren {
   GisRoute: typeof GisRoute
   MapRoute: typeof MapRoute
   StateMapRoute: typeof StateMapRoute
+  TestRoute: typeof TestRoute
+  StateIndexRoute: typeof StateIndexRoute
+  StateDistrictIndexRoute: typeof StateDistrictIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/test': {
+      id: '/test'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/state-map': {
       id: '/state-map'
       path: '/state-map'
@@ -116,6 +178,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$state/': {
+      id: '/$state/'
+      path: '/$state'
+      fullPath: '/$state/'
+      preLoaderRoute: typeof StateIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$state/$district/': {
+      id: '/$state/$district/'
+      path: '/$state/$district'
+      fullPath: '/$state/$district/'
+      preLoaderRoute: typeof StateDistrictIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   GisRoute: GisRoute,
   MapRoute: MapRoute,
   StateMapRoute: StateMapRoute,
+  TestRoute: TestRoute,
+  StateIndexRoute: StateIndexRoute,
+  StateDistrictIndexRoute: StateDistrictIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
