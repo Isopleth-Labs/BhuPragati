@@ -1,10 +1,12 @@
+import { Link } from "@tanstack/react-router"
+
 const NAV_LINKS = [
-	{ label: "About", href: "#about" },
-	{ label: "Platform", href: "#platform" },
-	{ label: "Solutions", href: "#solutions" },
-	{ label: "Data Insights", href: "#data-insights" },
-	{ label: "Resources", href: "#resources" },
-	{ label: "Contact", href: "#contact" },
+	{ label: "About", href: "about" },
+	{ label: "Platform", href: "platform" },
+	{ label: "Solutions", href: "solutions" },
+	{ label: "Data Insights", href: "data-insights" },
+	{ label: "Resources", href: "resources" },
+	{ label: "Contact", href: "contact" },
 ]
 
 function Navbar() {
@@ -81,13 +83,14 @@ function Navbar() {
 			<ul className="navbar__links">
 				{NAV_LINKS.map((link) => (
 					<li key={link.label}>
-						<a
+						<Link
+							to={link.href}
 							href={link.href}
 							className="navbar__link"
 							id={`nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
 						>
 							{link.label}
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>

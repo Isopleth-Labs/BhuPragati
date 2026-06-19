@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router"
 import GlobeViz from "@/shared/components/globe/GlobeViz"
 import CapabilityStrip from "@/shared/components/homepage/CapabilityStrip"
 
@@ -121,16 +122,18 @@ function Hero() {
 			/>
 
 			<div className="hero__content">
-				<p className="hero__welcome">EARTH INTELLIGENCE PLATFORM</p>
+				<p className="hero__welcome">
+					EARTH INTELLIGENCE PLATFORM
+				</p>
 				<h1 className="hero__title">Better Bharat Map</h1>
 				<p className="hero__subtitle">
 					Visualizing Infrastructure, Development and Public Data
 				</p>
 				<div className="hero__actions">
-					<a href="#enter" className="btn btn-primary" id="hero-cta">
+					<Link to="/map" className="btn btn-primary" id="hero-cta">
 						<span>ENTER EARTH NETWORK</span>
 						<span className="btn__arrow" aria-hidden="true" />
-					</a>
+					</Link>
 				</div>
 				<a href="#explore" className="hero__explore" id="hero-explore-link">
 					<span>EXPLORE PLATFORM</span>
