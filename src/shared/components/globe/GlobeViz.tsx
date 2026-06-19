@@ -446,7 +446,7 @@ export default function GlobeViz() {
 			positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta)
 
 			const rand = Math.random()
-			let baseSize, baseOpacity
+			let baseSize: number, baseOpacity: number
 			if (rand < 0.7) {
 				// 70% tiny dim stars (0.5px to 1.0px equivalent, opacity 0.2 to 0.5)
 				baseSize = 0.5 + Math.random() * 0.5
@@ -884,7 +884,7 @@ export default function GlobeViz() {
 		container.addEventListener("pointermove", onPointerMove)
 
 		// ── ANIMATION LOOP ────────────────────────────────────────
-		let animId
+		let animId: number | undefined
 		const clock = new THREE.Clock()
 		function animate() {
 			animId = requestAnimationFrame(animate)

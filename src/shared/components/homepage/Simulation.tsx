@@ -152,7 +152,7 @@ function NetworkCanvas({ stepIndex, isHovered, onHoverStart, onHoverEnd }) {
 		if (!canvas || !container) return
 
 		const ctx = canvas.getContext("2d")
-		let animationFrameId
+		let animationFrameId: number | undefined
 		let isVisible = true
 
 		const observer = new IntersectionObserver(
@@ -163,7 +163,7 @@ function NetworkCanvas({ stepIndex, isHovered, onHoverStart, onHoverEnd }) {
 		)
 		observer.observe(container)
 
-		let width, height
+		let width: number, height: number
 		const resize = () => {
 			const rect = container.getBoundingClientRect()
 			const dpr = Math.min(window.devicePixelRatio || 1, 2)
