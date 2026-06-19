@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react"
 import { ChoroplethUpdateController } from "#/shared/map/controllers/ChoroplethUpdateController"
 import { LabelTuningController } from "#/shared/map/controllers/LabelTuningController"
-import { StateSelectionController } from "#/shared/map/controllers/StateSelectionController"
+import { StateSelector } from "#/shared/map/controllers/StateSelector"
 import { LazyMapEngine as MapEngine } from "#/shared/map/LazyMapEngine"
 import { StateBoundaryLayer } from "#/shared/map/layers/StateBoundaryLayer"
 import {
@@ -49,7 +49,7 @@ export default function StateMapShell({
 					activeIndicator={activeIndicator}
 					ready={stateLayerReady}
 				/>
-				<StateSelectionController
+				<StateSelector
 					ready={stateLayerReady}
 					onStateClick={handleStateClick}
 				/>

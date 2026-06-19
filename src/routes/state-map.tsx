@@ -6,6 +6,7 @@ export const Route = createFileRoute("/state-map")({
 })
 
 function StateMapPage() {
+	
 	const navigate = useNavigate()
 
 	const handleBiharDrillDown = () => {
