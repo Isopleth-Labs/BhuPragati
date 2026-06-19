@@ -1,5 +1,5 @@
+
 import { createFileRoute } from "@tanstack/react-router"
-// import "@/shared/styles/homepage.css"
 import Contributors from "@/shared/components/homepage/Contributors"
 import Footer from "@/shared/components/homepage/Footer"
 import Hero from "@/shared/components/homepage/Hero"
@@ -12,15 +12,30 @@ import WhyItMatters from "@/shared/components/homepage/WhyItMatters"
 export const Route = createFileRoute("/")({ component: Homepage })
 
 const Divider = () => (
-	<div className="mx-auto h-px w-full max-w-[min(1800px,92vw)] bg-white/[0.08] opacity-80" />
+      <div
+              aria-hidden="true"
+              className="w-full max-w-[min(1800px,92vw)] h-px mx-auto bg-[rgba(255,255,255,0.08)] opacity-80"
+      />
 )
 
 export default function Homepage() {
-	return (
-		<div className="min-h-screen overflow-x-hidden text-base leading-relaxed antialiased font-[Inter,_Segoe_UI,_system-ui,_-apple-system,_sans-serif] text-[#e8eef8] bg-[#04070f]">
-			<Navbar />
-			<Hero />
-			{/* <WhyItMatters />
+      return (
+              <div className="min-h-screen overflow-x-hidden [font-family:Inter,Segoe_UI,system-ui,-apple-system,sans-serif] text-[15px] leading-[1.6] bg-[#04070f] text-[#e8eef8]">
+                      <Navbar />
+                      <Hero />
+                      <WhyItMatters />
+                      <Divider />
+                      <Infrastructure />
+                      <Divider />
+                      <Simulation />
+                      <Divider />
+                      <Navigation />
+                      <Divider />
+                      <Contributors />
+                      <Footer />
+              </div>
+      )
+}
 			<Divider />
 			<Infrastructure />
 			<Divider />
