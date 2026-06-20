@@ -43,12 +43,46 @@ function Navbar() {
 					xmlns="http://www.w3.org/2000/svg"
 					aria-hidden="true"
 				>
-					<circle cx="22" cy="22" r="15" stroke="#6ad1ff" strokeWidth="1.8" fill="none" />
-					<line x1="7" y1="22" x2="37" y2="22" stroke="#6ad1ff" strokeWidth="1.5" />
-					<path d="M 22 7 A 5 15 0 0 0 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-					<path d="M 22 7 A 5 15 0 0 1 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-					<path d="M 22 7 A 10 15 0 0 0 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-					<path d="M 22 7 A 10 15 0 0 1 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
+					<circle
+						cx="22"
+						cy="22"
+						r="15"
+						stroke="#6ad1ff"
+						strokeWidth="1.8"
+						fill="none"
+					/>
+					<line
+						x1="7"
+						y1="22"
+						x2="37"
+						y2="22"
+						stroke="#6ad1ff"
+						strokeWidth="1.5"
+					/>
+					<path
+						d="M 22 7 A 5 15 0 0 0 22 37"
+						stroke="#6ad1ff"
+						strokeWidth="1.5"
+						fill="none"
+					/>
+					<path
+						d="M 22 7 A 5 15 0 0 1 22 37"
+						stroke="#6ad1ff"
+						strokeWidth="1.5"
+						fill="none"
+					/>
+					<path
+						d="M 22 7 A 10 15 0 0 0 22 37"
+						stroke="#6ad1ff"
+						strokeWidth="1.5"
+						fill="none"
+					/>
+					<path
+						d="M 22 7 A 10 15 0 0 1 22 37"
+						stroke="#6ad1ff"
+						strokeWidth="1.5"
+						fill="none"
+					/>
 				</svg>
 
 				<div className="flex flex-col min-w-0 overflow-hidden text-ellipsis leading-[1.05]">
