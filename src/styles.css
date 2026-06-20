@@ -3,7 +3,6 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @import "@/shared/styles/base.css";
-@import "@/shared/styles/dashboard.css";
 @import "@/shared/styles/panels.css";
 
 @custom-variant dark (&:is(.dark *));
