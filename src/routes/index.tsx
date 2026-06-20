@@ -36,15 +36,3 @@ export default function Homepage() {
               </div>
       )
 }
-			<Divider />
-			<Infrastructure />
-			<Divider />
-			<Simulation />
-			<Divider />
-			<Navigation />
-			<Divider />
-			<Contributors />
-			<Footer /> */}
-		</div>
-	)
-}
