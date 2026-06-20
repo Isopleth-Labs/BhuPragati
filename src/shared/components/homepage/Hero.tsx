@@ -58,90 +58,90 @@ interface Metric {
 }
 
 function Sparkline() {
-      return (
-              <svg
-                      className="block w-full mt-3 overflow-visible [&_path]:fill-none [&_path]:[stroke:rgba(194,220,244,0.78)] [&_path]:[stroke-width:1.4]"
-                      height="28"
-                      viewBox="0 0 150 30"
-                      aria-hidden="true"
-              >
-                      <path d="M2 21 C18 22 24 17 38 19 S60 25 74 18 96 20 108 10 128 8 148 13" />
-              </svg>
-      )
+	return (
+		<svg
+			className="block w-full mt-3 overflow-visible [&_path]:fill-none [&_path]:[stroke:rgba(194,220,244,0.78)] [&_path]:[stroke-width:1.4]"
+			height="28"
+			viewBox="0 0 150 30"
+			aria-hidden="true"
+		>
+			<path d="M2 21 C18 22 24 17 38 19 S60 25 74 18 96 20 108 10 128 8 148 13" />
+		</svg>
+	)
 }
 
 function PanelSymbol({ type }: { type: "health" | "flood" }) {
-      if (type === "health") {
-              return (
-                      <span
-                              aria-hidden="true"
-                              className={cn(
-                                      "relative inline-flex flex-shrink-0 w-[22px] h-[22px]",
-                                      "before:absolute before:content-[''] before:top-[5px] before:right-[2px] before:bottom-[7px] before:left-[2px]",
-                                      "before:border before:border-[#9fdcff] before:rounded-[8px_8px_10px_10px] before:rotate-45",
-                                      "after:absolute after:content-[''] after:inset-[7px]",
-                                      "after:border-r after:border-b after:border-[#9fdcff] after:rotate-45",
-                              )}
-                      />
-              )
-      }
-      return (
-              <span
-                      aria-hidden="true"
-                      className={cn(
-                              "relative inline-flex flex-shrink-0 w-[22px] h-[22px]",
-                              "before:absolute before:content-[''] before:right-[2px] before:bottom-[6px] before:left-[2px] before:h-3",
-                              "before:border before:border-t-0 before:border-[#9fdcff] before:rounded-b-[12px]",
-                              "after:absolute after:content-[''] after:right-[3px] after:bottom-[1px] after:left-[3px] after:h-[7px]",
-                              "after:border-t after:border-[#9fdcff] after:rounded-full",
-                      )}
-              />
-      )
+	if (type === "health") {
+		return (
+			<span
+				aria-hidden="true"
+				className={cn(
+					"relative inline-flex flex-shrink-0 w-[22px] h-[22px]",
+					"before:absolute before:content-[''] before:top-[5px] before:right-[2px] before:bottom-[7px] before:left-[2px]",
+					"before:border before:border-[#9fdcff] before:rounded-[8px_8px_10px_10px] before:rotate-45",
+					"after:absolute after:content-[''] after:inset-[7px]",
+					"after:border-r after:border-b after:border-[#9fdcff] after:rotate-45",
+				)}
+			/>
+		)
+	}
+	return (
+		<span
+			aria-hidden="true"
+			className={cn(
+				"relative inline-flex flex-shrink-0 w-[22px] h-[22px]",
+				"before:absolute before:content-[''] before:right-[2px] before:bottom-[6px] before:left-[2px] before:h-3",
+				"before:border before:border-t-0 before:border-[#9fdcff] before:rounded-b-[12px]",
+				"after:absolute after:content-[''] after:right-[3px] after:bottom-[1px] after:left-[3px] after:h-[7px]",
+				"after:border-t after:border-[#9fdcff] after:rounded-full",
+			)}
+		/>
+	)
 }
 
 function StatPanel({
-      side,
-      title,
-      type,
-      metrics,
-      linkLabel,
-      href,
+	side,
+	title,
+	type,
+	metrics,
+	linkLabel,
+	href,
 }: {
-      side: "left" | "right"
-      title: string
-      type: "health" | "flood"
-      metrics: Metric[]
-      linkLabel: string
-      href: string
+	side: "left" | "right"
+	title: string
+	type: "health" | "flood"
+	metrics: Metric[]
+	linkLabel: string
+	href: string
 }) {
-      return (
-              <aside
-                      className={cn(
-                              "absolute z-[4] w-[clamp(220px,17vw,258px)]",
-                              side === "left"
-                                      ? "top-[clamp(148px,25vh,208px)] left-[clamp(16px,2.5vw,42px)]"
-                                      : "top-[clamp(148px,25vh,208px)] right-[clamp(16px,2.5vw,42px)]",
-                              "max-[1120px]:w-[218px] max-[980px]:hidden",
-                      )}
-                      aria-label={title}
-              >
-                      <div
-                              className={cn(
-                                      "min-h-[300px] p-[22px_22px_18px]",
-                                      "bg-[rgba(8,12,20,0.35)] border border-[rgba(255,255,255,0.08)] rounded-[10px]",
-                                      "shadow-[0_12px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.05)]",
-                                      "backdrop-blur-[20px]",
-                                      "[transition:transform_0.4s_cubic-bezier(0.16,1,0.3,1),box-shadow_0.4s_ease,background-color_0.4s_ease,border-color_0.4s_ease]",
-                                      "hover:bg-[rgba(8,12,20,0.45)] hover:border-[rgba(255,255,255,0.15)] hover:-translate-y-1",
-                                      "hover:shadow-[0_20px_48px_rgba(0,0,0,0.4),0_0_32px_rgba(255,255,255,0.02),inset_0_1px_0_rgba(255,255,255,0.1)]",
-                                      "max-[1120px]:min-h-[330px] max-[1120px]:p-[18px]",
-                              )}
-                      >
-                              {/* Header */}
-                              <div className="flex gap-3 items-center min-h-[44px] pb-[17px] mb-[18px] text-[11px] font-extrabold text-[#eef7ff] uppercase border-b border-[rgba(255,255,255,0.08)]">
-                                      <PanelSymbol type={type} />
-                                      <span>{title}</span>
-                              </div>
+	return (
+		<aside
+			className={cn(
+				"absolute z-[4] w-[clamp(220px,17vw,258px)]",
+				side === "left"
+					? "top-[clamp(148px,25vh,208px)] left-[clamp(16px,2.5vw,42px)]"
+					: "top-[clamp(148px,25vh,208px)] right-[clamp(16px,2.5vw,42px)]",
+				"max-[1120px]:w-[218px] max-[980px]:hidden",
+			)}
+			aria-label={title}
+		>
+			<div
+				className={cn(
+					"min-h-[300px] p-[22px_22px_18px]",
+					"bg-[rgba(8,12,20,0.35)] border border-[rgba(255,255,255,0.08)] rounded-[10px]",
+					"shadow-[0_12px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.05)]",
+					"backdrop-blur-[20px]",
+					"[transition:transform_0.4s_cubic-bezier(0.16,1,0.3,1),box-shadow_0.4s_ease,background-color_0.4s_ease,border-color_0.4s_ease]",
+					"hover:bg-[rgba(8,12,20,0.45)] hover:border-[rgba(255,255,255,0.15)] hover:-translate-y-1",
+					"hover:shadow-[0_20px_48px_rgba(0,0,0,0.4),0_0_32px_rgba(255,255,255,0.02),inset_0_1px_0_rgba(255,255,255,0.1)]",
+					"max-[1120px]:min-h-[330px] max-[1120px]:p-[18px]",
+				)}
+			>
+				{/* Header */}
+				<div className="flex gap-3 items-center min-h-[44px] pb-[17px] mb-[18px] text-[11px] font-extrabold text-[#eef7ff] uppercase border-b border-[rgba(255,255,255,0.08)]">
+					<PanelSymbol type={type} />
+					<span>{title}</span>
+				</div>
 
 				{/* Metrics */}
 				{metrics.map((metric, index) => (
