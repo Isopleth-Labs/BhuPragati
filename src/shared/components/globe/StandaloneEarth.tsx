@@ -1,10 +1,9 @@
-import EarthScene from "@/shared/components/globe/EarthScene"
-import "@/shared/styles/standalone-earth.css"
+import EarthViewer from "./EarthViewer"
 
 function StandaloneEarth() {
 	return (
-		<div className="earth-prototype">
-			<EarthScene className="earth-prototype__canvas" />
+		<div className="flex h-screen w-screen items-center justify-center overflow-hidden bg-transparent">
+			<EarthViewer className="relative h-[min(80vmin,940px)] w-[min(80vmin,940px)]" />
 		</div>
 	)
 }
