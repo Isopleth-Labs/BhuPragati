@@ -1,4 +1,4 @@
-import { memo } from "react"
+import { type ComponentProps, memo } from "react"
 import LayerIcon from "@/shared/components/LayerIcon"
 import { infrastructureLayers } from "@/shared/lib/config/layers"
 
@@ -21,7 +21,9 @@ function InsightStrip() {
 					>
 						<span className="insight-card__icon" aria-hidden="true">
 							<LayerIcon
-								iconKey={layer.iconKey as any}
+								iconKey={
+									layer.iconKey as ComponentProps<typeof LayerIcon>["iconKey"]
+								}
 								size={26}
 								strokeWidth={1.4}
 							/>

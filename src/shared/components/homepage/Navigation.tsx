@@ -1,6 +1,10 @@
 import React from "react"
+import {
+	Eyebrow,
+	SectionBody,
+	SectionHeading,
+} from "@/shared/components/homepage/shared"
 import { cn } from "@/shared/lib/utils"
-import { Eyebrow, SectionBody, SectionHeading } from "@/shared/components/homepage/shared"
 import {
 	BlockIcon,
 	DistrictIcon,

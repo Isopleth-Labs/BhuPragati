@@ -445,6 +445,7 @@ export default function GlobeViz() {
       positions[i * 3 + 1] = r * Math.cos(phi);
       positions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
 
+<<<<<<< HEAD
       const rand = Math.random();
       let baseSize, baseOpacity;
       if (rand < 0.7) {
@@ -464,6 +465,27 @@ export default function GlobeViz() {
         baseSize = 2.4 + Math.random() * 0.6;
         baseOpacity = 0.8 + Math.random() * 0.2;
       }
+=======
+			const rand = Math.random()
+			let baseSize: number, baseOpacity: number
+			if (rand < 0.7) {
+				// 70% tiny dim stars (0.5px to 1.0px equivalent, opacity 0.2 to 0.5)
+				baseSize = 0.5 + Math.random() * 0.5
+				baseOpacity = 0.2 + Math.random() * 0.3
+			} else if (rand < 0.9) {
+				// 20% medium stars (1.0px to 1.8px equivalent, opacity 0.4 to 0.7)
+				baseSize = 1.0 + Math.random() * 0.8
+				baseOpacity = 0.4 + Math.random() * 0.3
+			} else if (rand < 0.98) {
+				// 8% bright stars (1.8px to 2.4px equivalent, opacity 0.6 to 0.9)
+				baseSize = 1.8 + Math.random() * 0.6
+				baseOpacity = 0.6 + Math.random() * 0.3
+			} else {
+				// 2% very bright stars (2.4px to 3.0px equivalent, opacity 0.8 to 1.0)
+				baseSize = 2.4 + Math.random() * 0.6
+				baseOpacity = 0.8 + Math.random() * 0.2
+			}
+>>>>>>> a4d23b0 (refactor(homepage): complete Tailwind-only homepage migration)
 
       sizes[i] = baseSize;
       opacities[i] = baseOpacity;
@@ -873,12 +895,12 @@ export default function GlobeViz() {
     container.addEventListener("pointerup", onPointerUp);
     container.addEventListener("pointermove", onPointerMove);
 
-    // ── ANIMATION LOOP ────────────────────────────────────────
-    let animId;
-    const clock = new THREE.Clock();
-    function animate() {
-      animId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
+		// ── ANIMATION LOOP ────────────────────────────────────────
+		let animId: number
+		const clock = new THREE.Clock()
+		function animate() {
+			animId = requestAnimationFrame(animate)
+			const t = clock.getElapsedTime()
 
       // pulse selected border
       selectedBorderMat.opacity = 0.5 + 0.5 * Math.sin(t * 8);

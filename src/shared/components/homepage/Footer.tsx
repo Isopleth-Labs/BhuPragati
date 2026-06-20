@@ -68,7 +68,10 @@ const SOCIAL_LINKS = [
 			<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
 				<title>YouTube</title>
 				<path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-				<polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#000" />
+				<polygon
+					points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+					fill="#000"
+				/>
 			</svg>
 		),
 	},
@@ -83,7 +86,6 @@ function Footer() {
 			<div className="max-w-[1600px] mx-auto">
 				{/* Top: 5-column grid — brand | nav1 | nav2 | nav3 | vision */}
 				<div className="grid [grid-template-columns:260px_auto_auto_auto_340px] gap-[40px] pb-8 border-b border-[rgba(255,255,255,0.08)] max-[900px]:[grid-template-columns:1fr] max-[900px]:gap-[28px]">
-
 					{/* Brand: icon left, text right */}
 					<div className="group flex gap-3 items-start">
 						<svg
@@ -92,16 +94,54 @@ function Footer() {
 							fill="none"
 							aria-hidden="true"
 						>
-							<circle cx="22" cy="22" r="15" stroke="#6ad1ff" strokeWidth="1.8" fill="none" />
-							<line x1="7" y1="22" x2="37" y2="22" stroke="#6ad1ff" strokeWidth="1.5" />
-							<path d="M 22 7 A 5 15 0 0 0 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-							<path d="M 22 7 A 5 15 0 0 1 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-							<path d="M 22 7 A 10 15 0 0 0 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
-							<path d="M 22 7 A 10 15 0 0 1 22 37" stroke="#6ad1ff" strokeWidth="1.5" fill="none" />
+							<circle
+								cx="22"
+								cy="22"
+								r="15"
+								stroke="#6ad1ff"
+								strokeWidth="1.8"
+								fill="none"
+							/>
+							<line
+								x1="7"
+								y1="22"
+								x2="37"
+								y2="22"
+								stroke="#6ad1ff"
+								strokeWidth="1.5"
+							/>
+							<path
+								d="M 22 7 A 5 15 0 0 0 22 37"
+								stroke="#6ad1ff"
+								strokeWidth="1.5"
+								fill="none"
+							/>
+							<path
+								d="M 22 7 A 5 15 0 0 1 22 37"
+								stroke="#6ad1ff"
+								strokeWidth="1.5"
+								fill="none"
+							/>
+							<path
+								d="M 22 7 A 10 15 0 0 0 22 37"
+								stroke="#6ad1ff"
+								strokeWidth="1.5"
+								fill="none"
+							/>
+							<path
+								d="M 22 7 A 10 15 0 0 1 22 37"
+								stroke="#6ad1ff"
+								strokeWidth="1.5"
+								fill="none"
+							/>
 						</svg>
 						<div className="flex flex-col whitespace-nowrap">
-							<span className="text-[14px] font-extrabold uppercase tracking-[0.06em]">BETTER BHARAT MAP</span>
-							<span className="mt-1 text-[9px] uppercase tracking-[0.06em] text-[#5a6e87]">EARTH INTELLIGENCE PLATFORM</span>
+							<span className="text-[14px] font-extrabold uppercase tracking-[0.06em]">
+								BETTER BHARAT MAP
+							</span>
+							<span className="mt-1 text-[9px] uppercase tracking-[0.06em] text-[#5a6e87]">
+								EARTH INTELLIGENCE PLATFORM
+							</span>
 						</div>
 					</div>
 
@@ -132,9 +172,12 @@ function Footer() {
 
 					{/* Vision card */}
 					<div className="flex flex-col p-6 bg-[rgba(14,20,32,0.6)] border border-[rgba(146,197,255,0.1)] rounded-[16px]">
-						<h4 className="mb-3 text-[10px] font-bold text-white uppercase tracking-[0.1em]">OUR VISION</h4>
+						<h4 className="mb-3 text-[10px] font-bold text-white uppercase tracking-[0.1em]">
+							OUR VISION
+						</h4>
 						<p className="mb-5 text-[13px] leading-[1.55] text-[#5a6e87]">
-							A data-driven India where every decision creates a better future for every citizen.
+							A data-driven India where every decision creates a better future
+							for every citizen.
 						</p>
 						<div className="flex gap-4 mt-auto">
 							{SOCIAL_LINKS.map((social) => (

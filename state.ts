@@ -52,9 +52,18 @@ const stateDistrictMap: Record<string, string[]> = JSON.parse(
 // ============================
 const normalize = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ")
 
-const featureMap = new Map<string, any>()
+type GeoFeature = {
+	properties?: {
+		shapeName?: string
+		[key: string]: unknown
+	}
+	geometry?: unknown
+	[key: string]: unknown
+}
 
-for (const f of geojson.features) {
+const featureMap = new Map<string, GeoFeature>()
+
+for (const f of geojson.features as GeoFeature[]) {
 	const name = f?.properties?.shapeName
 	if (!name) continue
 	featureMap.set(normalize(name), f)
@@ -78,7 +87,7 @@ console.log("\n🚀 Starting split process...\n")
 // PROCESS STATES
 // ============================
 for (const [state, districts] of Object.entries(stateDistrictMap)) {
-	const features: any[] = []
+	const features: GeoFeature[] = []
 	const missing: string[] = []
 
 	for (const d of districts) {

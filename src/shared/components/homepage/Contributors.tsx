@@ -1,14 +1,29 @@
+import {
+	Eyebrow,
+	SectionBody,
+	SectionHeading,
+} from "@/shared/components/homepage/shared"
 import { cn } from "@/shared/lib/utils"
-import { Eyebrow, SectionBody, SectionHeading } from "@/shared/components/homepage/shared"
 
 const CONTRIBUTORS = [
 	{
-		iconBase: "text-[#7cf3c5] bg-[rgba(124,243,197,0.15)] border border-[rgba(124,243,197,0.35)]",
-		iconHover: "group-hover:bg-[rgba(124,243,197,0.22)] group-hover:border-[rgba(124,243,197,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(124,243,197,0.6)]",
+		iconBase:
+			"text-[#7cf3c5] bg-[rgba(124,243,197,0.15)] border border-[rgba(124,243,197,0.35)]",
+		iconHover:
+			"group-hover:bg-[rgba(124,243,197,0.22)] group-hover:border-[rgba(124,243,197,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(124,243,197,0.6)]",
 		title: "Open Source",
 		subtitle: "Community Driven",
 		icon: (
-			<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				width="30"
+				height="30"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.75"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<title>Open Source</title>
 				<rect x="16" y="16" width="6" height="6" rx="1.5" />
 				<rect x="2" y="16" width="6" height="6" rx="1.5" />
@@ -19,12 +34,23 @@ const CONTRIBUTORS = [
 		),
 	},
 	{
-		iconBase: "text-[#6ad1ff] bg-[rgba(106,209,255,0.15)] border border-[rgba(106,209,255,0.35)]",
-		iconHover: "group-hover:bg-[rgba(106,209,255,0.22)] group-hover:border-[rgba(106,209,255,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(106,209,255,0.6)]",
+		iconBase:
+			"text-[#6ad1ff] bg-[rgba(106,209,255,0.15)] border border-[rgba(106,209,255,0.35)]",
+		iconHover:
+			"group-hover:bg-[rgba(106,209,255,0.22)] group-hover:border-[rgba(106,209,255,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(106,209,255,0.6)]",
 		title: "Researchers",
 		subtitle: "& Data Scientists",
 		icon: (
-			<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				width="30"
+				height="30"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.75"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<title>Researchers</title>
 				<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
 				<circle cx="9" cy="7" r="4" />
@@ -34,12 +60,23 @@ const CONTRIBUTORS = [
 		),
 	},
 	{
-		iconBase: "text-[#ffd700] bg-[rgba(255,215,0,0.15)] border border-[rgba(255,215,0,0.35)]",
-		iconHover: "group-hover:bg-[rgba(255,215,0,0.22)] group-hover:border-[rgba(255,215,0,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]",
+		iconBase:
+			"text-[#ffd700] bg-[rgba(255,215,0,0.15)] border border-[rgba(255,215,0,0.35)]",
+		iconHover:
+			"group-hover:bg-[rgba(255,215,0,0.22)] group-hover:border-[rgba(255,215,0,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]",
 		title: "Government",
 		subtitle: "Collaborators",
 		icon: (
-			<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				width="30"
+				height="30"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.75"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<title>Government</title>
 				<line x1="3" x2="21" y1="22" y2="22" />
 				<line x1="6" x2="6" y1="18" y2="11" />
@@ -51,12 +88,23 @@ const CONTRIBUTORS = [
 		),
 	},
 	{
-		iconBase: "text-[#b182ff] bg-[rgba(177,130,255,0.15)] border border-[rgba(177,130,255,0.35)]",
-		iconHover: "group-hover:bg-[rgba(177,130,255,0.22)] group-hover:border-[rgba(177,130,255,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(177,130,255,0.6)]",
+		iconBase:
+			"text-[#b182ff] bg-[rgba(177,130,255,0.15)] border border-[rgba(177,130,255,0.35)]",
+		iconHover:
+			"group-hover:bg-[rgba(177,130,255,0.22)] group-hover:border-[rgba(177,130,255,0.5)] group-hover:drop-shadow-[0_0_10px_rgba(177,130,255,0.6)]",
 		title: "Developers",
 		subtitle: "& Volunteers",
 		icon: (
-			<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+			<svg
+				width="30"
+				height="30"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				strokeWidth="1.75"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			>
 				<title>Developers</title>
 				<rect x="2" y="4" width="20" height="16" rx="3" />
 				<path d="M9 10l-2 2 2 2" />
@@ -81,8 +129,9 @@ function Contributors() {
 					Together
 				</SectionHeading>
 				<SectionBody>
-					Better Bharat Map is an open initiative dedicated to data-driven development across India. Developers,
-					researchers, institutions, and citizens are welcome to contribute and help build a stronger Bharat.
+					Better Bharat Map is an open initiative dedicated to data-driven
+					development across India. Developers, researchers, institutions, and
+					citizens are welcome to contribute and help build a stronger Bharat.
 				</SectionBody>
 			</div>
 
@@ -113,8 +162,12 @@ function Contributors() {
 							{card.icon}
 						</div>
 						<div className="flex flex-col justify-center">
-							<h3 className="m-0 mb-[2px] text-[16px] font-bold text-white">{card.title}</h3>
-							<p className="m-0 text-[13px] leading-[1.3] text-[#9fb0c8]">{card.subtitle}</p>
+							<h3 className="m-0 mb-[2px] text-[16px] font-bold text-white">
+								{card.title}
+							</h3>
+							<p className="m-0 text-[13px] leading-[1.3] text-[#9fb0c8]">
+								{card.subtitle}
+							</p>
 						</div>
 					</article>
 				))}
