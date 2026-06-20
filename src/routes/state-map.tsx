@@ -20,7 +20,7 @@ function StateMapPage() {
 	const navigate = useNavigate()
 
 	const [activeIndicator, setActiveIndicator] = useState("overall")
-	const [selectedStateId, setSelectedStateId] = useState<string | null>(null)
+	const [selectedStateId, _setSelectedStateId] = useState<string | null>(null)
 	const [resolvedMode, setResolvedMode] = useState<"day" | "night">("night")
 	const [stateLayerReady, setStateLayerReady] = useState(false)
 
