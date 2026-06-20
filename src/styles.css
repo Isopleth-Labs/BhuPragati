@@ -5,7 +5,6 @@
 @import "@/shared/styles/base.css";
 @import "@/shared/styles/dashboard.css";
 @import "@/shared/styles/panels.css";
-@import "@/shared/styles/map.css";
 
 @custom-variant dark (&:is(.dark *));
 

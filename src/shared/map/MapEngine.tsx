@@ -77,13 +77,6 @@ const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
 					<ScaleControl unit="metric" position="bottom-right" />
 					{children}
 				</MapGL>
-				<div className="gis-map__ambient" aria-hidden="true" />
-				<div className="gis-map__fog" aria-hidden="true" />
-				<div className="gis-map__illumination" aria-hidden="true" />
-				<div className="gis-map__texture" aria-hidden="true" />
-				<div className="gis-map__grain" aria-hidden="true" />
-				<div className="gis-map__focus-glow" aria-hidden="true" />
-				<div className="gis-map__vignette" aria-hidden="true" />
 			</div>
 		)
 	},
