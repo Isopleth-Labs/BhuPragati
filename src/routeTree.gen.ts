@@ -66,9 +66,13 @@ export interface FileRoutesByFullPath {
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   '/test': typeof TestRoute
 >>>>>>> origin/master
+=======
+  '/test': typeof TestRoute
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -79,9 +83,13 @@ export interface FileRoutesByTo {
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   '/test': typeof TestRoute
 >>>>>>> origin/master
+=======
+  '/test': typeof TestRoute
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
   '/$state': typeof StateIndexRoute
   '/$state/$district': typeof StateDistrictIndexRoute
 }
@@ -93,9 +101,13 @@ export interface FileRoutesById {
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   '/test': typeof TestRoute
 >>>>>>> origin/master
+=======
+  '/test': typeof TestRoute
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -108,9 +120,13 @@ export interface FileRouteTypes {
     | '/map'
     | '/state-map'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     | '/test'
 >>>>>>> origin/master
+=======
+    | '/test'
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
     | '/$state/'
     | '/$state/$district/'
   fileRoutesByTo: FileRoutesByTo
@@ -121,9 +137,13 @@ export interface FileRouteTypes {
     | '/map'
     | '/state-map'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     | '/test'
 >>>>>>> origin/master
+=======
+    | '/test'
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
     | '/$state'
     | '/$state/$district'
   id:
@@ -134,9 +154,13 @@ export interface FileRouteTypes {
     | '/map'
     | '/state-map'
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     | '/test'
 >>>>>>> origin/master
+=======
+    | '/test'
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
     | '/$state/'
     | '/$state/$district/'
   fileRoutesById: FileRoutesById
@@ -148,9 +172,13 @@ export interface RootRouteChildren {
   MapRoute: typeof MapRoute
   StateMapRoute: typeof StateMapRoute
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   TestRoute: typeof TestRoute
 >>>>>>> origin/master
+=======
+  TestRoute: typeof TestRoute
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
   StateIndexRoute: typeof StateIndexRoute
   StateDistrictIndexRoute: typeof StateDistrictIndexRoute
 }
@@ -223,9 +251,13 @@ const rootRouteChildren: RootRouteChildren = {
   MapRoute: MapRoute,
   StateMapRoute: StateMapRoute,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   TestRoute: TestRoute,
 >>>>>>> origin/master
+=======
+  TestRoute: TestRoute,
+>>>>>>> 00bb67d31539d9ae7a9113724032a5800348acc4
   StateIndexRoute: StateIndexRoute,
   StateDistrictIndexRoute: StateDistrictIndexRoute,
 }
