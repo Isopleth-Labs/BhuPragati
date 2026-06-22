@@ -820,9 +820,12 @@ export default function StateIntelligenceDashboard({
 
 	return (
 		<div className="state-dashboard">
-			<header className="state-dashboard__header">
-				<div className="state-brand">
-					<div className="state-brand__logo" aria-hidden="true">
+			<header className="z-10 grid grid-cols-[1fr_auto_1fr] items-center h-[72px] px-8 bg-[rgba(3,8,20,0.94)] border-b border-b-[rgba(120,160,220,0.12)] shadow-[0_4px_30px_rgba(0,0,0,0.4)] backdrop-blur-[20px] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-b-[rgba(15,23,42,0.08)]">
+				<div className="flex gap-[14px] items-center justify-self-start">
+					<div
+						className="flex items-center justify-center w-[38px] h-[38px]"
+						aria-hidden="true"
+					>
 						<svg
 							width="34"
 							height="34"
@@ -870,18 +873,25 @@ export default function StateIntelligenceDashboard({
 						</svg>
 					</div>
 					<div className="state-brand__text">
-						<h1 className="state-brand__title">BETTER BHARAT MAP</h1>
-						<p className="state-brand__subtitle">State Intelligence Platform</p>
+						<h1 className="m-0 text-[20px] font-extrabold leading-[1.2] text-[rgba(255,255,255,0.94)] tracking-[0.04em] [[data-theme='light']_&]:text-[#0f172a]">
+							BETTER BHARAT MAP
+						</h1>
+						<p className="mt-[2px] mr-0 mb-0 ml-0 text-[11.5px] font-medium leading-[1.2] text-[rgba(255,255,255,0.88)] tracking-[0.02em] [[data-theme='light']_&]:text-[rgba(15,23,42,0.75)]">
+							State Intelligence Platform
+						</p>
 					</div>
 				</div>
 
-				<div className="state-search-container">
+				<div className="relative justify-self-center w-[440px]">
 					<input
-						className="state-search"
+						className="w-full h-[42px] py-[10px] pr-[42px] pl-[18px] text-[14px] text-white bg-[rgba(4,9,20,0.75)] border border-[rgba(120,160,220,0.16)] rounded-[10px] transition-all duration-250 ease-[cubic-bezier(0.4,0,0.2,1)] focus:outline-none focus:bg-[rgba(4,9,20,0.9)] focus:border-[rgba(56,189,248,0.4)] focus:shadow-[0_0_14px_rgba(56,189,248,0.15)] placeholder:text-[rgba(255,255,255,0.65)] [[data-theme='light']_&]:text-[#0f172a] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-[rgba(15,23,42,0.12)] [[data-theme='light']_&]:placeholder:text-[rgba(15,23,42,0.62)]"
 						placeholder="Search State..."
 						aria-label="Search state"
 					/>
-					<span className="state-search-icon" aria-hidden="true">
+					<span
+						className="absolute top-1/2 right-[14px] flex items-center text-[rgba(255,255,255,0.65)] pointer-events-none -translate-y-1/2 [[data-theme='light']_&]:text-[rgba(15,23,42,0.68)]"
+						aria-hidden="true"
+					>
 						<svg
 							width="15"
 							height="15"
@@ -899,9 +909,15 @@ export default function StateIntelligenceDashboard({
 					</span>
 				</div>
 
-				<div className="state-header__buttons">
-					<button type="button" className="state-year-card">
-						<span className="state-year-card__icon" aria-hidden="true">
+				<div className="flex gap-[10px] items-center justify-self-end">
+					<button
+						type="button"
+						className="flex gap-3 items-center h-[42px] px-4 text-white cursor-pointer select-none bg-[rgba(4,9,20,0.75)] border border-[rgba(120,160,220,0.16)] rounded-[10px] transition-all duration-200 ease hover:bg-[rgba(4,9,20,0.9)] hover:border-[rgba(56,189,248,0.35)] [[data-theme='light']_&]:text-[#0f172a] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-[rgba(15,23,42,0.12)]"
+					>
+						<span
+							className="flex items-center text-[rgba(255,255,255,0.85)]"
+							aria-hidden="true"
+						>
 							<svg
 								width="16"
 								height="16"
@@ -923,14 +939,24 @@ export default function StateIntelligenceDashboard({
 								/>
 							</svg>
 						</span>
-						<div className="state-year-card__info">
-							<span className="state-year-card__label">Data Year</span>
-							<span className="state-year-card__value">2024</span>
+						<div className="flex flex-col leading-[1.15] text-left">
+							<span className="text-[10px] font-medium text-[rgba(255,255,255,0.88)] [[data-theme='light']_&]:text-[rgba(15,23,42,0.72)]">
+								Data Year
+							</span>
+							<span className="text-[13.5px] font-bold text-white [[data-theme='light']_&]:text-[#0f172a]">
+								2024
+							</span>
 						</div>
 					</button>
 
-					<button type="button" className="state-header-btn">
-						<span aria-hidden="true" className="state-btn-icon">
+					<button
+						type="button"
+						className="inline-flex gap-2 items-center h-[42px] px-4 text-[13.5px] font-medium text-white cursor-pointer bg-[rgba(4,9,20,0.75)] border border-[rgba(120,160,220,0.16)] rounded-[10px] transition-all duration-200 ease hover:bg-[rgba(4,9,20,0.9)] hover:border-[rgba(56,189,248,0.35)] [[data-theme='light']_&]:text-[#0f172a] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-[rgba(15,23,42,0.12)]"
+					>
+						<span
+							aria-hidden="true"
+							className="flex items-center text-[rgba(255,255,255,0.85)] [[data-theme='light']_&]:text-[rgba(15,23,42,0.75)]"
+						>
 							<svg
 								width="16"
 								height="16"
@@ -952,8 +978,14 @@ export default function StateIntelligenceDashboard({
 						<span>Fit to India</span>
 					</button>
 
-					<button type="button" className="state-header-btn">
-						<span aria-hidden="true" className="state-btn-icon">
+					<button
+						type="button"
+						className="inline-flex gap-2 items-center h-[42px] px-4 text-[13.5px] font-medium text-white cursor-pointer bg-[rgba(4,9,20,0.75)] border border-[rgba(120,160,220,0.16)] rounded-[10px] transition-all duration-200 ease hover:bg-[rgba(4,9,20,0.9)] hover:border-[rgba(56,189,248,0.35)] [[data-theme='light']_&]:text-[#0f172a] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-[rgba(15,23,42,0.12)]"
+					>
+						<span
+							aria-hidden="true"
+							className="flex items-center text-[rgba(255,255,255,0.85)] [[data-theme='light']_&]:text-[rgba(15,23,42,0.75)]"
+						>
 							<svg
 								width="15"
 								height="15"
@@ -971,7 +1003,10 @@ export default function StateIntelligenceDashboard({
 							</svg>
 						</span>
 						<span>Export</span>
-						<span aria-hidden="true" className="state-btn-chevron">
+						<span
+							aria-hidden="true"
+							className="flex items-center -ml-[2px] text-[rgba(255,255,255,0.88)] [[data-theme='light']_&]:text-[rgba(15,23,42,0.75)]"
+						>
 							<svg
 								width="12"
 								height="12"
@@ -990,7 +1025,7 @@ export default function StateIntelligenceDashboard({
 
 					<button
 						type="button"
-						className="state-theme-toggle"
+						className="inline-flex items-center justify-center w-[42px] h-[42px] text-[rgba(255,255,255,0.85)] cursor-pointer bg-[rgba(4,9,20,0.75)] border border-[rgba(120,160,220,0.16)] rounded-[10px] transition-all duration-200 ease hover:text-white hover:bg-[rgba(4,9,20,0.9)] hover:border-[rgba(56,189,248,0.35)] [[data-theme='light']_&]:text-[#0f172a] [[data-theme='light']_&]:bg-[rgba(255,255,255,0.9)] [[data-theme='light']_&]:border-[rgba(15,23,42,0.12)]"
 						onClick={onToggleTheme}
 						aria-label="Toggle theme"
 					>

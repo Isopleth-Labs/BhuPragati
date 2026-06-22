@@ -3,9 +3,6 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @import "@/shared/styles/base.css";
-@import "@/shared/styles/dashboard.css";
-@import "@/shared/styles/panels.css";
-@import "@/shared/styles/map.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -168,7 +165,6 @@ body,
 
 body {
 	margin: 0;
-
 	overflow-x: hidden;
 	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
@@ -188,7 +184,6 @@ body {
 			var(--foam) 44%,
 			var(--bg-base) 100%
 		);
-	background-color: var(--bg-base);
 }
 
 body::before {
