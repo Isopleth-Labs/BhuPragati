@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TestRouteImport } from './routes/test'
 import { Route as StateMapRouteImport } from './routes/state-map'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as GisRouteImport } from './routes/gis'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as StateIndexRouteImport } from './routes/$state/index'
 import { Route as StateDistrictIndexRouteImport } from './routes/$state/$district/index'
 
+const TestRoute = TestRouteImport.update({
+  id: '/test',
+  path: '/test',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StateMapRoute = StateMapRouteImport.update({
   id: '/state-map',
   path: '/state-map',
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
   '/$state': typeof StateIndexRoute
   '/$state/$district': typeof StateDistrictIndexRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+  '/test': typeof TestRoute
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+    | '/test'
     | '/$state/'
     | '/$state/$district/'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+    | '/test'
     | '/$state'
     | '/$state/$district'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+    | '/test'
     | '/$state/'
     | '/$state/$district/'
   fileRoutesById: FileRoutesById
@@ -117,12 +129,20 @@ export interface RootRouteChildren {
   GisRoute: typeof GisRoute
   MapRoute: typeof MapRoute
   StateMapRoute: typeof StateMapRoute
+  TestRoute: typeof TestRoute
   StateIndexRoute: typeof StateIndexRoute
   StateDistrictIndexRoute: typeof StateDistrictIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/test': {
+      id: '/test'
+      path: '/test'
+      fullPath: '/test'
+      preLoaderRoute: typeof TestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/state-map': {
       id: '/state-map'
       path: '/state-map'
@@ -181,6 +201,7 @@ const rootRouteChildren: RootRouteChildren = {
   GisRoute: GisRoute,
   MapRoute: MapRoute,
   StateMapRoute: StateMapRoute,
+  TestRoute: TestRoute,
   StateIndexRoute: StateIndexRoute,
   StateDistrictIndexRoute: StateDistrictIndexRoute,
 }
