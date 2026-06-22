@@ -55,7 +55,13 @@ const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
 		useFitView(mapRef, regionId, onMapReady)
 
 		return (
-			<div className="gis-map-shell">
+			<div
+				className="
+			fixed inset-0 z-0 overflow-hidden
+			bg-[#02050a]
+			[background:radial-gradient(circle_at_50%_48%,rgba(255,64,45,0.12),transparent_18%),radial-gradient(circle_at_54%_52%,rgba(0,112,170,0.16),transparent_44%),#02050a]
+		"
+			>
 				<MapGL
 					ref={setMapRef}
 					mapLib={maplibregl}
@@ -77,13 +83,6 @@ const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
 					<ScaleControl unit="metric" position="bottom-right" />
 					{children}
 				</MapGL>
-				<div className="gis-map__ambient" aria-hidden="true" />
-				<div className="gis-map__fog" aria-hidden="true" />
-				<div className="gis-map__illumination" aria-hidden="true" />
-				<div className="gis-map__texture" aria-hidden="true" />
-				<div className="gis-map__grain" aria-hidden="true" />
-				<div className="gis-map__focus-glow" aria-hidden="true" />
-				<div className="gis-map__vignette" aria-hidden="true" />
 			</div>
 		)
 	},

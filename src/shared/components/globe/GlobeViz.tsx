@@ -697,19 +697,8 @@ export default function GlobeViz() {
 
 		// ── TOOLTIP ──────────────────────────────────────────────
 		const tooltip = document.createElement("div")
-		tooltip.style.cssText = `
-      position: fixed;
-      pointer-events: none;
-      background: rgba(0,0,0,0.8);
-      color: #fff;
-      border-radius: 6px;
-      padding: 6px 10px;
-      font: 600 12px "Segoe UI", system-ui, sans-serif;
-      opacity: 0;
-      transition: opacity 100ms ease;
-      z-index: 9999;
-      white-space: nowrap;
-    `
+		tooltip.className =
+			"fixed pointer-events-none rounded-md bg-black/80 px-2.5 py-1.5 text-xs font-semibold text-white whitespace-nowrap opacity-0 transition-opacity duration-100 z-[9999]"
 		document.body.appendChild(tooltip)
 
 		// ── COUNTRY CLICK & HOVER DETECTION ───────────────────────
@@ -884,7 +873,7 @@ export default function GlobeViz() {
 		container.addEventListener("pointermove", onPointerMove)
 
 		// ── ANIMATION LOOP ────────────────────────────────────────
-		let animId: number | undefined
+		let animId: number
 		const clock = new THREE.Clock()
 		function animate() {
 			animId = requestAnimationFrame(animate)
@@ -972,5 +961,5 @@ export default function GlobeViz() {
 		}
 	}, [])
 
-	return <div ref={mountRef} style={{ width: "100%", height: "100%" }} />
+	return <div ref={mountRef} className="w-full h-full" />
 }

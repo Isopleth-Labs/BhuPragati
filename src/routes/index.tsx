@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router"
-import "@/shared/styles/homepage.css"
 import Contributors from "@/shared/components/homepage/Contributors"
 import Footer from "@/shared/components/homepage/Footer"
 import Hero from "@/shared/components/homepage/Hero"
@@ -11,19 +10,26 @@ import WhyItMatters from "@/shared/components/homepage/WhyItMatters"
 
 export const Route = createFileRoute("/")({ component: Homepage })
 
+const Divider = () => (
+	<div
+		aria-hidden="true"
+		className="w-full max-w-[min(1800px,92vw)] h-px mx-auto bg-[rgba(255,255,255,0.08)] opacity-80"
+	/>
+)
+
 export default function Homepage() {
 	return (
-		<div className="homepage">
+		<div className="min-h-screen overflow-x-hidden [font-family:Inter,Segoe_UI,system-ui,-apple-system,sans-serif] text-[15px] leading-[1.6] bg-[#04070f] text-[#e8eef8]">
 			<Navbar />
 			<Hero />
 			<WhyItMatters />
-			<div className="homepage__divider" />
+			<Divider />
 			<Infrastructure />
-			<div className="homepage__divider" />
+			<Divider />
 			<Simulation />
-			<div className="homepage__divider" />
+			<Divider />
 			<Navigation />
-			<div className="homepage__divider" />
+			<Divider />
 			<Contributors />
 			<Footer />
 		</div>

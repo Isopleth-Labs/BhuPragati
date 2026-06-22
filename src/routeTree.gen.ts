@@ -65,7 +65,10 @@ export interface FileRoutesByFullPath {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+<<<<<<< HEAD
+=======
   '/test': typeof TestRoute
+>>>>>>> origin/master
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -75,7 +78,10 @@ export interface FileRoutesByTo {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+<<<<<<< HEAD
+=======
   '/test': typeof TestRoute
+>>>>>>> origin/master
   '/$state': typeof StateIndexRoute
   '/$state/$district': typeof StateDistrictIndexRoute
 }
@@ -86,7 +92,10 @@ export interface FileRoutesById {
   '/gis': typeof GisRoute
   '/map': typeof MapRoute
   '/state-map': typeof StateMapRoute
+<<<<<<< HEAD
+=======
   '/test': typeof TestRoute
+>>>>>>> origin/master
   '/$state/': typeof StateIndexRoute
   '/$state/$district/': typeof StateDistrictIndexRoute
 }
@@ -98,7 +107,10 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+<<<<<<< HEAD
+=======
     | '/test'
+>>>>>>> origin/master
     | '/$state/'
     | '/$state/$district/'
   fileRoutesByTo: FileRoutesByTo
@@ -108,7 +120,10 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+<<<<<<< HEAD
+=======
     | '/test'
+>>>>>>> origin/master
     | '/$state'
     | '/$state/$district'
   id:
@@ -118,7 +133,10 @@ export interface FileRouteTypes {
     | '/gis'
     | '/map'
     | '/state-map'
+<<<<<<< HEAD
+=======
     | '/test'
+>>>>>>> origin/master
     | '/$state/'
     | '/$state/$district/'
   fileRoutesById: FileRoutesById
@@ -129,7 +147,10 @@ export interface RootRouteChildren {
   GisRoute: typeof GisRoute
   MapRoute: typeof MapRoute
   StateMapRoute: typeof StateMapRoute
+<<<<<<< HEAD
+=======
   TestRoute: typeof TestRoute
+>>>>>>> origin/master
   StateIndexRoute: typeof StateIndexRoute
   StateDistrictIndexRoute: typeof StateDistrictIndexRoute
 }
@@ -201,7 +222,10 @@ const rootRouteChildren: RootRouteChildren = {
   GisRoute: GisRoute,
   MapRoute: MapRoute,
   StateMapRoute: StateMapRoute,
+<<<<<<< HEAD
+=======
   TestRoute: TestRoute,
+>>>>>>> origin/master
   StateIndexRoute: StateIndexRoute,
   StateDistrictIndexRoute: StateDistrictIndexRoute,
 }
