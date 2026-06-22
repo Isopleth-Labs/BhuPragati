@@ -52,6 +52,7 @@ const stateDistrictMap: Record<string, string[]> = JSON.parse(
 // ============================
 const normalize = (s: string) => s.trim().toLowerCase().replace(/\s+/g, " ")
 
+// biome-ignore lint/suspicious/noExplicitAny: script uses any for general GeoJSON features
 const featureMap = new Map<string, any>()
 
 for (const f of geojson.features) {
@@ -78,6 +79,7 @@ console.log("\n🚀 Starting split process...\n")
 // PROCESS STATES
 // ============================
 for (const [state, districts] of Object.entries(stateDistrictMap)) {
+	// biome-ignore lint/suspicious/noExplicitAny: script uses any for GeoJSON feature lists
 	const features: any[] = []
 	const missing: string[] = []
 

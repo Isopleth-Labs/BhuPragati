@@ -408,7 +408,8 @@
 	grid-template-columns: 1fr;
 	gap: 0;
 	align-items: center;
-	min-height: 84px;
+	height: 56px;
+	min-height: 56px;
 	padding: 0 32px;
 	background: linear-gradient(
 		180deg,
@@ -454,7 +455,7 @@
 	align-self: center;
 	justify-self: center;
 	width: 1px;
-	height: 48px;
+	height: 32px;
 	background: linear-gradient(
 		to bottom,
 		transparent,

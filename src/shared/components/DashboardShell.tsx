@@ -25,8 +25,15 @@ export default function DashboardShell() {
 	const [districtReady, setDistrictReady] = useState(false)
 
 	return (
-		<main className="dashboard">
-			<Suspense fallback={<div className="gis-map-shell" aria-hidden="true" />}>
+		<main className="dashboard relative w-full h-screen overflow-hidden isolate bg-[#02050a] [&_.gis-map-shell]:absolute [&_.gis-map-shell]:inset-0 [&_.gis-map-shell]:z-0 [&_.gis-map-shell]:overflow-hidden">
+			<Suspense
+				fallback={
+					<div
+						className="gis-map-shell absolute inset-0 z-0 overflow-hidden"
+						aria-hidden="true"
+					/>
+				}
+			>
 				<MapEngine
 					regionId="bihar"
 					initialViewState={BIHAR_INITIAL_VIEW_STATE}
@@ -48,14 +55,14 @@ export default function DashboardShell() {
 					<DistrictBoundaryLayer onReady={() => setDistrictReady(true)} />
 					<DistrictSelectionController
 						ready={districtReady}
-						onDistrictClick={(districtId) => {
-							console.log("[district-selected]", districtId)
+						onDistrictClick={(_districtId) => {
+							// reserved for future selection state
 						}}
 					/>
 				</MapEngine>
 			</Suspense>
 
-			<div className="dashboard__hud">
+			<div className="dashboard__hud absolute inset-[22px_28px] z-10 pointer-events-none [&>*]:pointer-events-auto flex justify-end items-start">
 				<TopBar />
 			</div>
 		</main>

@@ -12,7 +12,7 @@ export function addLayer(
 	beforeId?: string,
 ) {
 	if (map.getLayer(layer.id)) return
-	// `map.addLayer` expects the library's layer spec; cast once at the callsite.
+	// biome-ignore lint/suspicious/noExplicitAny: map.addLayer requires casting to any for some configurations
 	map.addLayer(layer as unknown as any, beforeId)
 }
 

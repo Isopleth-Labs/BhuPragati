@@ -120,12 +120,12 @@ function addRoadLayers(map: MaplibreMap) {
 				"primary",
 				"rgba(205, 224, 246, 0.78)",
 				"secondary",
-				"rgba(180, 205, 230, 0.55)",
+				"rgba(195, 220, 248, 0.74)",
 				"tertiary",
-				"rgba(155, 180, 208, 0.32)",
+				"rgba(175, 200, 226, 0.52)",
 				"unclassified",
-				"rgba(140, 165, 195, 0.22)",
-				"rgba(135, 160, 188, 0.22)",
+				"rgba(150, 180, 205, 0.38)",
+				"rgba(140, 170, 195, 0.32)",
 			],
 			"line-width": [
 				"interpolate",
@@ -192,17 +192,47 @@ function addPlaceLayers(map: MaplibreMap) {
 		source: "osm-places",
 		paint: {
 			"circle-radius": [
-				"match",
-				["get", "place"],
-				"city",
-				5.4,
-				"town",
-				3.6,
-				"village",
-				2.4,
-				"hamlet",
-				1.6,
-				1.4,
+				"interpolate",
+				["linear"],
+				["zoom"],
+				8,
+				["match", ["get", "place"], "city", 5.4, "town", 3.6, 0],
+				11,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					5.4,
+					"town",
+					3.6,
+					"village",
+					0.5,
+					0,
+				],
+				13,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					5.4,
+					"town",
+					3.6,
+					"village",
+					2.4,
+					1.2,
+				],
+				16,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					6.4,
+					"town",
+					4.6,
+					"village",
+					3.4,
+					2.2,
+				],
 			],
 			"circle-color": [
 				"match",
@@ -214,15 +244,47 @@ function addPlaceLayers(map: MaplibreMap) {
 				"#a8b8cc",
 			],
 			"circle-opacity": [
-				"match",
-				["get", "place"],
-				"city",
-				0.96,
-				"town",
-				0.86,
-				"village",
-				0.72,
-				0.6,
+				"interpolate",
+				["linear"],
+				["zoom"],
+				8,
+				["match", ["get", "place"], "city", 0.96, "town", 0.86, 0],
+				11,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					0.96,
+					"town",
+					0.86,
+					"village",
+					0.3,
+					0,
+				],
+				13,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					0.96,
+					"town",
+					0.86,
+					"village",
+					0.72,
+					0.5,
+				],
+				16,
+				[
+					"match",
+					["get", "place"],
+					"city",
+					0.96,
+					"town",
+					0.86,
+					"village",
+					0.82,
+					0.7,
+				],
 			],
 			"circle-stroke-color": "rgba(120, 180, 220, 0.55)",
 			"circle-stroke-width": 1,
@@ -238,15 +300,17 @@ function addPlaceLayers(map: MaplibreMap) {
 			"text-field": ["get", "name"],
 			"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
 			"text-size": [
-				"match",
-				["get", "place"],
-				"city",
-				["interpolate", ["linear"], ["zoom"], 8, 15, 11, 24, 13, 30],
-				"town",
-				["interpolate", ["linear"], ["zoom"], 9, 11, 12, 14, 14, 17],
-				"village",
-				["interpolate", ["linear"], ["zoom"], 11, 9, 13, 11, 15, 13],
-				["interpolate", ["linear"], ["zoom"], 12, 8, 14, 9.5, 16, 11],
+				"interpolate",
+				["linear"],
+				["zoom"],
+				8,
+				["match", ["get", "place"], "city", 15, "town", 9, 0],
+				11,
+				["match", ["get", "place"], "city", 24, "town", 13, 0],
+				13,
+				["match", ["get", "place"], "city", 30, "town", 15, "village", 10.5, 8],
+				16,
+				["match", ["get", "place"], "city", 38, "town", 20, "village", 14, 11],
 			],
 			"text-letter-spacing": [
 				"match",
@@ -303,13 +367,24 @@ export async function addOsmOverlays(map: MaplibreMap) {
 		return
 	}
 
-	if (!map.getSource("osm-roads")) {
-		map.addSource("osm-roads", { type: "geojson", data: data.roads })
-	}
-	if (!map.getSource("osm-places")) {
-		map.addSource("osm-places", { type: "geojson", data: data.places })
+	// Guard: check if map has been destroyed or unmounted during the fetch
+	try {
+		if (!map?.getStyle()) return
+	} catch {
+		return
 	}
 
-	addRoadLayers(map)
-	addPlaceLayers(map)
+	try {
+		if (!map.getSource("osm-roads")) {
+			map.addSource("osm-roads", { type: "geojson", data: data.roads })
+		}
+		if (!map.getSource("osm-places")) {
+			map.addSource("osm-places", { type: "geojson", data: data.places })
+		}
+
+		addRoadLayers(map)
+		addPlaceLayers(map)
+	} catch (err) {
+		console.warn("[osm] failed to add sources or layers:", err)
+	}
 }

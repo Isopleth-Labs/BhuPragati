@@ -11,7 +11,7 @@ import WhyItMatters from "@/shared/components/homepage/WhyItMatters"
 
 export const Route = createFileRoute("/")({ component: Homepage })
 
-export default function Homepage() {
+function Homepage() {
 	return (
 		<div className="homepage">
 			<Navbar />

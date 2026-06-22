@@ -35,5 +35,6 @@ bun-debug.log*
 
 # Misc
 *.local
-__unconfig*
-todos.jsonscratch/
+_unconfig*
+todos.json
+scratch/

@@ -274,9 +274,10 @@ export function StateBoundaryLayer({ onReady }: StateBoundaryLayerProps) {
 					],
 				},
 				paint: {
-					"text-color": "rgba(255,255,255,0.96)",
-					"text-halo-color": "rgba(0,0,0,0.45)",
-					"text-halo-width": 1.0,
+					"text-color": "rgba(255,255,255,0.98)",
+					"text-halo-color": "rgba(3, 8, 20, 0.95)",
+					"text-halo-width": 1.8,
+					"text-halo-blur": 0.5,
 					"text-opacity": 1.0,
 				},
 			})

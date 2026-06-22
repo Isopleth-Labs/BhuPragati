@@ -11,6 +11,8 @@ import {
 } from "@/shared/lib/config/mapConfig"
 import StateIntelligenceDashboard from "./StateIntelligenceDashboard"
 
+import StateMapOverlays from "./StateMapOverlays"
+
 interface StateMapShellProps {
 	onBiharDrillDown: () => void
 }
@@ -52,6 +54,10 @@ export default function StateMapShell({
 				<StateSelectionController
 					ready={stateLayerReady}
 					onStateClick={handleStateClick}
+				/>
+				<StateMapOverlays
+					activeIndicator={activeIndicator}
+					onReset={() => setSelectedStateId(null)}
 				/>
 			</MapEngine>
 		</Suspense>

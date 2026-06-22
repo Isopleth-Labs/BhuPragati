@@ -16,11 +16,11 @@ export function startFocusPulse(map: Map) {
 		const cool = (Math.sin(time / 3200) + 1) / 2
 
 		if (map.getLayer("command-halo-cool")) {
-			map.setPaintProperty("command-halo-cool", "circle-radius", 80 + cool * 24)
+			map.setPaintProperty("command-halo-cool", "circle-radius", 45 + cool * 15)
 			map.setPaintProperty(
 				"command-halo-cool",
 				"circle-opacity",
-				0.04 + cool * 0.06,
+				0.08 + cool * 0.12,
 			)
 		}
 
@@ -28,27 +28,27 @@ export function startFocusPulse(map: Map) {
 			map.setPaintProperty(
 				"command-pulse-outer",
 				"circle-radius",
-				50 + slow * 18,
+				30 + slow * 10,
 			)
 			map.setPaintProperty(
 				"command-pulse-outer",
 				"circle-opacity",
-				0.05 + (1 - slow) * 0.08,
+				0.14 + (1 - slow) * 0.16,
 			)
 		}
 		if (map.getLayer("command-pulse")) {
-			map.setPaintProperty("command-pulse", "circle-radius", 26 + fast * 10)
+			map.setPaintProperty("command-pulse", "circle-radius", 16 + fast * 6)
 			map.setPaintProperty(
 				"command-pulse",
 				"circle-opacity",
-				0.1 + (1 - fast) * 0.14,
+				0.22 + (1 - fast) * 0.28,
 			)
 		}
 		if (map.getLayer("command-ring")) {
 			map.setPaintProperty(
 				"command-ring",
 				"circle-stroke-opacity",
-				0.45 + fast * 0.3,
+				0.55 + fast * 0.35,
 			)
 		}
 		// Slow shimmer on outer aura (different phase for organic feel).
@@ -57,31 +57,31 @@ export function startFocusPulse(map: Map) {
 			map.setPaintProperty(
 				"kusheshwar-focus-aura",
 				"line-width",
-				44 + aura * 18,
+				24 + aura * 10,
 			)
 			map.setPaintProperty(
 				"kusheshwar-focus-aura",
 				"line-opacity",
-				0.05 + aura * 0.07,
+				0.12 + aura * 0.12,
 			)
 		}
 		if (map.getLayer("kusheshwar-focus-bloom")) {
 			map.setPaintProperty(
 				"kusheshwar-focus-bloom",
 				"line-width",
-				24 + slow * 12,
+				14 + slow * 6,
 			)
 			map.setPaintProperty(
 				"kusheshwar-focus-bloom",
 				"line-opacity",
-				0.14 + slow * 0.12,
+				0.24 + slow * 0.18,
 			)
 		}
 		if (map.getLayer("kusheshwar-focus-glow")) {
 			map.setPaintProperty(
 				"kusheshwar-focus-glow",
 				"line-opacity",
-				0.36 + slow * 0.18,
+				0.48 + slow * 0.22,
 			)
 		}
 
