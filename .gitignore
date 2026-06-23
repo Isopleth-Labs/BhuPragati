@@ -16,7 +16,9 @@ output
 .vinxi
 
 # Env files
-.env*
+.env
+.env.*
+!.env.example
 
 # Logs
 *.log
@@ -25,6 +27,7 @@ bun-debug.log*
 
 # OS
 .DS_Store
+Thumbs.db
 
 # Editor
 .vscode
@@ -32,6 +35,16 @@ bun-debug.log*
 
 # Cache
 .cache
+
+# Testing
+playwright-report
+test-results
+
+# Coverage
+coverage
+
+# Drizzle
+drizzle/meta
 
 # Misc
 *.local
