@@ -1,6 +1,6 @@
 import type React from "react"
 import { useEffect, useMemo } from "react"
-import { STATE_INDICATORS_DATA } from "@/data/state-indicators"
+import { useIndicators } from "@/shared/hooks/useIndicators"
 import IndiaMapPanel from "./components/IndiaMapPanel"
 import IndiaOverviewPanel from "./components/IndiaOverviewPanel"
 import IndicatorStrip from "./components/IndicatorStrip"
@@ -50,17 +50,15 @@ export default function StateIntelligenceDashboard({
 		}
 	}
 
+	const { data: rankings } = useIndicators({ activeIndicator, limit: 8 })
+
 	const dynamicRanking = useMemo(() => {
-		return Object.values(STATE_INDICATORS_DATA)
-			.map((state) => ({
-				id: state.id,
-				name: state.name,
-				score:
-					state.metrics[activeIndicator as keyof typeof state.metrics] ?? 0,
-			}))
-			.sort((a, b) => b.score - a.score)
-			.slice(0, 8)
-	}, [activeIndicator])
+		return (rankings || []) as Array<{
+			id: string
+			name: string
+			score: number
+		}>
+	}, [rankings])
 
 	const handleCardClick = (cardKey: string) => {
 		onSetIndicator(activeIndicator === cardKey ? "overall" : cardKey)

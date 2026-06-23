@@ -1,4 +1,5 @@
-import { getChildren, getRegion } from "@/data/regions"
+import type { Region } from "@/data/regions"
+import { regionsService } from "@/shared/services/regions.service"
 import { BoundaryCache } from "../cache"
 import boundarySources from "../config/boundarySources.json"
 import type {
@@ -37,7 +38,7 @@ function isBoundaryLevel(level: string): level is RegionLevel {
 	return (SUPPORTED_LEVELS as readonly string[]).includes(level)
 }
 
-function toRegionMeta(region: ReturnType<typeof getRegion>): RegionMeta | null {
+function toRegionMeta(region: Region | undefined): RegionMeta | null {
 	if (!region || !isBoundaryLevel(region.level)) return null
 	return {
 		id: region.id,
@@ -83,11 +84,13 @@ export const GeoJsonBoundaryProvider: BoundaryProvider = {
 	},
 
 	async getRegionMeta(regionId) {
-		return toRegionMeta(getRegion(regionId))
+		const region = await regionsService.getRegionById(regionId)
+		return toRegionMeta(region)
 	},
 
 	async getChildren(parentId) {
-		return getChildren(parentId)
+		const children = await regionsService.getChildren(parentId)
+		return children
 			.map(toRegionMeta)
 			.filter((meta): meta is RegionMeta => meta !== null)
 	},

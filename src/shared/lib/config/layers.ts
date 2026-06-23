@@ -127,7 +127,3 @@ export const interactiveLayerIds = [
 	"electricity-feeders",
 	"electricity-assets",
 ]
-
-import systemReadoutsJson from "../../../data/systemReadouts.json"
-
-export const systemReadouts = systemReadoutsJson
