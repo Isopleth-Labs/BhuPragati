@@ -9,14 +9,17 @@ const NAV_LINKS = [
 
 function Navbar() {
 	return (
-		<nav className="navbar" aria-label="Main navigation">
+		<nav
+			className="fixed top-0 left-0 z-[1000] flex items-center justify-between w-full h-[72px] px-[clamp(24px,4.5vw,72px)] bg-[rgba(5,9,16,0.85)] border-b border-[rgba(255,255,255,0.06)] backdrop-blur-[24px] saturate-[1.2]"
+			aria-label="Main navigation"
+		>
 			<a
 				href="#top"
-				className="navbar__brand"
+				className="flex gap-[16px] items-center no-underline"
 				aria-label="Better Bharat Map home"
 			>
 				<svg
-					className="navbar__brand-icon"
+					className="shrink-0 w-[40px] h-[40px]"
 					width="44"
 					height="44"
 					viewBox="0 0 44 44"
@@ -72,18 +75,22 @@ function Navbar() {
 						fill="none"
 					/>
 				</svg>
-				<div className="navbar__brand-text">
-					<span className="navbar__brand-name">BETTER BHARAT MAP</span>
-					<span className="navbar__brand-sub">EARTH INTELLIGENCE PLATFORM</span>
+				<div className="flex flex-col gap-[2px] [@media(max-width:760px)]:hidden">
+					<span className="font-barlow text-[16px] font-extrabold tracking-[0.06em] text-[#eef7ff]">
+						BETTER BHARAT MAP
+					</span>
+					<span className="font-inter text-[10px] font-bold text-[#6ad1ff] tracking-[0.08em] uppercase">
+						EARTH INTELLIGENCE PLATFORM
+					</span>
 				</div>
 			</a>
 
-			<ul className="navbar__links">
+			<ul className="flex gap-[32px] items-center p-0 m-0 list-none [@media(max-width:980px)]:hidden">
 				{NAV_LINKS.map((link) => (
 					<li key={link.label}>
 						<a
 							href={link.href}
-							className="navbar__link"
+							className="font-inter text-[13px] font-bold text-[#b8cadc] uppercase tracking-[0.04em] no-underline transition-colors duration-200 hover:text-white"
 							id={`nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
 						>
 							{link.label}

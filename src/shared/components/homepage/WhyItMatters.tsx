@@ -2,7 +2,7 @@ const INSIGHT_CARDS = [
 	{
 		icon: (
 			<svg
-				className="why-card__icon why-card__icon--blue"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#6ad1ff] transition-all duration-300 group-hover:bg-[rgba(106,209,255,0.14)] group-hover:border-[rgba(106,209,255,0.35)] group-hover:drop-shadow-[0_0_8px_rgba(106,209,255,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -30,7 +30,7 @@ const INSIGHT_CARDS = [
 	{
 		icon: (
 			<svg
-				className="why-card__icon why-card__icon--green"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#5de582] transition-all duration-300 group-hover:bg-[rgba(124,243,197,0.14)] group-hover:border-[rgba(124,243,197,0.35)] group-hover:drop-shadow-[0_0_8px_rgba(124,243,197,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -56,7 +56,7 @@ const INSIGHT_CARDS = [
 	{
 		icon: (
 			<svg
-				className="why-card__icon why-card__icon--orange"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#ffd76a] transition-all duration-300 group-hover:bg-[rgba(255,215,0,0.14)] group-hover:border-[rgba(255,215,0,0.35)] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -79,7 +79,7 @@ const INSIGHT_CARDS = [
 	{
 		icon: (
 			<svg
-				className="why-card__icon why-card__icon--purple"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#b182ff] transition-all duration-300 group-hover:bg-[rgba(197,108,240,0.14)] group-hover:border-[rgba(197,108,240,0.35)] group-hover:drop-shadow-[0_0_8px_rgba(197,108,240,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -106,28 +106,47 @@ const INSIGHT_CARDS = [
 
 function WhyItMatters() {
 	return (
-		<section className="section-row why-it-matters" id="why-it-matters">
-			<div className="why-it-matters__left">
-				<p className="eyebrow">WHY IT MATTERS</p>
-				<h2 className="section-heading">
+		<section
+			className=" relative grid grid-cols-[360px_minmax(0,1fr)] gap-[48px] items-center max-w-[min(1800px,92vw)] w-full mx-auto my-0 px-[40px] pt-[80px] pb-[56px] [margin-top:0] max-[1080px]:grid-cols-1 max-[760px]:py-[80px]"
+			id="why-it-matters"
+		>
+			<div className=" self-start flex flex-col items-start w-full max-[1080px]:max-w-[640px]">
+				<p className=" m-0 mb-[14px] font-barlow text-[13px] font-bold text-[#6ad1ff] uppercase tracking-[0.14em]">
+					WHY IT MATTERS
+				</p>
+				<h2 className=" m-0 mb-[22px] font-barlow text-[clamp(32px,3.8vw,44px)] font-extrabold leading-[1.12] text-[#ffffff] tracking-[-0.01em]">
 					Building a Better Bharat Through Intelligence
 				</h2>
-				<p className="section-body">
+				<p className=" m-0 mb-[36px] font-inter text-[18px] leading-[1.65] text-[#b8cadc] max-w-[460px] [@media(max-width:760px)]:text-[16px]">
 					Data-driven insights help us identify gaps, unlock opportunities, and
 					ensure no one is left behind.
 				</p>
-				<a href="#insights" className="btn btn-secondary" id="why-explore-btn">
+				<a
+					href="#insights"
+					className="inline-flex gap-[14px] items-center justify-center min-h-[58px] px-[32px] border border-[rgba(106,209,255,0.3)] rounded-[8px] bg-[rgba(106,209,255,0.02)] text-[#6ad1ff] font-barlow text-[13px] font-[800] uppercase no-underline transition-all duration-200 shadow-[inset_0_0_12px_rgba(106,209,255,0.03)] hover:bg-[rgba(106,209,255,0.08)] hover:border-[#6ad1ff] hover:shadow-[0_0_16px_rgba(106,209,255,0.15)] hover:-translate-y-[1px]"
+					id="why-explore-btn"
+				>
 					<span>EXPLORE INSIGHTS</span>
-					<span className="btn__arrow" aria-hidden="true" />
+					<span
+						className="w-[8px] h-[8px] border-t-2 border-r-2 border-current rotate-45 transform"
+						aria-hidden="true"
+					/>
 				</a>
 			</div>
 
-			<div className="why-it-matters__right">
+			<div className=" self-start grid grid-cols-4 gap-[20px] items-stretch w-full max-[1080px]:grid-cols-2 max-[640px]:grid-cols-1">
 				{INSIGHT_CARDS.map((card) => (
-					<article className="why-card" key={card.title}>
+					<article
+						className="box-border flex flex-col items-start h-full p-[24px_20px] bg-gradient-to-b from-[rgba(14,20,32,0.78)] to-[rgba(7,14,24,0.9)] border border-[rgba(146,197,255,0.12)] rounded-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.24)] group"
+						key={card.title}
+					>
 						{card.icon}
-						<h3 className="why-card__title">{card.title}</h3>
-						<p className="why-card__desc">{card.description}</p>
+						<h3 className="mt-[20px] mb-[14px] text-[20px] font-[700] leading-[1.3] text-[#e8eef8] text-left tracking-[-0.01em]">
+							{card.title}
+						</h3>
+						<p className="max-w-[28ch] m-0 text-[15px] font-[400] leading-[1.75] text-[rgba(220,235,255,0.82)] text-left">
+							{card.description}
+						</p>
 					</article>
 				))}
 			</div>

@@ -255,6 +255,12 @@ a {
 }
 
 @theme inline {
+	--animate-scroll-line: scrollLinePulse 2s cubic-bezier(0.16, 1, 0.3, 1)
+		infinite;
+	--animate-brand-pulse: brand-pulse 1.6s ease-in-out infinite;
+	--animate-sim-arrow-pulse: simArrowPulse 1.5s infinite;
+	--animate-sim-arrow-move: simArrowMove 1s ease-in-out infinite alternate;
+	--animate-sim-arrow-flow: simArrowFlow 1.5s ease-in-out infinite;
 	--font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
@@ -619,5 +625,57 @@ pre code {
 	body {
 		color: var(--foreground);
 		background-color: var(--background);
+	}
+}
+
+@keyframes scrollLinePulse {
+	0% {
+		transform: translateY(-8px);
+	}
+	60%,
+	100% {
+		transform: translateY(24px);
+	}
+}
+
+@keyframes simArrowPulse {
+	0% {
+		transform: scale(1);
+		filter: drop-shadow(0 0 2px rgba(255, 107, 87, 0.4));
+	}
+	50% {
+		transform: scale(1.1);
+		filter: drop-shadow(0 0 8px rgba(255, 107, 87, 0.8));
+	}
+	100% {
+		transform: scale(1);
+		filter: drop-shadow(0 0 2px rgba(255, 107, 87, 0.4));
+	}
+}
+
+@keyframes simArrowMove {
+	0% {
+		transform: translateX(0);
+		filter: drop-shadow(0 0 4px rgba(255, 211, 77, 0.6));
+	}
+	100% {
+		transform: translateX(6px);
+		filter: drop-shadow(0 0 8px rgba(255, 211, 77, 0.9));
+	}
+}
+
+@keyframes simArrowFlow {
+	0% {
+		transform: translateX(-2px);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateX(3px);
+		opacity: 1;
+		filter: drop-shadow(0 0 8px rgba(39, 255, 208, 0.8));
+	}
+	100% {
+		transform: translateX(8px);
+		opacity: 0;
 	}
 }

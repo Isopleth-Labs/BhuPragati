@@ -79,13 +79,16 @@ const SOCIAL_LINKS = [
 
 function Footer() {
 	return (
-		<footer className="footer" role="contentinfo">
-			<div className="footer__container">
-				<div className="footer__top">
+		<footer
+			className="relative w-full px-[clamp(24px,4.5vw,72px)] pt-[110px] pb-[44px] mt-[120px] bg-[rgba(5,9,16,0.95)] border-t border-[rgba(255,255,255,0.06)]"
+			role="contentinfo"
+		>
+			<div className="flex flex-col gap-[72px] max-w-[1240px] mx-auto">
+				<div className="grid grid-cols-[1.5fr_2fr_1fr] gap-[64px] items-start [@media(max-width:1120px)]:grid-cols-[1fr_1fr] [@media(max-width:1120px)]:gap-[54px] [@media(max-width:760px)]:grid-cols-1 [@media(max-width:760px)]:gap-[48px]">
 					{/* Brand */}
-					<div className="footer__brand">
+					<div className="flex gap-[20px] items-center">
 						<svg
-							className="footer__brand-icon"
+							className="shrink-0 w-[44px] h-[44px]"
 							width="36"
 							height="36"
 							viewBox="0 0 44 44"
@@ -141,29 +144,33 @@ function Footer() {
 								fill="none"
 							/>
 						</svg>
-						<div className="footer__brand-text">
-							<span className="footer__brand-title">BETTER BHARAT MAP</span>
-							<span className="footer__brand-tagline">
+						<div className="flex flex-col gap-[4px]">
+							<span className="font-barlow text-[18px] font-extrabold tracking-[0.06em] text-[#eef7ff]">
+								BETTER BHARAT MAP
+							</span>
+							<span className="font-inter text-[11px] font-semibold text-[#8a9db5] tracking-[0.05em] uppercase">
 								EARTH INTELLIGENCE PLATFORM
 							</span>
 						</div>
 					</div>
 
 					{/* Link columns */}
-					<div className="footer__columns">
+					<div className="flex justify-between gap-[32px] w-full [@media(max-width:540px)]:flex-col [@media(max-width:540px)]:gap-[38px]">
 						{COLUMNS.map((col) => (
 							<nav
-								className="footer__column"
+								className="flex flex-col gap-[22px]"
 								key={col.heading}
 								aria-label={col.heading}
 							>
-								<h4 className="footer__column-heading">{col.heading}</h4>
-								<ul className="footer__column-list">
+								<h4 className="font-barlow text-[12px] font-bold tracking-[0.1em] uppercase text-[#6ad1ff]">
+									{col.heading}
+								</h4>
+								<ul className="flex flex-col gap-[14px] p-0 m-0 list-none">
 									{col.links.map((link) => (
 										<li key={link.label}>
 											<a
 												href={link.href}
-												className="footer__link"
+												className="font-inter text-[14px] text-[#93a7c3] no-underline transition-colors duration-200 hover:text-white"
 												id={`footer-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
 											>
 												{link.label}
@@ -176,22 +183,24 @@ function Footer() {
 					</div>
 
 					{/* Vision Card */}
-					<div className="footer__vision-card">
-						<h4 className="footer__column-heading">OUR VISION</h4>
-						<p className="footer__vision-text">
+					<div className="flex flex-col gap-[22px] [@media(max-width:1120px)]:col-span-2 [@media(max-width:1120px)]:max-w-[400px] [@media(max-width:760px)]:col-span-1">
+						<h4 className="font-barlow text-[12px] font-bold tracking-[0.1em] uppercase text-[#6ad1ff]">
+							OUR VISION
+						</h4>
+						<p className="m-0 font-inter text-[15px] leading-[1.65] text-[#93a7c3]">
 							A data-driven India where every decision creates a better future
 							for every citizen.
 						</p>
-						<div className="footer__social">
+						<div className="flex gap-[12px]">
 							{SOCIAL_LINKS.map((social) => (
 								<a
 									href={social.href}
-									className="footer__social-link"
+									className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] text-[#8ba2be] transition-all duration-200 hover:-translate-y-[2px] hover:bg-[rgba(106,209,255,0.1)] hover:border-[rgba(106,209,255,0.25)] hover:text-[#6ad1ff]"
 									key={social.label}
 									aria-label={social.label}
 									id={`footer-social-${social.label.toLowerCase()}`}
 								>
-									<span className="footer__social-icon" aria-hidden="true">
+									<span className="" aria-hidden="true">
 										{social.icon}
 									</span>
 									<span className="sr-only">{social.label}</span>
@@ -202,8 +211,8 @@ function Footer() {
 				</div>
 
 				{/* Bottom bar */}
-				<div className="footer__bottom">
-					<p className="footer__copyright">
+				<div className="flex items-center justify-between pt-[32px] border-t border-[rgba(255,255,255,0.06)]">
+					<p className="m-0 font-inter text-[13px] text-[#5c728e]">
 						© 2026 Better Bharat Map. All rights reserved.
 					</p>
 				</div>

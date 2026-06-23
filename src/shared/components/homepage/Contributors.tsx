@@ -1,7 +1,7 @@
 const CONTRIBUTORS = [
 	{
 		colorClass:
-			"contributor-card__icon--green text-[var(--accent-2)] bg-[rgba(124,243,197,0.15)] border border-solid border-[rgba(124,243,197,0.35)] group-hover:bg-[rgba(124,243,197,0.22)] group-hover:border-[rgba(124,243,197,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(124,243,197,0.6))]",
+			"text-[#5de582] bg-[rgba(124,243,197,0.15)] border border-solid border-[rgba(124,243,197,0.35)] group-hover:bg-[rgba(124,243,197,0.22)] group-hover:border-[rgba(124,243,197,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(124,243,197,0.6))]",
 		title: "Open Source",
 		subtitle: "Community Driven",
 		icon: (
@@ -26,7 +26,7 @@ const CONTRIBUTORS = [
 	},
 	{
 		colorClass:
-			"contributor-card__icon--blue text-[var(--accent)] bg-[rgba(106,209,255,0.15)] border border-solid border-[rgba(106,209,255,0.35)] group-hover:bg-[rgba(106,209,255,0.22)] group-hover:border-[rgba(106,209,255,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(106,209,255,0.6))]",
+			"text-[#6ad1ff] bg-[rgba(106,209,255,0.15)] border border-solid border-[rgba(106,209,255,0.35)] group-hover:bg-[rgba(106,209,255,0.22)] group-hover:border-[rgba(106,209,255,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(106,209,255,0.6))]",
 		title: "Researchers",
 		subtitle: "& Data Scientists",
 		icon: (
@@ -50,7 +50,7 @@ const CONTRIBUTORS = [
 	},
 	{
 		colorClass:
-			"contributor-card__icon--orange text-[#ffd700] bg-[rgba(255,215,0,0.15)] border border-solid border-[rgba(255,215,0,0.35)] group-hover:bg-[rgba(255,215,0,0.22)] group-hover:border-[rgba(255,215,0,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(255,215,0,0.6))]",
+			"text-[#ffd700] bg-[rgba(255,215,0,0.15)] border border-solid border-[rgba(255,215,0,0.35)] group-hover:bg-[rgba(255,215,0,0.22)] group-hover:border-[rgba(255,215,0,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(255,215,0,0.6))]",
 		title: "Government",
 		subtitle: "Collaborators",
 		icon: (
@@ -76,7 +76,7 @@ const CONTRIBUTORS = [
 	},
 	{
 		colorClass:
-			"contributor-card__icon--purple text-[#b182ff] bg-[rgba(177,130,255,0.15)] border border-solid border-[rgba(177,130,255,0.35)] group-hover:bg-[rgba(177,130,255,0.22)] group-hover:border-[rgba(177,130,255,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(177,130,255,0.6))]",
+			"text-[#b182ff] bg-[rgba(177,130,255,0.15)] border border-solid border-[rgba(177,130,255,0.35)] group-hover:bg-[rgba(177,130,255,0.22)] group-hover:border-[rgba(177,130,255,0.5)] group-hover:[filter:drop-shadow(0_0_10px_rgba(177,130,255,0.6))]",
 		title: "Developers",
 		subtitle: "& Volunteers",
 		icon: (
@@ -102,42 +102,42 @@ const CONTRIBUTORS = [
 function Contributors() {
 	return (
 		<section
-			className="section-row contributors-section items-start py-10 max-[900px]:py-7 max-[480px]:py-5"
+			className=" relative grid grid-cols-[360px_minmax(0,1fr)] items-center gap-[48px] max-w-[min(1800px,92vw)] w-full mx-auto my-0 px-[40px] py-[56px] max-[1080px]:grid-cols-1 max-[1080px]:items-start max-[1080px]:gap-[54px] max-[900px]:py-7 max-[480px]:py-5"
 			id="contributors"
 		>
-			<div className="contributors__left self-start">
-				<p className="eyebrow" style={{ color: "var(--accent-gold)" }}>
+			<div className="self-start w-full max-[1080px]:max-w-[640px]">
+				<p className=" m-0 mb-[14px] font-barlow text-[13px] font-bold text-[#ffd76a] uppercase tracking-[0.14em]">
 					CONTRIBUTORS
 				</p>
-				<h2 className="section-heading mt-2.5 mx-0 mb-3 text-[clamp(26px,3.2vw,34px)] leading-[1.2] font-extrabold">
+				<h2 className=" mt-2.5 mx-0 mb-3 text-[clamp(26px,3.2vw,34px)] leading-[1.2] font-extrabold text-[#ffffff] tracking-[-0.01em]">
 					Built for Bharat,
 					<br />
 					Together
 				</h2>
-				<p className="section-body max-w-[360px] text-[14px] leading-[1.65] text-[var(--muted)]">
+				<p className=" m-0 max-w-[360px] font-inter text-[14px] leading-[1.65] text-[#b8cadc]">
 					Better Bharat Map is an open initiative dedicated to data-driven
 					development across India. Developers, researchers, institutions, and
 					citizens are welcome to contribute and help build a stronger Bharat.
 				</p>
 			</div>
 
-			<div className="contributors__right self-start grid grid-cols-4 gap-6 max-[900px]:grid-cols-2 max-[720px]:grid-cols-1 w-full">
+			<div className="self-start grid grid-cols-4 gap-6 w-full max-[900px]:grid-cols-2 max-[720px]:grid-cols-1">
 				{CONTRIBUTORS.map((card) => (
 					<article
-						className="contributor-card group flex gap-4 items-center h-[92px] p-[12px_20px] bg-gradient-to-b from-[rgba(14,20,32,0.78)] to-[rgba(7,14,24,0.9)] border border-solid border-[rgba(146,197,255,0.12)] rounded-[14px] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.24)] transition-all duration-300 ease-out hover:border-[rgba(146,197,255,0.3)] hover:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),0_15px_40px_rgba(0,0,0,0.35)] hover:-translate-y-[3px]"
+						className="group flex gap-4 items-center h-[92px] p-[12px_20px] bg-gradient-to-b from-[rgba(14,20,32,0.78)] to-[rgba(7,14,24,0.9)] border border-solid border-[rgba(146,197,255,0.12)] rounded-[14px] [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.24)] transition-all duration-300 ease-out hover:border-[rgba(146,197,255,0.3)] hover:[box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),0_15px_40px_rgba(0,0,0,0.35)] hover:-translate-y-[3px]"
 						key={card.title}
 					>
 						<div
-							className={`contributor-card__icon flex shrink-0 items-center justify-center w-16 h-16 text-[24px] rounded-2xl transition-all duration-300 ease-out ${card.colorClass}`}
+							className={`flex shrink-0 items-center justify-center w-16 h-16 text-[24px] rounded-2xl transition-all duration-300 ease-out ${card.colorClass}`}
 							aria-hidden="true"
 						>
 							{card.icon}
 						</div>
-						<div className="contributor-card__content flex flex-col justify-center">
-							<h3 className="contributor-card__title m-0 mb-0.5 text-[16px] font-bold text-white">
+						<div className="flex flex-col justify-center">
+							<h3 className="m-0 mb-0.5 text-[16px] font-bold text-white">
 								{card.title}
 							</h3>
-							<p className="contributor-card__subtitle m-0 text-[13px] leading-[1.3] text-[var(--muted)]">
+							<p className="m-0 text-[13px] leading-[1.3] text-[#8a9db5]">
 								{card.subtitle}
 							</p>
 						</div>

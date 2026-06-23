@@ -54,11 +54,25 @@ export function NetworkCanvas({
 		}
 	}, [stepIndex, isHovered, isVisibleRef])
 
+	let visualBgClass = ""
+	if (stepIndex === 0)
+		visualBgClass =
+			"bg-gradient-to-br from-[rgba(106,209,255,0.15)] to-[rgba(12,19,36,0.8)] border border-[rgba(106,209,255,0.1)]"
+	if (stepIndex === 1)
+		visualBgClass =
+			"bg-gradient-to-br from-[rgba(255,159,67,0.15)] to-[rgba(12,19,36,0.8)] border border-[rgba(255,159,67,0.1)]"
+	if (stepIndex === 2)
+		visualBgClass =
+			"bg-gradient-to-br from-[rgba(124,243,197,0.15)] to-[rgba(12,19,36,0.8)] border border-[rgba(124,243,197,0.1)]"
+
 	return (
-		<div className="sim-card__visual" ref={containerRef}>
+		<div
+			className={`relative flex items-center justify-center w-full h-[170px] mb-[16px] bg-center bg-cover overflow-hidden rounded-[10px] [@media(max-width:720px)]:h-[120px] [@media(max-width:720px)]:mb-[12px] ${visualBgClass}`}
+			ref={containerRef}
+		>
 			<canvas
 				ref={canvasRef}
-				className="sim-card__canvas"
+				className=" absolute inset-0 w-full h-full pointer-events-auto z-10"
 				onMouseEnter={onHoverStart}
 				onMouseLeave={onHoverEnd}
 			/>

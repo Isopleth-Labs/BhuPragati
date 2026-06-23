@@ -2,7 +2,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--blue"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#6ad1ff] transition-all duration-300 group-hover:bg-[rgba(106,209,255,0.14)] group-hover:border-[rgba(106,209,255,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(106,209,255,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -22,7 +22,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--red"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#ff503c] transition-all duration-300 group-hover:bg-[rgba(255,107,107,0.14)] group-hover:border-[rgba(255,107,107,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(255,107,107,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -42,7 +42,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--yellow"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#ffd76a] transition-all duration-300 group-hover:bg-[rgba(255,215,0,0.14)] group-hover:border-[rgba(255,215,0,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -61,7 +61,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--cyan"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#6ad1ff] transition-all duration-300 group-hover:bg-[rgba(106,209,255,0.14)] group-hover:border-[rgba(106,209,255,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(106,209,255,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -83,7 +83,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--green"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#5de582] transition-all duration-300 group-hover:bg-[rgba(124,243,197,0.14)] group-hover:border-[rgba(124,243,197,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(124,243,197,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -108,7 +108,7 @@ const LAYERS = [
 	{
 		icon: (
 			<svg
-				className="layer-card__icon layer-card__icon--yellow"
+				className="w-[36px] h-[36px] mb-[20px] stroke-current stroke-[1.5] text-[#ffd76a] transition-all duration-300 group-hover:bg-[rgba(255,215,0,0.14)] group-hover:border-[rgba(255,215,0,0.4)] group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]"
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
@@ -129,24 +129,34 @@ const LAYERS = [
 
 function Infrastructure() {
 	return (
-		<section className="section-row infrastructure" id="infrastructure">
-			<div className="infrastructure__left">
-				<p className="eyebrow infrastructure__eyebrow">
+		<section
+			className=" relative grid grid-cols-[360px_minmax(0,1fr)] gap-[48px] items-center max-w-[min(1800px,92vw)] w-full mx-auto my-0 px-[40px] py-[56px] max-[1080px]:grid-cols-1 max-[760px]:py-[80px]"
+			id="infrastructure"
+		>
+			<div className=" self-start flex flex-col items-start w-full max-[1080px]:max-w-[640px]">
+				<p className="m-0 mb-[14px] font-barlow text-[13px] font-bold text-[#ffd76a] uppercase tracking-[0.14em]">
 					INFRASTRUCTURE INTELLIGENCE
 				</p>
-				<h2 className="section-heading">
+				<h2 className=" m-0 mb-[22px] font-barlow text-[clamp(32px,3.8vw,44px)] font-extrabold leading-[1.12] text-[#ffffff] tracking-[-0.01em]">
 					Layers That Power
 					<br />
 					Better Decisions
 				</h2>
 			</div>
 
-			<div className="infrastructure__right">
+			<div className=" self-start grid grid-cols-6 gap-[14px] items-stretch w-full max-[1080px]:w-full max-[1080px]:grid-cols-3 max-[900px]:grid-cols-2 max-[640px]:grid-cols-1">
 				{LAYERS.map((layer) => (
-					<article className="layer-card infrastructure-card" key={layer.title}>
+					<article
+						className="box-border flex flex-col items-center justify-start h-full p-[16px_12px] text-center bg-gradient-to-b from-[rgba(14,20,32,0.78)] to-[rgba(7,14,24,0.9)] border border-[rgba(146,197,255,0.12)] rounded-[12px] shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_10px_30px_rgba(0,0,0,0.24)] group transition-all duration-200 hover:border-[#405c7a] hover:-translate-y-[2px]"
+						key={layer.title}
+					>
 						{layer.icon}
-						<h3 className="layer-card__title">{layer.title}</h3>
-						<p className="layer-card__desc">{layer.description}</p>
+						<h3 className="flex items-center justify-center min-h-[48px] mt-[18px] text-[18px] font-[700] leading-[1.35] text-[#e8eef8] text-center tracking-normal">
+							{layer.title}
+						</h3>
+						<p className="max-w-[18ch] mx-auto text-[14px] font-[400] leading-[1.7] text-[rgba(220,235,255,0.82)] text-center opacity-[0.92]">
+							{layer.description}
+						</p>
 					</article>
 				))}
 			</div>
