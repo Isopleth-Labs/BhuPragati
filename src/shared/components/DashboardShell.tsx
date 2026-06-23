@@ -25,11 +25,20 @@ export default function DashboardShell() {
 	const [districtReady, setDistrictReady] = useState(false)
 
 	return (
-		<main className="dashboard relative w-full h-screen overflow-hidden isolate bg-[#02050a] [&_.gis-map-shell]:absolute [&_.gis-map-shell]:inset-0 [&_.gis-map-shell]:z-0 [&_.gis-map-shell]:overflow-hidden">
+		<main
+			className="
+        relative h-full w-full overflow-hidden isolate
+        [background:radial-gradient(circle_at_50%_42%,rgba(255,53,40,0.14),transparent_20%),radial-gradient(circle_at_75%_20%,rgba(0,126,190,0.13),transparent_28%),#02050a]
+      "
+		>
 			<Suspense
 				fallback={
 					<div
-						className="gis-map-shell absolute inset-0 z-0 overflow-hidden"
+						className="
+              fixed inset-0 z-0 overflow-hidden
+              bg-[#02050a]
+              [background:radial-gradient(circle_at_50%_48%,rgba(255,64,45,0.12),transparent_18%),radial-gradient(circle_at_54%_52%,rgba(0,112,170,0.16),transparent_44%),#02050a]
+            "
 						aria-hidden="true"
 					/>
 				}
@@ -44,26 +53,67 @@ export default function DashboardShell() {
 					<LabelTuningController />
 					<AdministrativeBoundaryLayer />
 					<OsmOverlayLayer />
+
 					<InfrastructureLayer
 						activeLayers={activeLayers}
 						onReady={() => setInfraReady(true)}
 					/>
+
 					<IntelligenceSoftenController ready={infraReady} />
 					<FocusPulseController ready={infraReady} />
 					<FeaturePopupController ready={infraReady} />
+
 					<CommandCenterLayer />
+
 					<DistrictBoundaryLayer onReady={() => setDistrictReady(true)} />
+
 					<DistrictSelectionController
 						ready={districtReady}
-						onDistrictClick={(_districtId) => {
-							// reserved for future selection state
+						onDistrictClick={(districtId) => {
+							console.log("[district-selected]", districtId)
 						}}
 					/>
 				</MapEngine>
 			</Suspense>
 
-			<div className="dashboard__hud absolute inset-[22px_28px] z-10 pointer-events-none [&>*]:pointer-events-auto flex justify-end items-start">
-				<TopBar />
+			<div
+				className="
+          pointer-events-none
+          absolute z-[2]
+          inset-[22px_28px]
+
+          grid
+          grid-rows-[auto_minmax(0,1fr)_auto]
+          grid-cols-[minmax(290px,320px)_minmax(0,1fr)_minmax(280px,320px)]
+          gap-y-[22px]
+          gap-x-[28px]
+
+          max-[1180px]:grid-cols-[minmax(280px,320px)_minmax(220px,1fr)]
+
+          max-[820px]:
+            inset-3
+            flex
+            min-h-0
+            max-h-[calc(100%-24px)]
+            flex-col
+            gap-3
+            overflow-x-hidden
+            overflow-y-auto
+            pb-3
+        "
+			>
+				<div
+					className="
+            pointer-events-auto
+            row-[1]
+            col-[3]
+            self-start
+
+            max-[1180px]:col-[2]
+          "
+				>
+					<TopBar />
+				</div>
 			</div>
 		</main>
 	)

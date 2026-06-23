@@ -1,5 +1,5 @@
 // Lightweight helpers shared across map overlays.
-import type { Map as MaplibreMap } from "maplibre-gl"
+import type { LayerSpecification, Map as MaplibreMap } from "maplibre-gl"
 
 export function addSource(map: MaplibreMap, id: string, data: GeoJSON.GeoJSON) {
 	if (map.getSource(id)) return
@@ -12,8 +12,8 @@ export function addLayer(
 	beforeId?: string,
 ) {
 	if (map.getLayer(layer.id)) return
-	// biome-ignore lint/suspicious/noExplicitAny: map.addLayer requires casting to any for some configurations
-	map.addLayer(layer as unknown as any, beforeId)
+	// `map.addLayer` expects the library's layer spec; cast once at the callsite.
+	map.addLayer(layer as unknown as LayerSpecification, beforeId)
 }
 
 export function getFirstSymbolLayerId(map: MaplibreMap) {

@@ -8,7 +8,7 @@ import {
 import { useMapReady } from "../hooks/useMapReady"
 import { stateIdToNumericId } from "../layers/StateBoundaryLayer"
 
-interface StateSelectionControllerProps {
+interface StateSelectorProps {
 	ready: boolean
 	onStateClick: (stateId: string) => void
 }
@@ -19,10 +19,7 @@ interface StateSelectionControllerProps {
 //
 // Pattern reused by future DistrictSelectionController (on district-lines)
 // and BlockSelectionController — each controller owns one level, emits one ID.
-export function StateSelectionController({
-	ready,
-	onStateClick,
-}: StateSelectionControllerProps) {
+export function StateSelector({ ready, onStateClick }: StateSelectorProps) {
 	const map = useMapReady()
 	const lastHoveredRef = useRef<number | null>(null)
 
