@@ -30,9 +30,10 @@
 }
 
 /* ─── Reset ─── */
-*,
-*::before,
-*::after {
+.homepage,
+.homepage *,
+.homepage *::before,
+.homepage *::after {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;

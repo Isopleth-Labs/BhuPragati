@@ -545,3 +545,8 @@
 		flex-basis: 100%;
 	}
 }
+
+.state-main__right {
+	scrollbar-color: rgba(90, 171, 222, 0.42) transparent;
+	scrollbar-width: thin;
+}

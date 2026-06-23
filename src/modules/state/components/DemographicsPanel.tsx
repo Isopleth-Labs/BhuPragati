@@ -1,4 +1,6 @@
 import type React from "react"
+import HudIcon from "@/shared/ui/dashboard/HudIcon"
+import MetricPanel from "@/shared/ui/dashboard/MetricPanel"
 
 const DEMOGRAPHIC_CARDS = [
 	{ key: "literacy", label: "Literacy Rate", value: "77.7%", color: "#3b82f6" },
@@ -45,13 +47,14 @@ function getIconStyles(color: string) {
 
 function renderOverviewIcon(key: string) {
 	const commonProps: React.SVGProps<SVGSVGElement> = {
-		width: "32",
-		height: "32",
+		width: "26",
+		height: "26",
 		stroke: "currentColor",
 		fill: "none",
 		strokeWidth: 2,
 		strokeLinecap: "round",
 		strokeLinejoin: "round",
+		className: "block w-[26px] h-[26px]",
 	}
 	switch (key) {
 		case "literacy":
@@ -167,46 +170,56 @@ function renderOverviewIcon(key: string) {
 export default function DemographicsPanel() {
 	return (
 		<>
-			<div className="state-overview__header state-overview__header--indicators">
-				<h2 className="state-overview__title">DEMOGRAPHICS &amp; SERVICES</h2>
-				<p className="state-overview__sub">Population and public services</p>
+			<div className="flex flex-col gap-0.5 pl-0.5 mb-1 mt-2.5">
+				<h2 className="m-0 font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[15.5px] font-extrabold text-white uppercase tracking-[0.04em] [text-shadow:0_0_12px_rgba(169,200,255,0.35),0_0_30px_rgba(100,150,255,0.15)]">
+					DEMOGRAPHICS &amp; SERVICES
+				</h2>
+				<p className="m-0 text-[11.5px] font-medium leading-[1.2] text-[rgba(255,255,255,0.72)]">
+					Population and public services
+				</p>
 			</div>
-			<div className="state-overview__grid">
+			<div className="grid grid-cols-3 auto-rows-[94px] gap-2.5">
 				{DEMOGRAPHIC_CARDS.map((card) => (
-					<div key={card.key} className="state-overview__card">
-						<span
-							className="state-overview__icon"
+					<MetricPanel
+						key={card.key}
+						className="box-border items-center justify-center h-[94px] p-[6px_4px] text-center hover:bg-[linear-gradient(135deg,rgba(16,28,56,0.75)_0%,rgba(6,12,28,0.8)_100%)] hover:border-[rgba(56,189,248,0.45)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.08),0_0_10px_rgba(56,189,248,0.1)] hover:-translate-y-[1.5px] transition-all duration-220 ease-[cubic-bezier(0.4,0,0.2,1)] group"
+					>
+						<HudIcon
+							size="md"
 							style={getIconStyles(card.color)}
+							className="group-hover:border-[var(--icon-border,rgba(120,160,220,0.35))] group-hover:shadow-[0_0_18px_var(--icon-glow,var(--icon-bg)),inset_0_1px_1px_rgba(255,255,255,0.2)] group-hover:scale-[1.03] transition-all duration-220 ease-[cubic-bezier(0.4,0,0.2,1)]"
 							aria-hidden
 						>
 							{renderOverviewIcon(card.key)}
-						</span>
-						<div className="state-overview__info">
-							<span className="state-overview__value">{card.value}</span>
-							<span className="state-overview__label">
+						</HudIcon>
+						<div className="flex flex-col gap-0.5 items-center w-full min-w-0">
+							<span className="block font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[17.5px] font-extrabold leading-[1.1] text-white text-center tracking-[-0.01em] whitespace-nowrap [text-shadow:0_2px_8px_rgba(255,255,255,0.06)]">
+								{card.value}
+							</span>
+							<span className="flex flex-col gap-0.5 items-center w-full">
 								{(() => {
 									const lastParenIndex = card.label.lastIndexOf(" (")
 									if (lastParenIndex !== -1) {
 										return (
 											<>
-												<span className="state-overview__label-main">
+												<span className="block font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[11px] font-bold leading-[1.25] text-[rgba(255,255,255,0.96)] text-center tracking-[-0.015em] transition-colors duration-200 group-hover:text-white">
 													{card.label.substring(0, lastParenIndex)}
 												</span>
-												<span className="state-overview__label-sub">
+												<span className="block font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[9.5px] font-bold leading-[1.1] text-[rgba(255,255,255,0.75)] text-center tracking-[-0.01em] transition-colors duration-200 group-hover:text-[rgba(255,255,255,0.8)]">
 													{card.label.substring(lastParenIndex + 1)}
 												</span>
 											</>
 										)
 									}
 									return (
-										<span className="state-overview__label-main">
+										<span className="block font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[11px] font-bold leading-[1.25] text-[rgba(255,255,255,0.96)] text-center tracking-[-0.015em] transition-colors duration-200 group-hover:text-white">
 											{card.label}
 										</span>
 									)
 								})()}
 							</span>
 						</div>
-					</div>
+					</MetricPanel>
 				))}
 			</div>
 		</>

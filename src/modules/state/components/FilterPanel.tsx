@@ -1,14 +1,15 @@
 export default function FilterPanel() {
 	return (
-		<div className="state-panel__controls state-panel__controls--tight grid gap-[6px]">
-			<div className="state-panel__search-wrap state-panel__search-wrap--compact relative box-border flex items-center w-full h-[44px] px-[14px] bg-[rgba(7,24,50,0.9)] border border-[rgba(120,160,220,0.12)] rounded-[10px] transition-all duration-[160ms] ease-in-out focus-within:border-[rgba(100,150,255,0.35)] focus-within:shadow-[0_0_12px_rgba(100,150,255,0.08)]">
+		<div className="grid gap-1.5">
+			{/* Search bar */}
+			<div className="relative box-border flex items-center w-full h-[44px] px-[14px] bg-[rgba(7,24,50,0.9)] border border-[rgba(120,160,220,0.12)] rounded-[10px] transition-all duration-[160ms] ease-in-out focus-within:border-[rgba(100,150,255,0.35)] focus-within:shadow-[0_0_12px_rgba(100,150,255,0.08)]">
 				<input
-					className="state-panel__search state-panel__search--compact w-full p-0 font-['Plus_Jakarta_Sans',_Inter,_sans-serif] text-[14px] font-normal text-white bg-transparent border-none focus:outline-none focus-visible:outline-none placeholder:text-[rgba(255,255,255,0.65)] placeholder:font-normal"
+					className="w-full p-0 font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[14px] font-normal text-white bg-transparent border-none focus:outline-none focus-visible:outline-none placeholder:text-[rgba(255,255,255,0.65)] placeholder:font-normal"
 					placeholder="Search state..."
 					aria-label="Search state"
 				/>
 				<span
-					className="state-panel__search-icon grid shrink-0 place-content-center place-items-center ml-[6px] text-[0.74rem] text-[rgba(255,255,255,0.85)]"
+					className="grid shrink-0 place-content-center place-items-center ml-[6px] text-[0.74rem] text-[rgba(255,255,255,0.85)]"
 					aria-hidden
 				>
 					<svg
@@ -35,8 +36,10 @@ export default function FilterPanel() {
 					</svg>
 				</span>
 			</div>
-			<div className="state-panel__filters state-panel__filters--stacked grid grid-cols-1 gap-[6px]">
-				<label className="state-panel__filter-row grid grid-cols-2 gap-[8px] items-center font-['Plus_Jakarta_Sans',_Inter,_sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
+
+			{/* Filter rows */}
+			<div className="grid grid-cols-1 gap-1.5">
+				<label className="grid grid-cols-2 gap-2 items-center font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
 					<span className="whitespace-nowrap">Filter by Population</span>
 					<select
 						defaultValue="all"
@@ -47,7 +50,7 @@ export default function FilterPanel() {
 						<option value="<50m">&lt; 50M</option>
 					</select>
 				</label>
-				<label className="state-panel__filter-row grid grid-cols-2 gap-[8px] items-center font-['Plus_Jakarta_Sans',_Inter,_sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
+				<label className="grid grid-cols-2 gap-2 items-center font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
 					<span className="whitespace-nowrap">Filter by Region</span>
 					<select
 						defaultValue="all"
@@ -60,7 +63,7 @@ export default function FilterPanel() {
 						<option value="west">West</option>
 					</select>
 				</label>
-				<label className="state-panel__filter-row grid grid-cols-2 gap-[8px] items-center font-['Plus_Jakarta_Sans',_Inter,_sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
+				<label className="grid grid-cols-2 gap-2 items-center font-['Plus_Jakarta_Sans',Inter,sans-serif] text-[14px] font-medium text-[rgba(255,255,255,0.9)]">
 					<span className="whitespace-nowrap">Sort by</span>
 					<select
 						defaultValue="overall"

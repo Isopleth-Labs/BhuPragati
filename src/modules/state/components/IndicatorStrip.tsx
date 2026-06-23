@@ -1,3 +1,4 @@
+import HudPanel from "@/shared/ui/dashboard/HudPanel"
 import CapabilityStrip from "./CapabilityStrip"
 import IndicatorCard from "./IndicatorCard"
 
@@ -77,12 +78,20 @@ export default function IndicatorStrip({
 	onCardClick,
 }: IndicatorStripProps) {
 	return (
-		<section
-			className="panel-surface state-bottom"
+		<HudPanel
+			as="section"
 			aria-label="Key Development Indicators"
+			// Replaces: panel-surface + state-bottom + state-bottom (2nd decl)
+			// grid-column: 1/-1 is handled by the parent dashboard grid
+			className="!rounded-xl flex flex-col shrink-0 gap-2 col-[1/-1] p-[10px_12px] m-[8px_16px_16px_16px] overflow-hidden"
 		>
-			<p className="panel-kicker">Key Development Indicators</p>
-			<div className="state-bottom__grid">
+			{/* Replaces: panel-kicker (inlined to Tailwind) */}
+			<p className="m-0 mb-1.5 font-sans text-[0.74rem] font-bold text-[rgba(195,220,245,0.9)] uppercase tracking-[0.12em]">
+				Key Development Indicators
+			</p>
+
+			{/* Replaces: state-bottom__grid */}
+			<div className="grid flex-1 grid-cols-[repeat(7,1fr)] gap-3">
 				{INTEL_CARDS.map((card) => {
 					const isActive = activeIndicator === card.key
 					return (
@@ -96,6 +105,6 @@ export default function IndicatorStrip({
 				})}
 			</div>
 			<CapabilityStrip />
-		</section>
+		</HudPanel>
 	)
 }

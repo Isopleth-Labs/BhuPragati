@@ -1,4 +1,6 @@
 import type React from "react"
+import { cn } from "@/shared/lib/utils"
+import HudIcon from "@/shared/ui/dashboard/HudIcon"
 import Sparkline from "./Sparkline"
 
 interface CardData {
@@ -171,39 +173,71 @@ export default function IndicatorCard({
 	return (
 		<button
 			type="button"
-			className={`state-bottom__card${isActive ? " is-active" : ""}`}
+			className={cn(
+				// Card shell — replaces state-bottom__card
+				"panel-card flex flex-col justify-between min-h-[134px] p-[12px_14px] cursor-pointer",
+				// Hover — replaces state-bottom__card:hover
+				"hover:border-[var(--card-color)] hover:shadow-[0_4px_25px_color-mix(in_srgb,var(--card-color)_30%,transparent),inset_0_1px_1px_rgba(255,255,255,0.12)] hover:-translate-y-[2.5px]",
+				// Active state — replaces .state-bottom__card.is-active
+				isActive &&
+					"bg-[linear-gradient(150deg,color-mix(in_srgb,var(--card-color)_12%,rgba(12,18,28,0.95)),rgba(6,12,20,0.85))] border-[var(--card-color)] shadow-[0_0_20px_color-mix(in_srgb,var(--card-color)_35%,transparent),inset_0_1px_1px_rgba(255,255,255,0.15)] -translate-y-[1.5px]",
+			)}
 			onClick={onClick}
 			style={
 				{
 					"--card-color": card.color,
-					cursor: "pointer",
 				} as React.CSSProperties
 			}
 		>
-			<div className="state-bottom__top">
-				<div className="state-bottom__top-left">
-					<span
-						className="state-bottom__icon"
+			{/* Top row: icon + label + badge */}
+			<div className="flex items-center justify-between w-full">
+				<div className="flex gap-2 items-center min-w-0">
+					{/* HudIcon replaces state-bottom__icon (30×30, rounded-md) */}
+					<HudIcon
+						size="sm"
+						className="!rounded-md"
 						style={getIconStyles(card.color)}
 						aria-hidden
 					>
 						{renderIntelIcon(card.key)}
+					</HudIcon>
+					{/* Label — replaces state-bottom__label */}
+					<span className="overflow-hidden text-ellipsis text-[0.86rem] font-bold text-[rgba(255,255,255,0.98)] whitespace-nowrap">
+						{card.label}
 					</span>
-					<span className="state-bottom__label">{card.label}</span>
 				</div>
-				<span className="state-bottom__badge">{card.grade}</span>
+				{/* Badge — replaces state-bottom__badge */}
+				<span className="px-1.5 py-0.5 text-[0.72rem] font-extrabold leading-none text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.4)] bg-[color-mix(in_srgb,var(--card-color,#3b82f6)_30%,transparent)] border border-[color-mix(in_srgb,var(--card-color,#3b82f6)_65%,transparent)] rounded-md">
+					{card.grade}
+				</span>
 			</div>
-			<div className="state-bottom__content">
-				<div className="state-bottom__score-block">
-					<span className="state-bottom__value">{card.value}</span>
-					<span className="state-bottom__unit">(Out of 100)</span>
+
+			{/* Content row: score + sparkline + delta */}
+			<div className="flex flex-1 gap-2 items-end justify-between mt-2.5">
+				{/* Score block — replaces state-bottom__score-block */}
+				<div className="flex shrink-0 flex-col gap-[3px] items-start">
+					{/* Value — replaces state-bottom__value */}
+					<span className="text-[1.75rem] font-extrabold leading-none text-white">
+						{card.value}
+					</span>
+					{/* Unit — replaces state-bottom__unit */}
+					<span className="mt-1 text-[0.7rem] text-[rgba(205,225,245,0.62)] whitespace-nowrap">
+						(Out of 100)
+					</span>
 				</div>
-				<div className="state-bottom__chart-block">
-					<div className="state-bottom__spark-row">
+
+				{/* Chart block — replaces state-bottom__chart-block */}
+				<div className="flex flex-1 flex-col gap-1.5 items-end min-w-0">
+					{/* Spark row — replaces state-bottom__spark-row */}
+					<div className="w-full h-[44px] py-0.5 mb-0.5 overflow-hidden rounded-md opacity-85 transition-opacity duration-200 ease-in-out group-hover:opacity-100">
 						<Sparkline color={card.color} seed={card.value} />
 					</div>
-					<span className="state-bottom__delta">
-						▲ {card.delta}% <span className="state-bottom__vs">vs 2023</span>
+					{/* Delta — replaces state-bottom__delta */}
+					<span className="text-[0.84rem] font-bold leading-none text-[rgba(0,226,150,0.95)] whitespace-nowrap">
+						▲ {card.delta}% {/* vs label — replaces state-bottom__vs */}
+						<span className="text-[0.7rem] font-normal text-[rgba(205,225,245,0.62)]">
+							vs 2023
+						</span>
 					</span>
 				</div>
 			</div>

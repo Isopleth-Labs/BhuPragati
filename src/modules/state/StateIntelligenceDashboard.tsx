@@ -6,7 +6,6 @@ import IndiaOverviewPanel from "./components/IndiaOverviewPanel"
 import IndicatorStrip from "./components/IndicatorStrip"
 import StateDashboardHeader from "./components/StateDashboardHeader"
 import StateSidebar from "./components/StateSidebar"
-import "./state-dashboard.css"
 
 interface StateIntelligenceDashboardProps {
 	activeIndicator: string
@@ -78,13 +77,13 @@ export default function StateIntelligenceDashboard({
 	}, [resolvedMode])
 
 	return (
-		<div className="state-dashboard">
+		<div className="state-dashboard box-border grid grid-rows-[72px_1fr_282px] w-screen h-screen overflow-hidden text-[#e6f0ff] bg-[#020612]">
 			<StateDashboardHeader
 				resolvedMode={resolvedMode}
 				onToggleTheme={onToggleTheme}
 			/>
 
-			<div className="state-dashboard__main">
+			<div className="grid grid-cols-[395px_1fr_395px] gap-3 items-stretch min-h-0 m-[16px_16px_8px_16px] overflow-hidden">
 				<StateSidebar
 					activeIndicator={activeIndicator}
 					dynamicRanking={dynamicRanking}

@@ -38,7 +38,11 @@ export default function StateMapShell({
 	}
 
 	const mapSlot = (
-		<Suspense fallback={<div className="state-map__fallback" />}>
+		<Suspense
+			fallback={
+				<div className="w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05),transparent_40%)]" />
+			}
+		>
 			<MapEngine
 				regionId="india"
 				initialViewState={INDIA_INITIAL_VIEW_STATE}

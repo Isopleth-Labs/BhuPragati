@@ -1,4 +1,6 @@
 import { Fragment } from "react"
+import HudIcon from "@/shared/ui/dashboard/HudIcon"
+import HudPanel from "@/shared/ui/dashboard/HudPanel"
 
 type InfoIcon = "landmark" | "house" | "database" | "cpu" | "shield"
 
@@ -48,7 +50,7 @@ const INFO_STRIP_ITEMS: {
 
 function renderFeatureIcon(icon: InfoIcon) {
 	const commonProps = {
-		className: "feature-icon__svg",
+		className: "block w-5 h-5",
 		stroke: "currentColor",
 		fill: "none",
 		strokeWidth: 1.7,
@@ -117,31 +119,37 @@ function renderFeatureIcon(icon: InfoIcon) {
 
 export default function CapabilityStrip() {
 	return (
-		<div className="state-bottom__features">
-			<div className="feature-strip-grid">
+		<HudPanel className="box-border grid grid-cols-1 gap-0 items-center h-14 min-h-[56px] px-8 bg-[linear-gradient(180deg,rgba(11,25,48,0.95),rgba(5,14,28,0.95))] border-[rgba(72,128,255,0.15)] !rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_40px_rgba(0,50,120,0.12)] !backdrop-blur-[6px]">
+			<div className="flex gap-0 items-center w-full">
 				{INFO_STRIP_ITEMS.map((item, index) => (
 					<Fragment key={item.title}>
-						<div
-							className={`state-feature feature-item feature-${item.variant}`}
-						>
-							<span
-								className="state-feature__icon feature-icon icon-card"
+						<div className="flex flex-1 gap-3.5 items-center justify-center min-w-0 h-full px-3 text-[rgba(220,232,248,0.9)]">
+							<HudIcon
+								size="lg"
+								className="!rounded-xl !bg-transparent border-[rgba(255,255,255,0.1)] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_6px_16px_rgba(0,0,0,0.28),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-[12px] hover:-translate-y-0.5 transition-transform duration-220 ease-[cubic-bezier(0.4,0,0.2,1)]"
 								style={{ color: item.color }}
 								aria-hidden
 							>
 								{renderFeatureIcon(item.icon)}
-							</span>
-							<div className="feature-text">
-								<div className="feature-title">{item.title}</div>
-								<div className="feature-subtitle">{item.subtitle}</div>
+							</HudIcon>
+							<div className="flex flex-col gap-0.5 text-left">
+								<div className="block text-[0.94rem] font-bold leading-[1.2] text-white tracking-[-0.01em] whitespace-nowrap">
+									{item.title}
+								</div>
+								<div className="block text-[0.8rem] font-medium leading-[1.2] text-[rgba(255,255,255,0.72)] whitespace-nowrap">
+									{item.subtitle}
+								</div>
 							</div>
 						</div>
 						{index < INFO_STRIP_ITEMS.length - 1 && (
-							<span className="feature-divider" aria-hidden />
+							<span
+								className="shrink-0 self-center w-px h-8 bg-[linear-gradient(to_bottom,transparent,rgba(120,180,255,0.25),transparent)] shadow-none opacity-80"
+								aria-hidden
+							/>
 						)}
 					</Fragment>
 				))}
 			</div>
-		</div>
+		</HudPanel>
 	)
 }
