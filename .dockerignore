@@ -30,7 +30,3 @@ Thumbs.db
 # Git + dev tools
 .git
 .devcontainer
-
-# Env files
-.env
-.env.*
