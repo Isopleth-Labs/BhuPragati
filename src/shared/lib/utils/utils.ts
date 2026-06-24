@@ -47,11 +47,11 @@ export function getPopupMarkup(
 		properties.note ?? "Layer details are available in the dashboard."
 
 	return `
-    <section class="map-popup">
-      <div class="map-popup__eyebrow">${status}</div>
-      <h3>${title}</h3>
-      <p class="map-popup__metric">${metric}</p>
-      <p>${note}</p>
+    <section class="w-[280px] p-3.5 text-left">
+      <div class="mb-1.5 text-[0.76rem] font-bold text-[#ff7665] uppercase leading-none">${status}</div>
+      <h3 class="m-0 mb-2 font-['Barlow_Condensed',Barlow,sans-serif] text-[1.45rem] font-bold leading-none text-white uppercase">${title}</h3>
+      <p class="m-0 mb-2 text-[0.9rem] font-bold text-white leading-snug">${metric}</p>
+      <p class="m-0 text-[0.9rem] text-[#e0ebff]/72 leading-[1.35]">${note}</p>
     </section>
   `
 }
