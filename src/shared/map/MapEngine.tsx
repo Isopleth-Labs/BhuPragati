@@ -60,6 +60,21 @@ const MapEngine = forwardRef<MapRef | null, MapEngineProps>(
 			fixed inset-0 z-0 overflow-hidden
 			bg-[#02050a]
 			[background:radial-gradient(circle_at_50%_48%,rgba(255,64,45,0.12),transparent_18%),radial-gradient(circle_at_54%_52%,rgba(0,112,170,0.16),transparent_44%),#02050a]
+			
+			/* MapLibre Popup Custom Skin Overrides */
+			[&_.maplibregl-popup]:z-[4]
+			[&_.maplibregl-popup-content]:p-0
+			[&_.maplibregl-popup-content]:overflow-hidden
+			[&_.maplibregl-popup-content]:text-white
+			[&_.maplibregl-popup-content]:bg-[rgba(4,10,16,0.92)]
+			[&_.maplibregl-popup-content]:border
+			[&_.maplibregl-popup-content]:border-[#ff5844]/34
+			[&_.maplibregl-popup-content]:rounded-lg
+			[&_.maplibregl-popup-content]:shadow-[0_18px_60px_rgba(0,0,0,0.52),0_0_28px_rgba(255,59,47,0.12)]
+			[&_.maplibregl-popup-content]:backdrop-blur-[18px]
+			
+			[&_.maplibregl-popup-tip]:border-t-[rgba(4,9,16,0.92)]
+			[&_.maplibregl-popup-tip]:border-b-[rgba(4,9,16,0.92)]
 		"
 			>
 				<MapGL
