@@ -2,7 +2,6 @@ import { useState } from "react"
 import { ParameterPanel } from "./simulation/ParameterPanel"
 import { ScenarioCards } from "./simulation/ScenarioCards"
 import { SimulationHeader } from "./simulation/SimulationHeader"
-import { TelemetryPanel } from "./simulation/TelemetryPanel"
 
 function Simulation() {
 	const [hoveredCard, setHoveredCard] = useState<number | null>(null)
@@ -19,8 +18,6 @@ function Simulation() {
 					hoveredCard={hoveredCard}
 					setHoveredCard={setHoveredCard}
 				/>
-
-				<TelemetryPanel />
 
 				<ParameterPanel />
 			</div>
