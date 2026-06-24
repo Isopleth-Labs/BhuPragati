@@ -57,14 +57,21 @@ export function DistrictBoundaryLayer({
 					type: "fill",
 					source: DISTRICT_SOURCE,
 					paint: {
-						"fill-color": "#5fa8d8",
+						"fill-color": [
+							"case",
+							["boolean", ["feature-state", "selected"], false],
+							"#00f0ff",
+							["boolean", ["feature-state", "hover"], false],
+							"#00a8ff",
+							"#5fa8d8",
+						],
 						"fill-opacity": [
 							"case",
 							["boolean", ["feature-state", "selected"], false],
-							0.38,
+							0.28,
 							["boolean", ["feature-state", "hover"], false],
-							0.22,
-							0.06,
+							0.16,
+							0.03,
 						],
 					},
 				})
@@ -76,22 +83,29 @@ export function DistrictBoundaryLayer({
 					type: "line",
 					source: DISTRICT_SOURCE,
 					paint: {
-						"line-color": "#5fa8d8",
+						"line-color": [
+							"case",
+							["boolean", ["feature-state", "selected"], false],
+							"#00f0ff",
+							["boolean", ["feature-state", "hover"], false],
+							"#00a8ff",
+							"#47789a",
+						],
 						"line-width": [
 							"case",
 							["boolean", ["feature-state", "selected"], false],
 							2.5,
 							["boolean", ["feature-state", "hover"], false],
 							2.0,
-							1.4,
+							0.8,
 						],
 						"line-opacity": [
 							"case",
 							["boolean", ["feature-state", "selected"], false],
-							0.9,
+							0.95,
 							["boolean", ["feature-state", "hover"], false],
-							0.72,
-							0.52,
+							0.82,
+							0.22,
 						],
 					},
 				})
@@ -104,13 +118,13 @@ export function DistrictBoundaryLayer({
 					source: DISTRICT_SOURCE,
 					layout: {
 						"text-field": ["get", "name"],
-						"text-size": 11,
-						"text-font": ["Noto Sans Regular"],
+						"text-size": 12.5,
+						"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
 					},
 					paint: {
-						"text-color": "#b9d4ea",
+						"text-color": "#e6f2ff",
 						"text-halo-color": "#04111c",
-						"text-halo-width": 1,
+						"text-halo-width": 1.6,
 					},
 				})
 			}

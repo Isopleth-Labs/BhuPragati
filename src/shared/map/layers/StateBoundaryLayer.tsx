@@ -1,7 +1,8 @@
 import type { Map as MaplibreMap } from "maplibre-gl"
 import { useEffect } from "react"
-import { STATE_INDICATORS_DATA } from "@/data/state-indicators"
+import type { RegionIndicators } from "@/data/state-indicators"
 import { resolveBoundaryProvider } from "@/shared/boundary/registry"
+import { useIndicators } from "@/shared/hooks/useIndicators"
 import {
 	addLayer,
 	addSource,
@@ -14,6 +15,7 @@ import {
 	STATE_LABEL_SOURCE,
 	STATE_OUTLINE_LAYER,
 } from "@/shared/selectors"
+import { indicatorsService } from "@/shared/services/indicators.service"
 import { useMapReady } from "../hooks/useMapReady"
 
 // Populated during mount. Exported for StateSelectionController to resolve
@@ -21,10 +23,21 @@ import { useMapReady } from "../hooks/useMapReady"
 // Must be module-level (not component state) so it outlives re-renders.
 export const stateIdToNumericId: Record<string, number> = {}
 
-type IndicatorKey = keyof (typeof STATE_INDICATORS_DATA)[string]["metrics"]
+type IndicatorKey =
+	| "overall"
+	| "population"
+	| "infrastructure"
+	| "health"
+	| "education"
+	| "agriculture"
+	| "connectivity"
+	| "power"
 
-function getMinMax(indicator: IndicatorKey): { min: number; max: number } {
-	const scores = Object.values(STATE_INDICATORS_DATA).map(
+function getMinMax(
+	indicator: IndicatorKey,
+	indicatorsData: Record<string, RegionIndicators>,
+): { min: number; max: number } {
+	const scores = Object.values(indicatorsData).map(
 		(s) => s.metrics[indicator] ?? 60,
 	)
 	return { min: Math.min(...scores), max: Math.max(...scores) }
@@ -33,10 +46,11 @@ function getMinMax(indicator: IndicatorKey): { min: number; max: number } {
 function applyChoroplethScores(
 	map: MaplibreMap,
 	indicator: IndicatorKey,
+	indicatorsData: Record<string, RegionIndicators>,
 ): void {
-	const { min, max } = getMinMax(indicator)
+	const { min, max } = getMinMax(indicator, indicatorsData)
 	for (const [id, numericId] of Object.entries(stateIdToNumericId)) {
-		const entry = STATE_INDICATORS_DATA[id]
+		const entry = indicatorsData[id]
 		if (!entry) continue
 		const raw = entry.metrics[indicator] ?? 60
 		const score = max > min ? ((raw - min) / (max - min)) * 100 : 50
@@ -46,12 +60,13 @@ function applyChoroplethScores(
 
 // Call after regionId or indicator changes in DashboardShell.
 // Map must be ready and india-states layers must be mounted before calling.
-export function updateChoroplethForIndicator(
+export async function updateChoroplethForIndicator(
 	map: MaplibreMap,
 	indicator: string,
-): void {
+): Promise<void> {
 	if (!map.getSource(STATE_FILL_SOURCE)) return
-	applyChoroplethScores(map, indicator as IndicatorKey)
+	const indicatorsData = await indicatorsService.getAllIndicators()
+	applyChoroplethScores(map, indicator as IndicatorKey, indicatorsData)
 }
 
 interface StateBoundaryLayerProps {
@@ -67,9 +82,10 @@ interface StateBoundaryLayerProps {
 // in StateSelectionController (Phase C).
 export function StateBoundaryLayer({ onReady }: StateBoundaryLayerProps) {
 	const map = useMapReady()
+	const { data: indicators } = useIndicators()
 
 	useEffect(() => {
-		if (!map) return
+		if (!map || !indicators) return
 		let cancelled = false
 
 		;(async () => {
@@ -91,10 +107,14 @@ export function StateBoundaryLayer({ onReady }: StateBoundaryLayerProps) {
 
 			addSource(map, STATE_FILL_SOURCE, data)
 
+			const indicatorsData = Object.fromEntries(
+				indicators.map((ind) => [ind.id, ind]),
+			)
+
 			// Initialize choropleth scores once source exists.
 			// Normalizes each state's indicator score to 0–100 across the full range
 			// so the fill-color interpolation spans the whole palette, not just mid-blue.
-			applyChoroplethScores(map, "overall")
+			applyChoroplethScores(map, "overall", indicatorsData)
 
 			// Separate point source from label_coordinate (not centroid) — guarantees
 			// exactly one label per state regardless of MultiPolygon geometry.
@@ -274,9 +294,10 @@ export function StateBoundaryLayer({ onReady }: StateBoundaryLayerProps) {
 					],
 				},
 				paint: {
-					"text-color": "rgba(255,255,255,0.96)",
-					"text-halo-color": "rgba(0,0,0,0.45)",
-					"text-halo-width": 1.0,
+					"text-color": "rgba(255,255,255,0.98)",
+					"text-halo-color": "rgba(3, 8, 20, 0.95)",
+					"text-halo-width": 1.8,
+					"text-halo-blur": 0.5,
 					"text-opacity": 1.0,
 				},
 			})
@@ -287,7 +308,7 @@ export function StateBoundaryLayer({ onReady }: StateBoundaryLayerProps) {
 		return () => {
 			cancelled = true
 		}
-	}, [map, onReady])
+	}, [map, onReady, indicators])
 
 	return null
 }

@@ -41,7 +41,7 @@ export const INDIA_CENTER = [81.5, 21.2] as [number, number]
 
 export const INDIA_INITIAL_VIEW_STATE = {
 	center: INDIA_CENTER,
-	zoom: 4.0,
+	zoom: 4.2,
 	pitch: 0,
 	bearing: 0,
 }

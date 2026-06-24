@@ -49,3 +49,5 @@ drizzle/meta
 # Misc
 *.local
 __unconfig*
+todos.json
+scratch/

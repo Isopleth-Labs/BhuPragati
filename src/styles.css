@@ -2,8 +2,144 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
-@import "@/shared/styles/base.css";
-@import "@/shared/styles/panels.css";
+:root {
+	--panel-bg: rgba(4, 9, 16, 0.78);
+	--panel-border: rgba(126, 216, 255, 0.2);
+	--panel-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+	--text-muted: rgba(224, 235, 255, 0.68);
+	--text-soft: rgba(224, 235, 255, 0.82);
+	font-family:
+		Barlow, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	color: #f5f8ff;
+	color-scheme: dark;
+	background: #02050a;
+	text-rendering: geometricPrecision;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+:root[data-theme="light"] {
+	--panel-bg: rgba(245, 248, 255, 0.85);
+	--panel-border: rgba(92, 158, 210, 0.25);
+	--text-muted: rgba(15, 23, 42, 0.65);
+	--text-soft: rgba(15, 23, 42, 0.85);
+	color-scheme: light;
+}
+
+body {
+	min-width: 320px;
+	background:
+		linear-gradient(135deg, rgba(0, 213, 255, 0.07), transparent 38%),
+		linear-gradient(315deg, rgba(191, 92, 255, 0.08), transparent 42%), #02050a;
+}
+
+[data-theme="light"] body {
+	background: #f1f5f9;
+}
+
+[data-theme="light"] .state-dashboard {
+	color: #0f172a;
+	background: #f8fafc;
+}
+
+button {
+	font: inherit;
+}
+
+button,
+a {
+	-webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+	color: #ffffff;
+	background: rgba(0, 245, 255, 0.34);
+}
+
+.panel-surface {
+	position: relative;
+	min-width: 0;
+	overflow: hidden;
+	background:
+		linear-gradient(
+			150deg,
+			rgba(255, 255, 255, 0.05),
+			rgba(255, 255, 255, 0.012) 48%,
+			rgba(0, 88, 130, 0.04)
+		),
+		rgba(2, 7, 13, 0.74);
+	border: 1px solid rgba(92, 158, 210, 0.22);
+	border-radius: 10px;
+	box-shadow:
+		0 28px 90px rgba(0, 0, 0, 0.55),
+		inset 0 1px 0 rgba(255, 255, 255, 0.05),
+		inset 0 -1px 0 rgba(0, 135, 185, 0.07),
+		0 0 0 1px rgba(92, 158, 210, 0.04);
+	-webkit-backdrop-filter: blur(28px) saturate(1.25);
+	backdrop-filter: blur(28px) saturate(1.25);
+}
+
+.panel-surface::before {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	content: "";
+	background:
+		linear-gradient(
+			90deg,
+			rgba(84, 183, 255, 0.07),
+			transparent 36%,
+			rgba(255, 80, 60, 0.03)
+		),
+		repeating-linear-gradient(
+			0deg,
+			rgba(255, 255, 255, 0.022),
+			rgba(255, 255, 255, 0.022) 1px,
+			transparent 1px,
+			transparent 9px
+		);
+	opacity: 0.42;
+}
+
+.panel-surface > * {
+	position: relative;
+	z-index: 1;
+}
+
+.panel-kicker {
+	margin: 0 0 10px;
+	font-family: "Barlow Condensed", Barlow, sans-serif;
+	font-size: 0.74rem;
+	font-weight: 600;
+	color: rgba(155, 198, 230, 0.78);
+	text-transform: uppercase;
+	letter-spacing: 0.16em;
+}
+
+@keyframes brand-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		box-shadow: 0 0 14px rgba(255, 64, 53, 0.95);
+	}
+	50% {
+		opacity: 0.55;
+		box-shadow: 0 0 22px rgba(255, 64, 53, 0.6);
+	}
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -119,6 +255,12 @@
 }
 
 @theme inline {
+	--animate-scroll-line: scrollLinePulse 2s cubic-bezier(0.16, 1, 0.3, 1)
+		infinite;
+	--animate-brand-pulse: brand-pulse 1.6s ease-in-out infinite;
+	--animate-sim-arrow-pulse: simArrowPulse 1.5s infinite;
+	--animate-sim-arrow-move: simArrowMove 1s ease-in-out infinite alternate;
+	--animate-sim-arrow-flow: simArrowFlow 1.5s ease-in-out infinite;
 	--font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
@@ -218,14 +360,14 @@ body::after {
 	mask-image: radial-gradient(circle at 50% 30%, black, transparent 78%);
 }
 
-a {
+.about-page a {
 	color: var(--lagoon-deep);
 	text-decoration-thickness: 1px;
 	text-decoration-color: rgba(50, 143, 151, 0.4);
 	text-underline-offset: 2px;
 }
 
-a:hover {
+.about-page a:hover {
 	color: #246f76;
 }
 
@@ -289,9 +431,10 @@ pre code {
 	transform: translateY(-2px);
 }
 
-button,
+/* Transition scoped to island-shell (about page) and nav-links (header) only.
+   Bare `button` and bare `a` removed — they leak to dashboard HUD controls. */
 .island-shell,
-a {
+.nav-link {
 	transition:
 		background-color 180ms ease,
 		color 180ms ease,
@@ -356,6 +499,125 @@ a {
 	border-top: 1px solid var(--line);
 }
 
+/* ─── HUD Dashboard Design Tokens ───────────────────────────────────────────
+   Shared keyframes and utility classes for the State Intelligence Dashboard.
+   These centralise the repeated glassmorphic / neon patterns that live in
+   state-dashboard.css so they are available as plain Tailwind utilities once
+   that file is eventually removed.                                           */
+
+@keyframes hud-fade-in {
+	from {
+		opacity: 0;
+		margin-top: 6px;
+	}
+	to {
+		opacity: 1;
+		margin-top: 0;
+	}
+}
+
+@keyframes hud-scale-in {
+	from {
+		transform: scale(0.92);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes hud-slide-down {
+	from {
+		transform: translate(-50%, -20px);
+		opacity: 0;
+	}
+	to {
+		transform: translate(-50%, 0);
+		opacity: 1;
+	}
+}
+
+/* ── Utility: translucent dark glass panel (sidebar / header) ── */
+@utility hud-panel {
+	background: rgba(4, 12, 28, 0.88);
+	border: 1px solid rgba(100, 150, 255, 0.14);
+	border-radius: 12px;
+	box-shadow:
+		0 20px 50px rgba(0, 0, 0, 0.6),
+		0 0 20px rgba(100, 150, 255, 0.05);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(20px);
+}
+
+/* ── Utility: dark metric card (indicator strip) ── */
+@utility panel-card {
+	background: linear-gradient(
+		150deg,
+		rgba(12, 18, 28, 0.95),
+		rgba(6, 12, 20, 0.85)
+	);
+	border: 1px solid
+		color-mix(in srgb, var(--card-color, #3b82f6) 45%, transparent);
+	border-radius: 12px;
+	box-shadow:
+		0 4px 20px rgba(0, 0, 0, 0.45),
+		inset 0 1px 1px rgba(255, 255, 255, 0.08);
+	transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Utility: square neon-bordered icon container ── */
+@utility hud-icon {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	background: var(--icon-bg, rgba(120, 160, 220, 0.1));
+	border: 1px solid var(--icon-border, rgba(120, 160, 220, 0.22));
+	border-radius: 8px;
+	box-shadow:
+		0 0 12px var(--icon-glow, var(--icon-bg)),
+		inset 0 1px 1px rgba(255, 255, 255, 0.12);
+	transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Utility: ranking list row ── */
+@utility ranking-row-base {
+	display: grid;
+	grid-template-columns: 28px 128px 94px 50px;
+	column-gap: 4px;
+	align-items: center;
+	width: 100%;
+	padding: 6px 10px;
+	font-size: 13px;
+	color: #e6f0ff;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	transition:
+		background 160ms ease,
+		box-shadow 160ms ease,
+		transform 160ms ease;
+}
+
+/* ── Utility: telemetry / overview metric card ── */
+@utility metric-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	background: linear-gradient(
+		135deg,
+		rgba(12, 20, 42, 0.58) 0%,
+		rgba(4, 9, 20, 0.72) 100%
+	);
+	border: 1px solid rgba(100, 150, 255, 0.16);
+	border-radius: 10px;
+	box-shadow:
+		0 4px 15px rgba(0, 0, 0, 0.28),
+		inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
@@ -363,5 +625,57 @@ a {
 	body {
 		color: var(--foreground);
 		background-color: var(--background);
+	}
+}
+
+@keyframes scrollLinePulse {
+	0% {
+		transform: translateY(-8px);
+	}
+	60%,
+	100% {
+		transform: translateY(24px);
+	}
+}
+
+@keyframes simArrowPulse {
+	0% {
+		transform: scale(1);
+		filter: drop-shadow(0 0 2px rgba(255, 107, 87, 0.4));
+	}
+	50% {
+		transform: scale(1.1);
+		filter: drop-shadow(0 0 8px rgba(255, 107, 87, 0.8));
+	}
+	100% {
+		transform: scale(1);
+		filter: drop-shadow(0 0 2px rgba(255, 107, 87, 0.4));
+	}
+}
+
+@keyframes simArrowMove {
+	0% {
+		transform: translateX(0);
+		filter: drop-shadow(0 0 4px rgba(255, 211, 77, 0.6));
+	}
+	100% {
+		transform: translateX(6px);
+		filter: drop-shadow(0 0 8px rgba(255, 211, 77, 0.9));
+	}
+}
+
+@keyframes simArrowFlow {
+	0% {
+		transform: translateX(-2px);
+		opacity: 0.5;
+	}
+	50% {
+		transform: translateX(3px);
+		opacity: 1;
+		filter: drop-shadow(0 0 8px rgba(39, 255, 208, 0.8));
+	}
+	100% {
+		transform: translateX(8px);
+		opacity: 0;
 	}
 }

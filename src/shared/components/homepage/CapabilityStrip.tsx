@@ -18,7 +18,7 @@ const CAPABILITIES = [
 		),
 		label: "Infrastructure",
 		desc: "Monitoring major assets",
-		color: "#6ad1ff",
+		color: "var(--brand-blue)",
 	},
 	{
 		icon: (
@@ -112,43 +112,23 @@ const CAPABILITIES = [
 function CapabilityStrip() {
 	return (
 		<section
-			className="absolute bottom-0 left-0 right-0 z-[6] pb-4 px-[clamp(30px,4.8vw,78px)] bg-transparent max-[720px]:px-[18px] max-[720px]:pb-[18px]"
+			className="absolute right-0 bottom-0 left-0 z-6 px-[clamp(30px,4.8vw,78px)] py-0 pb-4 mt-0 bg-transparent max-[720px]:px-[18px] max-[720px]:pb-[18px]"
 			aria-label="Platform capabilities"
 		>
-			<div
-				className={[
-					"grid [grid-template-columns:repeat(5,minmax(0,1fr))]",
-					"max-w-[1280px] min-h-[88px] mx-auto overflow-hidden",
-					"bg-[linear-gradient(180deg,rgba(8,12,20,0.35),rgba(4,8,16,0.28))]",
-					"border border-[rgba(255,255,255,0.08)] rounded-[8px]",
-					"shadow-[inset_0_1px_0_rgba(255,255,255,0.03),0_8px_32px_rgba(0,0,0,0.2)]",
-					"max-[980px]:flex max-[980px]:overflow-x-auto",
-					"max-[980px]:[scroll-snap-type:x_mandatory] max-[980px]:[scrollbar-width:none]",
-					"max-[980px]:[mask-image:linear-gradient(90deg,transparent_0,#000_24px,#000_calc(100%_-_24px),transparent_100%)]",
-					"max-[980px]:[&::-webkit-scrollbar]:hidden",
-					"max-[720px]:min-h-[72px]",
-				].join(" ")}
-			>
+			<div className="grid grid-cols-5 max-w-[1280px] min-h-[88px] mx-auto my-0 overflow-hidden bg-gradient-to-b from-[rgba(8,12,20,0.35)] to-[rgba(4,8,16,0.28)] border border-solid border-[rgba(255,255,255,0.08)] rounded-lg [box-shadow:inset_0_1px_0_rgba(255,255,255,0.03),0_8px_32px_rgba(0,0,0,0.2)] max-[980px]:flex max-[980px]:overflow-x-auto max-[980px]:snap-x max-[980px]:snap-mandatory max-[980px]:[scrollbar-width:none] max-[980px]:[&::-webkit-scrollbar]:hidden max-[980px]:[mask-image:linear-gradient(90deg,transparent_0,#000_24px,#000_calc(100%-24px),transparent_100%)] max-[720px]:min-h-[72px]">
 				{CAPABILITIES.map((item) => (
 					<article
+						className="relative flex gap-[18px] items-center min-w-0 px-[clamp(18px,2vw,28px)] py-5 first:border-l-0 border-l border-solid border-[rgba(255,255,255,0.07)] max-[980px]:shrink-0 max-[980px]:min-w-[220px] max-[980px]:snap-start max-[720px]:min-w-[196px] max-[720px]:px-4 max-[720px]:py-3.5 max-[480px]:min-w-[180px] max-[480px]:px-3.5 max-[480px]:py-3"
 						key={item.label}
-						className={[
-							"relative flex gap-[18px] items-center min-w-0",
-							"p-[20px_clamp(18px,2vw,28px)]",
-							"[&:not(:first-child)]:border-l [&:not(:first-child)]:border-[rgba(255,255,255,0.07)]",
-							"max-[980px]:flex-shrink-0 max-[980px]:min-w-[220px] max-[980px]:[scroll-snap-align:start]",
-							"max-[720px]:min-w-[196px] max-[720px]:p-[14px_16px]",
-							"max-[480px]:min-w-[180px] max-[480px]:p-[12px_14px]",
-						].join(" ")}
 					>
 						<div
-							className="flex flex-shrink-0 items-center justify-center w-[34px] h-[34px] opacity-[0.95] scale-[1.15] max-[720px]:w-[30px] max-[720px]:h-[30px]"
+							className="flex shrink-0 items-center justify-center w-[34px] h-[34px] opacity-95 scale-115 origin-center max-[720px]:w-[30px] max-[720px]:h-[30px]"
 							style={{ color: item.color }}
 						>
 							{item.icon}
 						</div>
 						<div>
-							<p className="text-[14px] font-bold leading-[1.15] text-[#e8eef8] uppercase max-[720px]:text-[10px] max-[480px]:text-[9px]">
+							<p className="text-[14px] font-bold leading-[1.15] text-[var(--text)] uppercase tracking-0 max-[720px]:text-[10px] max-[480px]:text-[9px]">
 								{item.label}
 							</p>
 							<p className="mt-[3px] text-[11.5px] leading-[1.3] text-[#8fa0b5] max-[720px]:text-[9px]">
